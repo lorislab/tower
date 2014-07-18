@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    
+	<parent>
+		<groupId>org.lorislab.tower</groupId>
+		<artifactId>tower</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+		
+	<artifactId>tower-ear</artifactId>
+	<packaging>ear</packaging>    
+	<name>tower-ear</name>
+
+	<dependencies>
+		
+		<!-- MODULES -->
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-guardian</artifactId>
+			<type>ejb</type>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-web</artifactId>
+			<type>war</type>
+			<version>${project.version}</version>
+		</dependency>		
+	</dependencies>  
+    
+	
+	<build>
+		<finalName>tower</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<displayName>tower-ear</displayName>
+					<modules>        
+						<ejbModule>
+							<groupId>org.lorislab.tower</groupId>
+							<artifactId>tower-guardian</artifactId>
+							<bundleFileName>tower-guardian.jar</bundleFileName>
+						</ejbModule>					 
+						<webModule>
+							<groupId>org.lorislab.tower</groupId>
+							<artifactId>tower-web</artifactId>
+							<bundleFileName>tower.war</bundleFileName>
+							<contextRoot>tower</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>deploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.lorislab.maven</groupId>
+						<artifactId>jboss-server-plugin</artifactId>
+					</plugin>					
+				</plugins>
+			</build>
+		</profile>		
+	</profiles>	
+	
+</project>

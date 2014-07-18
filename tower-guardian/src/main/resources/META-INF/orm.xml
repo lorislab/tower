@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings 
+  xmlns="http://java.sun.com/xml/ns/persistence/orm"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_0.xsd"
+  version="2.0">
+	
+	<!-- APPLICATION -->
+	<entity class="org.lorislab.guardian.app.model.Application" metadata-complete="false">
+		<table name="TW_GU_CONF"></table>
+	</entity>
+	<entity class="org.lorislab.guardian.app.model.Group" metadata-complete="false">
+		<table name="TW_GU_GROUP"></table>
+		<attributes>
+			<one-to-many name="roles">
+				<join-table name="TW_GU_GROUP_ROLE">
+					<join-column name="GU_GROUP_GUID" ></join-column>
+					<inverse-join-column name="GU_ROLE_GUID"></inverse-join-column>
+				</join-table>
+			</one-to-many>
+		</attributes>		
+	</entity>
+	<entity class="org.lorislab.guardian.app.model.Permission" metadata-complete="false">
+		<table name="TW_GU_PERMISSION"></table>
+	</entity>	
+	<entity class="org.lorislab.guardian.app.model.Role" metadata-complete="false">
+		<table name="TW_GU_ROLE"></table>
+		<attributes>
+			<many-to-many name="permissions">
+				<join-table name="TW_GU_ROLE_PERM">
+					<join-column name="GU_ROLE_GUID" ></join-column>
+					<inverse-join-column name="GU_PERM_GUID"></inverse-join-column>
+				</join-table>
+			</many-to-many>
+		</attributes>
+	</entity>	
+	
+	<!-- USER -->
+	<entity class="org.lorislab.guardian.user.model.User" metadata-complete="false">
+		<table name="TW_GU_USER"></table>
+	</entity>
+	<entity class="org.lorislab.guardian.user.model.UserMember" metadata-complete="false">
+		<table name="TW_GU_MEMEBER"></table>
+		<attributes>
+			<element-collection name="groups">
+				<collection-table name="TW_GU_MEMBER_GROUPS">
+					<join-column name="GU_MEMEBER_GUID"></join-column>
+				</collection-table>
+			</element-collection>
+			<element-collection name="roles">
+				<collection-table name="TW_GU_MEMBER_ROLES">
+					<join-column name="GU_MEMEBER_GUID"></join-column>
+				</collection-table>
+			</element-collection>			
+		</attributes>
+	</entity>
+	<entity class="org.lorislab.guardian.user.model.UserParameter" metadata-complete="false">
+		<table name="TW_GU_PARAMETER"></table>
+	</entity>	
+	<entity class="org.lorislab.guardian.user.model.UserPassword" metadata-complete="false">
+		<table name="TW_GU_PASSWORD"></table>
+	</entity>
+	<entity class="org.lorislab.guardian.user.model.UserProfile" metadata-complete="false">
+		<table name="TW_GU_PROFILE"></table>
+	</entity>		
+</entity-mappings>

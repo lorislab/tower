@@ -13,7 +13,11 @@
 	<packaging>ear</packaging>    
 	<name>tower-ear</name>
 
-	<dependencies>		
+	<dependencies>	
+		<dependency>
+			<groupId>org.lorislab.barn</groupId>
+			<artifactId>barn-api</artifactId>
+		</dependency>			
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>
 			<artifactId>guardian-api</artifactId>
@@ -39,6 +43,26 @@
 					<groupId>org.lorislab.guardian</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-barn</artifactId>
+			<type>ejb</type>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>barn-db</artifactId>
+					<groupId>org.lorislab.barn</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>barn-standalone-ejb</artifactId>
+					<groupId>org.lorislab.barn</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>barn-adapter-resteasy</artifactId>
+					<groupId>org.lorislab.barn</groupId>
+				</exclusion>
+			</exclusions>			
 		</dependency>
 		<dependency>
 			<groupId>org.lorislab.tower</groupId>
@@ -73,6 +97,11 @@
 							<artifactId>tower-guardian</artifactId>
 							<bundleFileName>tower-guardian.jar</bundleFileName>
 						</ejbModule>
+						<ejbModule>
+							<groupId>org.lorislab.tower</groupId>
+							<artifactId>tower-barn</artifactId>
+							<bundleFileName>tower-barn.jar</bundleFileName>
+						</ejbModule>						
 						<webModule>
 							<groupId>org.lorislab.tower</groupId>
 							<artifactId>tower-web</artifactId>

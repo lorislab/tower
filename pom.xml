@@ -40,6 +40,7 @@
 		
 	<modules>
 		<module>tower-guardian</module>
+		<module>tower-barn</module>
 		<module>tower-ejb</module>
 		<module>tower-web</module>		
 		<module>tower-ear</module>
@@ -55,7 +56,14 @@
 				<scope>import</scope>				
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
-				
+			<!-- BARN -->
+			<dependency>
+				<groupId>org.lorislab.barn</groupId>
+				<artifactId>barn-bom</artifactId>
+				<type>pom</type>
+				<scope>import</scope>				
+				<version>0.0.2-SNAPSHOT</version>				
+			</dependency>	
 			<!-- JEL -->
 			<dependency>
 				<groupId>org.lorislab.jel</groupId>

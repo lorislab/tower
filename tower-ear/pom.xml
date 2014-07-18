@@ -15,6 +15,14 @@
 
 	<dependencies>	
 		<dependency>
+			<groupId>org.lorislab.postman</groupId>
+			<artifactId>postman-api</artifactId>
+		</dependency>					
+		<dependency>
+			<groupId>org.lorislab.postman</groupId>
+			<artifactId>postman-impl</artifactId>
+		</dependency>		
+		<dependency>
 			<groupId>org.lorislab.barn</groupId>
 			<artifactId>barn-api</artifactId>
 		</dependency>			
@@ -24,6 +32,11 @@
 		</dependency>
 		
 		<!-- MODULES -->
+		<dependency>
+			<groupId>org.lorislab.postman</groupId>
+			<artifactId>postman-service</artifactId>
+			<type>ejb</type>
+		</dependency>
 		<dependency>
 			<groupId>org.lorislab.tower</groupId>
 			<artifactId>tower-guardian</artifactId>
@@ -87,6 +100,11 @@
 				<configuration>			
 					<displayName>tower-ear</displayName>
 					<modules> 
+						<ejbModule>
+							<groupId>org.lorislab.postman</groupId>
+							<artifactId>postman-service</artifactId>
+							<bundleFileName>tower-postman.jar</bundleFileName>
+						</ejbModule>						
 						<ejbModule>
 							<groupId>org.lorislab.tower</groupId>
 							<artifactId>tower-ejb</artifactId>

@@ -26,7 +26,13 @@
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>
 			<artifactId>guardian-service</artifactId>
-		</dependency>							
+		</dependency>
+		<!-- META-INF SERVICES -->
+		<dependency>
+			<groupId>org.kohsuke.metainf-services</groupId>
+			<artifactId>metainf-services</artifactId>
+			<optional>true</optional>
+		</dependency>									
 	</dependencies>  
     
 	<build>

@@ -7,7 +7,7 @@
 	
 	<!-- APPLICATION -->
 	<entity class="org.lorislab.guardian.app.model.Application" metadata-complete="false">
-		<table name="TW_GU_CONF"></table>
+		<table name="TW_GU_APP"></table>
 	</entity>
 	<entity class="org.lorislab.guardian.app.model.Group" metadata-complete="false">
 		<table name="TW_GU_GROUP"></table>

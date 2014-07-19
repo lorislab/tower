@@ -17,6 +17,11 @@
 		<!-- GUARDIAN -->
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>
+			<artifactId>guardian-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.guardian</groupId>
 			<artifactId>guardian-jsf</artifactId>
 		 <exclusions>
 		  <exclusion>
@@ -38,6 +43,12 @@
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>			
 			<scope>provided</scope>
+		</dependency>
+		<!-- JSF -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<scope>provided</scope>
 		</dependency>	
 		<!-- PRIMEFACES -->
 		<dependency>
@@ -47,13 +58,15 @@
 		<dependency>  
 			<groupId>org.primefaces.themes</groupId>  
 			<artifactId>bootstrap</artifactId>  
-		</dependency>		
+		</dependency>
+		<!-- EJB -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>  				
 	</dependencies>
 	
-	<build>		
-		<finalName>tower</finalName>
-	</build>  
-			
 	<profiles>
 		<profile>
 			<id>deploy</id>

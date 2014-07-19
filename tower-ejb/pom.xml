@@ -14,7 +14,7 @@
 	<name>tower-ejb</name>        
     
 	<dependencies>					
-		<!-- GUARDIAN --> 		
+		<!-- JEL --> 		
 		<dependency>
 			<groupId>org.lorislab.jel</groupId>
 			<artifactId>jel-base</artifactId>

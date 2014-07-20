@@ -31,7 +31,7 @@ public class DeployMenuAction extends AbstractContextControllerAction<MenuViewCo
     private static final long serialVersionUID = 722501710661688287L;
 
     public DeployMenuAction(MenuViewController parent) {
-        super(parent, Action.MENU_DEPLOY, Context.ALL);
+        super(parent, Action.DEPLOY_EXEC, Context.MENU);
     }
     
     @Override

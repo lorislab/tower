@@ -22,5 +22,5 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Context {
     
-    ALL;
+    MENU;
 }

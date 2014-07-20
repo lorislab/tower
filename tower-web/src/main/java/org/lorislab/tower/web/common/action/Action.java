@@ -22,9 +22,9 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Action {
     
-    MENU_DASHBOARD,
+    DASHBOARD_EXEC,
     
-    MENU_DEPLOY,
+    DEPLOY_EXEC,
     
-    MENU_SETTINGS;
+    SETTINGS_EXEC;
 }

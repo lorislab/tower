@@ -31,7 +31,7 @@ public class SettingsMenuAction extends AbstractContextControllerAction<MenuView
     private static final long serialVersionUID = 722501710661688287L;
 
     public SettingsMenuAction(MenuViewController parent) {
-        super(parent, Action.MENU_SETTINGS, Context.ALL);
+        super(parent, Action.SETTINGS_EXEC, Context.MENU);
     }
     
     @Override

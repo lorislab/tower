@@ -14,6 +14,22 @@
 	<name>tower-ejb</name>        
     
 	<dependencies>	
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-bts</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-scm</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-agent-rs</artifactId>
+			<version>${project.version}</version>
+			<classifier>rsclient</classifier>
+		</dependency>		
 		<!-- BARN -->
 		<dependency>
 			<groupId>org.lorislab.barn</groupId>
@@ -36,7 +52,18 @@
 		<dependency>
 			<groupId>org.lorislab.jel</groupId>
 			<artifactId>jel-ejb</artifactId>
-		</dependency>	
+		</dependency>
+		<!-- RESTEASY -->                   
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<scope>provided</scope>
+		</dependency>			
 		<!-- JPA 2 -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>

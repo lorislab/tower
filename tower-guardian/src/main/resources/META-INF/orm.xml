@@ -43,5 +43,8 @@
 	</entity>
 	<entity class="org.lorislab.guardian.user.model.UserProfile" metadata-complete="false">
 		<table name="TW_GU_PROFILE"></table>
+	</entity>	
+	<entity class="org.lorislab.tower.guardian.model.UserConfig" metadata-complete="false">
+		<table name="TW_GU_CONFIG"></table>
 	</entity>		
 </entity-mappings>

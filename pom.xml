@@ -39,12 +39,17 @@
 	</developers>
 		
 	<modules>
+		<module>tower-maven-plugin</module>
 		<module>tower-agent</module>
 		<module>tower-agent-rs</module>
+		<module>tower-agent-impl</module>
+		<module>tower-agent-web</module>
 		<module>tower-rs</module>
 		<module>tower-bts</module>
 		<module>tower-scm</module>
+		<module>tower-store</module>
 		<module>tower-guardian</module>
+		<module>tower-guardian-config</module>
 		<module>tower-barn</module>
 		<module>tower-ejb</module>
 		<module>tower-web</module>		
@@ -162,7 +167,21 @@
 						<groupId>net.java.dev.jna</groupId>
 					</exclusion>
 				</exclusions>
-			</dependency>								
+			</dependency>
+			<!-- JBOSS -->     
+			<dependency>
+				<groupId>org.jboss.msc</groupId>
+				<artifactId>jboss-msc</artifactId>
+				<scope>provided</scope>
+				<version>1.2.0.CR1</version>
+			</dependency> 
+			<dependency>
+				<groupId>org.jboss.as</groupId>
+				<artifactId>jboss-as-server</artifactId>
+				<version>7.2.0.Final</version>
+				<scope>provided</scope>
+				<type>jar</type>
+			</dependency>											
 		</dependencies>
 	</dependencyManagement>    
     

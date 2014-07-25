@@ -13,11 +13,18 @@
 	<packaging>ejb</packaging>    
 	<name>tower-guardian</name>        
     
-	<dependencies>					
+	<dependencies>	
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-guardian-config</artifactId>
+			<version>${project.version}</version>
+			<type>ejb-client</type>
+			<scope>provided</scope>
+		</dependency>						
 		<!-- GUARDIAN --> 		
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>
-			<artifactId>guardian-user-model</artifactId>
+			<artifactId>guardian-user-model</artifactId>			
 		</dependency>
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>
@@ -32,7 +39,13 @@
 			<groupId>org.kohsuke.metainf-services</groupId>
 			<artifactId>metainf-services</artifactId>
 			<optional>true</optional>
-		</dependency>									
+		</dependency>		
+		<!-- EJB -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency> 													
 	</dependencies>  
     
 	<build>

@@ -18,8 +18,11 @@ package org.lorislab.tower.web.menu.view;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import org.lorislab.guardian.jsf.view.ActionContextViewController;
+import org.lorislab.guardian.api.model.UserData;
+import org.lorislab.guardian.web.view.AbstractActionContextViewController;
+import org.lorislab.guardian.web.view.ActionContextViewController;
 import org.lorislab.tower.web.menu.action.DashboardMenuAction;
 import org.lorislab.tower.web.menu.action.DeployMenuAction;
 import org.lorislab.tower.web.menu.action.SettingsMenuAction;
@@ -30,7 +33,7 @@ import org.lorislab.tower.web.menu.action.SettingsMenuAction;
  */
 @Named("menuVC")
 @SessionScoped
-public class MenuViewController implements ActionContextViewController, Serializable {
+public class MenuViewController extends AbstractActionContextViewController {
     
     private static final long serialVersionUID = -146734439197629212L;
 
@@ -45,12 +48,7 @@ public class MenuViewController implements ActionContextViewController, Serializ
         deploy = new DeployMenuAction(this);
         settings = new SettingsMenuAction(this);
     }
-     
-    @Override
-    public boolean hasUserAction(Enum action, Enum context) {
-        return true;
-    }
-
+    
     public DashboardMenuAction getDashboard() {
         return dashboard;
     }

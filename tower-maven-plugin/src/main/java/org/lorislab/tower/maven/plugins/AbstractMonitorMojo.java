@@ -99,7 +99,7 @@ public abstract class AbstractMonitorMojo extends AbstractMojo {
     /**
      * The external path of the file to deploy.
      */
-    @Parameter(defaultValue = "", required = false, property = "armonitor.deploy.file")
+    @Parameter(defaultValue = "", required = false, property = "tower.deploy.file")
     protected String exDeployFile;
 
     /**

@@ -160,7 +160,7 @@ public class BuildMojo extends AbstractMojo {
             }
             
         } catch (IOException ex) {
-            throw new MojoExecutionException("Error creating the armonitor.properties file", ex);
+            throw new MojoExecutionException("Error creating the tower.properties file", ex);
         }
     }
     

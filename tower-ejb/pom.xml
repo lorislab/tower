@@ -29,7 +29,34 @@
 			<artifactId>tower-agent-rs</artifactId>
 			<version>${project.version}</version>
 			<classifier>rsclient</classifier>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-store</artifactId>
+			<version>${project.version}</version>
+			<type>ejb-client</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-guardian</artifactId>
+			<scope>provided</scope>
+			<type>ejb-client</type>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-guardian-config</artifactId>
+			<scope>provided</scope>
+			<type>ejb-client</type>
+			<version>${project.version}</version>
+		</dependency>				
+		<!-- GUARDIAN -->
+		<dependency>
+			<groupId>org.lorislab.guardian</groupId>
+			<artifactId>guardian-api</artifactId>
+			<scope>provided</scope>
+		</dependency>						
 		<!-- BARN -->
 		<dependency>
 			<groupId>org.lorislab.barn</groupId>

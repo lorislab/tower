@@ -32,7 +32,7 @@ import org.lorislab.tower.rs.model.Status;
 import org.lorislab.tower.rs.service.MonitorService;
 
 /**
- * The ARMONITOR client.
+ * The tower client.
  *
  * @author Andrej Petras
  */
@@ -41,7 +41,7 @@ public final class MonitorClient {
     /**
      * The agent monitor URL.
      */
-    private static final String APP_URL = "armonitor-rs/rs";
+    private static final String APP_URL = "tower-rs/rs";
 
     /**
      * The default constructor.
@@ -80,7 +80,7 @@ public final class MonitorClient {
     }
 
     /**
-     * Sends the version for the system <code>key</code> to the ARMONITOR
+     * Sends the version for the system <code>key</code> to the tower.
      * server.
      *
      * @param url the URL.
@@ -103,7 +103,7 @@ public final class MonitorClient {
     }
 
     /**
-     * Sends the version for the system <code>key</code> to the ARMONITOR
+     * Sends the version for the system <code>key</code> to the tower.
      * server.
      *
      * @param url the URL.

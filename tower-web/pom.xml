@@ -14,6 +14,13 @@
 	<packaging>war</packaging>
 
 	<dependencies>  
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-guardian</artifactId>
+			<scope>provided</scope>
+			<type>ejb-client</type>
+			<version>${project.version}</version>
+		</dependency>		
 		<!-- GUARDIAN -->
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>

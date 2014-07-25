@@ -17,6 +17,7 @@ package org.lorislab.tower.process.ejb;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -27,14 +28,16 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import org.lorislab.barn.api.service.ConfigurationService;
+import org.lorislab.guardian.api.criteria.UserDataSearchCriteria;
+import org.lorislab.guardian.api.service.UserDataService;
 import org.lorislab.jel.ejb.exception.ServiceException;
 import org.lorislab.postman.api.model.Email;
 import org.lorislab.postman.api.model.EmailConfig;
 import org.lorislab.postman.api.service.EmailService;
 import org.lorislab.tower.activity.criteria.ActivityWrapperCriteria;
-import org.lorislab.tower.activity.ejb.ActivityProcessService;
 import org.lorislab.tower.activity.ejb.ActivityWrapperService;
 import org.lorislab.tower.activity.wrapper.ActivityWrapper;
+import org.lorislab.tower.guardian.data.model.DefaultUserData;
 import org.lorislab.tower.process.resources.ErrorKeys;
 import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.criteria.BuildCriteria;
@@ -43,13 +46,14 @@ import org.lorislab.tower.store.criteria.TargetSystemCriteria;
 import org.lorislab.tower.store.ejb.ActivityService;
 import org.lorislab.tower.store.ejb.ApplicationService;
 import org.lorislab.tower.store.ejb.BuildService;
+import org.lorislab.tower.store.ejb.NotificationGroupService;
 import org.lorislab.tower.store.ejb.SystemBuildService;
 import org.lorislab.tower.store.ejb.TargetSystemService;
 import org.lorislab.tower.store.model.Activity;
 import org.lorislab.tower.store.model.Application;
 import org.lorislab.tower.store.model.Build;
-import org.lorislab.tower.store.model.TargetSystem;
 import org.lorislab.tower.store.model.SystemBuild;
+import org.lorislab.tower.store.model.TargetSystem;
 import org.lorislab.tower.store.model.enums.SystemBuildType;
 
 /**
@@ -107,11 +111,8 @@ public class ProcessService {
     @EJB
     private SystemBuildService systemBuildService;
 
-    /**
-     * The store user service.
-     */
     @EJB
-    private UserService userService;
+    private UserDataService<DefaultUserData> userDataService;
 
     /**
      * The mail service.
@@ -126,8 +127,11 @@ public class ProcessService {
     private ActivityWrapperService activityWrapperService;
 
     @EJB
-    private ConfigurationService configService;
+    private NotificationGroupService notificationGroupService;
     
+    @EJB
+    private ConfigurationService configService;
+
     /**
      * Install the store build.
      *
@@ -354,8 +358,21 @@ public class ProcessService {
 //            throw new ServiceException(ErrorKeys.NO_ACTIVITY_FOUND_FOR_BUILD, build);
         }
 
+        // load the user guids for notification
+        List<String> userGuids = notificationGroupService.getNotificationUsers(system.getGuid());
+
         // load the users
-        Set<User> users = userService.getUsersEmailsForSystem(system.getGuid());
+        UserDataSearchCriteria userDataCriteria = new UserDataSearchCriteria();
+        userDataCriteria.setGuids(new HashSet<>(userGuids));
+        userDataCriteria.setFetchConfig(true);
+
+        List<DefaultUserData> users = null;
+        try {
+            users = userDataService.findUserData(userDataCriteria);
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, "Error reading the user data by criteria", ex);
+        }
+
         if (users == null || users.isEmpty()) {
             LOGGER.log(Level.WARNING, "No user found for the notification system {0}.", system.getName());
             return;
@@ -363,12 +380,12 @@ public class ProcessService {
 
         // create mails
         EmailConfig eConfig = configService.getConfiguration(EmailConfig.class);
-        
+
         List<Email> mails = createBuildDeployedMails(users, wrapper.getBuild(), system, wrapper, wrapper.getApplication(), wrapper.getProject(), sysBuild);
         if (mails != null) {
             for (Email mail : mails) {
                 try {
-                    mailService.sendEmail(mail, null);
+                    mailService.sendEmail(mail, eConfig);
                 } catch (Exception ex) {
                     LOGGER.log(Level.SEVERE, "Error sending the build notification mail to users: {0}", mail.getTo().toString());
                 }
@@ -384,23 +401,25 @@ public class ProcessService {
      * @param build the build.
      * @return the list of mails.
      */
-    private List<Email> createBuildDeployedMails(Set<User> users, Object... values) {
+    private List<Email> createBuildDeployedMails(List<DefaultUserData> users, Object... values) {
         List<Email> result = null;
         if (users != null) {
             result = new ArrayList<>();
-            for (User user : users) {
-                Email mail = new Email();
-                mail.getTo().add(user.getEmail());
-                mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
-                // add the user to the parameters
-                mail.getParameters().put(user.getClass().getSimpleName(), user);
-                // add the list of values to the parameters
-                if (values != null) {
-                    for (Object value : values) {
-                        mail.getParameters().put(value.getClass().getSimpleName(), value);
+            for (DefaultUserData user : users) {
+                if (user.getConfig().isNotification()) {
+                    Email mail = new Email();
+                    mail.getTo().add(user.getUser().getProfile().getEmail());
+                    mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
+                    // add the user to the parameters
+                    mail.getParameters().put(user.getClass().getSimpleName(), user);
+                    // add the list of values to the parameters
+                    if (values != null) {
+                        for (Object value : values) {
+                            mail.getParameters().put(value.getClass().getSimpleName(), value);
+                        }
                     }
+                    result.add(mail);
                 }
-                result.add(mail);
             }
         }
         return result;

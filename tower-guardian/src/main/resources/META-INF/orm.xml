@@ -35,16 +35,10 @@
 			</element-collection>	
 		</attributes>	
 	</entity>	
-	<entity class="org.lorislab.guardian.user.model.UserParameter" metadata-complete="false">
-		<table name="TW_GU_PARAMETER"></table>
-	</entity>	
 	<entity class="org.lorislab.guardian.user.model.UserPassword" metadata-complete="false">
 		<table name="TW_GU_PASSWORD"></table>
 	</entity>
 	<entity class="org.lorislab.guardian.user.model.UserProfile" metadata-complete="false">
 		<table name="TW_GU_PROFILE"></table>
-	</entity>	
-	<entity class="org.lorislab.tower.guardian.model.UserConfig" metadata-complete="false">
-		<table name="TW_GU_CONFIG"></table>
-	</entity>		
+	</entity>
 </entity-mappings>

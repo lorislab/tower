@@ -47,6 +47,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-store</artifactId>
+			<type>ejb</type>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
 			<artifactId>tower-guardian-config</artifactId>
 			<type>ejb</type>
 			<version>${project.version}</version>
@@ -134,6 +140,11 @@
 							<artifactId>tower-guardian</artifactId>
 							<bundleFileName>tower-guardian.jar</bundleFileName>
 						</ejbModule>
+						<ejbModule>
+							<groupId>org.lorislab.tower</groupId>
+							<artifactId>tower-store</artifactId>
+							<bundleFileName>tower-store.jar</bundleFileName>
+						</ejbModule>						
 						<ejbModule>
 							<groupId>org.lorislab.tower</groupId>
 							<artifactId>tower-barn</artifactId>

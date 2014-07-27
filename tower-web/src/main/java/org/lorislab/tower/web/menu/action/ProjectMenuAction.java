@@ -31,7 +31,7 @@ public class ProjectMenuAction extends AbstractContextControllerAction<MenuViewC
     private static final long serialVersionUID = -4911302278619693549L;
 
     public ProjectMenuAction(MenuViewController parent) {
-        super(parent, Context.ADMIN_PROJECT_MENU, Action.EXECUTION);
+        super(parent, Context.MENU_PROJECT, Action.EXECUTION);
     }
     
     @Override

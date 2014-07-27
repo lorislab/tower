@@ -22,11 +22,11 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Context {
     
-    ADMIN_PROJECT_MENU,
+    MENU_PROJECT,
     
-    ADMIN_APP_MENU,
+    MENU_APPLICATION,
     
-    ADMIN_SYSTEM_MENU,
+    MENU_SYSTEM,
     
     ADMIN_USERS_MENU,
     

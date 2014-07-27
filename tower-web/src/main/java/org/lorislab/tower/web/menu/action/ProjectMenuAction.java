@@ -26,16 +26,16 @@ import org.lorislab.tower.web.menu.view.MenuViewController;
  *
  * @author Andrej Petras
  */
-public class DeployMenuAction extends AbstractContextControllerAction<MenuViewController> {
+public class ProjectMenuAction extends AbstractContextControllerAction<MenuViewController> {
     
-    private static final long serialVersionUID = 722501710661688287L;
+    private static final long serialVersionUID = -4911302278619693549L;
 
-    public DeployMenuAction(MenuViewController parent) {
-        super(parent, Context.MENU_DEPLOY, Action.EXECUTION);
+    public ProjectMenuAction(MenuViewController parent) {
+        super(parent, Context.ADMIN_PROJECT_MENU, Action.EXECUTION);
     }
     
     @Override
     public Object execute() throws Exception {
-        return Navigation.TO_DEPLOY;
-    }    
+        return Navigation.TO_PROJECT;
+    }       
 }

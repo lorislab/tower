@@ -73,18 +73,5 @@
 			<scope>provided</scope>
 		</dependency>  				
 	</dependencies>
-	
-	<profiles>
-		<profile>
-			<id>deploy</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.lorislab.maven</groupId>
-						<artifactId>jboss-server-plugin</artifactId>
-					</plugin>					
-				</plugins>
-			</build>
-		</profile>		
-	</profiles>			
+				
 </project>

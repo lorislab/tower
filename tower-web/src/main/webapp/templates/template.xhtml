@@ -1,64 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:ui="http://java.sun.com/jsf/facelets">
-	<h:head>
-		<h:outputStylesheet library="css/bootstrap" name="bootstrap.min.css"  />
-		<h:outputStylesheet library="css/bootstrap" name="bootstrap-theme.min.css"  />		
-		<h:outputScript library="primefaces" name="jquery/jquery.js" />
-		<h:outputScript library="js" name="bootstrap.min.js" />
-		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/fontello.css"/>
+	<h:head>		
+		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/fontello.css"/>		
+		<h:outputStylesheet library="css/bootstrap" name="bootstrap.min.css"  />		
+		<!--<h:outputStylesheet library="css/bootstrap" name="bootstrap-theme.min.css"  />-->		
+		<h:outputStylesheet library="css/metisMenu" name="metisMenu.min.css"  />						
+		<h:outputStylesheet library="css" name="tower.css"  />				
+		
+		<h:outputScript library="javax.faces" name="jsf.js"/>
+		<!--<script type="text/javascript" src="/tower/javax.faces.resource/jsf.js.xhtml?ln=javax.faces&amp;stage=Development"></script>-->
 	</h:head>
 	<h:body>
+		<div id="wrapper">
+			
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0;">
+				<ui:include src="/templates/includes/top_menu.xhtml" />
+				<ui:include src="/templates/includes/side_menu.xhtml" />
+			</nav>
 
-
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container-full">
-				<div class="navbar-header"> 
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<span class="navbar-brand">Tower</span>			  
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-left">						
-						<li class="#{view.viewId == '/pages/dashboard.xhtml' ? 'active' : ''}">
-							<h:link outcome="#{menuVC.dashboard.execute()}" rendered="#{menuVC.dashboard.enabled}" >
-								<i class="icon-gauge"></i> Dashboard
-							</h:link>
-						</li>
-						<li class="#{view.viewId == '/pages/deploy.xhtml' ? 'active' : ''}">
-							<h:link outcome="#{menuVC.deploy.execute()}" rendered="#{menuVC.deploy.enabled}">
-								<i class="icon-rocket"></i> Deploy
-							</h:link>
-						</li>
-						<li class="#{view.viewId == '/pages/settings.xhtml' ? 'active' : ''}">
-							<h:link outcome="#{menuVC.settings.execute()}" rendered="#{menuVC.settings.enabled}">
-								<i class="icon-cog-alt"></i> Settings
-							</h:link>
-						</li>						
-					</ul>
-					<ul class="nav navbar-nav navbar-right">						
-						<li><a href=""><i class="icon-login"></i> Sign in</a></li>
-					</ul>					
-					<span class="navbar-brand"></span>
+			<div id="page-wrapper">
+				<div class="container-fluid">
+					<ui:insert name="body">Body</ui:insert>
 				</div>
 			</div>
-		</div>
-
-		<div style="margin-top: 50px"></div>
-
-		<div class="container-full">
-				
-			<h4>#{pageTitle} <small>#{pageSubtitle}</small></h4>
-			<ui:insert name="body">Body</ui:insert>
-					
-			<hr style="margin-top: 20px;"/>	
 			
-			<footer style="text-align: center">
-				<p>&#169; 2013 <a href="http://www.lorislab.org" class="link-simple"><span class="label label-success">lorislab.org</span></a>&#183; Release monitor 0.0.0 &#183; Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</p>
-			</footer>			
+		<div id="footer-wrapper">
+			<p>Tower 0.0.1-SNAPSHOT</p>			
+			<p>&#169; 2013 <a href="http://www.lorislab.org" class="link-simple"><span class="label label-success">lorislab.org</span></a></p>
+			<p>
+				<small>Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</small>
+			</p>
+		</div>			
 		</div>
+		
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+		<h:outputScript library="js" name="bootstrap.min.js" />			
+		<h:outputScript library="js" name="metisMenu.min.js" />
+		<h:outputScript library="js" name="tower.js" />
 	</h:body>
 </html>

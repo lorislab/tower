@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.guardian.config.ejb;
 
 import java.util.List;
@@ -23,9 +22,14 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.lorislab.guardian.api.service.UserConfigService;
 import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
 import org.lorislab.tower.guardian.config.model.UserConfig;
+import org.lorislab.tower.guardian.config.model.UserConfig_;
 
 /**
  *
@@ -34,7 +38,8 @@ import org.lorislab.tower.guardian.config.model.UserConfig;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig> implements UserConfigService<UserConfig> {
-  /**
+
+    /**
      * The entity manager.
      */
     @PersistenceContext
@@ -46,20 +51,33 @@ public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig>
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }    
+    }
 
     @Override
     public UserConfig getUserConfig(String user) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UserConfig result = null;
+        CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
+        CriteriaQuery<UserConfig> cq = getBaseEAO().createCriteriaQuery();
+        Root<UserConfig> root = cq.from(UserConfig.class);
+
+        cq.where(cb.equal(root.get(UserConfig_.user), user));
+
+        TypedQuery<UserConfig> query = getBaseEAO().createTypedQuery(cq);
+        List<UserConfig> tmp = query.getResultList();
+        if (tmp != null && !tmp.isEmpty()) {
+            result = tmp.get(0);
+        }
+        return result;
+
     }
 
     @Override
     public UserConfig saveUserConfig(UserConfig data) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.save(data);
     }
 
     @Override
     public List<UserConfig> getUserConfigs(Set<String> users) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.getAll();
     }
 }

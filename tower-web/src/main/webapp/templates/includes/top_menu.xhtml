@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:ui="http://java.sun.com/jsf/facelets" 
+				xmlns:h="http://java.sun.com/jsf/html" 
+				xmlns:f="http://java.sun.com/jsf/core"  >
+	<h:form>
+		<div class="navbar-header"> 
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span class="navbar-brand"><b><i class="icon-signal"></i> Tower</b></span>			  
+		</div>
+
+		<ul class="nav navbar-nav navbar-right">	
+
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="icon-user"></i> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="#"><i class="icon-user"></i> User Profile</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<h:commandLink action="#{menuVC.logout.execute}" rendered="#{menuVC.logout.available}" styleClass=""> 
+							<i class="icon-logout"></i> Logout
+						</h:commandLink>
+					</li>
+
+				</ul>
+			</li>					
+
+		</ul>							
+	</h:form>
+</ui:composition>
+

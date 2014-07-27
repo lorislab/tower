@@ -31,11 +31,11 @@ public class DashboardMenuAction extends AbstractContextControllerAction<MenuVie
     private static final long serialVersionUID = 722501710661688287L;
 
     public DashboardMenuAction(MenuViewController parent) {
-        super(parent, Action.DASHBOARD_EXEC, Context.MENU);
+        super(parent, Context.MENU_DASHBOARD, Action.EXECUTION);
     }
 
     @Override
-    public Object execute() throws Exception {
+    public Object execute() throws Exception {        
         return Navigation.TO_DASHBOARD;
     }
         

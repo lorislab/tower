@@ -48,5 +48,18 @@
 		<finalName>tower-agent-web</finalName>	
 	</build>  
 	
+	<profiles>
+		<profile>
+			<id>deploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.lorislab.maven</groupId>
+						<artifactId>jboss-server-plugin</artifactId>
+					</plugin>					
+				</plugins>
+			</build>
+		</profile>		
+	</profiles>		
 	
 </project>

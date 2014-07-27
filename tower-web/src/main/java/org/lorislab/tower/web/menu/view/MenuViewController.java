@@ -16,15 +16,13 @@
 
 package org.lorislab.tower.web.menu.view;
 
-import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import org.lorislab.guardian.api.model.UserData;
 import org.lorislab.guardian.web.view.AbstractActionContextViewController;
-import org.lorislab.guardian.web.view.ActionContextViewController;
 import org.lorislab.tower.web.menu.action.DashboardMenuAction;
 import org.lorislab.tower.web.menu.action.DeployMenuAction;
+import org.lorislab.tower.web.menu.action.LogoutMenuAction;
+import org.lorislab.tower.web.menu.action.ProjectMenuAction;
 import org.lorislab.tower.web.menu.action.SettingsMenuAction;
 
 /**
@@ -43,12 +41,27 @@ public class MenuViewController extends AbstractActionContextViewController {
     
     private SettingsMenuAction settings;
     
+    private LogoutMenuAction logout;
+
+    private ProjectMenuAction project;
+    
     public MenuViewController() {
         dashboard = new DashboardMenuAction(this);
         deploy = new DeployMenuAction(this);
         settings = new SettingsMenuAction(this);
+        logout = new LogoutMenuAction(this);
+        project = new ProjectMenuAction(this);
+    }
+
+    public ProjectMenuAction getProject() {
+        return project;
     }
     
+    
+    public LogoutMenuAction getLogout() {
+        return logout;
+    }
+        
     public DashboardMenuAction getDashboard() {
         return dashboard;
     }

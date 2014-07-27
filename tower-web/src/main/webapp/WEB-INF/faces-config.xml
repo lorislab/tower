@@ -6,17 +6,17 @@
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>toProject</from-outcome>
-			<to-view-id>/pages/admin/project/project.xhtml</to-view-id>
+			<to-view-id>/pages/settings/project/project.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>toApplication</from-outcome>
-			<to-view-id>/pages/admin/app/application.xhtml</to-view-id>
+			<to-view-id>/pages/settings/application/application.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>toSystem</from-outcome>
-			<to-view-id>/pages/admin/system/system.xhtml</to-view-id>
+			<to-view-id>/pages/settings/system/system.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>					
 		<navigation-case>
@@ -29,6 +29,11 @@
 			<to-view-id>/pages/deploy/deploy.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>toProfile</from-outcome>
+			<to-view-id>/pages/profile/profile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>		
 		<navigation-case>
 			<from-outcome>toHome</from-outcome>
 			<to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>

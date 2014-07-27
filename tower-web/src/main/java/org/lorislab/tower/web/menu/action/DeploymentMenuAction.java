@@ -19,23 +19,18 @@ package org.lorislab.tower.web.menu.action;
 import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
 import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.menu.view.MenuViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class ProjectMenuAction extends AbstractContextControllerAction<MenuViewController> {
+public class DeploymentMenuAction extends AbstractContextControllerAction<MenuViewController> {
     
     private static final long serialVersionUID = -4911302278619693549L;
 
-    public ProjectMenuAction(MenuViewController parent) {
-        super(parent, Context.MENU_PROJECT, Action.EXECUTION);
+    public DeploymentMenuAction(MenuViewController parent) {
+        super(parent, Context.MENU_DEPLOYMENT, Action.EXECUTION);
     }
     
-    @Override
-    public Object execute() throws Exception {                
-        return Navigation.TO_PROJECT;
-    }       
 }

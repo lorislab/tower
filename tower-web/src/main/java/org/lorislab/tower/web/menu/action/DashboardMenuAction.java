@@ -35,7 +35,7 @@ public class DashboardMenuAction extends AbstractContextControllerAction<MenuVie
     }
 
     @Override
-    public Object execute() throws Exception {        
+    public Object execute() throws Exception {               
         return Navigation.TO_DASHBOARD;
     }
         

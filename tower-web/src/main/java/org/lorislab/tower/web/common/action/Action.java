@@ -22,11 +22,5 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Action {
     
-    EXECUTION,
-    
-    DASHBOARD_EXEC,
-    
-    DEPLOY_EXEC,
-    
-    SETTINGS_EXEC;
+    EXECUTION;
 }

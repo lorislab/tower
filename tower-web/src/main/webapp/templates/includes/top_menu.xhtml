@@ -19,11 +19,13 @@
 					<i class="icon-user"></i> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu dropdown-user">
-					<li><a href="#"><i class="icon-user"></i> User Profile</a>
-					</li>
-					<li class="divider"></li>
 					<li>
-						<h:commandLink action="#{menuVC.logout.execute}" rendered="#{menuVC.logout.available}" styleClass=""> 
+						<h:link outcome="#{menuVC.profile.execute()}" rendered="#{menuVC.profile.available}">
+							<i class="icon-user"></i> User Profile
+						</h:link>					
+					</li>
+					<li>
+						<h:commandLink action="#{menuVC.logout.execute}" rendered="#{menuVC.logout.available}"> 
 							<i class="icon-logout"></i> Logout
 						</h:commandLink>
 					</li>

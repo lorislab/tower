@@ -22,16 +22,28 @@ package org.lorislab.tower.web.common.action;
  */
 public class Navigation {
     
+    // other
     public static String TO_HOME = "toHome";
+    public static String TO_PROFILE = "toProfile";
     
-    public static String TO_PROJECT = "toProject";
-    
-    public static String TO_APPLICATION = "toApplication";
-    
+    // settings
+    public static String TO_PROJECT = "toProject";    
+    public static String TO_APPLICATION = "toApplication";    
     public static String TO_SYSTEM = "toSystem";
+    public static String TO_SCM = "toSCM";
+    public static String TO_BTS = "toBTS";
+    public static String TO_AGENT = "toAgent";
+    public static String TO_MAIL = "toMail";
+    public static String TO_TIMER = "toTimer";
     
+    // user management
+    public static String TO_USER = "toUser";
+    public static String TO_ROLE = "toRole";
+    
+    // dashboard
     public static String TO_DASHBOARD = "toDashboard";
     
+    // deployment
     public static String TO_DEPLOY = "toDeploy";
 
 }

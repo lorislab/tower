@@ -27,7 +27,8 @@ public class Navigation {
     public static String TO_PROFILE = "toProfile";
     
     // settings
-    public static String TO_PROJECT = "toProject";    
+    public static String TO_PROJECT = "toProject";   
+    public static String TO_PROJECT_EDIT = "toProjectEdit";
     public static String TO_APPLICATION = "toApplication";    
     public static String TO_SYSTEM = "toSystem";
     public static String TO_SCM = "toSCM";

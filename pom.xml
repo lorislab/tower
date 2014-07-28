@@ -58,6 +58,14 @@
 
 	<dependencyManagement>       
 		<dependencies>
+			<!-- JEL -->
+			<dependency>
+				<groupId>org.lorislab.jel</groupId>
+				<artifactId>jel-bom</artifactId>
+				<version>0.0.9-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>				
+			</dependency>			
 			<!-- TRANSFORMER -->
 			<dependency>
 				<groupId>org.lorislab.transformer</groupId>
@@ -95,14 +103,6 @@
 				<type>pom</type>
 				<scope>import</scope>				
 				<version>0.0.2-SNAPSHOT</version>					
-			</dependency>
-			<!-- JEL -->
-			<dependency>
-				<groupId>org.lorislab.jel</groupId>
-				<artifactId>jel-bom</artifactId>
-				<version>0.0.8</version>
-				<type>pom</type>
-				<scope>import</scope>				
 			</dependency>
 			<!-- JIRA-JAXRS -->
 			<dependency>

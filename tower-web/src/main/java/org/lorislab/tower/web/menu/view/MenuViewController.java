@@ -19,24 +19,11 @@ package org.lorislab.tower.web.menu.view;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.web.view.AbstractActionContextViewController;
+import org.lorislab.guardian.web.view.actions.ContextMenuAction;
+import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.menu.action.AgentMenuAction;
-import org.lorislab.tower.web.menu.action.ApplicationMenuAction;
-import org.lorislab.tower.web.menu.action.BTSMenuAction;
-import org.lorislab.tower.web.menu.action.DashboardMenuAction;
-import org.lorislab.tower.web.menu.action.DeployMenuAction;
-import org.lorislab.tower.web.menu.action.DeploymentMenuAction;
+import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.menu.action.LogoutMenuAction;
-import org.lorislab.tower.web.menu.action.MailMenuAction;
-import org.lorislab.tower.web.menu.action.ProfileMenuAction;
-import org.lorislab.tower.web.menu.action.ProjectMenuAction;
-import org.lorislab.tower.web.menu.action.RoleMenuAction;
-import org.lorislab.tower.web.menu.action.SCMMenuAction;
-import org.lorislab.tower.web.menu.action.SettingsMenuAction;
-import org.lorislab.tower.web.menu.action.SystemMenuAction;
-import org.lorislab.tower.web.menu.action.TimerMenuAction;
-import org.lorislab.tower.web.menu.action.UserManagmentMenuAction;
-import org.lorislab.tower.web.menu.action.UserMenuAction;
 
 /**
  *
@@ -48,130 +35,114 @@ public class MenuViewController extends AbstractActionContextViewController {
     
     private static final long serialVersionUID = -146734439197629212L;
 
-    private AgentMenuAction agent;
-    
-    private ApplicationMenuAction application;
-    
-    private BTSMenuAction bts;
-    
-    private DeploymentMenuAction deployment;
-        
-    private DashboardMenuAction dashboard;
-    
-    private DeployMenuAction deploy;
-       
-    private SettingsMenuAction settings;
-    
-    private LogoutMenuAction logout;
-
-    private ProjectMenuAction project;
-    
-    private MailMenuAction mail;
-    
-    private ProfileMenuAction profile;
-    
-    private RoleMenuAction role;
-    
-    private SCMMenuAction scm;
-    
-    private SystemMenuAction system;
-    
-    private TimerMenuAction timer;
-    
-    private UserManagmentMenuAction userman;
-    
-    private UserMenuAction user;
+    private ContextMenuAction agent;    
+    private ContextMenuAction application;    
+    private ContextMenuAction bts;    
+    private ContextMenuAction deployment;        
+    private ContextMenuAction dashboard;    
+    private ContextMenuAction deploy;       
+    private ContextMenuAction settings;    
+    private ContextMenuAction logout;
+    private ContextMenuAction project;    
+    private ContextMenuAction mail;    
+    private ContextMenuAction profile;    
+    private ContextMenuAction role;    
+    private ContextMenuAction scm;    
+    private ContextMenuAction system;    
+    private ContextMenuAction timer;   
+    private ContextMenuAction userman;    
+    private ContextMenuAction user;
     
     public MenuViewController() {
-        agent = new AgentMenuAction(this);
-        application = new ApplicationMenuAction(this);
-        bts = new BTSMenuAction(this);
-        deployment = new DeploymentMenuAction(this);
-        mail = new MailMenuAction(this);
-        profile = new ProfileMenuAction(this);
-        role = new RoleMenuAction(this);
-        scm = new SCMMenuAction(this);
-        system = new SystemMenuAction(this);
-        timer = new TimerMenuAction(this);
-        userman = new UserManagmentMenuAction(this);
-        user = new UserMenuAction(this);
-        dashboard = new DashboardMenuAction(this);
-        deploy = new DeployMenuAction(this);
-        settings = new SettingsMenuAction(this);
-        logout = new LogoutMenuAction(this);
-        project = new ProjectMenuAction(this);        
+        agent = new ContextMenuAction(this, Context.MENU_AGENT, Action.EXECUTION, Navigation.TO_AGENT);
+        application = new ContextMenuAction(this, Context.MENU_APPLICATION, Action.EXECUTION, Navigation.TO_APPLICATION);
+        bts = new ContextMenuAction(this, Context.MENU_BTS, Action.EXECUTION, Navigation.TO_BTS);
+        deployment = new ContextMenuAction(this, Context.MENU_DEPLOYMENT, Action.EXECUTION);
+        mail = new ContextMenuAction(this, Context.MENU_MAIL, Action.EXECUTION, Navigation.TO_MAIL);
+        profile = new ContextMenuAction(this, Context.MENU_PROFILE, Action.EXECUTION, Navigation.TO_PROFILE);
+        role = new ContextMenuAction(this, Context.MENU_ROLE, Action.EXECUTION,Navigation.TO_ROLE);
+        scm = new ContextMenuAction(this, Context.MENU_SCM, Action.EXECUTION, Navigation.TO_SCM);
+        system = new ContextMenuAction(this, Context.MENU_SYSTEM, Action.EXECUTION, Navigation.TO_SYSTEM);
+        timer = new ContextMenuAction(this, Context.MENU_TIMER, Action.EXECUTION, Navigation.TO_TIMER);
+        userman = new ContextMenuAction(this, Context.MENU_USERMAN, Action.EXECUTION);
+        user = new ContextMenuAction(this, Context.MENU_USER, Action.EXECUTION, Navigation.TO_USER);
+        dashboard = new ContextMenuAction(this, Context.MENU_DASHBOARD, Action.EXECUTION, Navigation.TO_DASHBOARD);
+        deploy = new ContextMenuAction(this, Context.MENU_DEPLOY, Action.EXECUTION, Navigation.TO_DEPLOY);
+        settings = new ContextMenuAction(this, Context.MENU_SETTINGS, Action.EXECUTION);
+        logout = new LogoutMenuAction(this, Context.MENU_LOGOUT, Action.EXECUTION, Navigation.TO_HOME);
+        project = new ContextMenuAction(this, Context.MENU_PROJECT, Action.EXECUTION, Navigation.TO_PROJECT);        
     }
     
-    public AgentMenuAction getAgent() {
+    public ContextMenuAction getAgent() {
         return agent;
     }
 
-    public ApplicationMenuAction getApplication() {
+    public ContextMenuAction getApplication() {
         return application;
     }
     
-    public BTSMenuAction getBts() {
+    public ContextMenuAction getBts() {
         return bts;
     }
     
-    public DeploymentMenuAction getDeployment() {
+    public ContextMenuAction getDeployment() {
         return deployment;
     }
     
-    public ProfileMenuAction getProfile() {
+    public ContextMenuAction getProfile() {
         return profile;
     }
     
-    public MailMenuAction getMail() {
+    public ContextMenuAction getMail() {
         return mail;
     }
     
-    public RoleMenuAction getRole() {
+    public ContextMenuAction getRole() {
         return role;
     }
     
-    public UserMenuAction getUser() {
+    public ContextMenuAction getUser() {
         return user;
     }
     
-    public UserManagmentMenuAction getUserman() {
+    public ContextMenuAction getUserman() {
         return userman;
     }
 
     
-    public TimerMenuAction getTimer() {
+    public ContextMenuAction getTimer() {
         return timer;
     }
 
     
-    public SystemMenuAction getSystem() {
+    public ContextMenuAction getSystem() {
         return system;
     }
 
     
-    public SCMMenuAction getScm() {
+    public ContextMenuAction getScm() {
         return scm;
     }
 
     
-    public ProjectMenuAction getProject() {
+    public ContextMenuAction getProject() {
         return project;
     }
     
     
-    public LogoutMenuAction getLogout() {
+    public ContextMenuAction getLogout() {
         return logout;
     }
         
-    public DashboardMenuAction getDashboard() {
+    public ContextMenuAction getDashboard() {
         return dashboard;
     }
 
-    public DeployMenuAction getDeploy() {
+    public ContextMenuAction getDeploy() {
         return deploy;
     }
 
-    public SettingsMenuAction getSettings() {
+    public ContextMenuAction getSettings() {
         return settings;
     }    
 }

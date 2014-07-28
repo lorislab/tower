@@ -22,5 +22,12 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Action {
     
+    CREATE,
+    CLOSE,
+    SEARCH,
+    RESET,
+    EDIT,
+    SAVE,
+    DELETE,
     EXECUTION;
 }

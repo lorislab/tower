@@ -14,40 +14,24 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.common.action;
+package org.lorislab.guardian.web.view.actions;
+
+import org.lorislab.guardian.web.view.ContextCreateViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public enum Context {
+public class ContextCreateAction<T extends ContextCreateViewController> extends AbstractContextControllerAction<T> {
     
-    PROJECT,
+    private static final long serialVersionUID = -401771961900364439L;
+
+    public ContextCreateAction(T parent, Enum context, Enum action) {
+        super(parent, context, action);
+    }       
     
-    // dashboard
-    MENU_DASHBOARD,
-    
-    // deployment
-    MENU_DEPLOYMENT,
-    MENU_DEPLOY,
-    
-    // settings
-    MENU_SETTINGS,
-    MENU_PROJECT,    
-    MENU_APPLICATION,    
-    MENU_SYSTEM,
-    MENU_SCM,
-    MENU_BTS,
-    MENU_AGENT,
-    MENU_MAIL,
-    MENU_TIMER,
-    
-    // user management
-    MENU_USERMAN,
-    MENU_ROLE,
-    MENU_USER,
-    
-    // other
-    MENU_PROFILE,
-    MENU_LOGOUT;
+    @Override
+    protected Object doExecute() throws Exception {
+        return getParent().create();
+    }       
 }

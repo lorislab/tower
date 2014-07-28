@@ -14,40 +14,14 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.common.action;
+package org.lorislab.guardian.web.view;
+
+import org.lorislab.jel.jsf.view.OpenViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public enum Context {
+public interface ContextOpenViewController extends ActionContextViewController, OpenViewController {
     
-    PROJECT,
-    
-    // dashboard
-    MENU_DASHBOARD,
-    
-    // deployment
-    MENU_DEPLOYMENT,
-    MENU_DEPLOY,
-    
-    // settings
-    MENU_SETTINGS,
-    MENU_PROJECT,    
-    MENU_APPLICATION,    
-    MENU_SYSTEM,
-    MENU_SCM,
-    MENU_BTS,
-    MENU_AGENT,
-    MENU_MAIL,
-    MENU_TIMER,
-    
-    // user management
-    MENU_USERMAN,
-    MENU_ROLE,
-    MENU_USER,
-    
-    // other
-    MENU_PROFILE,
-    MENU_LOGOUT;
 }

@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.menu.action;
-
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.menu.view.MenuViewController;
+package org.lorislab.jel.jsf.view;
 
 /**
  *
  * @author Andrej Petras
  */
-public class UserManagmentMenuAction extends AbstractContextControllerAction<MenuViewController> {
+public interface CloseViewController {
     
-    private static final long serialVersionUID = -4911302278619693549L;
-
-    public UserManagmentMenuAction(MenuViewController parent) {
-        super(parent, Context.MENU_USERMAN, Action.EXECUTION);
-    }
-   
+    public Object close() throws Exception;
 }

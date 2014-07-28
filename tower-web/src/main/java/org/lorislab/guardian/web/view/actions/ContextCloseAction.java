@@ -14,23 +14,24 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.menu.action;
+package org.lorislab.guardian.web.view.actions;
 
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.menu.view.MenuViewController;
+import org.lorislab.guardian.web.view.ContextCloseViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class DeploymentMenuAction extends AbstractContextControllerAction<MenuViewController> {
+public class ContextCloseAction<T extends ContextCloseViewController> extends AbstractContextControllerAction<T> {
     
-    private static final long serialVersionUID = -4911302278619693549L;
+    private static final long serialVersionUID = -401771961900364439L;
 
-    public DeploymentMenuAction(MenuViewController parent) {
-        super(parent, Context.MENU_DEPLOYMENT, Action.EXECUTION);
-    }
+    public ContextCloseAction(T parent, Enum context, Enum action) {
+        super(parent, context, action);
+    }       
     
+    @Override
+    protected Object doExecute() throws Exception {
+        return getParent().close();
+    }       
 }

@@ -14,23 +14,30 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.menu.action;
+package org.lorislab.jel.jsf.view.actions;
 
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.menu.view.MenuViewController;
+import org.lorislab.jel.jsf.view.OpenViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class SettingsMenuAction extends AbstractContextControllerAction<MenuViewController> {
+public class OpenAction<T extends OpenViewController> extends AbstractViewControllerAction<T> {
     
-    private static final long serialVersionUID = 722501710661688287L;
+    private static final long serialVersionUID = -401771961900364439L;
 
-    public SettingsMenuAction(MenuViewController parent) {
-        super(parent, Context.MENU_SETTINGS, Action.EXECUTION);
+    private String guid;
+        
+    public OpenAction(T parent) {
+        super(parent);
     }
     
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }    
+    
+    @Override
+    protected Object doExecute() throws Exception {
+        return getParent().open(guid);
+    }       
 }

@@ -18,6 +18,7 @@ package org.lorislab.tower.web.menu.action;
 
 import javax.faces.context.FacesContext;
 import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
+import org.lorislab.guardian.web.view.actions.ContextMenuAction;
 import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
@@ -27,17 +28,17 @@ import org.lorislab.tower.web.menu.view.MenuViewController;
  *
  * @author Andrej Petras
  */
-public class LogoutMenuAction extends AbstractContextControllerAction<MenuViewController> {
+public class LogoutMenuAction extends ContextMenuAction<MenuViewController> {
     
     private static final long serialVersionUID = -9154512589848412309L;
 
-    public LogoutMenuAction(MenuViewController parent) {
-        super(parent, Context.MENU_LOGOUT, Action.EXECUTION);
+    public LogoutMenuAction(MenuViewController parent, Enum context, Enum action, String navigation) {
+        super(parent, context, action, navigation);
     }
     
     @Override
-    public Object execute() throws Exception {
+    public Object execute() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return Navigation.TO_HOME;
+        return super.execute();
     }    
 }

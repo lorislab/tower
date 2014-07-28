@@ -9,71 +9,94 @@
 				<ul class="nav" id="side-menu">
 					<li>
 						<h:link outcome="#{menuVC.dashboard.execute()}" rendered="#{menuVC.dashboard.available}"
-							styleClass="#{menuParentSelected == 'MENU_DASHBOARD' ? 'active' : ''}"> 
+							styleClass="#{menuParentSelected eq menuVC.dashboard.context ? 'active' : ''}"> 
 							<i class="icon-gauge"></i> Dashboard
 						</h:link>
 					</li>
-					<li class="#{menuParentSelected == 'MENU_DEPLOYMENT' ? 'active' : ''}">
+					<li class="#{menuParentSelected eq menuVC.deployment.context ? 'active' : ''}">
 						<h:link rendered="#{menuVC.deployment.available}">
 							<i class="icon-rocket"></i> Deployment<span class="fa arrow"></span>
 						</h:link>
 						<ul class="nav nav-second-level">
 							<li>
 								<h:link outcome="#{menuVC.deploy.execute()}" rendered="#{menuVC.deploy.available}"
-										styleClass="#{menuChildSelected == 'MENU_DEPLOY' ? 'active' : ''}">
+										styleClass="#{menuChildSelected eq menuVC.deploy.context ? 'active' : ''}">
 									<i class="icon-rocket"></i> Deploy
 								</h:link>
 							</li>
 						</ul>
 					</li>			
-					<li class="#{menuParentSelected == 'MENU_SETTINGS' ? 'active' : ''}">
+					<li class="#{menuParentSelected eq menuVC.settings.context ? 'active' : ''}">
 						<h:link rendered="#{menuVC.settings.available}">
 							<i class="icon-cog-alt"></i> Settings<span class="fa arrow"></span>
 						</h:link>
 						<ul class="nav nav-second-level">
 							<li>
 								<h:link outcome="#{menuVC.project.execute()}" rendered="#{menuVC.project.available}"
-											   styleClass="#{menuChildSelected == 'MENU_PROJECT' ? 'active' : ''}"> 
+											   styleClass="#{menuChildSelected eq menuVC.project.context ? 'active' : ''}"> 
 									<i class="icon-award"></i> Projects
 								</h:link>
 							</li>
 							<li>
 								<h:link outcome="#{menuVC.application.execute()}" rendered="#{menuVC.application.available}"
-											   styleClass="#{menuChildSelected == 'MENU_APPLICATION' ? 'active' : ''}"> 
+											   styleClass="#{menuChildSelected eq menuVC.application.context ? 'active' : ''}"> 
 									<i class="icon-beaker"></i> Applications
 								</h:link>								
 							</li>
 							<li>
 								<h:link outcome="#{menuVC.system.execute()}" rendered="#{menuVC.system.available}"
-											   styleClass="#{menuChildSelected == 'MENU_SYSTEM' ? 'active' : ''}"> 
+											   styleClass="#{menuChildSelected eq menuVC.system.context ? 'active' : ''}"> 
 									<i class="icon-suitcase"></i> Systems
 								</h:link>
 							</li>
 							<li>
-								<a href="typography.html"><i class="icon-fork"></i> SCM Systems</a>
+								<h:link outcome="#{menuVC.scm.execute()}" rendered="#{menuVC.scm.available}"
+										styleClass="#{menuChildSelected eq menuVC.scm.context ? 'active' : ''}">
+									<i class="icon-fork"></i> SCM Systems
+								</h:link>								
 							</li>
 							<li>
-								<a href="grid.html"><i class="icon-bug"></i> BTS Systems</a>
+								<h:link outcome="#{menuVC.bts.execute()}" rendered="#{menuVC.bts.available}"
+										styleClass="#{menuChildSelected eq menuVC.bts.context ? 'active' : ''}">
+									<i class="icon-bug"></i> BTS Systems
+								</h:link>
 							</li>
 							<li>
-								<a href="grid.html"><i class="icon-user-md"></i> Agents</a>
+								<h:link outcome="#{menuVC.agent.execute()}" rendered="#{menuVC.agent.available}"
+										styleClass="#{menuChildSelected eq menuVC.agent.context ? 'active' : ''}">
+									<i class="icon-user-md"></i> Agents
+								</h:link>
 							</li>
 							<li>
-								<a href="grid.html"><i class="icon-mail-alt"></i> Mail service</a>
+								<h:link outcome="#{menuVC.mail.execute()}" rendered="#{menuVC.mail.available}"
+										styleClass="#{menuChildSelected eq menuVC.mail.context ? 'active' : ''}">
+									<i class="icon-mail-alt"></i> Mail service
+								</h:link>								
 							</li>
 							<li>
-								<a href="grid.html"><i class="icon-clock"></i> Timer service</a>
+								<h:link outcome="#{menuVC.timer.execute()}" rendered="#{menuVC.timer.available}"
+										styleClass="#{menuChildSelected eq menuVC.timer.context ? 'active' : ''}">
+									<i class="icon-clock"></i> Timer service
+								</h:link>								
 							</li>						
 						</ul>
 					</li>				
-					<li class="#{menuParentSelected == 'MENU_USERMAN' ? 'active' : ''}">
-						<a href="#"><i class="icon-users"></i> User management<span class="fa arrow"></span></a>
+					<li class="#{menuParentSelected eq menuVC.userman.context ? 'active' : ''}">
+						<h:link rendered="#{menuVC.userman.available}">
+							<i class="icon-users"></i> User management<span class="fa arrow"></span>
+						</h:link>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="blank.html"><i class="icon-user"></i> Users</a>
+								<h:link outcome="#{menuVC.user.execute()}" rendered="#{menuVC.user.available}"
+										styleClass="#{menuChildSelected eq menuVC.user.context ? 'active' : ''}">
+									<i class="icon-user"></i> Users
+								</h:link>
 							</li>
 							<li>
-								<a href="login.html"><i class="icon-key"></i> Roles</a>
+								<h:link outcome="#{menuVC.role.execute()}" rendered="#{menuVC.role.available}"
+										styleClass="#{menuChildSelected eq menuVC.role.context ? 'active' : ''}">
+									<i class="icon-key"></i> Roles
+								</h:link>								
 							</li>					
 						</ul>
 					</li>

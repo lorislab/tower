@@ -1,21 +1,61 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:hx="http://xmlns.jcp.org/jsf/passthrough"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:ui="http://java.sun.com/jsf/facelets" 
+				xmlns:h="http://java.sun.com/jsf/html" 
+				xmlns:f="http://java.sun.com/jsf/core"
                 template="/templates/template.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
 	<ui:param name="menuChildSelected" value="PROJECT" />
 	<ui:param name="pageTitle" value="Projects" />
 	<ui:param name="pageIcon" value="icon-award" />
-	
+
     <ui:define name="body">
-		<div></div>
-
-		Projects table
+		<h:form>
+			<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Projects
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+								<table class="table table-striped table-bordered table-hover dataTable" id="projectTable">
+                                    <thead>
+                                        <tr>
+											<th class="no-sort no-search" style="width: 20px"></th>
+                                            <th>Name</th>
+                                            <th>Index</th>
+                                            <th>Platform(s)</th>
+                                            <th>Engine version</th>
+                                            <th>CSS grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+										<ui:repeat var="project" value="#{projectSVC.result}">
+											<tr>
+												<td>
+													<h:commandLink action="#{projectVC.openAction.execute}"> 					
+														<i class="icon-pencil"></i>
+														<f:setPropertyActionListener value="#{project.guid}" target="#{projectVC.openAction.guid}" />
+														<f:param value="#{project.guid}" />
+													</h:commandLink>
+												</td>
+												<td>#{project.name}</td>
+												<td>#{project.index}</td>
+												<td>Win 95+</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
+											</tr>
+										</ui:repeat>
+									</tbody>
+                                </table>										
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+		</h:form>
     </ui:define>
-
 
 </ui:composition>
 

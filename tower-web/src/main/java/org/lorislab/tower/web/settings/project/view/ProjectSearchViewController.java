@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.web.settings.project.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import org.lorislab.guardian.web.view.AbstractContextSearchViewController;
-import org.lorislab.guardian.web.view.ContextOpenViewController;
-import org.lorislab.guardian.web.view.actions.ContextOpenAction;
 import org.lorislab.guardian.web.view.actions.ContextResetAction;
 import org.lorislab.guardian.web.view.actions.ContextSearchAction;
 import org.lorislab.tower.store.criteria.ProjectCriteria;
@@ -38,25 +35,42 @@ import org.lorislab.tower.web.common.action.Context;
  */
 @Named(value = "projectSVC")
 @SessionScoped
-public class ProjectSearchViewController extends AbstractContextSearchViewController<Project, ProjectCriteria>  {
-    
+public class ProjectSearchViewController extends AbstractContextSearchViewController<Project, ProjectCriteria> {
+
     private static final long serialVersionUID = -773118609199094980L;
 
     @EJB
     private ProjectService service;
-    
+
     private ContextResetAction resetAction;
-    
-    private ContextSearchAction searchAction;    
-    
+
+    private ContextSearchAction searchAction;
+
     public ProjectSearchViewController() {
         resetAction = new ContextResetAction(this, Context.PROJECT, Action.RESET);
-        searchAction = new ContextSearchAction(this, Context.PROJECT, Action.SEARCH);        
+        searchAction = new ContextSearchAction(this, Context.PROJECT, Action.SEARCH);
     }
-        
+
     @Override
-    protected List<Project> doSearch() throws Exception {        
-        return service.getProjects();
+    protected List<Project> doSearch() throws Exception {
+        List<Project> result = service.getProjects();
+        if (result == null) {
+            result = new ArrayList<>();
+        }
+        return result;
+    }
+
+    @Override
+    public List<Project> getResult() {
+        List<Project> tmp = super.getResult();
+        if (tmp == null) {
+            try {
+                search();
+            } catch (Exception ex) {
+
+            }
+        }
+        return super.getResult();
     }
 
     public ContextResetAction getResetAction() {

@@ -31,7 +31,7 @@ public class OpenAction<T extends OpenViewController> extends AbstractViewContro
     public OpenAction(T parent) {
         super(parent);
     }
-    
+
     public void setGuid(String guid) {
         this.guid = guid;
     }    

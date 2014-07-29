@@ -35,6 +35,10 @@ public class ContextOpenAction<T extends ContextOpenViewController> extends Abst
     public void setGuid(String guid) {
         this.guid = guid;
     }    
+
+    public String getGuid() {
+        return guid;
+    }
     
     @Override
     protected Object doExecute() throws Exception {

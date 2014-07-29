@@ -229,6 +229,24 @@
       "src": "fontawesome"
     },
     {
+      "uid": "0a3192de65a73ca1501b073ad601f87d",
+      "css": "arrow-combo",
+      "code": 59431,
+      "src": "entypo"
+    },
+    {
+      "uid": "7e89c12b577c31bc91bfb61bb597f01f",
+      "css": "down-dir",
+      "code": 59432,
+      "src": "entypo"
+    },
+    {
+      "uid": "401b644723fb2f20b0df30cce7745c18",
+      "css": "up-dir",
+      "code": 59433,
+      "src": "entypo"
+    },
+    {
       "uid": "e8239f8188c76c925be4bd1bbcc013ac",
       "css": "erase",
       "code": 59414,

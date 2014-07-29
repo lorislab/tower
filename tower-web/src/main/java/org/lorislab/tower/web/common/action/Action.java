@@ -28,6 +28,5 @@ public enum Action {
     RESET,
     EDIT,
     SAVE,
-    DELETE,
-    EXECUTION;
+    DELETE;
 }

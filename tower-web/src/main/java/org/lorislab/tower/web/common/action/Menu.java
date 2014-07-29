@@ -20,9 +20,32 @@ package org.lorislab.tower.web.common.action;
  *
  * @author Andrej Petras
  */
-public enum Context {
+public enum Menu {
     
-    PROJECT,
+    // dashboard
+    DASHBOARD,
     
-    MENU;
+    // deployment
+    DEPLOYMENT,
+    DEPLOY,
+    
+    // settings
+    SETTINGS,
+    PROJECT,    
+    APPLICATION,    
+    SYSTEM,
+    SCM,
+    BTS,
+    AGENT,
+    MAIL,
+    TIMER,
+    
+    // user management
+    USERMAN,
+    ROLE,
+    USER,
+    
+    // other
+    PROFILE,
+    LOGOUT;    
 }

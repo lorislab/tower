@@ -22,6 +22,7 @@ import org.lorislab.guardian.web.view.AbstractActionContextViewController;
 import org.lorislab.guardian.web.view.actions.ContextMenuAction;
 import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.tower.web.common.action.Menu;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.menu.action.LogoutMenuAction;
 
@@ -54,23 +55,23 @@ public class MenuViewController extends AbstractActionContextViewController {
     private ContextMenuAction user;
     
     public MenuViewController() {
-        agent = new ContextMenuAction(this, Context.MENU_AGENT, Action.EXECUTION, Navigation.TO_AGENT);
-        application = new ContextMenuAction(this, Context.MENU_APPLICATION, Action.EXECUTION, Navigation.TO_APPLICATION);
-        bts = new ContextMenuAction(this, Context.MENU_BTS, Action.EXECUTION, Navigation.TO_BTS);
-        deployment = new ContextMenuAction(this, Context.MENU_DEPLOYMENT, Action.EXECUTION);
-        mail = new ContextMenuAction(this, Context.MENU_MAIL, Action.EXECUTION, Navigation.TO_MAIL);
-        profile = new ContextMenuAction(this, Context.MENU_PROFILE, Action.EXECUTION, Navigation.TO_PROFILE);
-        role = new ContextMenuAction(this, Context.MENU_ROLE, Action.EXECUTION,Navigation.TO_ROLE);
-        scm = new ContextMenuAction(this, Context.MENU_SCM, Action.EXECUTION, Navigation.TO_SCM);
-        system = new ContextMenuAction(this, Context.MENU_SYSTEM, Action.EXECUTION, Navigation.TO_SYSTEM);
-        timer = new ContextMenuAction(this, Context.MENU_TIMER, Action.EXECUTION, Navigation.TO_TIMER);
-        userman = new ContextMenuAction(this, Context.MENU_USERMAN, Action.EXECUTION);
-        user = new ContextMenuAction(this, Context.MENU_USER, Action.EXECUTION, Navigation.TO_USER);
-        dashboard = new ContextMenuAction(this, Context.MENU_DASHBOARD, Action.EXECUTION, Navigation.TO_DASHBOARD);
-        deploy = new ContextMenuAction(this, Context.MENU_DEPLOY, Action.EXECUTION, Navigation.TO_DEPLOY);
-        settings = new ContextMenuAction(this, Context.MENU_SETTINGS, Action.EXECUTION);
-        logout = new LogoutMenuAction(this, Context.MENU_LOGOUT, Action.EXECUTION, Navigation.TO_HOME);
-        project = new ContextMenuAction(this, Context.MENU_PROJECT, Action.EXECUTION, Navigation.TO_PROJECT);        
+        agent = new ContextMenuAction(this, Context.MENU, Menu.AGENT, Navigation.TO_AGENT);
+        application = new ContextMenuAction(this, Context.MENU, Menu.APPLICATION, Navigation.TO_APPLICATION);
+        bts = new ContextMenuAction(this, Context.MENU, Menu.BTS, Navigation.TO_BTS);
+        deployment = new ContextMenuAction(this, Context.MENU, Menu.DEPLOYMENT);
+        mail = new ContextMenuAction(this, Context.MENU, Menu.MAIL, Navigation.TO_MAIL);
+        profile = new ContextMenuAction(this, Context.MENU, Menu.PROFILE, Navigation.TO_PROFILE);
+        role = new ContextMenuAction(this, Context.MENU, Menu.ROLE,Navigation.TO_ROLE);
+        scm = new ContextMenuAction(this, Context.MENU, Menu.SCM, Navigation.TO_SCM);
+        system = new ContextMenuAction(this, Context.MENU, Menu.SYSTEM, Navigation.TO_SYSTEM);
+        timer = new ContextMenuAction(this, Context.MENU, Menu.TIMER, Navigation.TO_TIMER);
+        userman = new ContextMenuAction(this, Context.MENU, Menu.USERMAN);
+        user = new ContextMenuAction(this, Context.MENU, Menu.USER, Navigation.TO_USER);
+        dashboard = new ContextMenuAction(this, Context.MENU, Menu.DASHBOARD, Navigation.TO_DASHBOARD);
+        deploy = new ContextMenuAction(this, Context.MENU, Menu.DEPLOY, Navigation.TO_DEPLOY);
+        settings = new ContextMenuAction(this, Context.MENU, Menu.SETTINGS);
+        logout = new LogoutMenuAction(this, Context.MENU, Menu.LOGOUT, Navigation.TO_HOME);
+        project = new ContextMenuAction(this, Context.MENU, Menu.PROJECT, Navigation.TO_PROJECT);        
     }
     
     public ContextMenuAction getAgent() {

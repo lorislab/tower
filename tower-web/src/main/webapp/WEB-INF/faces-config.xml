@@ -40,7 +40,12 @@
 			<from-outcome>toProject</from-outcome>
 			<to-view-id>/pages/settings/project/search.xhtml</to-view-id>
 			<redirect />
-		</navigation-case>	
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>toProjectEdit</from-outcome>
+			<to-view-id>/pages/settings/project/edit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>			
 		<navigation-case>
 			<from-outcome>toSCM</from-outcome>
 			<to-view-id>/pages/settings/scm/search.xhtml</to-view-id>

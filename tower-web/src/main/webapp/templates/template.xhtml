@@ -18,12 +18,17 @@
 
 			<div id="page-wrapper">
 				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header"><i class="#{pageIcon}"></i> #{pageTitle}</h1>
+						</div>
+					</div>
 					<ui:insert name="body">Body</ui:insert>
 				</div>
 			</div>
 			
 		<div id="footer-wrapper">
-			<p>Tower 0.0.1-SNAPSHOT</p>			
+			<p>Tower #{applicationC.version}</p>			
 			<p>&#169; 2013 <a href="http://www.lorislab.org" class="link-simple"><span class="label label-success">lorislab.org</span></a></p>
 			<p>
 				<small>Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</small>

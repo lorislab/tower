@@ -16,6 +16,7 @@
 
 package org.lorislab.guardian.web.view.actions;
 
+import javax.faces.context.FacesContext;
 import org.lorislab.guardian.web.view.ContextOpenViewController;
 
 /**
@@ -35,13 +36,12 @@ public class ContextOpenAction<T extends ContextOpenViewController> extends Abst
     public void setGuid(String guid) {
         this.guid = guid;
     }    
-
-    public String getGuid() {
-        return guid;
-    }
     
     @Override
     protected Object doExecute() throws Exception {
+        if (guid == null) {
+            guid = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("guid");
+        }
         return getParent().open(guid);
     }       
 }

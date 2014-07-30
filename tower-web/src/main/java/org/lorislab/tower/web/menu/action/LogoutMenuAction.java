@@ -17,11 +17,7 @@
 package org.lorislab.tower.web.menu.action;
 
 import javax.faces.context.FacesContext;
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
 import org.lorislab.guardian.web.view.actions.ContextMenuAction;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.menu.view.MenuViewController;
 
 /**

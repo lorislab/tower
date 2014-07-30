@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-package org.lorislab.guardian.web.view;
+package org.lorislab.tower.web.settings.project.action;
 
-import javax.inject.Inject;
-import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.jel.jsf.view.AbstractEntityViewController;
+import org.lorislab.guardian.web.view.actions.ContextSaveAction;
+import org.lorislab.tower.web.settings.project.view.ProjectViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class AbstractContextEntityViewController<T> extends AbstractEntityViewController<T> implements ActionContextViewController {
+public class ProjectSaveAction extends ContextSaveAction<ProjectViewController> {
     
-    private static final long serialVersionUID = -9171198009172337397L;
-    
-    @Inject
-    protected UserData userData;
+    private static final long serialVersionUID = -5450629946700529458L;
+
+    public ProjectSaveAction(ProjectViewController parent, Enum context, Enum action) {
+        super(parent, context, action);
+    }
     
     @Override
-    public boolean hasUserAction(Enum context, Enum action) {
-        if (userData != null) {
-            return userData.hasAction(context, action);
+    public boolean isAvailable() {
+        if (!getParent().isEmpty() && !getParent().getModel().isNew()) {
+            return super.isAvailable(); 
         }
         return false;
     }    

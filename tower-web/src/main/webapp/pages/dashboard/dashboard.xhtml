@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://java.sun.com/jsf/facelets" 
-				xmlns:h="http://java.sun.com/jsf/html" 
-				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/templates/template.xhtml">
 
 	<ui:param name="menuParentSelected" value="DASHBOARD" />
@@ -24,8 +23,8 @@
 										<div class="panel-heading" style="min-height: 140px">
 											<div class="row">
 												<div class="col-xs-10" style="font-size: 25px;">
-													<h:outputLabel value="#{system.name}" />
-													<h:outputLabel value="#{system.clazz}" />
+													<span>#{system.name}</span>
+													<span>#{system.clazz}</span>
 												</div>
 											</div>
 										</div>

@@ -1,7 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://java.sun.com/jsf/facelets" 
-				xmlns:h="http://java.sun.com/jsf/html" 
-				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:jsf="http://xmlns.jcp.org/jsf"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"				
                 template="/templates/template.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -16,6 +17,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Projects
+							
+							<a jsf:action="#{projectSVC.searchAction.execute}" jsf:rendered="#{projectSVC.searchAction.available}">
+								<i class="icon-arrows-cw"></i>
+							</a>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -34,10 +39,10 @@
 										<ui:repeat var="project" value="#{projectSVC.result}" >
 											<tr>
 												<td>
-													<h:commandLink action="#{projectVC.openAction.execute}" > 					
+													<a jsf:action="#{projectVC.openAction.execute}" jsf:rendered="#{projectVC.openAction.available}" > 					
 														<i class="icon-pencil"></i>
 														<f:param name="guid" value="#{project.guid}" />
-													</h:commandLink>
+													</a>
 												</td>
 												<td>#{project.name}</td>
 												<td>#{project.index}</td>

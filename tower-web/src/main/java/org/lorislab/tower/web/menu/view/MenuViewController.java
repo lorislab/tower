@@ -20,7 +20,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.web.view.AbstractActionContextViewController;
 import org.lorislab.guardian.web.view.actions.ContextMenuAction;
-import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Menu;
 import org.lorislab.tower.web.common.action.Navigation;

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 		<h:outputStylesheet library="css" name="bootstrap.min.css"  />
-		<h:outputScript library="primefaces" name="jquery/jquery.js" />
-		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/fontello.css"/>
 	</h:head>
-	<h:body>
-
+	<body>
 
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container-full">
@@ -17,7 +17,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<span class="navbar-brand">Tower</span>			  
+					<span class="navbar-brand"><b><i class="icon-signal"></i> Tower</b></span>			  
 				</div>
 			</div>
 		</div>
@@ -35,5 +35,5 @@
 				<p>&#169; 2013 <a href="http://www.lorislab.org" class="link-simple"><span class="label label-success">lorislab.org</span></a>&#183; Tower #{applicationC.version} &#183; Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</p>
 			</footer>			
 		</div>
-	</h:body>
+	</body>
 </html>

@@ -14,24 +14,28 @@
  * limitations under the License.
  */
 
-package org.lorislab.guardian.web.view.actions;
+package org.lorislab.tower.web.settings.project.action;
 
-import org.lorislab.guardian.web.view.ContextCloseViewController;
+import org.lorislab.guardian.web.view.actions.ContextDeleteAction;
+import org.lorislab.tower.web.settings.project.view.ProjectViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class ContextCloseAction<T extends ContextCloseViewController> extends AbstractContextControllerAction<T> {
+public class ProjectDeleteAction extends ContextDeleteAction<ProjectViewController> {
     
-    private static final long serialVersionUID = -401771961900364439L;
+    private static final long serialVersionUID = -5450629946700529458L;
 
-    public ContextCloseAction(T parent, Enum context, Enum action) {
+    public ProjectDeleteAction(ProjectViewController parent, Enum context, Enum action) {
         super(parent, context, action);
-    }       
+    }
     
     @Override
-    protected Object doExecute() throws Exception {
-        return getParent().close();
-    }       
+    public boolean isAvailable() {
+        if (!getParent().isEmpty() && !getParent().getModel().isNew()) {
+            return super.isAvailable(); 
+        }
+        return false;
+    }    
 }

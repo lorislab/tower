@@ -1,108 +1,105 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://java.sun.com/jsf/facelets" 
-				xmlns:h="http://java.sun.com/jsf/html" 
-				xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"                
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-	<h:form>
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 					<li>
-						<h:link outcome="#{menuVC.dashboard.execute()}" rendered="#{menuVC.dashboard.available}"
+						<a jsf:outcome="#{menuVC.dashboard.execute()}" jsf:rendered="#{menuVC.dashboard.available}"
 							styleClass="#{menuParentSelected eq menuVC.dashboard.action ? 'active' : ''}"> 
 							<i class="icon-gauge"></i> Dashboard
-						</h:link>
+						</a>
 					</li>
 					<li class="#{menuParentSelected eq menuVC.deployment.action ? 'active' : ''}">
-						<h:link rendered="#{menuVC.deployment.available}">
+						<a jsf:rendered="#{menuVC.deployment.available}">
 							<i class="icon-rocket"></i> Deployment<span class="fa arrow"></span>
-						</h:link>
+						</a>
 						<ul class="nav nav-second-level">
 							<li>
-								<h:link outcome="#{menuVC.deploy.execute()}" rendered="#{menuVC.deploy.available}"
+								<a jsf:outcome="#{menuVC.deploy.execute()}" jsf:rendered="#{menuVC.deploy.available}"
 										styleClass="#{menuChildSelected eq menuVC.deploy.action ? 'active' : ''}">
 									<i class="icon-rocket"></i> Deploy
-								</h:link>
+								</a>
 							</li>
 						</ul>
 					</li>			
 					<li class="#{menuParentSelected eq menuVC.settings.action ? 'active' : ''}">
-						<h:link rendered="#{menuVC.settings.available}">
+						<a jsf:rendered="#{menuVC.settings.available}">
 							<i class="icon-cog-alt"></i> Settings<span class="fa arrow"></span>
-						</h:link>
+						</a>
 						<ul class="nav nav-second-level">
 							<li>
-								<h:link outcome="#{menuVC.project.execute()}" rendered="#{menuVC.project.available}"
+								<a jsf:outcome="#{menuVC.project.execute()}" jsf:rendered="#{menuVC.project.available}"
 											   styleClass="#{menuChildSelected eq menuVC.project.action ? 'active' : ''}"> 
 									<i class="icon-award"></i> Projects
-								</h:link>
+								</a>
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.application.execute()}" rendered="#{menuVC.application.available}"
+								<a jsf:outcome="#{menuVC.application.execute()}" jsf:rendered="#{menuVC.application.available}"
 											   styleClass="#{menuChildSelected eq menuVC.application.action ? 'active' : ''}"> 
 									<i class="icon-beaker"></i> Applications
-								</h:link>								
+								</a>								
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.system.execute()}" rendered="#{menuVC.system.available}"
+								<a jsf:outcome="#{menuVC.system.execute()}" jsf:rendered="#{menuVC.system.available}"
 											   styleClass="#{menuChildSelected eq menuVC.system.action ? 'active' : ''}"> 
 									<i class="icon-suitcase"></i> Systems
-								</h:link>
+								</a>
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.scm.execute()}" rendered="#{menuVC.scm.available}"
+								<a jsf:outcome="#{menuVC.scm.execute()}" jsf:rendered="#{menuVC.scm.available}"
 										styleClass="#{menuChildSelected eq menuVC.scm.action ? 'active' : ''}">
 									<i class="icon-fork"></i> SCM Systems
-								</h:link>								
+								</a>								
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.bts.execute()}" rendered="#{menuVC.bts.available}"
+								<a jsf:outcome="#{menuVC.bts.execute()}" jsf:rendered="#{menuVC.bts.available}"
 										styleClass="#{menuChildSelected eq menuVC.bts.action ? 'active' : ''}">
 									<i class="icon-bug"></i> BTS Systems
-								</h:link>
+								</a>
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.agent.execute()}" rendered="#{menuVC.agent.available}"
+								<a jsf:outcome="#{menuVC.agent.execute()}" jsf:rendered="#{menuVC.agent.available}"
 										styleClass="#{menuChildSelected eq menuVC.agent.action ? 'active' : ''}">
 									<i class="icon-user-md"></i> Agents
-								</h:link>
+								</a>
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.mail.execute()}" rendered="#{menuVC.mail.available}"
+								<a jsf:outcome="#{menuVC.mail.execute()}" jsf:rendered="#{menuVC.mail.available}"
 										styleClass="#{menuChildSelected eq menuVC.mail.action ? 'active' : ''}">
 									<i class="icon-mail-alt"></i> Mail service
-								</h:link>								
+								</a>								
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.timer.execute()}" rendered="#{menuVC.timer.available}"
+								<a jsf:outcome="#{menuVC.timer.execute()}" jsf:rendered="#{menuVC.timer.available}"
 										styleClass="#{menuChildSelected eq menuVC.timer.action ? 'active' : ''}">
 									<i class="icon-clock"></i> Timer service
-								</h:link>								
+								</a>								
 							</li>						
 						</ul>
 					</li>				
 					<li class="#{menuParentSelected eq menuVC.userman.action ? 'active' : ''}">
-						<h:link rendered="#{menuVC.userman.available}">
+						<a jsf:rendered="#{menuVC.userman.available}">
 							<i class="icon-users"></i> User management<span class="fa arrow"></span>
-						</h:link>
+						</a>
 						<ul class="nav nav-second-level">
 							<li>
-								<h:link outcome="#{menuVC.user.execute()}" rendered="#{menuVC.user.available}"
+								<a jsf:outcome="#{menuVC.user.execute()}" jsf:rendered="#{menuVC.user.available}"
 										styleClass="#{menuChildSelected eq menuVC.user.action ? 'active' : ''}">
 									<i class="icon-user"></i> Users
-								</h:link>
+								</a>
 							</li>
 							<li>
-								<h:link outcome="#{menuVC.role.execute()}" rendered="#{menuVC.role.available}"
+								<a jsf:outcome="#{menuVC.role.execute()}" jsf:rendered="#{menuVC.role.available}"
 										styleClass="#{menuChildSelected eq menuVC.role.action ? 'active' : ''}">
 									<i class="icon-key"></i> Roles
-								</h:link>								
+								</a>								
 							</li>					
 						</ul>
 					</li>
 				</ul>
 			</div>
 		</div>
-	</h:form>	
 </ui:composition>
 

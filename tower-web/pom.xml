@@ -32,7 +32,20 @@
 		<dependency>
 			<groupId>org.lorislab.jel</groupId>
 			<artifactId>jel-jsf</artifactId>	
-			<version>0.0.9-SNAPSHOT</version>	   
+			<exclusions>
+				<exclusion>
+					<artifactId>jel-log</artifactId>
+					<groupId>org.lorislab.jel</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jel-jpa</artifactId>
+					<groupId>org.lorislab.jel</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jel-base</artifactId>
+					<groupId>org.lorislab.jel</groupId>
+				</exclusion>
+			</exclusions>			   
 		</dependency>
 		<!-- GUARDIAN -->
 		<dependency>
@@ -67,17 +80,8 @@
 		<!-- JSF -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
-			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
 			<scope>provided</scope>
-		</dependency>	
-		<!-- PRIMEFACES -->
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-		</dependency>
-		<dependency>  
-			<groupId>org.primefaces.themes</groupId>  
-			<artifactId>bootstrap</artifactId>  
 		</dependency>
 		<!-- EJB -->
 		<dependency>

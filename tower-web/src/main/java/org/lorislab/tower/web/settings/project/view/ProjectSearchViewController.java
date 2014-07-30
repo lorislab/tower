@@ -15,13 +15,11 @@
  */
 package org.lorislab.tower.web.settings.project.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.web.view.AbstractContextSearchViewController;
-import org.lorislab.guardian.web.view.actions.ContextResetAction;
 import org.lorislab.guardian.web.view.actions.ContextSearchAction;
 import org.lorislab.tower.store.criteria.ProjectCriteria;
 import org.lorislab.tower.store.ejb.ProjectService;
@@ -30,6 +28,7 @@ import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
 
 /**
+ * The project search view controller.
  *
  * @author Andrej Petras
  */
@@ -37,46 +36,54 @@ import org.lorislab.tower.web.common.action.Context;
 @SessionScoped
 public class ProjectSearchViewController extends AbstractContextSearchViewController<Project, ProjectCriteria> {
 
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = -773118609199094980L;
 
+    /**
+     * The project service.
+     */
     @EJB
     private ProjectService service;
 
-    private ContextResetAction resetAction;
-
+    /**
+     * The search action.
+     */
     private ContextSearchAction searchAction;
 
+    /**
+     * The default constructor.
+     */
     public ProjectSearchViewController() {
-        resetAction = new ContextResetAction(this, Context.PROJECT, Action.RESET);
         searchAction = new ContextSearchAction(this, Context.PROJECT, Action.SEARCH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected List<Project> doSearch() throws Exception {
-        List<Project> result = service.getProjects();
-        if (result == null) {
-            result = new ArrayList<>();
-        }
-        return result;
+        return service.getProjects();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Project> getResult() {
         List<Project> tmp = super.getResult();
         if (tmp == null) {
-            try {
-                search();
-            } catch (Exception ex) {
-
-            }
+            searchAction.execute();
         }
         return super.getResult();
     }
 
-    public ContextResetAction getResetAction() {
-        return resetAction;
-    }
-
+    /**
+     * Gets the context search action.
+     *
+     * @return the context search action.
+     */
     public ContextSearchAction getSearchAction() {
         return searchAction;
     }

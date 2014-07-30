@@ -14,24 +14,30 @@
  * limitations under the License.
  */
 
-package org.lorislab.guardian.web.view.actions;
+package org.lorislab.tower.web.settings.project.action;
 
-import org.lorislab.guardian.web.view.ContextCreateViewController;
+import org.lorislab.guardian.web.view.actions.ContextCreateAction;
+import org.lorislab.tower.web.settings.project.view.ProjectViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class ContextCreateAction<T extends ContextCreateViewController> extends AbstractContextControllerAction<T> {
+public class ProjectCreateAction extends ContextCreateAction<ProjectViewController> {
     
-    private static final long serialVersionUID = -401771961900364439L;
+    private static final long serialVersionUID = 8983174357841744799L;
 
-    public ContextCreateAction(T parent, Enum context, Enum action) {
+    public ProjectCreateAction(ProjectViewController parent, Enum context, Enum action) {
         super(parent, context, action);
-    }       
-    
+    }
+
     @Override
-    protected Object doExecute() throws Exception {
-        return getParent().create();
-    }       
+    public boolean isAvailable() {
+        if (!getParent().isEmpty() && getParent().getModel().isNew()) {
+            return super.isAvailable(); 
+        }
+        return false;
+    }
+    
+    
 }

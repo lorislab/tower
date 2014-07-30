@@ -1,7 +1,8 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://java.sun.com/jsf/facelets" 
-				xmlns:h="http://java.sun.com/jsf/html" 
-				xmlns:f="http://java.sun.com/jsf/core"  >
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"                
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:jsf="http://xmlns.jcp.org/jsf">
+	
 	<h:form>
 		<div class="navbar-header"> 
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,14 +21,14 @@
 				</a>
 				<ul class="dropdown-menu dropdown-user">
 					<li>
-						<h:link outcome="#{menuVC.profile.execute()}" rendered="#{menuVC.profile.available}">
+						<a jsf:outcome="#{menuVC.profile.execute()}" jsf:rendered="#{menuVC.profile.available}">
 							<i class="icon-user"></i> User Profile
-						</h:link>					
-					</li>
-					<li>
-						<h:commandLink action="#{menuVC.logout.execute}" rendered="#{menuVC.logout.available}"> 
+						</a>					
+					</li>					
+					<li jsf:rendered="#{menuVC.logout.available}">
+						<a jsf:action="#{menuVC.logout.execute}" jsf:rendered="#{menuVC.profile.available}"> 
 							<i class="icon-logout"></i> Logout
-						</h:commandLink>
+						</a>
 					</li>
 
 				</ul>

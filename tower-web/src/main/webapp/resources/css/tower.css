@@ -4,6 +4,14 @@ body {
 	padding-top: 30px;
 }
 
+a {
+    color: inherit !important;
+}
+
+.link-simple {
+	text-decoration: none !important;
+}
+
 #wrapper {
     width: 100%;
 }
@@ -171,3 +179,4 @@ table.dataTable thead .sorting:after {
     float: right;
     color: rgba(50,50,50,.5);
 }
+

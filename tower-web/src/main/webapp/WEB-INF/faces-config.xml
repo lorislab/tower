@@ -34,6 +34,11 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>toBTSEdit</from-outcome>
+			<to-view-id>/pages/settings/bts/edit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>		
+		<navigation-case>
 			<from-outcome>toMail</from-outcome>
 			<to-view-id>/pages/settings/mail/edit.xhtml</to-view-id>
 			<redirect />

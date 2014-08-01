@@ -14,7 +14,7 @@
 
 		<ui:param name="project" value="#{projectVC.model}" />
 
-		<h:form class="form-horizontal">
+		<h:form id="projectForm" class="form-horizontal">
 			<fieldset>
 				<div class="control-group">
 					<label class="control-label" for="enabled"></label>
@@ -28,8 +28,18 @@
 					<label class="control-label" for="name">Name</label>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="icon-pencil"></i></span>
-						<input id="name" type="text" class="form-control" placeholder="Name" jsf:value="#{project.name}" required="true"></input>
+						<input jsf:id="name" id="name" type="text" class="form-control" placeholder="Name" jsf:value="#{project.name}" required="true"></input>					
+						<span class="input-group-addon alert-danger" 
+							  type="button" data-container="body" data-toggle="popover" data-placement="left" data-content="The name is required."
+							  jsf:rendered="#{not empty facesContext.getMessageList('projectForm:name')}">
+							<i class="icon-attention alert-danger"></i>
+						</span>
 					</div>
+<!--					<div class="alert alert-danger" role="alert" jsf:rendered="#{not empty facesContext.getMessageList('projectForm:name')}">
+						<ui:repeat value="#{facesContext.getMessageList('projectForm:name')}" var="facesMessage">
+							<b>#{facesMessage.severity}</b> #{facesMessage.summary}
+						</ui:repeat>
+					</div>						-->
 				</div>
 
 				<div class="control-group">
@@ -50,35 +60,26 @@
 					</div>
 				</div>				
 
-				<div class="control-group">
-					<label class="control-label" for="save"></label>
-					<div class="controls">
-						<div class="controls">
-							<button id="save" type="submit" class="btn btn-success" 
-									jsf:rendered="#{projectVC.saveAction.available}"
-									jsf:action="#{projectVC.saveAction.execute}">
-								<i class="icon-floppy"></i> Save
-							</button>
-							<button id="create" type="submit" class="btn btn-success"
-									jsf:rendered="#{projectVC.createAction.available}"
-									jsf:action="#{projectVC.createAction.execute}">
-								<i class="icon-doc-text"></i> Create
-							</button>
-							<a id="close" type="button" class="btn btn-default" 
-									jsf:rendered="#{projectVC.closeAction.available}"
-									jsf:action="#{projectVC.closeAction.execute}">
-								<i class="icon-cancel"></i> Close
-							</a>
-							<span style="float: right">
-								<button type="submit" class="btn btn-danger" data-ng-disabled="data.n" data-ng-click="remove()"
-										jsf:rendered="#{projectVC.deleteAction.available}"
-										jsf:action="#{projectVC.deleteAction.execute}">
-									<i class="icon-trash"></i> Delete
-								</button>
-							</span>								
-						</div>							
-					</div>
-				</div>					
+				<div class="control-group" style="margin-top: 20px;">
+					<button id="save" type="button" class="btn btn-success" style="margin-right: 10px;" 
+							jsf:rendered="#{projectVC.saveAction.available}" jsf:action="#{projectVC.saveAction.execute}">
+						<f:ajax render="@form" execute="@form"/>
+						<i class="icon-floppy"></i> Save
+					</button>
+					<!--					<a id="close" type="button" class="btn btn-default" 
+										   formnovalidate="true" 
+										   jsf:rendered="#{projectVC.closeAction.available}"
+										   jsf:action="#{projectVC.closeAction.execute}">
+											<i class="icon-cancel"></i> Close
+										</a>
+										<span style="float: right">
+											<button type="submit" class="btn btn-danger" data-ng-disabled="data.n" data-ng-click="remove()"
+													jsf:rendered="#{projectVC.deleteAction.available}"
+													jsf:action="#{projectVC.deleteAction.execute}">
+												<i class="icon-trash"></i> Delete
+											</button>
+										</span>								-->
+				</div>			
 			</fieldset>
 		</h:form>
     </ui:define>

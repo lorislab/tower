@@ -2,16 +2,6 @@ $(function() {
 	$('#side-menu').metisMenu();
 });
 
-$(document).ready(function() {
-	$('.dataTable').dataTable({		
-        "order": [[ 1, "asc"]],
-		"aoColumnDefs" : [ 
-			{ "bSortable" : false, "aTargets" : [ "no-sort" ] },
-			{ "bSearchable" : false, "aTargets" : [ "no-search" ] }
-		]	 
-	});
-});
-
 $(function() {
 	$(window).bind("load resize", function() {
 		topOffset = 30;

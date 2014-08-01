@@ -14,26 +14,28 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.settings.project.action;
+package org.lorislab.tower.web.common.action;
 
 import org.lorislab.guardian.web.view.actions.ContextDeleteAction;
-import org.lorislab.tower.web.settings.project.view.ProjectViewController;
+import org.lorislab.jel.jpa.model.Persistent;
+import org.lorislab.tower.web.common.view.EntityViewController;
 
 /**
  *
  * @author Andrej Petras
  */
-public class ProjectDeleteAction extends ContextDeleteAction<ProjectViewController> {
+public class EntityDeleteAction extends ContextDeleteAction<EntityViewController> {
     
     private static final long serialVersionUID = -5450629946700529458L;
 
-    public ProjectDeleteAction(ProjectViewController parent, Enum context, Enum action) {
+    public EntityDeleteAction(EntityViewController parent, Enum context, Enum action) {
         super(parent, context, action);
     }
     
     @Override
     public boolean isAvailable() {
-        if (!getParent().isEmpty() && !getParent().getModel().isNew()) {
+        Persistent tmp = (Persistent) getParent().getModel();
+        if (tmp != null && !tmp.isNew()) {
             return super.isAvailable(); 
         }
         return false;

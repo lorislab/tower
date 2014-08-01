@@ -33,6 +33,7 @@ public class Navigation {
     public static String TO_SYSTEM = "toSystem";
     public static String TO_SCM = "toSCM";
     public static String TO_BTS = "toBTS";
+    public static String TO_BTS_EDIT = "toBTSEdit";    
     public static String TO_AGENT = "toAgent";
     public static String TO_MAIL = "toMail";
     public static String TO_TIMER = "toTimer";

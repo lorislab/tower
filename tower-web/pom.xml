@@ -20,7 +20,14 @@
 			<scope>provided</scope>
 			<type>ejb-client</type>
 			<version>${project.version}</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-ejb</artifactId>
+			<scope>provided</scope>
+			<type>ejb-client</type>
+			<version>${project.version}</version>
+		</dependency>					
 		<dependency>
 			<groupId>org.lorislab.tower</groupId>
 			<artifactId>tower-guardian</artifactId>
@@ -47,6 +54,18 @@
 				</exclusion>
 			</exclusions>			   
 		</dependency>
+		<!-- BARN -->
+		<dependency>
+			<groupId>org.lorislab.postman</groupId>
+			<artifactId>postman-api</artifactId>
+			<scope>provided</scope>
+		</dependency>		
+		<!-- BARN -->
+		<dependency>
+			<groupId>org.lorislab.barn</groupId>
+			<artifactId>barn-api</artifactId>
+			<scope>provided</scope>
+		</dependency>		
 		<!-- GUARDIAN -->
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>

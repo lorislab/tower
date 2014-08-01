@@ -22,6 +22,20 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Context {
     
+    TIMER,
+    
+    MAIL,
+    
+    AGENT,
+    
+    BTS,
+    
+    SCM,
+    
+    SYSTEM,
+    
+    APPLICATION,
+    
     PROJECT,
     
     MENU;

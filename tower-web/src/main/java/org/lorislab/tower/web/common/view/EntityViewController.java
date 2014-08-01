@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lorislab.tower.web.settings.project.view;
+package org.lorislab.tower.web.common.view;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import org.lorislab.guardian.web.view.AbstractContextEntityViewController;
 import org.lorislab.guardian.web.view.ContextEntityViewController;
 import org.lorislab.guardian.web.view.actions.ContextCloseAction;
@@ -25,34 +22,23 @@ import org.lorislab.guardian.web.view.actions.ContextCreateAction;
 import org.lorislab.guardian.web.view.actions.ContextDeleteAction;
 import org.lorislab.guardian.web.view.actions.ContextOpenAction;
 import org.lorislab.guardian.web.view.actions.ContextSaveAction;
-import org.lorislab.tower.store.ejb.ProjectService;
-import org.lorislab.tower.store.model.Project;
+import org.lorislab.jel.jpa.model.Persistent;
 import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.action.Navigation;
-import org.lorislab.tower.web.settings.project.action.ProjectCreateAction;
-import org.lorislab.tower.web.settings.project.action.ProjectDeleteAction;
-import org.lorislab.tower.web.settings.project.action.ProjectSaveAction;
+import org.lorislab.tower.web.common.action.EntityDeleteAction;
 
 /**
  * The project view controller.
  *
  * @author Andrej Petras
+ * @param <T>
  */
-@Named("projectVC")
-@SessionScoped
-public class ProjectViewController extends AbstractContextEntityViewController<Project> implements ContextEntityViewController {
+public abstract class EntityViewController<T extends Persistent> extends AbstractContextEntityViewController<T> implements ContextEntityViewController {
 
     /**
      * The UID for this class.
      */
     private static final long serialVersionUID = -1766808728513642285L;
-
-    /**
-     * The project service.
-     */
-    @EJB
-    private ProjectService service;
 
     /**
      * The open action.
@@ -79,65 +65,23 @@ public class ProjectViewController extends AbstractContextEntityViewController<P
      */
     private ContextDeleteAction deleteAction;
 
+    
+    public EntityViewController() {
+        
+    }
+    
     /**
      * The default constructor.
+     * @param context
      */
-    public ProjectViewController() {
-        createAction = new ProjectCreateAction(this, Context.PROJECT, Action.CREATE);
-        closeAction = new ContextCloseAction(this, Context.PROJECT, Action.CLOSE);
-        saveAction = new ProjectSaveAction(this, Context.PROJECT, Action.SAVE);
-        deleteAction = new ProjectDeleteAction(this, Context.PROJECT, Action.DELETE);
-        openAction = new ContextOpenAction(this, Context.PROJECT, Action.EDIT);
+    public EntityViewController(Context context) {
+        createAction = new ContextCreateAction(this, context, Action.CREATE);
+        closeAction = new ContextCloseAction(this, context, Action.CLOSE);
+        saveAction = new ContextSaveAction(this, context, Action.SAVE);
+        deleteAction = new EntityDeleteAction(this, context, Action.DELETE);
+        openAction = new ContextOpenAction(this, context, Action.EDIT);
     }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object open(String guid) {
-        Project tmp = service.getProject(guid);
-        setModel(tmp);
-        return Navigation.TO_PROJECT_EDIT;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object delete() throws Exception {
-        service.deleteProject(getModel().getGuid());
-        setModel(null);
-        return Navigation.TO_PROJECT;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object save() throws Exception {
-        Project tmp = service.saveProject(getModel());
-        setModel(tmp);
-        return null;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object close() throws Exception {
-        setModel(null);
-        return Navigation.TO_PROJECT;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object create() throws Exception {
-        setModel(new Project());
-        return Navigation.TO_PROJECT_EDIT;
-    }
-
+   
     /**
      * Gets the open action.
      *

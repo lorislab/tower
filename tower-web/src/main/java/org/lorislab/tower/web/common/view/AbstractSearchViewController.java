@@ -13,79 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lorislab.tower.web.settings.project.view;
+
+package org.lorislab.tower.web.common.view;
 
 import java.util.List;
-import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import org.lorislab.guardian.web.view.AbstractContextSearchViewController;
 import org.lorislab.guardian.web.view.actions.ContextSearchAction;
-import org.lorislab.tower.store.criteria.ProjectCriteria;
-import org.lorislab.tower.store.ejb.ProjectService;
-import org.lorislab.tower.store.model.Project;
+import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
 import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
 
 /**
- * The project search view controller.
  *
  * @author Andrej Petras
  */
-@Named(value = "projectSVC")
-@SessionScoped
-public class ProjectSearchViewController extends AbstractContextSearchViewController<Project, ProjectCriteria> {
-
-    /**
-     * The UID for this class.
-     */
-    private static final long serialVersionUID = -773118609199094980L;
-
-    /**
-     * The project service.
-     */
-    @EJB
-    private ProjectService service;
-
+public abstract class AbstractSearchViewController<T, S extends  AbstractSearchCriteria> extends AbstractContextSearchViewController<T, S> {
+    
+    private static final long serialVersionUID = 6562624144708822688L;
+    
     /**
      * The search action.
      */
     private ContextSearchAction searchAction;
 
-    /**
-     * The default constructor.
-     */
-    public ProjectSearchViewController() {
-        searchAction = new ContextSearchAction(this, Context.PROJECT, Action.SEARCH);
+    public AbstractSearchViewController() {
+        
     }
-
+    
+    public AbstractSearchViewController(Context context) {
+        searchAction = new ContextSearchAction(this, context, Action.SEARCH);
+    }
+    
     /**
      * {@inheritDoc}
      */
     @Override
-    protected List<Project> doSearch() throws Exception {
-        return service.getProjects();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<Project> getResult() {
-        List<Project> tmp = super.getResult();
+    public List<T> getResult() {
+        List<T> tmp = super.getResult();
         if (tmp == null) {
             searchAction.execute();
         }
         return super.getResult();
     }
 
-    /**
-     * Gets the context search action.
-     *
-     * @return the context search action.
-     */
     public ContextSearchAction getSearchAction() {
         return searchAction;
     }
-
+    
 }

@@ -1,8 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
-				xmlns:f="http://xmlns.jcp.org/jsf/core"
-				xmlns:h="http://xmlns.jcp.org/jsf/html"
 				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
                 template="/templates/editTemplate.xhtml">
 
@@ -11,55 +8,14 @@
 	<ui:param name="pageTitle" value="Project" />
 	<ui:param name="pageIcon" value="icon-award" />
 
-	<ui:param name="project" value="#{projectVC.model}" />
+	<ui:param name="model" value="#{projectVC.model}" />
 	<ui:param name="viewController" value="#{projectVC}" />
 
     <ui:define name="form">
-
-		<div class="control-group">
-			<label class="control-label" for="enabled"></label>
-			<div class="controls">
-				<label class="enabled">
-					<input type="checkbox" id="enabled" jsf:value="#{project.enabled}"></input> Project enabled
-				</label>							
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label class="control-label" for="name">Name</label>
-			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-pencil"></i></span>
-				<input jsf:id="name" id="name" type="text" class="form-control" placeholder="Name" jsf:value="#{project.name}" required="true"></input>					
-				<span class="input-group-addon alert-danger"
-					  jsf:rendered="#{not empty facesContext.getMessageList('projectForm:name')}">
-					<i class="icon-attention alert-danger"></i>
-				</span>
-			</div>
-<!--					<div class="alert alert-danger" role="alert" jsf:rendered="#{not empty facesContext.getMessageList('projectForm:name')}">
-				<ui:repeat value="#{facesContext.getMessageList('projectForm:name')}" var="facesMessage">
-					<b>#{facesMessage.severity}</b> #{facesMessage.summary}
-				</ui:repeat>
-			</div>						-->
-		</div>
-
-		<div class="control-group">
-			<label class="control-label" for="index">Index</label>
-			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-pencil"></i></span>
-				<input id="index" type="number" class="form-control" placeholder="The index of the project" 
-					   jsf:value="#{project.index}" required="true"></input>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label class="control-label" for="btsId">Bug tracking issue key</label>
-			<div class="input-group">
-				<span class="input-group-addon"><i class="icon-pencil"></i></span>
-				<input id="btsId" type="text" class="form-control" jsf:value="#{project.btsId}"
-					   placeholder="Bug tracking issue key" ></input>
-			</div>
-		</div>				
-
+		<tower:checkbox id="enabled" value="#{model.enabled}" title="Project enabled" />	
+		<tower:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
+		<tower:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />		
+		<tower:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
     </ui:define>
 
 

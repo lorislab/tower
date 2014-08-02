@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<composite:interface>
+		<composite:attribute name="title" required="false" default="Input text"/>
+		<composite:attribute name="value" required="true"/>
+	</composite:interface>
+
+	<composite:implementation>		
+		<div class="control-group">
+			<label class="control-label" for="#{cc.id}_checkbox"></label>
+			<div class="controls">
+				<label class="enabled">
+					<input type="checkbox" id="#{cc.id}_checkbox" jsf:value="#{cc.attrs.value}"></input> #{cc.attrs.title}
+				</label>							
+			</div>
+		</div>		
+	</composite:implementation>
+</html>

@@ -11,7 +11,7 @@
 	</composite:interface>
 
 	<composite:implementation>
-		<a id="close" type="button" class="btn btn-default" formnovalidate="true" 
+		<a class="btn btn-default" jsf:immediate="true"
 		   jsf:rendered="#{cc.attrs.controller.closeAction.available}" jsf:action="#{cc.attrs.controller.closeAction.execute}">
 			<i class="#{cc.attrs.icon}"></i> #{cc.attrs.title}
 		</a>		

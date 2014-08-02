@@ -19,6 +19,7 @@ $(function() {
 			height = 1;
 		if (height > topOffset) {
 			$("#page-wrapper").css("min-height", (height) + "px");
+			$("#page-wrapper2").css("min-height", (height-107) + "px");
 		}
 	});
 });

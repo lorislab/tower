@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<composite:interface>
+		<composite:attribute name="controller" required="true"/>
+		<composite:attribute name="title" required="false" default="Save"/>
+		<composite:attribute name="icon" required="false" default="icon-floppy"/>
+	</composite:interface>
+
+	<composite:implementation>
+		<button type="button" class="btn btn-success" style="margin-right: 10px;"
+				jsf:rendered="#{cc.attrs.controller.saveAction.available}" jsf:action="#{cc.attrs.controller.saveAction.execute}">
+			<f:ajax render="@form" execute="@form"/>
+			<i class="#{cc.attrs.icon}"></i> #{cc.attrs.title}
+		</button>			
+	</composite:implementation>
+</html>

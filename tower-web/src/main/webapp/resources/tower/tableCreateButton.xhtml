@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<composite:interface>
+		<composite:attribute name="controller" required="true"/>
+		<composite:attribute name="icon" required="false" default="icon-doc-text"/>
+	</composite:interface>
+
+	<composite:implementation>
+		<a class="btn btn-default"
+		   jsf:action="#{cc.attrs.controller.createAction.execute}" jsf:rendered="#{cc.attrs.controller.createAction.available}">
+			<i class="#{cc.attrs.icon}"></i>
+		</a>				
+	</composite:implementation>
+</html>

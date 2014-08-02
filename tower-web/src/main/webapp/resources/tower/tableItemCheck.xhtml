@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="iconEnabled" required="false" default="icon-check"/>
+		<composite:attribute name="iconDisabled" required="false" default="icon-check-empty"/>
+		<composite:attribute name="status" required="true"/>
+	</composite:interface>
+
+	<composite:implementation>
+		<i class="#{cc.attrs.status ? cc.attrs.iconEnabled : cc.attrs.iconDisabled}"></i>		
+	</composite:implementation>
+</html>

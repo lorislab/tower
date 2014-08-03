@@ -1,8 +1,45 @@
-$(function() {
-	$('#side-menu').metisMenu();
-});
+(function(){
+    'use strict';
+	var $ = jQuery;
+	$.fn.extend({
+		clearTable: function(){
+			return this.each(function(){
+				$(this).on('click', function(e){
+					var filter = $('[data-action="tableFilter"]'), $filter = $(filter), target = $filter.attr('data-filters'), $target = $(target), $rows = $target.find('tbody tr');
+					$filter.val('');
+					$rows.show();
+				});
+			});
+		},
+		filterTable: function(){
+			return this.each(function(){
+				$(this).on('keyup', function(e){
+					$('.filterTable_no_results').remove();
+					var $this = $(this), search = $this.val().toLowerCase(), target = $this.attr('data-filters'), $target = $(target), $rows = $target.find('tbody tr');
+					if(search === '') {
+						$rows.show(); 
+					} else {
+						$rows.each(function(){
+							var $this = $(this);
+							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+						});
+						if($target.find('tbody tr:visible').size() === 0) {
+							var col_count = $target.find('tr').first().find('td').size();
+							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>');
+							$target.find('tbody').append(no_results);
+						}
+					}
+				});
+			});
+		}
+	});
+	$('[data-action="tableFilter"]').filterTable();
+	$('[data-action="tableFiltetClear"]').clearTable();
+})(jQuery);
 
 $(function() {
+	$('#side-menu').metisMenu();
+
 	$(window).bind("load resize", function() {
 		topOffset = 30;
 		width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;

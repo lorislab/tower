@@ -7,22 +7,21 @@
                 template="/templates/template.xhtml">
 
 	<ui:define name="body">
-		<h:form id="searchForm">
+		<h:form id="searchForm" prependId="false">
 			<div class="row">
                 <div class="col-lg-12">	
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<div class="input-group">
-								<input type="search" placeholder="Search" class="form-control"></input>
+								<input jsf:id="input-filter" data-action="tableFilter" data-filters="#table" type="search" placeholder="Search" class="form-control"></input>
 								<span class="input-group-btn">
-									<tower:tableClearButton />
-									<tower:tableSearchButton controller="#{searchViewController}" />
+									<tower:tableClearButton />	
+									<tower:tableSearchButton controller="#{searchViewController}" render="table input-filter" />									
 									<tower:tableCreateButton controller="#{viewController}" />
 								</span>				
 							</div>			
 						</div>						
 						<table jsf:id="table" class="table table-striped sortable">							
-
 							<thead>
 								<tr>
 									<ui:insert name="tableHead" />

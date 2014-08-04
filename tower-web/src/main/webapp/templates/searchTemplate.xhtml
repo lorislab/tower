@@ -22,17 +22,22 @@
 							</div>			
 						</div>						
 						<table jsf:id="table" class="table table-striped sortable">							
-							<thead>
+							<thead jsf:rendered="#{not empty searchViewController.result}">
 								<tr>
 									<ui:insert name="tableHead" />
 								</tr>
 							</thead>
-							<tbody>
+							<tbody jsf:rendered="#{not empty searchViewController.result}">
 								<ui:repeat var="item" value="#{searchViewController.result}" >
 									<tr>
 										<ui:insert name="tableRow" />
 									</tr>
 								</ui:repeat>
+							</tbody>
+							<tbody jsf:rendered="#{empty searchViewController.result}">
+								<tr>
+									<td>No results found</td>
+								</tr>
 							</tbody>
 						</table>										
 					</div>

@@ -73,7 +73,7 @@ public class BtsViewController extends EntityViewController<BTSystem> {
     public Object delete() throws Exception {
         service.deleteBTSystem(getModel().getGuid());
         setModel(null);
-        return Navigation.TO_PROJECT;
+        return Navigation.TO_BTS;
     }
 
     /**
@@ -92,7 +92,7 @@ public class BtsViewController extends EntityViewController<BTSystem> {
     @Override
     public Object close() throws Exception {
         setModel(null);
-        return Navigation.TO_PROJECT;
+        return Navigation.TO_BTS;
     }
 
     /**
@@ -101,7 +101,7 @@ public class BtsViewController extends EntityViewController<BTSystem> {
     @Override
     public Object create() throws Exception {
         setModel(new BTSystem());
-        return Navigation.TO_PROJECT_EDIT;
+        return Navigation.TO_BTS_EDIT;
     }
 
 }

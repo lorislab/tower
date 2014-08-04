@@ -16,6 +16,11 @@
 		<tower:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
 		<tower:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />		
 		<tower:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
+		
+		<tower:inputSelectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
+							  converter="#{projectVC.btSystemConverter}"
+							  title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
+		
     </ui:define>
 
 

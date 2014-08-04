@@ -15,13 +15,19 @@
  */
 package org.lorislab.tower.web.settings.view;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import org.lorislab.tower.store.criteria.ProjectCriteria;
+import org.lorislab.tower.store.ejb.BTSystemService;
 import org.lorislab.tower.store.ejb.ProjectService;
+import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.store.model.Project;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
+import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
+import org.lorislab.tower.web.common.converter.EntityPersistentConverter;
 import org.lorislab.tower.web.common.view.EntityViewController;
 
 /**
@@ -43,12 +49,24 @@ public class ProjectViewController extends EntityViewController<Project> {
      */
     @EJB
     private ProjectService service;
-   
+
+    /**
+     * The BTSystem service.
+     */
+    @EJB
+    private BTSystemService btsService;
+
+    /**
+     * The BTSystem converter.
+     */
+    private EntityPersistentConverter<BTSystem> btSystemConverter;
+
     /**
      * The default constructor.
      */
     public ProjectViewController() {
         super(Context.PROJECT);
+        btSystemConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.BTSYSTEM);
     }
 
     /**
@@ -57,11 +75,12 @@ public class ProjectViewController extends EntityViewController<Project> {
     @Override
     public Object open(String guid) {
         Object result = Navigation.TO_PROJECT_EDIT;
-        Project tmp = service.getProject(guid);        
-        setModel(tmp);
-        
+        load(guid);
+
         if (isEmpty()) {
             result = null;
+        } else {
+            loadSystems();
         }
         return result;
     }
@@ -73,6 +92,7 @@ public class ProjectViewController extends EntityViewController<Project> {
     public Object delete() throws Exception {
         service.deleteProject(getModel().getGuid());
         setModel(null);
+        btSystemConverter.clear();
         return Navigation.TO_PROJECT;
     }
 
@@ -82,7 +102,7 @@ public class ProjectViewController extends EntityViewController<Project> {
     @Override
     public Object save() throws Exception {
         Project tmp = service.saveProject(getModel());
-        setModel(tmp);
+        load(tmp.getGuid());
         return null;
     }
 
@@ -92,6 +112,7 @@ public class ProjectViewController extends EntityViewController<Project> {
     @Override
     public Object close() throws Exception {
         setModel(null);
+        btSystemConverter.clear();
         return Navigation.TO_PROJECT;
     }
 
@@ -101,7 +122,38 @@ public class ProjectViewController extends EntityViewController<Project> {
     @Override
     public Object create() throws Exception {
         setModel(new Project());
+        loadSystems();
         return Navigation.TO_PROJECT_EDIT;
+    }
+
+    /**
+     * Loads the project by GUID.
+     *
+     * @param guid the project GUID.
+     */
+    private void load(String guid) {
+        ProjectCriteria criteria = new ProjectCriteria();
+        criteria.setGuid(guid);
+        criteria.setFetchBTS(true);
+        Project tmp = service.getProject(criteria);
+        setModel(tmp);
+    }
+
+    /**
+     * Loads the systems.
+     */
+    private void loadSystems() {
+        List<BTSystem> tmp = btsService.getBTSystems();
+        btSystemConverter.setData(tmp);
+    }
+
+    /**
+     * Gets the BTSystem converter.
+     *
+     * @return the BTSystem converter.
+     */
+    public EntityPersistentConverter<BTSystem> getBtSystemConverter() {
+        return btSystemConverter;
     }
 
 }

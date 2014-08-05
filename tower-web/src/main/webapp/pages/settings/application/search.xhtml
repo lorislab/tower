@@ -1,18 +1,34 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:jsf="http://xmlns.jcp.org/jsf"
-                template="/templates/template.xhtml">
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"	
+				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
+                template="/templates/searchTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
 	<ui:param name="menuChildSelected" value="APPLICATION" />
 	<ui:param name="pageTitle" value="Applications" />
 	<ui:param name="pageIcon" value="icon-beaker" />
 	
-    <ui:define name="body">
-		<div></div>
+	<ui:param name="viewController" value="#{applicationVC}" />
+	<ui:param name="searchViewController" value="#{applicationSVC}" />
 
-		Applications table
-    </ui:define>
+    <ui:define name="tableHead">
+		<th> </th>	
+		<th>Index</th>
+		<th>Enabled</th>				
+		<th>Name</th>
+		<th>Bug tracking key</th>
+	</ui:define>
+
+    <ui:define name="tableRow">
+		<td><tower:tableOpenButton controller="#{viewController}" guid="#{item.guid}" /></td>
+		<td>#{item.index}</td>
+		<td><tower:tableItemCheck status="#{item.enabled}"/></td>
+		<td>#{item.name}</td>												
+		<td>#{item.btsId}</td>
+	</ui:define>
 
 
 </ui:composition>

@@ -27,7 +27,12 @@
 			<from-outcome>toApplication</from-outcome>
 			<to-view-id>/pages/settings/application/search.xhtml</to-view-id>
 			<redirect />
-		</navigation-case>						
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>toApplicationEdit</from-outcome>
+			<to-view-id>/pages/settings/application/edit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>								
 		<navigation-case>
 			<from-outcome>toBTS</from-outcome>
 			<to-view-id>/pages/settings/bts/search.xhtml</to-view-id>
@@ -57,7 +62,12 @@
 			<from-outcome>toSCM</from-outcome>
 			<to-view-id>/pages/settings/scm/search.xhtml</to-view-id>
 			<redirect />
-		</navigation-case>	
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>toSCM</from-outcome>
+			<to-view-id>/pages/settings/scm/edit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>			
 		<navigation-case>
 			<from-outcome>toSystem</from-outcome>
 			<to-view-id>/pages/settings/system/search.xhtml</to-view-id>

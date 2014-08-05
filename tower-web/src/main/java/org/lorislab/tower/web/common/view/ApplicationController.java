@@ -15,20 +15,17 @@
  */
 package org.lorislab.tower.web.common.view;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import org.lorislab.jel.jsf.util.MavenUtil;
 import org.lorislab.tower.bts.service.BtsService;
 import org.lorislab.tower.scm.service.ScmService;
 
@@ -45,11 +42,8 @@ public class ApplicationController implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(ApplicationController.class.getName());
     
-    private static final String MAVEN_FILE = "/META-INF/maven/org.lorislab.tower/tower-web/pom.properties";
-
-    private static final String MAVEN_KEY = "version";
-    
-    private static final String DEFAULT_VERSION = "0.0.0";
+    private static final String GROUP_ID = "org.lorislab.tower";
+    private static final String ARTIFACT_ID = "tower-web";
     
     private List<SelectItem> btsTypes = new ArrayList<>();
     
@@ -65,28 +59,14 @@ public class ApplicationController implements Serializable {
             btsTypes.add(new SelectItem(item.getKey(), item.getValue()));
         }        
         
+        // load SCM types
         Map<String, String> tmp2 = ScmService.getTypes();
         for (Map.Entry<String, String> item : tmp2.entrySet()) {
             scmTypes.add(new SelectItem(item.getKey(), item.getValue()));
         }
         
         // load version
-        Properties properties = new Properties();
-        InputStream in = null;
-        try {
-            try {
-                in = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(MAVEN_FILE);
-                properties.load(in);
-            } finally {
-                if (in != null) {
-                    in.close();
-                }
-            }
-        } catch (IOException ex) {
-            // do nothing
-        }
-        
-        version = properties.getProperty(MAVEN_KEY, DEFAULT_VERSION);
+        version = MavenUtil.getVersion(GROUP_ID, ARTIFACT_ID);
         LOGGER.log(Level.INFO, "********* Starting the Tower version {0} *********", version);
     }
 

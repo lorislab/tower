@@ -15,7 +15,10 @@
  */
 package org.lorislab.tower.web.common.converter;
 
+import org.lorislab.jel.jsf.converter.EntityLabelCallback;
 import org.lorislab.tower.store.model.BTSystem;
+import org.lorislab.tower.store.model.Project;
+import org.lorislab.tower.store.model.SCMSystem;
 
 /**
  * The default entity label callback instances.
@@ -37,4 +40,32 @@ public interface EntityLabelCallbackInstances {
             return entity.getName();
         }
     };
+    
+    /**
+     * The BTSsystem label callback instance.
+     */
+    public static final EntityLabelCallback<SCMSystem> SCMSYSTEM = new EntityLabelCallback<SCMSystem>() {
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public String getEntityLabel(SCMSystem entity) {
+            return entity.getName();
+        }
+    };
+       
+    /**
+     * The project label callback instance.
+     */
+    public static final EntityLabelCallback<Project> PROJECT = new EntityLabelCallback<Project>() {
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public String getEntityLabel(Project entity) {
+            return entity.getName();
+        }
+    };    
 }

@@ -29,9 +29,12 @@ public class Navigation {
     // settings
     public static String TO_PROJECT = "toProject";   
     public static String TO_PROJECT_EDIT = "toProjectEdit";
-    public static String TO_APPLICATION = "toApplication";    
+    public static String TO_APPLICATION = "toApplication"; 
+    public static String TO_APPLICATION_EDIT = "toApplicationEdit"; 
+    
     public static String TO_SYSTEM = "toSystem";
     public static String TO_SCM = "toSCM";
+    public static String TO_SCM_EDIT = "toSCMEdit";
     public static String TO_BTS = "toBTS";
     public static String TO_BTS_EDIT = "toBTSEdit";    
     public static String TO_AGENT = "toAgent";

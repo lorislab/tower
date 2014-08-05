@@ -19,25 +19,27 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import org.lorislab.tower.store.criteria.ProjectCriteria;
-import org.lorislab.tower.store.ejb.BTSystemService;
+import org.lorislab.jel.jsf.converter.EntityPersistentConverter;
+import org.lorislab.tower.store.criteria.ApplicationCriteria;
+import org.lorislab.tower.store.ejb.ApplicationService;
 import org.lorislab.tower.store.ejb.ProjectService;
-import org.lorislab.tower.store.model.BTSystem;
+import org.lorislab.tower.store.ejb.SCMSystemService;
+import org.lorislab.tower.store.model.Application;
 import org.lorislab.tower.store.model.Project;
+import org.lorislab.tower.store.model.SCMSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
-import org.lorislab.jel.jsf.converter.EntityPersistentConverter;
 import org.lorislab.tower.web.common.view.EntityViewController;
 
 /**
- * The project view controller.
+ * The application view controller.
  *
  * @author Andrej Petras
  */
-@Named("projectVC")
+@Named("applicationVC")
 @SessionScoped
-public class ProjectViewController extends EntityViewController<Project> {
+public class ApplicationViewController extends EntityViewController<Application> {
 
     /**
      * The UID for this class.
@@ -48,25 +50,37 @@ public class ProjectViewController extends EntityViewController<Project> {
      * The project service.
      */
     @EJB
-    private ProjectService service;
+    private ApplicationService service;
 
     /**
-     * The BTSystem service.
+     * The SCMSystem service.
      */
     @EJB
-    private BTSystemService btsService;
+    private SCMSystemService scmService;
 
+    /**
+     * The project service.
+     */
+    @EJB
+    private ProjectService projectService;
+    
     /**
      * The BTSystem converter.
      */
-    private EntityPersistentConverter<BTSystem> btSystemConverter;
+    private EntityPersistentConverter<SCMSystem> scmSystemConverter;
 
+    /**
+     * The project converter.
+     */
+    private EntityPersistentConverter<Project> projectConverter;
+    
     /**
      * The default constructor.
      */
-    public ProjectViewController() {
-        super(Context.PROJECT);
-        btSystemConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.BTSYSTEM);
+    public ApplicationViewController() {
+        super(Context.APPLICATION);
+        scmSystemConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.SCMSYSTEM);
+        projectConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.PROJECT);
     }
 
     /**
@@ -74,7 +88,7 @@ public class ProjectViewController extends EntityViewController<Project> {
      */
     @Override
     public Object open(String guid) {
-        Object result = Navigation.TO_PROJECT_EDIT;
+        Object result = Navigation.TO_APPLICATION_EDIT;
         load(guid);
 
         if (isEmpty()) {
@@ -90,10 +104,11 @@ public class ProjectViewController extends EntityViewController<Project> {
      */
     @Override
     public Object delete() throws Exception {
-        service.deleteProject(getModel().getGuid());
+        service.deleteApplication(getModel().getGuid());
         setModel(null);
-        btSystemConverter.clear();
-        return Navigation.TO_PROJECT;
+        scmSystemConverter.clear();
+        projectConverter.clear();
+        return Navigation.TO_APPLICATION;
     }
 
     /**
@@ -101,7 +116,7 @@ public class ProjectViewController extends EntityViewController<Project> {
      */
     @Override
     public Object save() throws Exception {
-        Project tmp = service.saveProject(getModel());
+        Application tmp = service.saveApplication(getModel());
         load(tmp.getGuid());
         return null;
     }
@@ -112,8 +127,9 @@ public class ProjectViewController extends EntityViewController<Project> {
     @Override
     public Object close() throws Exception {
         setModel(null);
-        btSystemConverter.clear();
-        return Navigation.TO_PROJECT;
+        scmSystemConverter.clear();
+        projectConverter.clear();
+        return Navigation.TO_APPLICATION;
     }
 
     /**
@@ -121,9 +137,9 @@ public class ProjectViewController extends EntityViewController<Project> {
      */
     @Override
     public Object create() throws Exception {
-        setModel(new Project());
+        setModel(new Application());
         loadSystems();
-        return Navigation.TO_PROJECT_EDIT;
+        return Navigation.TO_APPLICATION_EDIT;
     }
 
     /**
@@ -132,10 +148,10 @@ public class ProjectViewController extends EntityViewController<Project> {
      * @param guid the project GUID.
      */
     private void load(String guid) {
-        ProjectCriteria criteria = new ProjectCriteria();
+        ApplicationCriteria criteria = new ApplicationCriteria();
         criteria.setGuid(guid);
-        criteria.setFetchBTS(true);
-        Project tmp = service.getProject(criteria);
+        criteria.setFetchSCM(true);
+        Application tmp = service.getApplication(criteria);
         setModel(tmp);
     }
 
@@ -143,17 +159,29 @@ public class ProjectViewController extends EntityViewController<Project> {
      * Loads the systems.
      */
     private void loadSystems() {
-        List<BTSystem> tmp = btsService.getBTSystems();
-        btSystemConverter.setData(tmp);
+        // load the SCM
+        List<SCMSystem> tmp = scmService.getSCMSystems();
+        scmSystemConverter.setData(tmp);
+        // load projects
+        List<Project> projects = projectService.getProjects();
+        projectConverter.setData(projects);        
     }
 
     /**
-     * Gets the BTSystem converter.
+     * Gets the SCMSystem converter.
      *
-     * @return the BTSystem converter.
+     * @return the SCMSystem converter.
      */
-    public EntityPersistentConverter<BTSystem> getBtSystemConverter() {
-        return btSystemConverter;
+    public EntityPersistentConverter<SCMSystem> getBtSystemConverter() {
+        return scmSystemConverter;
     }
 
+    /**
+     * Gets the project converter.
+     *
+     * @return the project converter.
+     */
+    public EntityPersistentConverter<Project> getProjectConverter() {
+        return projectConverter;
+    }    
 }

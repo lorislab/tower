@@ -39,12 +39,6 @@
 	</developers>
 		
 	<modules>
-		<module>tower-maven-plugin</module>
-		<module>tower-agent</module>
-		<module>tower-agent-rs</module>
-		<module>tower-agent-impl</module>
-		<module>tower-agent-web</module>
-		<module>tower-rs</module>
 		<module>tower-bts</module>
 		<module>tower-scm</module>
 		<module>tower-store</module>
@@ -58,6 +52,22 @@
 
 	<dependencyManagement>       
 		<dependencies>
+			<!-- TOWER-BASE -->
+			<dependency>
+				<groupId>org.lorislab.tower-base</groupId>
+				<artifactId>tower-base-bom</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>					
+			</dependency>
+			<!-- TOWER-AGENT -->
+			<dependency>
+				<groupId>org.lorislab.tower-agent</groupId>
+				<artifactId>tower-agent-bom</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>					
+			</dependency>			
 			<!-- JEL -->
 			<dependency>
 				<groupId>org.lorislab.jel</groupId>

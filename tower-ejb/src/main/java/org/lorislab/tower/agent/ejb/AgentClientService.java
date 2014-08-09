@@ -17,14 +17,14 @@ package org.lorislab.tower.agent.ejb;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import org.lorislab.tower.agent.rs.model.Request;
-import org.lorislab.tower.agent.rs.model.Version;
+import org.lorislab.tower.base.dto.model.Version;
+import org.lorislab.tower.agent.dto.mapper.ObjectMapper;
+import org.lorislab.tower.agent.dto.model.AgentRequest;
 import org.lorislab.tower.agent.rs.service.VersionService;
 import org.lorislab.tower.agent.util.RestClient;
 import org.lorislab.tower.agent.util.VersionMapper;
@@ -62,9 +62,7 @@ public class AgentClientService {
 
         try {
             VersionService client = createClientService(agent);
-            Request request = new Request();
-            request.manifest = true;
-            request.uid = UUID.randomUUID().toString();
+            AgentRequest request = ObjectMapper.create();
 
             List<Version> versions = client.getVersion(request);
             if (versions != null) {
@@ -116,10 +114,8 @@ public class AgentClientService {
 
         try {
             VersionService client = createClientService(agent);
-            Request request = new Request();
-            request.manifest = true;
+            AgentRequest request = ObjectMapper.create();
             request.service = service;
-            request.uid = UUID.randomUUID().toString();
 
             List<Version> versions = client.getVersion(request);
             Version version = null;

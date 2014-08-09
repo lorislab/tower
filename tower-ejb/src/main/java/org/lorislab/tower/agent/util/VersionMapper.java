@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import org.lorislab.tower.agent.rs.model.Version;
+import org.lorislab.tower.base.dto.model.Version;
 import org.lorislab.tower.store.model.Build;
 import org.lorislab.tower.store.model.BuildParameter;
 import org.lorislab.tower.store.model.enums.BuildParameterType;

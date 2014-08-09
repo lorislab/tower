@@ -14,10 +14,17 @@
 	<name>tower-ear</name>
 
 	<dependencies>
+		<!-- TREASURE -->
+		<dependency>
+			<groupId>org.lorislab.treasure</groupId>
+			<artifactId>treasure-lib</artifactId>
+		</dependency>			
+		<!-- TRANSFORMER -->
 		<dependency>
 			<groupId>org.lorislab.transformer</groupId>
 			<artifactId>transformer-adapter-resteasy</artifactId>
-		</dependency>			
+		</dependency>		
+		<!-- POSTMAN -->	
 		<dependency>
 			<groupId>org.lorislab.postman</groupId>
 			<artifactId>postman-api</artifactId>
@@ -25,7 +32,8 @@
 		<dependency>
 			<groupId>org.lorislab.postman</groupId>
 			<artifactId>postman-impl</artifactId>
-		</dependency>		
+		</dependency>	
+		<!-- BARN -->	
 		<dependency>
 			<groupId>org.lorislab.barn</groupId>
 			<artifactId>barn-api</artifactId>
@@ -37,8 +45,7 @@
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>
 			<artifactId>guardian-api</artifactId>
-		</dependency>
-		
+		</dependency>		
 		<!-- MODULES -->
 		<dependency>
 			<groupId>org.lorislab.postman</groupId>

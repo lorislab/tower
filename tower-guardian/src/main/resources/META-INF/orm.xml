@@ -6,9 +6,6 @@
   version="2.0">
 	
 	<!-- APPLICATION -->
-	<entity class="org.lorislab.guardian.app.model.Application" metadata-complete="false">
-		<table name="TW_GU_APP"></table>
-	</entity>
 	<entity class="org.lorislab.guardian.app.model.Permission" metadata-complete="false">
 		<table name="TW_GU_PERMISSION"></table>
 	</entity>	

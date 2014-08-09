@@ -60,12 +60,6 @@
 			<artifactId>postman-api</artifactId>
 			<scope>provided</scope>
 		</dependency>		
-		<!-- BARN -->
-		<dependency>
-			<groupId>org.lorislab.barn</groupId>
-			<artifactId>barn-api</artifactId>
-			<scope>provided</scope>
-		</dependency>		
 		<!-- GUARDIAN -->
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>

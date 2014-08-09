@@ -14,21 +14,41 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.guardian.service;
+package org.lorislab.tower.process.model;
 
-import org.kohsuke.MetaInfServices;
-import org.lorislab.guardian.api.service.ApplicationDataService;
+import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  *
  * @author Andrej Petras
  */
-@MetaInfServices
-public class DefaultApplicationDataService implements ApplicationDataService {
-
-    @Override
-    public String getApplication() {
-        return "TOWER";
-    }
+public class ChangePassword implements Serializable {
     
+    private static final long serialVersionUID = -680608891056515070L;
+    
+    private char[] new1;
+    
+    private char[] new2;
+
+    public char[] getNew1() {
+        return new1;
+    }
+
+    public void setNew1(char[] new1) {
+        this.new1 = new1;
+    }
+
+    public char[] getNew2() {
+        return new2;
+    }
+
+    public void setNew2(char[] new2) {
+        this.new2 = new2;
+    }
+        
+    public void clear() {
+        new1 = null;
+        new2 = null;
+    }
 }

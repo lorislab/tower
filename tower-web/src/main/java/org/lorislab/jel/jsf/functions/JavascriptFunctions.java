@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.common.action;
+package org.lorislab.jel.jsf.functions;
 
 /**
  *
  * @author Andrej Petras
  */
-public enum Action {
+public final class JavascriptFunctions {
+
+    private JavascriptFunctions() {
+    }
     
-    PASSWORD,
-    CREATE,
-    CLOSE,
-    SEARCH,
-    RESET,
-    EDIT,
-    SAVE,
-    DELETE;
+    public static String onCompleteOpen(String id) {
+        return "function(d){if(d.status==='complete')$('#"+ id.replace(":", "\\\\:") + "').modal('show');}";
+    }
 }

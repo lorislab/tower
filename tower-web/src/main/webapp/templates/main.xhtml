@@ -8,36 +8,15 @@
 		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/fontello.css"/>	
 		<h:outputStylesheet library="css" name="bootstrap.min.css"  />
 	</h:head>
+	
 	<body>
-
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container-full">
-				<div class="navbar-header"> 
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<span class="navbar-brand"><b><i class="icon-signal"></i> Tower</b></span>			  
-				</div>
+				<ui:include src="/templates/includes/sidebar_header.xhtml" />
 			</div>
 		</div>
-
-		<div style="margin-top: 100px"></div>
-
-		<div class="container-full">
-				
-			<div id="page-wrapper2">
-				<ui:insert name="body">Body</ui:insert>					
-			</div>
-			
-			<footer style="text-align: center">
-				<p>&#169; 2013 <a href="http://www.lorislab.org" class="link-simple"><span class="label label-success">lorislab.org</span></a>&#183; Tower #{applicationC.version} &#183; Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.</p>
-			</footer>			
-		</div>
-		
-		<h:outputScript library="js" name="jquery-1.11.0.js" />
-		<h:outputScript library="js" name="metisMenu.min.js" />	
-		<h:outputScript library="js" name="tower.js" />		
+		<div id="container" class="container-full">				
+			<ui:insert name="body">Body</ui:insert>					
+		</div>			
 	</body>
 </html>

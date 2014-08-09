@@ -2,6 +2,9 @@
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
                 template="/templates/editTemplate.xhtml"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:jsf="http://xmlns.jcp.org/jsf"
+				xmlns:jel="http://jel.lorislab.org/jsf"
 				xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -20,10 +23,38 @@
 		<tower:input id="password" value="#{model.password}" type="password" title="Password" placeholder="The password" />		
 		<tower:inputSelectOne id="type" value="#{model.type}" values="#{applicationC.btsTypes}" title="Type" required="true"/>	
 		<tower:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
-		
-		<h:messages />
     </ui:define>
 
+	<ui:define name="buttons">
+		<tower:modalOpenButton modal="pswd" title="Change password" 
+							   rendered="#{btsVC.changePasswordAction.available}" />
+	</ui:define>
 
+	<ui:define name="buttons2">
+		<tower:modalOpenButton modal="delete_confirm" title="Delete" />
+	</ui:define>
+
+	<ui:define name="modal">
+		<tower:confirm id="delete" title="Delete bug tracking system" question="Do you want to delete bug tracking system?" />
+
+		<tower:modal id="pswd" title="Change password">								
+			<tower:modalBody>				
+				<fieldset>
+					<tower:input id="new1" value="#{btsVC.password.new1}" required="true" title="New password" />
+					<tower:input id="new2" value="#{btsVC.password.new2}" required="true" title="Confirm password" />
+					<tower:messages />
+				</fieldset>
+			</tower:modalBody>
+			<tower:modalFooter>
+				<tower:failed id="msg" />
+				<tower:modalCloseButton />					
+				<button type="button" class="btn btn-danger" jsf:rendered="#{btsVC.changePasswordAction.available}"
+						jsf:action="#{btsVC.changePasswordAction.execute}">
+					<f:ajax render="@form" execute="@form" onevent="function(data) { Jel2.closeModal(data, '#pswd_modal', '#msg_failed');}"/>
+					Change password
+				</button>						
+			</tower:modalFooter>			
+		</tower:modal>		
+	</ui:define>
 </ui:composition>
 

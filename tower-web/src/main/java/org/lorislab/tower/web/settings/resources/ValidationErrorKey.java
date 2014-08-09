@@ -14,20 +14,13 @@
  * limitations under the License.
  */
 
-package org.lorislab.tower.web.common.action;
+package org.lorislab.tower.web.settings.resources;
 
 /**
  *
  * @author Andrej Petras
  */
-public enum Action {
+public enum ValidationErrorKey {
     
-    PASSWORD,
-    CREATE,
-    CLOSE,
-    SEARCH,
-    RESET,
-    EDIT,
-    SAVE,
-    DELETE;
+    PASSWORD_DOES_NOT_MACH;
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="title" required="false" default="Title"/>
+		<composite:attribute name="question" required="false" default="Question?"/>
+		<composite:attribute name="cancel" required="false" default="Cancel"/>
+		<composite:attribute name="ok" required="false" default="Ok"/>
+	</composite:interface>
+
+	<composite:implementation>		
+		<div class="modal fade" id="#{cc.id}_confirm" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&#215;</span><span class="sr-only">#{cc.attrs.cancel}</span></button>
+						<h4 class="modal-title" id="modelLabel">#{cc.attrs.title}</h4>
+					</div>
+					<div class="modal-body">
+						#{cc.attrs.question}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">#{cc.attrs.cancel}</button>	
+						<button type="button" class="btn btn-success" data-dismiss="modal">#{cc.attrs.ok}</button>	
+					</div>
+				</div>
+			</div>
+		</div>		
+	</composite:implementation>
+</html>

@@ -9,17 +9,22 @@
 	<ui:define name="body">
 		<h:form id="editForm" class="form-horizontal">
 			<fieldset>
-				
+
 				<ui:insert name="form">Form</ui:insert>
 
 				<div class="control-group" style="margin-top: 20px;">					
 					<tower:saveButton id="save" controller="#{viewController}" title="Save" />
 					<tower:closeButton id="close" controller="#{viewController}" title="Close" />
+					<ui:insert name="buttons"></ui:insert>				
 					<span style="float: right">
-						<tower:deleteButton id="delete" controller="#{viewController}" title="Delete" />
+						<ui:insert name="buttons2"></ui:insert>
+<!--						<tower:deleteButton id="delete" controller="#{viewController}" title="Delete" />-->
 					</span>
 				</div>	
 			</fieldset>
 		</h:form>
+
+		<ui:insert name="modal"></ui:insert>
+
 	</ui:define>
 </ui:composition>

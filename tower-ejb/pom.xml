@@ -50,7 +50,13 @@
 			<scope>provided</scope>
 			<type>ejb-client</type>
 			<version>${project.version}</version>
-		</dependency>				
+		</dependency>	
+		<!-- TREASURE -->
+		<dependency>
+			<groupId>org.lorislab.treasure</groupId>
+			<artifactId>treasure-lib</artifactId>
+			<scope>provided</scope>
+		</dependency>						
 		<!-- GUARDIAN -->
 		<dependency>
 			<groupId>org.lorislab.guardian</groupId>

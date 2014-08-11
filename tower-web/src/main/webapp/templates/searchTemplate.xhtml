@@ -3,7 +3,7 @@
 				xmlns:jsf="http://xmlns.jcp.org/jsf"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:h="http://xmlns.jcp.org/jsf/html"
-				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
+				xmlns:t="http://xmlns.jcp.org/jsf/composite/tower/table"
                 template="/templates/template.xhtml">
 
 	<ui:define name="body">
@@ -15,9 +15,9 @@
 							<div class="input-group">
 								<input jsf:id="input-filter" data-action="tableFilter" data-filters="#table" type="search" placeholder="Search" class="form-control"></input>
 								<span class="input-group-btn">
-									<tower:tableClearButton />	
-									<tower:tableSearchButton controller="#{searchViewController}" render="table input-filter" />									
-									<tower:tableCreateButton controller="#{viewController}" />
+									<t:clear />	
+									<t:search controller="#{searchViewController}" render="table input-filter" />									
+									<t:create controller="#{viewController}" />
 								</span>				
 							</div>			
 						</div>						

@@ -249,7 +249,7 @@
 				<plugin>
 					<groupId>org.lorislab.maven</groupId>
 					<artifactId>jboss-server-plugin</artifactId>
-					<version>1.0.3</version>
+					<version>1.0.4-SNAPSHOT</version>
 					<executions>
 						<execution>
 							<phase>install</phase>

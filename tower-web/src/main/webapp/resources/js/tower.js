@@ -1,47 +1,14 @@
-jel = {
-	jqId: function(id) {
+tower = {
+	id: function(id) {
 		return "#" + id.replace(/:/g, "\\:");
 	},
-	boMc: function(id) {
-		$(id).modal('hide');
-	},
-	boMo: function(id) {
-		$(this.jqId(id)).modal('show');
-	},
-	osOpen: function(a, id) {
-		if (a.status === 'success') {
-			$(this.jqId(id)).modal('show');
+	closeModal: function(id, check) {
+		if ($(this.id(check)).length === 0) {
+			$(this.id(id)).modal('hide');
 		}
-	},
-	os: function(data, func) {
-		if (data.status === 'success') {
-			func();
-		}
-	},
-	oc: function(data, func) {
-		if (data.status === 'complete') {
-			func();
-		}
-	}
+	}	
 };
-// oc(data, boMc('asd'));
-Jel2 = {
-	jClientId: function(id) {
-		return "#" + id.replace(/:/g, "\\:");
-	},
-	openModal: function(data, id) {
-		if (data.status === 'success') {
-			$(id).modal('show');
-		}
-	},
-	closeModal: function(data, id, check) {
-		if (data.status === 'success') {
-			if ($(check).length === 0) {
-				$(id).modal('hide');
-			}
-		}
-	}
-};
+
 (function() {
 	'use strict';
 	var $ = jQuery;

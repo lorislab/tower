@@ -3,7 +3,7 @@
 				xmlns:jsf="http://xmlns.jcp.org/jsf"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:h="http://xmlns.jcp.org/jsf/html"	
-				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
+				xmlns:t="http://xmlns.jcp.org/jsf/composite/tower/table"
                 template="/templates/searchTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -24,8 +24,8 @@
 	</ui:define>
 
     <ui:define name="tableRow">
-		<td><tower:tableOpenButton controller="#{viewController}" guid="#{item.guid}" /></td>		
-		<td><tower:tableItemCheck status="#{item.auth}"/></td>
+		<td><t:open controller="#{viewController}" guid="#{item.guid}" /></td>		
+		<td><t:check status="#{item.auth}"/></td>
 		<td>#{item.name}</td>
 		<td>#{item.user}</td>												
 		<td>#{item.server}</td>

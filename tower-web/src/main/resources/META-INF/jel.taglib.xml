@@ -2,13 +2,7 @@
 				xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ web-facelettaglibrary_2_2.xsd">
   
 	<namespace>http://jel.lorislab.org/jsf</namespace>
-	
-	<function>
-		<function-name>onCompleteOpen</function-name>
-		<function-class>org.lorislab.jel.jsf.functions.JavascriptFunctions</function-class>
-		<function-signature>java.lang.String onCompleteOpen(java.lang.String)</function-signature>
-	</function> 
-		
+				
 	<function>
 		<function-name>messages</function-name>
 		<function-class>org.lorislab.jel.jsf.functions.MessageFunctions</function-class>

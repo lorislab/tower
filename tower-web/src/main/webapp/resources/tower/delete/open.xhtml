@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	  xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="controller" required="true"/>
+	</composite:interface>
+
+	<composite:implementation>
+		<a type="button" class="btn btn-danger"  jsf:rendered="#{cc.attrs.controller.deleteAction.available}" 
+				onclick="$('#btsd\\:d\\:modal').modal('show');return false">		
+			<i class="icon-trash"></i> Delete
+		</a>		
+	</composite:implementation>
+</html>

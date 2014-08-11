@@ -3,7 +3,7 @@
 				xmlns:jsf="http://xmlns.jcp.org/jsf"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:h="http://xmlns.jcp.org/jsf/html"
-				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
+				xmlns:b="http://xmlns.jcp.org/jsf/composite/tower/button"
                 template="/templates/template.xhtml">
 
 	<ui:define name="body">
@@ -13,12 +13,11 @@
 				<ui:insert name="form">Form</ui:insert>
 
 				<div class="control-group" style="margin-top: 20px;">					
-					<tower:saveButton id="save" controller="#{viewController}" title="Save" />
-					<tower:closeButton id="close" controller="#{viewController}" title="Close" />
-					<ui:insert name="buttons"></ui:insert>				
+					<b:save id="save" controller="#{viewController}" title="Save" />
+					<b:close id="close" controller="#{viewController}" title="Close" />
+					<ui:insert name="button-left"></ui:insert>				
 					<span style="float: right">
-						<ui:insert name="buttons2"></ui:insert>
-<!--						<tower:deleteButton id="delete" controller="#{viewController}" title="Delete" />-->
+						<ui:insert name="button-right"></ui:insert>
 					</span>
 				</div>	
 			</fieldset>

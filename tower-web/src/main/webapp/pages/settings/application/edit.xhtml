@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:tower="http://xmlns.jcp.org/jsf/composite/tower"
+				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -12,12 +12,12 @@
 	<ui:param name="viewController" value="#{applicationVC}" />
 
     <ui:define name="form">
-		<tower:checkbox id="enabled" value="#{model.enabled}" title="Application enabled" />	
-		<tower:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
-		<tower:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />		
-		<tower:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
+		<i:checkbox id="enabled" value="#{model.enabled}" title="Application enabled" />	
+		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
+		<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />		
+		<i:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
 		
-		<tower:inputSelectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
+		<i:selectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
 							  converter="#{projectVC.btSystemConverter}"
 							  title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
 		

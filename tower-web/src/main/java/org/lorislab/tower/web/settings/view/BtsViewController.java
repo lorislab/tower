@@ -20,7 +20,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.lorislab.jel.jsf.util.FacesResourceUtil;
-import org.lorislab.jel.jsf.util.FacesUtil;
 import org.lorislab.tower.process.ejb.ChangePasswordService;
 import org.lorislab.tower.process.model.ChangePassword;
 import org.lorislab.tower.store.ejb.BTSystemService;

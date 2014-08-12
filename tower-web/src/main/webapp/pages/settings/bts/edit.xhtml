@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
-				xmlns:m="http://xmlns.jcp.org/jsf/composite/tower/modal"
 				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
 				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
                 template="/templates/editTemplate.xhtml">
@@ -19,13 +18,13 @@
 		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
 		<i:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
 		<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
-		<p:input id="password" controller="#{viewController}" value="#{model.password}" />	
+		<p:input id="password" controller="#{viewController}" value="#{model.password}" dialog="btsp"/>	
 		<i:selectOne id="type" value="#{model.type}" values="#{applicationC.btsTypes}" title="Type" required="true"/>	
 		<i:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
     </ui:define>
 	
 	<ui:define name="button-right">
-		<d:open controller="#{viewController}" />
+		<d:open controller="#{viewController}" dialog="btsd" />
 	</ui:define>
 
 	<ui:define name="modal">

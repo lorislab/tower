@@ -5,12 +5,13 @@
 	  xmlns:composite="http://xmlns.jcp.org/jsf/composite">
 
 	<composite:interface>
-		<composite:attribute name="controller" required="true"/>
+		<composite:attribute name="controller" required="true" />
+		<composite:attribute name="dialog" required="true"/>
 	</composite:interface>
 
 	<composite:implementation>
 		<button type="button" class="btn btn-danger"  jsf:rendered="#{cc.attrs.controller.deleteAction.available}" 
-				onclick="$('#btsd\\:d\\:modal').modal('show');return false">		
+				onclick="$('##{cc.attrs.dialog}\\\\:d\\\\:modal').modal('show');return false">		
 			<i class="icon-trash"></i> Delete
 		</button>		
 	</composite:implementation>

@@ -12,6 +12,7 @@
 		<composite:attribute name="controller" required="true"/>
 		<composite:attribute name="title" required="false" default="Title"/>
 		<composite:attribute name="question" required="false" default="Question?"/>
+		<composite:attribute name="render" required="false" default="editForm:password:input"/>		
 	</composite:interface>
 
 	<composite:implementation>		
@@ -27,8 +28,8 @@
 				<m:close />					
 				<button type="button" class="btn btn-danger" jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}"
 						jsf:action="#{cc.attrs.controller.changePasswordAction.execute}">
-					<f:ajax render="@form editForm:password:input" execute="@form"
-							onevent="function(d){if(d.status==='success')if($('#btsp\\\\:p\\\\:modalForm\\\\:status').length === 0)$('#btsp\\\\:p\\\\:modal').modal('hide');}" />
+					<f:ajax render="@form #{cc.attrs.render}" execute="@form"
+							onevent="function(d){if(d.status==='success')if($('##{cc.id}\\\\:p\\\\:modalForm\\\\:status').length === 0)$('##{cc.id}\\\\:p\\\\:modal').modal('hide');}" />
 					Change password
 				</button>						
 			</m:footer>			

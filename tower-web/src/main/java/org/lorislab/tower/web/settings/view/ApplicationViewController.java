@@ -151,6 +151,7 @@ public class ApplicationViewController extends EntityViewController<Application>
         ApplicationCriteria criteria = new ApplicationCriteria();
         criteria.setGuid(guid);
         criteria.setFetchSCM(true);
+        criteria.setFetchProject(true);
         Application tmp = service.getApplication(criteria);
         setModel(tmp);
     }
@@ -172,7 +173,7 @@ public class ApplicationViewController extends EntityViewController<Application>
      *
      * @return the SCMSystem converter.
      */
-    public EntityPersistentConverter<SCMSystem> getBtSystemConverter() {
+    public EntityPersistentConverter<SCMSystem> getScmSystemConverter() {
         return scmSystemConverter;
     }
 

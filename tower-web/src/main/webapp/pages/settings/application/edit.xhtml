@@ -13,14 +13,28 @@
 
     <ui:define name="form">
 		<i:checkbox id="enabled" value="#{model.enabled}" title="Application enabled" />	
-		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
-		<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />		
-		<i:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
 		
-		<i:selectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
-							  converter="#{projectVC.btSystemConverter}"
-							  title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
+		<i:selectOne id="project" value="#{model.project}" values="#{applicationVC.projectConverter.data}" 
+					 converter="#{applicationVC.projectConverter}" required="true"
+							  title="Project" placeholder="--- select a project ---"/>
 		
+		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" />
+		<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />		
+		<i:input id="type" value="#{model.type}" title="Type" placeholder="The application type" />		
+		
+		<i:selectOne id="scmId" value="#{model.scm}" values="#{applicationVC.scmSystemConverter.data}" 
+							  converter="#{applicationVC.scmSystemConverter}"
+							  title="Source control management system" placeholder="--- select source control system ---"/>	
+		
+		<i:input id="scmTrunk" value="#{model.scmTrunk}" title="Source code trunk" placeholder="Link to the trunk" />
+		<i:input id="scmBranches" value="#{model.scmBranches}" title="Source code branches" placeholder="Link to the branches" />
+		<i:input id="scmTags" value="#{model.scmTags}" title="Source code tags" placeholder="Link to the tags" />
+		
+		<i:selectOne id="scmType" value="#{model.scmType}" values="#{applicationC.appScmTypes}"
+			converter="#{applicationC.enumConverter}"
+			title="Source control management type" placeholder="--- select source control system type ---"/>	
+		
+		<i:input id="repoLink" value="#{model.repoLink}" title="Repository link" placeholder="Link to the repository" />
     </ui:define>
 
 

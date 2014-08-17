@@ -13,42 +13,108 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.web.common.action;
 
 /**
+ * The navigation constants.
  *
  * @author Andrej Petras
  */
-public class Navigation {
-    
-    // other
+public final class Navigation {
+
+    /**
+     * The default constructor.
+     */
+    private Navigation() {
+        // empty constructor
+    }
+
+    /**
+     * The navigation to home page.
+     */
     public static String TO_HOME = "toHome";
+    /**
+     * The navigation to user profile.
+     */
     public static String TO_PROFILE = "toProfile";
-    
-    // settings
-    public static String TO_PROJECT = "toProject";   
+
+    /**
+     * The navigation to project search.
+     */
+    public static String TO_PROJECT = "toProject";
+    /**
+     * The navigation to project edit.
+     */
     public static String TO_PROJECT_EDIT = "toProjectEdit";
-    public static String TO_APPLICATION = "toApplication"; 
-    public static String TO_APPLICATION_EDIT = "toApplicationEdit"; 
-    
+    /**
+     * The navigation to application search.
+     */
+    public static String TO_APPLICATION = "toApplication";
+    /**
+     * The navigation to application edit.
+     */
+    public static String TO_APPLICATION_EDIT = "toApplicationEdit";
+    /**
+     * The navigation to system search.
+     */
     public static String TO_SYSTEM = "toSystem";
+    /**
+     * The navigation to source control search.
+     */
     public static String TO_SCM = "toSCM";
+    /**
+     * The navigation to source control edit.
+     */
     public static String TO_SCM_EDIT = "toSCMEdit";
+    /**
+     * The navigation to bug tracking system search.
+     */
     public static String TO_BTS = "toBTS";
-    public static String TO_BTS_EDIT = "toBTSEdit";    
+    /**
+     * The navigation to bug tracking system edit.
+     */
+    public static String TO_BTS_EDIT = "toBTSEdit";
+    /**
+     * The navigation to agent search.
+     */
     public static String TO_AGENT = "toAgent";
+    /**
+     * The navigation to agent edit.
+     */
+    public static String TO_AGENT_EDIT = "toAgentEdit";
+    /**
+     * The navigation to mail settings edit.
+     */
     public static String TO_MAIL = "toMail";
+    /**
+     * The navigation to timer settings edit.
+     */
     public static String TO_TIMER = "toTimer";
-    
-    // user management
+
+    /**
+     * The navigation to user search.
+     */
     public static String TO_USER = "toUser";
+    /**
+     * The navigation to user edit.
+     */
+    public static String TO_USER_EDIT = "toUserEdit";
+    /**
+     * The navigation to role search.
+     */
     public static String TO_ROLE = "toRole";
-    
-    // dashboard
+    /**
+     * The navigation to role edit.
+     */
+    public static String TO_ROLE_EDIT = "toRoleEdit";
+    /**
+     * The navigation to dashboard.
+     */
     public static String TO_DASHBOARD = "toDashboard";
-    
-    // deployment
+
+    /**
+     * The navigation to deploy.
+     */
     public static String TO_DEPLOY = "toDeploy";
 
 }

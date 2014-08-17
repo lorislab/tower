@@ -13,50 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.lorislab.tower.web.common.view;
 
-package org.lorislab.tower.web.common.action;
+import org.lorislab.guardian.web.view.ActionContextViewController;
 
 /**
- * The context object.
- * 
+ * The change password view controller.
+ *
  * @author Andrej Petras
  */
-public enum Context {
-   
+public interface ChangePasswordViewController extends ActionContextViewController {
+
     /**
-     * The timer.
+     * Before opens the change password dialog.
+     *
+     * @return the navigation path.
+     * @throws java.lang.Exception if the method fails.
      */
-    TIMER,
+    public Object openPasswordChange() throws Exception;
+
     /**
-     * The mail.
+     * The change password action.
+     *
+     * @return the navigation path.
+     * @throws java.lang.Exception if the method fails.
      */
-    MAIL,
-    /**
-     * The agent.
-     */
-    AGENT,
-    /**
-     * The bug tracking system.
-     */
-    BTS,
-    /**
-     * The source control system.
-     */
-    SCM,
-    /**
-     * The system.
-     */
-    SYSTEM,
-    /**
-     * The application.
-     */
-    APPLICATION,
-    /**
-     * The project.
-     */
-    PROJECT,
-    /**
-     * The menu.
-     */
-    MENU;
+    public Object changePassword() throws Exception;
 }

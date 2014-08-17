@@ -64,7 +64,7 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>toSCM</from-outcome>
+			<from-outcome>toSCMEdit</from-outcome>
 			<to-view-id>/pages/settings/scm/edit.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>			

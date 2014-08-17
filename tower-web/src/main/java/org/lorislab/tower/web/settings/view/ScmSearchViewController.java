@@ -35,16 +35,27 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
 @SessionScoped
 public class ScmSearchViewController extends AbstractSearchViewController<SCMSystem, SCMSystemCriteria> {
     
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 3380686998733851443L;
 
+    /**
+     * The service.
+     */
     @EJB
     private SCMSystemService service;
     
-  
+    /**
+     * The default constructor.
+     */
     public ScmSearchViewController() {
         super(Context.SCM);
     }
         
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected List<SCMSystem> doSearch() throws Exception {
         return service.getSCMSystems();

@@ -13,31 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.lorislab.tower.web.settings.action;
+package org.lorislab.tower.web.common.action;
 
 import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
-import org.lorislab.tower.web.settings.view.BtsViewController;
+import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 
 /**
+ * The change password action.
  *
+ * @param <T> the change password view controller.
  * @author Andrej Petras
  */
-public class BtsChangePasswordAction extends AbstractContextControllerAction<BtsViewController> {
-    
+public class ChangePasswordAction<T extends ChangePasswordViewController> extends AbstractContextControllerAction<T> {
+
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 2144032715047939391L;
 
-    public BtsChangePasswordAction(BtsViewController parent, Enum context, Enum action) {
+    /**
+     * The default constructor.
+     *
+     * @param parent the parent view controller.
+     * @param context the context.
+     * @param action the action.
+     */
+    public ChangePasswordAction(T parent, Enum context, Enum action) {
         super(parent, context, action);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected Object doExecute() throws Exception {
         return getParent().changePassword();
     }
-    
+
+    /**
+     * Opens the change password dialog.
+     *
+     * @return the navigation path.
+     * @throws java.lang.Exception if the method fails.
+     */
     public Object open() throws Exception {
         return getParent().openPasswordChange();
     }
-    
+
 }

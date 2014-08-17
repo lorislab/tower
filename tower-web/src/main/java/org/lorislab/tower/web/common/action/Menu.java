@@ -13,39 +13,81 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.web.common.action;
 
 /**
+ * The menu.
  *
  * @author Andrej Petras
  */
 public enum Menu {
-    
-    // dashboard
+
+    /**
+     * The top dashboard.
+     */
     DASHBOARD,
-    
-    // deployment
+    /**
+     * The top deployment menu.
+     */
     DEPLOYMENT,
+    /**
+     * The deploy menu.
+     */
     DEPLOY,
-    
-    // settings
+    /**
+     * The top settings menu.
+     */
     SETTINGS,
-    PROJECT,    
-    APPLICATION,    
+    /**
+     * The project menu.
+     */
+    PROJECT,
+    /**
+     * The application menu.
+     */
+    APPLICATION,
+    /**
+     * The system menu.
+     */
     SYSTEM,
+    /**
+     * The source control menu.
+     */
     SCM,
+    /**
+     * The bug tracking system menu.
+     */
     BTS,
+    /**
+     * The agent menu.
+     */
     AGENT,
+    /**
+     * The mail menu.
+     */
     MAIL,
+    /**
+     * The timer menu.
+     */
     TIMER,
-    
-    // user management
+    /**
+     * The user management top menu.
+     */
     USERMAN,
+    /**
+     * The role menu.
+     */
     ROLE,
+    /**
+     * The user menu.
+     */
     USER,
-    
-    // other
+    /**
+     * The user profile menu.
+     */
     PROFILE,
-    LOGOUT;    
+    /**
+     * The logout menu.
+     */
+    LOGOUT;
 }

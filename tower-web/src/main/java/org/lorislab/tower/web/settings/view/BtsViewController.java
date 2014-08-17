@@ -25,10 +25,11 @@ import org.lorislab.tower.process.model.ChangePassword;
 import org.lorislab.tower.store.ejb.BTSystemService;
 import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.web.common.action.Action;
+import org.lorislab.tower.web.common.action.ChangePasswordAction;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
+import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 import org.lorislab.tower.web.common.view.EntityViewController;
-import org.lorislab.tower.web.settings.action.BtsChangePasswordAction;
 import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
 
 /**
@@ -38,7 +39,7 @@ import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
  */
 @Named("btsVC")
 @SessionScoped
-public class BtsViewController extends EntityViewController<BTSystem> {
+public class BtsViewController extends EntityViewController<BTSystem> implements ChangePasswordViewController {
 
     /**
      * The UID for this class.
@@ -62,21 +63,29 @@ public class BtsViewController extends EntityViewController<BTSystem> {
      */
     private ChangePassword password;
 
-    private BtsChangePasswordAction changePasswordAction;
-    
+    /**
+     * The change password action.
+     */
+    private ChangePasswordAction changePasswordAction;
+
     /**
      * The default constructor.
      */
     public BtsViewController() {
         super(Context.BTS);
         password = new ChangePassword();
-        changePasswordAction = new BtsChangePasswordAction(this, Context.BTS, Action.PASSWORD);
+        changePasswordAction = new ChangePasswordAction(this, Context.BTS, Action.PASSWORD);
     }
 
-    public BtsChangePasswordAction getChangePasswordAction() {
+    /**
+     * Gets the change password action.
+     *
+     * @return the change password action.
+     */
+    public ChangePasswordAction getChangePasswordAction() {
         return changePasswordAction;
     }
-   
+
     /**
      * Gets the change password.
      *
@@ -139,15 +148,23 @@ public class BtsViewController extends EntityViewController<BTSystem> {
         return Navigation.TO_BTS_EDIT;
     }
 
+    /**
+     * {@inheritDoc }
+     */
+    @Override
     public Object openPasswordChange() throws Exception {
         password.clear();
         return null;
     }
-    
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
     public Object changePassword() throws Exception {
         try {
             String tmp = passwordService.createPassword(password);
-            getModel().setPassword(tmp.toCharArray());        
+            getModel().setPassword(tmp.toCharArray());
         } catch (Exception ex) {
             FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_DOES_NOT_MACH);
             FacesContext.getCurrentInstance().validationFailed();

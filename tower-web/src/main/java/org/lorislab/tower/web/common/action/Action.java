@@ -13,21 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.web.common.action;
 
 /**
+ * The action.
  *
  * @author Andrej Petras
  */
 public enum Action {
-    
+
+    /**
+     * The password action.
+     */
     PASSWORD,
+    /**
+     * The create action.
+     */
     CREATE,
+    /**
+     * The close action.
+     */
     CLOSE,
+    /**
+     * The search action.
+     */
     SEARCH,
+    /**
+     * The reset action.
+     */
     RESET,
+    /**
+     * The edit action.
+     */
     EDIT,
+    /**
+     * The save action.
+     */
     SAVE,
+    /**
+     * The delete action.
+     */
     DELETE;
 }

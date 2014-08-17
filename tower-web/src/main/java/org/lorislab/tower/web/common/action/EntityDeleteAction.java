@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.web.common.action;
 
 import org.lorislab.guardian.web.view.actions.ContextDeleteAction;
@@ -21,23 +20,37 @@ import org.lorislab.jel.jpa.model.Persistent;
 import org.lorislab.tower.web.common.view.EntityViewController;
 
 /**
+ * The entity delete action.
  *
  * @author Andrej Petras
  */
 public class EntityDeleteAction extends ContextDeleteAction<EntityViewController> {
-    
+
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = -5450629946700529458L;
 
+    /**
+     * The default constructor.
+     *
+     * @param parent the parent view controller.
+     * @param context the context object.
+     * @param action the action.
+     */
     public EntityDeleteAction(EntityViewController parent, Enum context, Enum action) {
         super(parent, context, action);
     }
-    
+
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public boolean isAvailable() {
         Persistent tmp = (Persistent) getParent().getModel();
         if (tmp != null && !tmp.isNew()) {
-            return super.isAvailable(); 
+            return super.isAvailable();
         }
         return false;
-    }    
+    }
 }

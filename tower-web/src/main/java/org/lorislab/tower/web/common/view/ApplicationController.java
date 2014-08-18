@@ -32,6 +32,7 @@ import org.lorislab.tower.base.loader.PrmLoader;
 import org.lorislab.tower.base.model.Prm;
 import org.lorislab.tower.bts.service.BtsService;
 import org.lorislab.tower.scm.service.ScmService;
+import org.lorislab.tower.store.model.enums.AgentType;
 import org.lorislab.tower.store.model.enums.ApplicationScmRepository;
 
 /**
@@ -43,20 +44,48 @@ import org.lorislab.tower.store.model.enums.ApplicationScmRepository;
 @ApplicationScoped
 public class ApplicationController implements Serializable {
 
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 6122723230744615314L;
-
+    /**
+     * The logger for this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(ApplicationController.class.getName());
 
-    private List<SelectItem> btsTypes = new ArrayList<>();
+    /**
+     * The bug tracking system types.
+     */
+    private final List<SelectItem> btsTypes = new ArrayList<>();
 
-    private List<SelectItem> scmTypes = new ArrayList<>();
+    /**
+     * The source control management types.
+     */
+    private final List<SelectItem> scmTypes = new ArrayList<>();
 
-    private List<SelectItem> appScmTypes = new ArrayList<>();
+    /**
+     * The application source control management types.
+     */
+    private final List<SelectItem> appScmTypes = new ArrayList<>();
 
+    /**
+     * The list of agent types.
+     */
+    private final List<SelectItem> agentTypes = new ArrayList<>();
+
+    /**
+     * The project release model.
+     */
     private Prm prm;
 
+    /**
+     * The enumeration converter.
+     */
     private Converter enumConverter;
-    
+
+    /**
+     * The post constructor method.
+     */
     @PostConstruct
     public void init() {
         // load BTS types
@@ -72,20 +101,37 @@ public class ApplicationController implements Serializable {
         }
 
         // load application source code managment repository types.
-        appScmTypes = FacesResourceUtil.getEnumSelectItems(ApplicationScmRepository.class);
+        appScmTypes.addAll(FacesResourceUtil.getEnumSelectItems(ApplicationScmRepository.class));
 
+        // load agent types
+        agentTypes.addAll(FacesResourceUtil.getEnumSelectItems(AgentType.class));
+
+        // create enum converter
         enumConverter = new EnumConverter();
-        
+
         // load version
         prm = PrmLoader.load(ApplicationController.class);
-        LOGGER.log(Level.INFO, "********* Starting the Tower version {0} {1} *********",new Object[]{ prm.getVersion(), prm.getBuild()});
+        LOGGER.log(Level.INFO, "********* Starting the Tower version {0} {1} *********", new Object[]{prm.getVersion(), prm.getBuild()});
     }
 
+    /**
+     * Gets the list of agent types.
+     *
+     * @return the list of agent types.
+     */
+    public List<SelectItem> getAgentTypes() {
+        return agentTypes;
+    }
+
+    /**
+     * Gets the enumeration converter.
+     *
+     * @return the enumeration converter.
+     */
     public Converter getEnumConverter() {
         return enumConverter;
     }
 
-    
     /**
      * Gets the list of all application source control management types.
      *

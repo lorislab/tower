@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
+				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+                template="/templates/editTemplate.xhtml">
+
+	<ui:param name="menuParentSelected" value="SETTINGS" />
+	<ui:param name="menuChildSelected" value="AGENT" />
+	<ui:param name="pageTitle" value="Agents" />
+	<ui:param name="pageIcon" value="icon-user-md" />
+
+	<ui:param name="model" value="#{agentVC.model}" />
+	<ui:param name="viewController" value="#{agentVC}" />
+
+    <ui:define name="form">
+		<i:checkbox id="auth" value="#{model.authentication}" title="Authentication" />	
+		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
+		<i:input id="url" value="#{model.url}" required="true" title="The agent URL" placeholder="The URL fo the agent" />				
+		<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />				
+		<p:input id="password" controller="#{viewController}" value="#{model.password}" dialog="agentp"/>
+		
+		<i:selectOne id="type" value="#{model.type}" values="#{applicationC.agentTypes}"
+			converter="#{applicationC.enumConverter}" title="Type" placeholder="--- select agent type ---"/>
+		
+    </ui:define>
+	
+	<ui:define name="button-right">
+		<d:open controller="#{viewController}" dialog="agentd" />
+	</ui:define>
+
+	<ui:define name="modal">
+		<d:dialog id="agentd" controller="#{viewController}" title="Delete agent" question="Do you want to delete agent #{model.name}?" />
+		<p:dialog id="agentp" controller="#{viewController}" />	
+	</ui:define>
+</ui:composition>
+

@@ -54,15 +54,23 @@ public class ConfigurationViewController<T> extends AbstractContextEntityViewCon
      */
     private ContextSaveAction saveAction;
 
-    
+    /**
+     * The configuration class.
+     */
     private Class<T> clazz;
-    
-    public ConfigurationViewController() {
-        
-    }
-    
+
     /**
      * The default constructor.
+     */
+    public ConfigurationViewController() {
+        // empty consturctor
+    }
+
+    /**
+     * The default constructor.
+     *
+     * @param context the context.
+     * @param clazz the configuration class.
      */
     public ConfigurationViewController(Context context, Class<T> clazz) {
         saveAction = new ContextSaveAction(this, context, Action.SAVE);
@@ -107,5 +115,5 @@ public class ConfigurationViewController<T> extends AbstractContextEntityViewCon
     public ContextSaveAction getSaveAction() {
         return saveAction;
     }
-    
+
 }

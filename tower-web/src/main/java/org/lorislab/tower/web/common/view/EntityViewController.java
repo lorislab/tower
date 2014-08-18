@@ -65,9 +65,11 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      */
     private ContextDeleteAction deleteAction;
 
-    
+    /**
+     * The default constructor.
+     */
     public EntityViewController() {
-        
+        // empty constructor
     }
     
     /**

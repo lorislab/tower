@@ -35,15 +35,27 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
 @SessionScoped
 public class AgentSearchViewController extends AbstractSearchViewController<Agent, AgentCriteria> {
     
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 3380686998733851443L;
 
+    /**
+     * The service.
+     */
     @EJB
     private AgentService service;
    
+    /**
+     * The default constructor.
+     */
     public AgentSearchViewController() {
         super(Context.AGENT);
     }
         
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected List<Agent> doSearch() throws Exception {
         return service.getAgents();

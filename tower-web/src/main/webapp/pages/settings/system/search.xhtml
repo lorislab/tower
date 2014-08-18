@@ -1,19 +1,40 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:jsf="http://xmlns.jcp.org/jsf"
-                template="/templates/template.xhtml">
+				xmlns:t="http://xmlns.jcp.org/jsf/composite/tower/table"
+                template="/templates/searchTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
 	<ui:param name="menuChildSelected" value="SYSTEM" />
 	<ui:param name="pageTitle" value="Systems" />
 	<ui:param name="pageIcon" value="icon-suitcase" />
-	
-    <ui:define name="body">
-		<div></div>
 
-		Systems table
-    </ui:define>
+	<ui:param name="viewController" value="#{systemVC}" />
+	<ui:param name="searchViewController" value="#{systemSVC}" />
 
+    <ui:define name="tableHead">
+		<th> </th>		
+		<th>Index</th>
+		<th>Enabled</th>
+		<th>Name</th>
+		<th>Service</th>
+		<th>Domain</th>
+		<th>Classification</th>
+		<th>Notification</th>
+		<th>Timer</th>
+	</ui:define>
+
+    <ui:define name="tableRow">
+		<td><t:open controller="#{viewController}" guid="#{item.guid}" /></td>
+		<td>#{item.index}</td>
+		<td><t:check status="#{item.enabled}"/></td>
+		<td>#{item.name}</td>												
+		<td>#{item.service}</td>
+		<td>#{item.domain}</td>
+		<td>#{item.classification}</td>
+		<td><t:check status="#{item.notification}"/></td>
+		<td><t:check status="#{item.timer}"/></td>
+	</ui:define>
 
 </ui:composition>
 

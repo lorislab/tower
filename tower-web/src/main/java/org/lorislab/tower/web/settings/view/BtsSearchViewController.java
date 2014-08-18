@@ -34,15 +34,27 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
 @SessionScoped
 public class BtsSearchViewController extends AbstractSearchViewController<BTSystem, BTSystemCriteria> {
 
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 3380686998733851443L;
 
+    /**
+     * The service.
+     */
     @EJB
     private BTSystemService service;
 
+    /**
+     * The default constructor.
+     */
     public BtsSearchViewController() {
         super(Context.BTS);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected List<BTSystem> doSearch() throws Exception {
         return service.getBTSystems();

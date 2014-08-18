@@ -59,6 +59,10 @@ public final class Navigation {
      */
     public static String TO_SYSTEM = "toSystem";
     /**
+     * The navigation to system edit.
+     */
+    public static String TO_SYSTEM_EDIT = "toSystemEdit";    
+    /**
      * The navigation to source control search.
      */
     public static String TO_SCM = "toSCM";

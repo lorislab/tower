@@ -16,6 +16,8 @@
 package org.lorislab.tower.web.common.converter;
 
 import org.lorislab.jel.jsf.converter.EntityLabelCallback;
+import org.lorislab.tower.store.model.Agent;
+import org.lorislab.tower.store.model.Application;
 import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.store.model.Project;
 import org.lorislab.tower.store.model.SCMSystem;
@@ -68,4 +70,33 @@ public interface EntityLabelCallbackInstances {
             return entity.getName();
         }
     };    
+    
+    /**
+     * The application label callback instance.
+     */
+    public static final EntityLabelCallback<Application> APPLICATION = new EntityLabelCallback<Application>() {
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public String getEntityLabel(Application entity) {
+            return entity.getName();
+        }
+    }; 
+    
+    
+    /**
+     * The agent label callback instance.
+     */
+    public static final EntityLabelCallback<Agent> AGENT = new EntityLabelCallback<Agent>() {
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public String getEntityLabel(Agent entity) {
+            return entity.getName();
+        }
+    };     
 }

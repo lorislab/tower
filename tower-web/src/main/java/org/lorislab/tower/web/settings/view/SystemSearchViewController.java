@@ -35,15 +35,27 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
 @SessionScoped
 public class SystemSearchViewController extends AbstractSearchViewController<TargetSystem, TargetSystemCriteria> {
     
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 3380686998733851443L;
 
+    /**
+     * The service.
+     */
     @EJB
     private TargetSystemService service;
 
+    /**
+     * The default constructor.
+     */
     public SystemSearchViewController() {
         super(Context.SYSTEM);
     }
         
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected List<TargetSystem> doSearch() throws Exception {
         return service.getSystems();

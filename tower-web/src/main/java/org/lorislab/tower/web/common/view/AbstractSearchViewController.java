@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.web.common.view;
 
 import java.util.List;
@@ -24,26 +23,41 @@ import org.lorislab.tower.web.common.action.Action;
 import org.lorislab.tower.web.common.action.Context;
 
 /**
+ * The abstract search view controller.
+ *
+ * @param <T> the entity type.
+ * @param <S> the search criteria type.
  *
  * @author Andrej Petras
  */
-public abstract class AbstractSearchViewController<T, S extends  AbstractSearchCriteria> extends AbstractContextSearchViewController<T, S> {
-    
+public abstract class AbstractSearchViewController<T, S extends AbstractSearchCriteria> extends AbstractContextSearchViewController<T, S> {
+
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 6562624144708822688L;
-    
+
     /**
      * The search action.
      */
     private ContextSearchAction searchAction;
 
+    /**
+     * The default constructor.
+     */
     public AbstractSearchViewController() {
-        
+        // empty constructor
     }
-    
+
+    /**
+     * The default constructor.
+     *
+     * @param context the context.
+     */
     public AbstractSearchViewController(Context context) {
         searchAction = new ContextSearchAction(this, context, Action.SEARCH);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -56,8 +70,13 @@ public abstract class AbstractSearchViewController<T, S extends  AbstractSearchC
         return super.getResult();
     }
 
+    /**
+     * Gets the search action.
+     *
+     * @return the search action.
+     */
     public ContextSearchAction getSearchAction() {
         return searchAction;
     }
-    
+
 }

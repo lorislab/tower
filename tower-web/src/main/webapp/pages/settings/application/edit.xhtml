@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
+				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -38,5 +39,13 @@
     </ui:define>
 
 
+	<ui:define name="button-right">
+		<d:open controller="#{viewController}" dialog="ad" />
+	</ui:define>
+	
+	<ui:define name="modal">
+		<d:dialog id="ad" controller="#{viewController}" title="Delete application" question="Do you want to delete the application #{model.name}?" />
+	</ui:define>
+	
 </ui:composition>
 

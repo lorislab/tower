@@ -37,6 +37,8 @@ import org.lorislab.tower.store.model.Agent;
 import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.store.model.Build;
 import org.lorislab.tower.store.model.SCMSystem;
+import org.lorislab.treasure.api.factory.PasswordServiceFactory;
+import org.lorislab.treasure.api.service.PasswordService;
 
 /**
  * The test service.
@@ -87,10 +89,10 @@ public class TestService {
      */
     @EJB
     private ExternalSystemService externalService;
-    
+
     @EJB
     private ConfigurationService configService;
-    
+
     /**
      * Gets the agent services list.
      *
@@ -113,7 +115,7 @@ public class TestService {
         }
         return result;
     }
-    
+
     /**
      * Tests the agent connection.
      *
@@ -150,10 +152,14 @@ public class TestService {
         }
 
         try {
+
+            PasswordService pswd = PasswordServiceFactory.getService();
+            char[] tmp = pswd.getPassword(bts.getPassword());
+
             BtsCriteria bc = new BtsCriteria();
             bc.setServer(bts.getServer());
             bc.setUser(bts.getUser());
-            bc.setPassword(bts.getPassword());
+            bc.setPassword(tmp);
             bc.setAuth(bts.isAuth());
             bc.setType(bts.getType());
             externalService.testConnection(bc);
@@ -175,12 +181,15 @@ public class TestService {
         }
 
         try {
+            PasswordService pswd = PasswordServiceFactory.getService();
+            char[] tmp = pswd.getPassword(scm.getPassword());
+            
             ScmCriteria criteria = new ScmCriteria();
             criteria.setType(scm.getType());
             criteria.setServer(scm.getServer());
             criteria.setAuth(scm.isAuth());
             criteria.setUser(scm.getUser());
-            criteria.setPassword(scm.getPassword());
+            criteria.setPassword(tmp);
             criteria.setReadTimeout(scm.getReadTimeout());
             criteria.setConnectionTimeout(scm.getConnectionTimeout());
             externalService.testConnection(criteria);
@@ -203,9 +212,9 @@ public class TestService {
             Email mail = new Email();
             mail.getTo().add(email);
             mail.setTemplate(MAIL_TEST_TEMPLATE);
-            
+
             EmailConfig config = configService.getConfiguration(EmailConfig.class);
-            
+
             mailService.sendEmail(mail, config);
         } catch (Exception ex) {
             throw new ServiceException(ErrorKeys.ERROR_SEND_EMAIL, ex, email);
@@ -219,11 +228,14 @@ public class TestService {
         }
 
         try {
+            PasswordService pswd = PasswordServiceFactory.getService();
+            char[] tmp = pswd.getPassword(bts.getPassword());
+            
             BtsCriteria bc = new BtsCriteria();
             bc.setProject(project);
             bc.setServer(bts.getServer());
             bc.setUser(bts.getUser());
-            bc.setPassword(bts.getPassword());
+            bc.setPassword(tmp);
             bc.setAuth(bts.isAuth());
             bc.setType(bts.getType());
             externalService.testProjectAccess(bc);
@@ -237,18 +249,21 @@ public class TestService {
         if (scm == null) {
             throw new ServiceException(ErrorKeys.NO_SCM_SYSTEM_FOUND, guid);
         }
-        
+
         String server = LinkUtil.createLink(repository, scm);
-        
+
         try {
+            PasswordService pswd = PasswordServiceFactory.getService();
+            char[] tmp = pswd.getPassword(scm.getPassword());
+                        
             ScmCriteria criteria = new ScmCriteria();
             criteria.setType(scm.getType());
             criteria.setServer(server);
             criteria.setAuth(scm.isAuth());
             criteria.setUser(scm.getUser());
-            criteria.setPassword(scm.getPassword());
+            criteria.setPassword(tmp);
             criteria.setReadTimeout(scm.getReadTimeout());
-            criteria.setConnectionTimeout(scm.getConnectionTimeout());            
+            criteria.setConnectionTimeout(scm.getConnectionTimeout());
             externalService.testRepository(criteria);
         } catch (Exception ex) {
             throw new ServiceException(ErrorKeys.ERROR_CREATE_SCM_CONNECTION, guid, ex, scm.getServer(), ex.getMessage());

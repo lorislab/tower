@@ -18,7 +18,7 @@
 		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
 		<i:input id="url" value="#{model.url}" required="true" title="The agent URL" placeholder="The URL fo the agent" />				
 		<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />				
-		<p:input id="password" controller="#{viewController}" value="#{model.password}" dialog="agentp"/>
+		<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="agentp"/>
 		
 		<i:selectOne id="type" value="#{model.type}" values="#{applicationC.agentTypes}"
 			converter="#{applicationC.enumConverter}" title="Type" placeholder="--- select agent type ---"/>
@@ -31,7 +31,7 @@
 
 	<ui:define name="modal">
 		<d:dialog id="agentd" controller="#{viewController}" title="Delete agent" question="Do you want to delete agent #{model.name}?" />
-		<p:dialog id="agentp" controller="#{viewController}" />	
+		<p:dialog id="agentp" controller="#{viewController.passwordVC}" />	
 	</ui:define>
 </ui:composition>
 

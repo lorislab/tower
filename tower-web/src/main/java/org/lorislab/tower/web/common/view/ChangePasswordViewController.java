@@ -15,14 +15,90 @@
  */
 package org.lorislab.tower.web.common.view;
 
+import java.io.Serializable;
+import javax.faces.context.FacesContext;
 import org.lorislab.guardian.web.view.ActionContextViewController;
+import org.lorislab.jel.jsf.util.FacesResourceUtil;
+import org.lorislab.tower.web.common.action.Action;
+import org.lorislab.tower.web.common.action.ChangePasswordAction;
+import org.lorislab.tower.web.common.action.ClearPasswordAction;
+import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.tower.web.common.model.ChangePassword;
+import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
+import org.lorislab.treasure.api.factory.PasswordServiceFactory;
+import org.lorislab.treasure.api.service.PasswordService;
 
 /**
  * The change password view controller.
  *
  * @author Andrej Petras
  */
-public interface ChangePasswordViewController extends ActionContextViewController {
+public class ChangePasswordViewController implements Serializable, ActionContextViewController {
+
+    /**
+     * The UID for this class.
+     */
+    private static final long serialVersionUID = 1956712426617362245L;
+
+    /**
+     * The change password.
+     */
+    private final ChangePassword password;
+
+    /**
+     * The change password action.
+     */
+    private final ChangePasswordAction changePasswordAction;
+
+    /**
+     * The clear password action.
+     */
+    private final ClearPasswordAction clearPasswordAction;
+    
+    /**
+     * The parent.
+     */
+    private final ChangePasswordListener parent;
+
+    /**
+     * The default constructor.
+     *
+     * @param parent the parent view controller.
+     * @param context the context.
+     */
+    public ChangePasswordViewController(ChangePasswordListener parent, Context context) {
+        this.parent = parent;
+        password = new ChangePassword();
+        clearPasswordAction = new ClearPasswordAction(this, context, Action.PASSWORD);
+        changePasswordAction = new ChangePasswordAction(this, context, Action.PASSWORD);
+    }
+
+    /**
+     * Gets the clear password action.
+     *
+     * @return the clear password action.
+     */    
+    public ClearPasswordAction getClearPasswordAction() {
+        return clearPasswordAction;
+    }
+    
+    /**
+     * Gets the change password action.
+     *
+     * @return the change password action.
+     */
+    public ChangePasswordAction getChangePasswordAction() {
+        return changePasswordAction;
+    }
+
+    /**
+     * Gets the change password.
+     *
+     * @return the change password.
+     */
+    public ChangePassword getPassword() {
+        return password;
+    }
 
     /**
      * Before opens the change password dialog.
@@ -30,7 +106,21 @@ public interface ChangePasswordViewController extends ActionContextViewControlle
      * @return the navigation path.
      * @throws java.lang.Exception if the method fails.
      */
-    public Object openPasswordChange() throws Exception;
+    public Object openPasswordChange() throws Exception {
+        password.clear();
+        return null;
+    }
+
+    /**
+     * Clears the password in the parent view controller.
+     *
+     * @return the navigation path.
+     * @throws java.lang.Exception if the method fails.
+     */
+    public Object clearPassword() throws Exception {
+        parent.changePassword(null);
+        return null;
+    }
 
     /**
      * The change password action.
@@ -38,5 +128,28 @@ public interface ChangePasswordViewController extends ActionContextViewControlle
      * @return the navigation path.
      * @throws java.lang.Exception if the method fails.
      */
-    public Object changePassword() throws Exception;
+    public Object changePassword() throws Exception {
+        if (password.isValid()) {
+            try {
+                PasswordService service = PasswordServiceFactory.getService();
+                String tmp = service.createPassword(password.getNew1());
+                parent.changePassword(tmp);
+            } catch (Exception ex) {
+                FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_ERROR);
+                FacesContext.getCurrentInstance().validationFailed();
+            }
+        } else {
+            FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_DOES_NOT_MACH);
+            FacesContext.getCurrentInstance().validationFailed();
+        }
+        return null;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public boolean hasUserAction(Enum action, Enum context) {
+        return parent.hasUserAction(action, context);
+    }
 }

@@ -57,6 +57,8 @@ import org.lorislab.tower.process.util.LinkUtil;
 import org.lorislab.tower.store.ejb.ApplicationService;
 import org.lorislab.tower.store.ejb.BuildService;
 import org.lorislab.tower.store.ejb.ProjectService;
+import org.lorislab.treasure.api.factory.PasswordServiceFactory;
+import org.lorislab.treasure.api.service.PasswordService;
 
 /**
  * The activity process service.
@@ -92,7 +94,7 @@ public class ActivityProcessService {
      */
     @EJB
     private ExternalSystemService externalService;
-    
+
     /**
      * Creates the store activity.
      *
@@ -230,9 +232,9 @@ public class ActivityProcessService {
                 btsc.setId(key);
 
                 BtsResult tmp = null;
-                try {                    
+                try {
                     tmp = externalService.getIssues(btsc);
-                } catch (Exception ex) {                    
+                } catch (Exception ex) {
                     LOGGER.log(Level.FINEST, "Error get the BTS issue", ex);
                 }
 
@@ -343,15 +345,18 @@ public class ActivityProcessService {
             }
         }
         //LOGGER.log(Level.FINEST, "The repository link {0} and type {1}", new Object[]{ tmp, application.getScmType()});
-        
+
         String server = LinkUtil.createLink(tmp, scm, build);
+
+        PasswordService pswdS = PasswordServiceFactory.getService();
+        char[] pswd = pswdS.getPassword(scm.getPassword());
 
         ScmCriteria criteria = new ScmCriteria();
         criteria.setType(scm.getType());
         criteria.setServer(server);
         criteria.setAuth(scm.isAuth());
         criteria.setUser(scm.getUser());
-        criteria.setPassword(scm.getPassword());
+        criteria.setPassword(pswd);
         criteria.setReadTimeout(scm.getReadTimeout());
         criteria.setConnectionTimeout(scm.getConnectionTimeout());
         return externalService.getLog(criteria);
@@ -377,13 +382,20 @@ public class ActivityProcessService {
      *
      * @param project the project.
      * @return the BTS criteria.
+     *
+     * @throws java.lang.Exception if the method fails.
      */
-    private BtsCriteria createBtsCriteria(Project project) {
+    private BtsCriteria createBtsCriteria(Project project) throws Exception {
+
         BTSystem bts = project.getBts();
+
+        PasswordService pswdS = PasswordServiceFactory.getService();
+        char[] pswd = pswdS.getPassword(bts.getPassword());
+
         BtsCriteria bc = new BtsCriteria();
         bc.setServer(bts.getServer());
         bc.setUser(bts.getUser());
-        bc.setPassword(bts.getPassword());
+        bc.setPassword(pswd);
         bc.setAuth(bts.isAuth());
         bc.setType(bts.getType());
         return bc;

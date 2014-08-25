@@ -22,7 +22,7 @@
 		<!-- TRANSFORMER -->
 		<dependency>
 			<groupId>org.lorislab.transformer</groupId>
-			<artifactId>transformer-adapter-resteasy</artifactId>
+			<artifactId>transformer-adapter-gson</artifactId>
 		</dependency>		
 		<!-- POSTMAN -->	
 		<dependency>

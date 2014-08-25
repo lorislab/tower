@@ -56,7 +56,7 @@ public class SCMSystem extends Persistent {
      * The password.
      */
     @Column(name = "C_PASWORD")
-    private char[] password;
+    private String password;
     /**
      * The authentication flag.
      */
@@ -204,7 +204,7 @@ public class SCMSystem extends Persistent {
      *
      * @return the password.
      */
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -213,7 +213,7 @@ public class SCMSystem extends Persistent {
      *
      * @param password the password to set.
      */
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

@@ -39,7 +39,13 @@
 			<scope>provided</scope>
 			<type>ejb-client</type>
 			<version>${project.version}</version>
-		</dependency>		
+		</dependency>
+		<!-- TREASURE -->
+		<dependency>
+			<groupId>org.lorislab.treasure</groupId>
+			<artifactId>treasure-lib</artifactId>
+			<scope>provided</scope>
+		</dependency>				
 		<!-- JEL -->
 		<dependency>
 			<groupId>org.lorislab.jel</groupId>

@@ -18,8 +18,10 @@ package org.lorislab.tower.web.common.view;
 import javax.ejb.EJB;
 import org.lorislab.barn.api.service.ConfigurationService;
 import org.lorislab.guardian.web.view.AbstractContextEntityViewController;
+import org.lorislab.guardian.web.view.ContextCloseViewController;
 import org.lorislab.guardian.web.view.ContextOpenViewController;
 import org.lorislab.guardian.web.view.ContextSaveViewController;
+import org.lorislab.guardian.web.view.actions.ContextCloseAction;
 import org.lorislab.guardian.web.view.actions.ContextOpenAction;
 import org.lorislab.guardian.web.view.actions.ContextSaveAction;
 import org.lorislab.tower.web.common.action.Action;
@@ -29,9 +31,10 @@ import org.lorislab.tower.web.common.action.Navigation;
 /**
  * The project view controller.
  *
+ * @param <T> the type of the configuration model.
  * @author Andrej Petras
  */
-public class ConfigurationViewController<T> extends AbstractContextEntityViewController<T> implements ContextOpenViewController, ContextSaveViewController {
+public class ConfigurationViewController<T> extends AbstractContextEntityViewController<T> implements ContextOpenViewController, ContextSaveViewController, ContextCloseViewController {
 
     /**
      * The UID for this class.
@@ -55,6 +58,11 @@ public class ConfigurationViewController<T> extends AbstractContextEntityViewCon
     private ContextSaveAction saveAction;
 
     /**
+     * The close action.
+     */
+    private ContextCloseAction closeAction;
+
+    /**
      * The configuration class.
      */
     private Class<T> clazz;
@@ -75,6 +83,7 @@ public class ConfigurationViewController<T> extends AbstractContextEntityViewCon
     public ConfigurationViewController(Context context, Class<T> clazz) {
         saveAction = new ContextSaveAction(this, context, Action.SAVE);
         openAction = new ContextOpenAction(this, context, Action.EDIT);
+        closeAction = new ContextCloseAction(this, context, Action.CLOSE);
         this.clazz = clazz;
     }
 
@@ -114,6 +123,23 @@ public class ConfigurationViewController<T> extends AbstractContextEntityViewCon
      */
     public ContextSaveAction getSaveAction() {
         return saveAction;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public Object close() throws Exception {
+        return null;
+    }
+
+    /**
+     * Gets the close action.
+     *
+     * @return the close action.
+     */
+    public ContextCloseAction getCloseAction() {
+        return closeAction;
     }
 
 }

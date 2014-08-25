@@ -64,7 +64,7 @@ public class Agent extends Persistent {
     private String user;
 
     @Column(name = "C_PASSWORD")
-    private char[] password;
+    private String password;
 
     /**
      * Gets the name.
@@ -108,11 +108,11 @@ public class Agent extends Persistent {
         this.user = user;
     }
 
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

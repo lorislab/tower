@@ -18,7 +18,7 @@
 		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
 		<i:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
 		<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
-		<p:input id="password" controller="#{viewController}" value="#{model.password}" dialog="btsp"/>	
+		<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="btsp"/>	
 		<i:selectOne id="type" value="#{model.type}" values="#{applicationC.btsTypes}" title="Type" required="true"/>	
 		<i:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
     </ui:define>
@@ -29,7 +29,7 @@
 
 	<ui:define name="modal">
 		<d:dialog id="btsd" controller="#{viewController}" title="Delete bug tracking system" question="Do you want to delete bug tracking system #{model.name}?" />
-		<p:dialog id="btsp" controller="#{viewController}" />	
+		<p:dialog id="btsp" controller="#{viewController.passwordVC}" />	
 	</ui:define>
 </ui:composition>
 

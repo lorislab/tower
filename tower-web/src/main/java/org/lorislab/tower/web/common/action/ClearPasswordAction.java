@@ -19,16 +19,13 @@ import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 
 /**
- * The change password action.
+ * Clears password action.
  *
  * @author Andrej Petras
  */
-public class ChangePasswordAction extends AbstractContextControllerAction<ChangePasswordViewController> {
+public class ClearPasswordAction extends AbstractContextControllerAction<ChangePasswordViewController> {
 
-    /**
-     * The UID for this class.
-     */
-    private static final long serialVersionUID = 2144032715047939391L;
+    private static final long serialVersionUID = -4415140480990448985L;
 
     /**
      * The default constructor.
@@ -37,7 +34,7 @@ public class ChangePasswordAction extends AbstractContextControllerAction<Change
      * @param context the context.
      * @param action the action.
      */
-    public ChangePasswordAction(ChangePasswordViewController parent, Enum context, Enum action) {
+    public ClearPasswordAction(ChangePasswordViewController parent, Enum context, Enum action) {
         super(parent, context, action);
     }
 
@@ -46,17 +43,6 @@ public class ChangePasswordAction extends AbstractContextControllerAction<Change
      */
     @Override
     protected Object doExecute() throws Exception {
-        return getParent().changePassword();
+        return getParent().clearPassword();
     }
-
-    /**
-     * Opens the change password dialog.
-     *
-     * @return the navigation path.
-     * @throws java.lang.Exception if the method fails.
-     */
-    public Object open() throws Exception {
-        return getParent().openPasswordChange();
-    }
-
 }

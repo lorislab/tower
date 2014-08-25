@@ -31,6 +31,8 @@ import org.lorislab.tower.agent.util.VersionMapper;
 import org.lorislab.tower.store.model.Agent;
 import org.lorislab.tower.store.model.Build;
 import org.lorislab.tower.store.model.enums.AgentType;
+import org.lorislab.treasure.api.factory.PasswordServiceFactory;
+import org.lorislab.treasure.api.service.PasswordService;
 
 /**
  * The agent client service.
@@ -146,7 +148,9 @@ public class AgentClientService {
                 sb.append(AGENT_SERVICE);
             }
             try {
-                result = RestClient.getClient(VersionService.class, sb.toString(), agent.isAuthentication(), agent.getUser(), agent.getPassword());
+                PasswordService pswd = PasswordServiceFactory.getService();
+                char[] tmp = pswd.getPassword(agent.getPassword());
+                result = RestClient.getClient(VersionService.class, sb.toString(), agent.isAuthentication(), agent.getUser(), tmp);
             } catch (Exception ex) {
                 LOGGER.log(Level.SEVERE, "Error creating the version service for the agent " + agent.getGuid(), ex);
             }

@@ -19,6 +19,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.postman.api.model.EmailConfig;
 import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.tower.web.common.view.ChangePasswordListener;
+import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 import org.lorislab.tower.web.common.view.ConfigurationViewController;
 
 /**
@@ -26,9 +28,9 @@ import org.lorislab.tower.web.common.view.ConfigurationViewController;
  *
  * @author Andrej Petras
  */
-@Named("emailVC")
+@Named("mailVC")
 @SessionScoped
-public class MailViewController extends ConfigurationViewController<EmailConfig> {
+public class MailViewController extends ConfigurationViewController<EmailConfig> implements ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -36,10 +38,33 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
     private static final long serialVersionUID = -1766808728513642285L;
 
     /**
+     * The change password view controller.
+     */
+    private final ChangePasswordViewController passwordVC;
+    
+    /**
      * The default constructor.
      */
     public MailViewController() {
         super(Context.MAIL, EmailConfig.class);
+        passwordVC = new ChangePasswordViewController(this, Context.MAIL);
+    }
+
+    /**
+     * Gets the password view controller.
+     *
+     * @return the password view controller.
+     */
+    public ChangePasswordViewController getPasswordVC() {
+        return passwordVC;
+    }
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void changePassword(String data) {
+        getModel().setPassword(data);
     }
 
 }

@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lorislab.tower.process.model;
+package org.lorislab.tower.web.common.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * The change password model.
@@ -79,5 +80,14 @@ public class ChangePassword implements Serializable {
     public void clear() {
         new1 = null;
         new2 = null;
+    }
+
+    /**
+     * Returns {@code true} if the password is valid.
+     *
+     * @return {@code true} if the password is valid.
+     */
+    public boolean isValid() {
+        return Arrays.equals(new1, new2);
     }
 }

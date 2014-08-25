@@ -51,7 +51,7 @@ public class BTSystem extends Persistent {
     private String user;
 
     @Column(name = "C_PASWORD")
-    private char[] password;
+    private String password;
 
     @Column(name = "C_AUTH")
     private boolean auth;
@@ -114,14 +114,14 @@ public class BTSystem extends Persistent {
     /**
      * @return the password
      */
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
     /**
      * @param password the password to set
      */
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

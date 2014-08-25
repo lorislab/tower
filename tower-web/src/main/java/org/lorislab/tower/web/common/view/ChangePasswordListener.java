@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.lorislab.tower.web.common.view;
 
-package org.lorislab.tower.web.settings.resources;
+import org.lorislab.guardian.web.view.ActionContextViewController;
 
 /**
+ * The abstract change password view controller.
  *
  * @author Andrej Petras
  */
-public enum ValidationErrorKey {
-    
-    PASSWORD_ERROR,
-    
-    PASSWORD_DOES_NOT_MACH;
+public interface ChangePasswordListener extends ActionContextViewController {
+
+    /**
+     * The change password.
+     *
+     * @param data the new password.
+     */
+    public void changePassword(String data);
 }

@@ -1,19 +1,36 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
-                template="/templates/template.xhtml">
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
+				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+                template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
 	<ui:param name="menuChildSelected" value="MAIL" />
 	<ui:param name="pageTitle" value="Mail system" />
 	<ui:param name="pageIcon" value="icon-mail-alt" />
-	
-    <ui:define name="body">
-		<div></div>
 
-		Mail system
+	<ui:param name="viewController" value="#{mailVC}" />
+	<ui:param name="model" value="#{viewController.model}" />
+
+	<ui:define name="metadata">
+		<span style="display: none">ASD</span>
+		<f:metadata>
+			<f:viewAction action="#{mailVC.openAction.execute}" onPostback="true"/>
+		</f:metadata>
+	</ui:define>
+	
+	<ui:define name="form">	
+		<i:checkbox id="enabled" value="#{model.enabled}" title="Enable email notification" />	
+		<i:input id="jndi" value="#{model.jndi}" title="JNDI" placeholder="JNDI service" />
+		<i:input id="host" value="#{model.host}" title="Host" placeholder="SMTP server" />
+		<i:input id="user" value="#{model.user}" title="User" placeholder="SMTP user authentication" />				
+		<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="mailp"/>	
     </ui:define>
 
+	<ui:define name="modal">
+		<p:dialog id="mailp" controller="#{viewController.passwordVC}" />	
+	</ui:define>
 
 </ui:composition>
 

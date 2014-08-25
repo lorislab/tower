@@ -114,6 +114,13 @@
 				<scope>import</scope>				
 				<version>0.0.2-SNAPSHOT</version>					
 			</dependency>
+			<!-- META-INF SERVICES -->
+			<dependency>
+				<groupId>org.kohsuke.metainf-services</groupId>
+				<artifactId>metainf-services</artifactId>
+				<version>1.5</version>
+				<optional>true</optional>
+			</dependency>			
 			<!-- JIRA-JAXRS -->
 			<dependency>
 				<groupId>org.lorislab.jira</groupId>

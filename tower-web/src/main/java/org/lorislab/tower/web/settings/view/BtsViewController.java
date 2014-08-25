@@ -17,20 +17,14 @@ package org.lorislab.tower.web.settings.view;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import org.lorislab.jel.jsf.util.FacesResourceUtil;
-import org.lorislab.tower.process.ejb.ChangePasswordService;
-import org.lorislab.tower.process.model.ChangePassword;
 import org.lorislab.tower.store.ejb.BTSystemService;
 import org.lorislab.tower.store.model.BTSystem;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.ChangePasswordAction;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
+import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 import org.lorislab.tower.web.common.view.EntityViewController;
-import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
 
 /**
  * The project view controller.
@@ -39,7 +33,7 @@ import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
  */
 @Named("btsVC")
 @SessionScoped
-public class BtsViewController extends EntityViewController<BTSystem> implements ChangePasswordViewController {
+public class BtsViewController extends EntityViewController<BTSystem> implements ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -53,46 +47,25 @@ public class BtsViewController extends EntityViewController<BTSystem> implements
     private BTSystemService service;
 
     /**
-     * The change password service.
+     * The change password view controller.
      */
-    @EJB
-    private ChangePasswordService passwordService;
-
-    /**
-     * The change password.
-     */
-    private ChangePassword password;
-
-    /**
-     * The change password action.
-     */
-    private ChangePasswordAction changePasswordAction;
+    private final ChangePasswordViewController passwordVC;
 
     /**
      * The default constructor.
      */
     public BtsViewController() {
         super(Context.BTS);
-        password = new ChangePassword();
-        changePasswordAction = new ChangePasswordAction(this, Context.BTS, Action.PASSWORD);
+        passwordVC = new ChangePasswordViewController(this, Context.BTS);
     }
 
     /**
-     * Gets the change password action.
+     * Gets the password view controller.
      *
-     * @return the change password action.
+     * @return the password view controller.
      */
-    public ChangePasswordAction getChangePasswordAction() {
-        return changePasswordAction;
-    }
-
-    /**
-     * Gets the change password.
-     *
-     * @return the change password.
-     */
-    public ChangePassword getPassword() {
-        return password;
+    public ChangePasswordViewController getPasswordVC() {
+        return passwordVC;
     }
 
     /**
@@ -152,23 +125,7 @@ public class BtsViewController extends EntityViewController<BTSystem> implements
      * {@inheritDoc }
      */
     @Override
-    public Object openPasswordChange() throws Exception {
-        password.clear();
-        return null;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object changePassword() throws Exception {
-        try {
-            String tmp = passwordService.createPassword(password);
-            getModel().setPassword(tmp.toCharArray());
-        } catch (Exception ex) {
-            FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_DOES_NOT_MACH);
-            FacesContext.getCurrentInstance().validationFailed();
-        }
-        return null;
+    public void changePassword(String data) {
+        getModel().setPassword(data);
     }
 }

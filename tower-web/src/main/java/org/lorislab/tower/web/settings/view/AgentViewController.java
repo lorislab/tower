@@ -17,20 +17,14 @@ package org.lorislab.tower.web.settings.view;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import org.lorislab.jel.jsf.util.FacesResourceUtil;
-import org.lorislab.tower.process.ejb.ChangePasswordService;
-import org.lorislab.tower.process.model.ChangePassword;
 import org.lorislab.tower.store.ejb.AgentService;
 import org.lorislab.tower.store.model.Agent;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.ChangePasswordAction;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
+import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 import org.lorislab.tower.web.common.view.EntityViewController;
-import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
 
 /**
  * The agent view controller.
@@ -39,7 +33,7 @@ import org.lorislab.tower.web.settings.resources.ValidationErrorKey;
  */
 @Named("agentVC")
 @SessionScoped
-public class AgentViewController extends EntityViewController<Agent> implements ChangePasswordViewController {
+public class AgentViewController extends EntityViewController<Agent> implements ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -53,48 +47,27 @@ public class AgentViewController extends EntityViewController<Agent> implements 
     private AgentService service;
 
     /**
-     * The change password service.
+     * The change password view controller.
      */
-    @EJB
-    private ChangePasswordService passwordService;
-    
-    /**
-     * The change password.
-     */
-    private ChangePassword password;
+    private final ChangePasswordViewController passwordVC;
 
-    /**
-     * The change password action.
-     */
-    private ChangePasswordAction changePasswordAction;
-    
     /**
      * The default constructor.
      */
     public AgentViewController() {
         super(Context.AGENT);
-        password = new ChangePassword();
-        changePasswordAction = new ChangePasswordAction(this, Context.BTS, Action.PASSWORD);
+        passwordVC = new ChangePasswordViewController(this, Context.AGENT);
     }
 
     /**
-     * Gets the change password action.
+     * Gets the password view controller.
      *
-     * @return the change password action.
+     * @return the password view controller.
      */
-    public ChangePasswordAction getChangePasswordAction() {
-        return changePasswordAction;
+    public ChangePasswordViewController getPasswordVC() {
+        return passwordVC;
     }
-    
-    /**
-     * Gets the change password.
-     *
-     * @return the change password.
-     */
-    public ChangePassword getPassword() {
-        return password;
-    }
-    
+
     /**
      * {@inheritDoc }
      */
@@ -103,7 +76,7 @@ public class AgentViewController extends EntityViewController<Agent> implements 
         Object result = Navigation.TO_AGENT_EDIT;
         Agent tmp = service.getAgent(guid);
         setModel(tmp);
-        
+
         if (isEmpty()) {
             result = null;
         }
@@ -152,23 +125,8 @@ public class AgentViewController extends EntityViewController<Agent> implements 
      * {@inheritDoc }
      */
     @Override
-    public Object openPasswordChange() throws Exception {
-        password.clear();
-        return null;
+    public void changePassword(String data) {
+        getModel().setPassword(data);
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object changePassword() throws Exception {
-        try {
-            String tmp = passwordService.createPassword(password);
-            getModel().setPassword(tmp.toCharArray());
-        } catch (Exception ex) {
-            FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_DOES_NOT_MACH);
-            FacesContext.getCurrentInstance().validationFailed();
-        }
-        return null;
-    }    
 }

@@ -81,9 +81,9 @@ public class TimerService {
         Timer timer = getTimer();
         if (timer == null) {
             TimerConfig config = configService.getConfiguration(TimerConfig.class);
-            if (config.start) {
+            if (config.isStart()) {
                 ScheduleExpression expression = new ScheduleExpression();
-                expression.second(config.second).minute(config.minute).hour(config.hour);
+                expression.second(config.getSecond()).minute(config.getMinute()).hour(config.getHour());
 
                 javax.ejb.TimerConfig timerConfig = new javax.ejb.TimerConfig(TIMER_INFO, false);
                 Timer tmp = timerService.createCalendarTimer(expression, timerConfig);
@@ -131,7 +131,7 @@ public class TimerService {
     @Timeout
     public void execute() {
         TimerConfig config = configService.getConfiguration(TimerConfig.class);
-        if (config.enabled) {
+        if (config.isEnabled()) {
 //            processService.timerService();
         } else {
             LOGGER.log(Level.FINEST, "The timer {0} excution is disabled.", TIMER_INFO);

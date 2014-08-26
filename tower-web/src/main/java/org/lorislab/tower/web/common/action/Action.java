@@ -23,6 +23,14 @@ package org.lorislab.tower.web.common.action;
 public enum Action {
 
     /**
+     * The start action.
+     */
+    START,
+    /**
+     * The stop action.
+     */
+    STOP,
+    /**
      * The password action.
      */
     PASSWORD,

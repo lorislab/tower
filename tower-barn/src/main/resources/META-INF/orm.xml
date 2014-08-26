@@ -12,7 +12,4 @@
 	<entity class="DBAttribute" metadata-complete="false">
 		<table name="TW_BARN_ATTR"></table>
 	</entity>
-	<entity class="DBApplication" metadata-complete="false">
-		<table name="TW_BARN_APP"></table>
-	</entity>	
 </entity-mappings>

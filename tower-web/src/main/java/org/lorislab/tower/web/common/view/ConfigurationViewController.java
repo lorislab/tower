@@ -94,7 +94,7 @@ public class ConfigurationViewController<T> extends AbstractContextEntityViewCon
     public Object open(String guid) {
         T tmp = service.getConfiguration(clazz);
         setModel(tmp);
-        return Navigation.TO_TIMER;
+        return null;
     }
 
     /**

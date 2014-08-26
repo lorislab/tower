@@ -26,6 +26,13 @@
 		<i:input id="host" value="#{model.host}" title="Host" placeholder="SMTP server" />
 		<i:input id="user" value="#{model.user}" title="User" placeholder="SMTP user authentication" />				
 		<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="mailp"/>	
+		<i:input id="server" value="#{model.server}" title="Server" placeholder="The server callback URL" />				
+		<i:input id="url" value="#{model.url}" title="URL" placeholder="The server public URL" />
+		<i:input id="locale" value="#{model.locale}" title="Locale" placeholder="The default locale" />
+		<i:input id="from" value="#{model.from}" title="From" placeholder="The from email address" />
+		<i:input id="contentType" value="#{model.contentType}" title="Content type" placeholder="The content type" />
+		<i:input id="contentCharset" value="#{model.contentCharset}" title="Content char set" placeholder="The content char set" />
+		<i:input id="transferEncoding" value="#{model.transferEncoding}" title="Transfer encoding" placeholder="The transfer encoding" />
     </ui:define>
 
 	<ui:define name="modal">

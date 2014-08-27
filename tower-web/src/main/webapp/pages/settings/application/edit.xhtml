@@ -2,50 +2,54 @@
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
 				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
 	<ui:param name="menuChildSelected" value="APPLICATION" />
-	<ui:param name="pageTitle" value="Applications" />
+	<ui:param name="pageTitle" value="Application" />
 	<ui:param name="pageIcon" value="icon-beaker" />
 
 	<ui:param name="model" value="#{applicationVC.model}" />
 	<ui:param name="viewController" value="#{applicationVC}" />
 
-    <ui:define name="form">
-		<i:checkbox id="enabled" value="#{model.enabled}" title="Application enabled" />	
-		
-		<i:selectOne id="project" value="#{model.project}" values="#{applicationVC.projectConverter.data}" 
-					 converter="#{applicationVC.projectConverter}" required="true"
-							  title="Project" placeholder="--- select a project ---"/>
-		
-		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" />
-		<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />		
-		<i:input id="type" value="#{model.type}" title="Type" placeholder="The application type" />		
-		
-		<i:selectOne id="scmId" value="#{model.scm}" values="#{applicationVC.scmSystemConverter.data}" 
-							  converter="#{applicationVC.scmSystemConverter}"
-							  title="Source control management system" placeholder="--- select source control system ---"/>	
-		
-		<i:input id="scmTrunk" value="#{model.scmTrunk}" title="Source code trunk" placeholder="Link to the trunk" />
-		<i:input id="scmBranches" value="#{model.scmBranches}" title="Source code branches" placeholder="Link to the branches" />
-		<i:input id="scmTags" value="#{model.scmTags}" title="Source code tags" placeholder="Link to the tags" />
-		
-		<i:selectOne id="scmType" value="#{model.scmType}" values="#{applicationC.appScmTypes}"
-			converter="#{applicationC.enumConverter}"
-			title="Source control management type" placeholder="--- select source control system type ---"/>	
-		
-		<i:input id="repoLink" value="#{model.repoLink}" title="Repository link" placeholder="Link to the repository" />
+    <ui:define name="form">			
+		<c:callout title="Application">
+			<i:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />
+			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" />
+			<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />		
+			<i:input id="type" value="#{model.type}" title="Type" placeholder="The application type" />		
+		</c:callout>
+		<c:callout title="Project">
+			<i:selectOne id="project" value="#{model.project}" values="#{applicationVC.projectConverter.data}" 
+						 converter="#{applicationVC.projectConverter}" required="true"
+						 title="Project" placeholder="--- select a project ---"/>
+		</c:callout>		
+		<c:callout title="Source code">
+			<i:selectOne id="scmId" value="#{model.scm}" values="#{applicationVC.scmSystemConverter.data}" 
+						 converter="#{applicationVC.scmSystemConverter}"
+						 title="Source control management system" placeholder="--- select source control system ---"/>	
+
+			<i:input id="scmTrunk" value="#{model.scmTrunk}" title="Source code trunk" placeholder="Link to the trunk" />
+			<i:input id="scmBranches" value="#{model.scmBranches}" title="Source code branches" placeholder="Link to the branches" />
+			<i:input id="scmTags" value="#{model.scmTags}" title="Source code tags" placeholder="Link to the tags" />
+
+			<i:selectOne id="scmType" value="#{model.scmType}" values="#{applicationC.appScmTypes}"
+						 converter="#{applicationC.enumConverter}"
+						 title="Source control management type" placeholder="--- select source control system type ---"/>	
+
+			<i:input id="repoLink" value="#{model.repoLink}" title="Repository link" placeholder="Link to the repository" />
+		</c:callout>
     </ui:define>
 
 
 	<ui:define name="button-right">
 		<d:open controller="#{viewController}" dialog="ad" />
 	</ui:define>
-	
+
 	<ui:define name="modal">
 		<d:dialog id="ad" controller="#{viewController}" title="Delete application" question="Do you want to delete the application #{model.name}?" />
 	</ui:define>
-	
+
 </ui:composition>
 

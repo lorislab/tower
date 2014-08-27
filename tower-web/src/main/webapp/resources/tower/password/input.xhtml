@@ -13,6 +13,7 @@
 		<composite:attribute name="value" required="true"/>
 		<composite:attribute name="required" required="false" default="false"/>
 		<composite:attribute name="dialog" required="true"/>
+		<composite:attribute name="render" required="false" default="editForm:b:password:input"/>
 	</composite:interface>
 
 	<composite:implementation>		
@@ -43,7 +44,7 @@
 					</button>			
 					<button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.clearPasswordAction.available}"
 							jsf:action="#{cc.attrs.controller.clearPasswordAction.execute}">
-						<f:ajax render="editForm:password:input" execute="@this" />
+						<f:ajax render="#{cc.attrs.render}" execute="@this" />
 						<i class="icon-trash"></i>
 					</button>
 				</span>

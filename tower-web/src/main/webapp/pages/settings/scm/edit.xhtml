@@ -3,6 +3,7 @@
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
 				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
 				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -14,15 +15,19 @@
 	<ui:param name="viewController" value="#{scmVC}" />
 
     <ui:define name="form">
-		<i:checkbox id="enabled" value="#{model.auth}" title="Authentication" />	
-		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
-		<i:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
-		<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
-		<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="scmp"/>	
-		<i:selectOne id="type" value="#{model.type}" values="#{applicationC.scmTypes}" title="Type" required="true"/>	
-		<i:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
+		<c:callout title="Source control system">
+			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
+			<i:selectOne id="type" value="#{model.type}" values="#{applicationC.scmTypes}" title="Type" required="true"/>	
+			<i:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
+		</c:callout>
+		<c:callout id="b" title="Connection settings">
+			<i:checkbox id="enabled" value="#{model.auth}" title="Authentication" />			
+			<i:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
+			<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
+			<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="scmp"/>				
+		</c:callout>
     </ui:define>
-	
+
 	<ui:define name="button-right">
 		<d:open controller="#{viewController}" dialog="scmd" />
 	</ui:define>

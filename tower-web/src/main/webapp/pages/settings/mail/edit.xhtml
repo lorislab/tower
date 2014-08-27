@@ -1,8 +1,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:jsf="http://xmlns.jcp.org/jsf"
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
 				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -18,24 +20,41 @@
 			<f:viewAction action="#{mailVC.openAction.execute}" onPostback="true"/>
 		</f:metadata>
 	</ui:define>
-	
+
 	<ui:define name="form">	
 		<i:checkbox id="enabled" value="#{model.enabled}" title="Enable email notification" />	
-		<i:input id="jndi" value="#{model.jndi}" title="JNDI" placeholder="JNDI service" />
-		<i:input id="host" value="#{model.host}" title="Host" placeholder="SMTP server" />
-		<i:input id="user" value="#{model.user}" title="User" placeholder="SMTP user authentication" />				
-		<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="mailp"/>	
-		<i:input id="server" value="#{model.server}" title="Server" placeholder="The server callback URL" />				
-		<i:input id="url" value="#{model.url}" title="URL" placeholder="The server public URL" />
-		<i:input id="locale" value="#{model.locale}" title="Locale" placeholder="The default locale" />
-		<i:input id="from" value="#{model.from}" title="From" placeholder="The from email address" />
-		<i:input id="contentType" value="#{model.contentType}" title="Content type" placeholder="The content type" />
-		<i:input id="contentCharset" value="#{model.contentCharset}" title="Content char set" placeholder="The content char set" />
-		<i:input id="transferEncoding" value="#{model.transferEncoding}" title="Transfer encoding" placeholder="The transfer encoding" />
+		<c:callout title="Server configuration">
+			<i:input id="jndi" value="#{model.jndi}" title="JNDI" placeholder="JNDI service" />
+		</c:callout>
+		<c:callout id="b" title="Manual configuration">
+			<i:checkbox id="ssl" value="#{model.ssl}" title="Enable SSL" />
+			<i:input id="host" value="#{model.host}" title="Host" placeholder="SMTP server" />
+			<i:input id="port" value="#{model.port}" title="Port" placeholder="SMTP port" type="number" />
+			<i:input id="user" value="#{model.user}" title="User" placeholder="SMTP user authentication" />				
+			<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="mailp"/>	
+		</c:callout>
+		<c:callout title="Templates configuration">
+			<i:input id="server" value="#{model.server}" title="Server" placeholder="The server callback URL" />				
+			<i:input id="url" value="#{model.url}" title="URL" placeholder="The server public URL" />
+			<i:input id="locale" value="#{model.locale}" title="Locale" placeholder="The default locale" />
+			<i:input id="from" value="#{model.from}" title="From" placeholder="The from email address" />
+			<i:input id="contentType" value="#{model.contentType}" title="Content type" placeholder="The content type" />
+			<i:input id="contentCharset" value="#{model.contentCharset}" title="Content char set" placeholder="The content char set" />
+			<i:input id="transferEncoding" value="#{model.transferEncoding}" title="Transfer encoding" placeholder="The transfer encoding" />
+		</c:callout>
     </ui:define>
 
+	<ui:define name="button-right">		
+		<button name="" jsf:id="startTimer" type="button" class="btn btn-success"
+				jsf:rendered="#{mailVC.sendTestAction.available}" 
+				jsf:action="#{mailVC.sendTestAction.execute}">
+			<f:ajax render="@this" execute="@this"/>
+			<i class="icon-mail-alt"></i> Send test email
+		</button>
+	</ui:define>
+
 	<ui:define name="modal">
-		<p:dialog id="mailp" controller="#{viewController.passwordVC}" />	
+		<p:dialog id="mailp" controller="#{viewController.passwordVC}"/>	
 	</ui:define>
 
 </ui:composition>

@@ -33,6 +33,11 @@
 			<groupId>org.lorislab.postman</groupId>
 			<artifactId>postman-impl</artifactId>
 		</dependency>	
+		<dependency>
+			<groupId>org.lorislab.tower</groupId>
+			<artifactId>tower-postman-templates</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
 		<!-- BARN -->	
 		<dependency>
 			<groupId>org.lorislab.barn</groupId>
@@ -46,7 +51,7 @@
 			<groupId>org.lorislab.guardian</groupId>
 			<artifactId>guardian-api</artifactId>
 		</dependency>		
-		<!-- MODULES -->
+		<!-- MODULES -->		
 		<dependency>
 			<groupId>org.lorislab.postman</groupId>
 			<artifactId>postman-service</artifactId>

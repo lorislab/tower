@@ -48,6 +48,7 @@
 		<module>tower-ejb</module>
 		<module>tower-web</module>		
 		<module>tower-ear</module>
+		<module>tower-postman-templates</module>
 	</modules>
 
 	<dependencyManagement>       

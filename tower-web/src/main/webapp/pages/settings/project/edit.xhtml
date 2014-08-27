@@ -2,6 +2,7 @@
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
 				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -13,24 +14,27 @@
 	<ui:param name="viewController" value="#{projectVC}" />
 
     <ui:define name="form">
-		<i:checkbox id="enabled" value="#{model.enabled}" title="Project enabled" />	
-		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
-		<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />		
-		<i:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
+		<c:callout title="Project">
+			<i:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
+			<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />	
+		</c:callout>
+		<c:callout title="Bug tracking system">
+			<i:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
 
-		<i:selectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
-							  converter="#{projectVC.btSystemConverter}"
-							  title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
-
+			<i:selectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
+						 converter="#{projectVC.btSystemConverter}"
+						 title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
+		</c:callout>
     </ui:define>
 
 	<ui:define name="button-right">
 		<d:open controller="#{viewController}" dialog="pd" />
 	</ui:define>
-	
+
 	<ui:define name="modal">
 		<d:dialog id="pd" controller="#{viewController}" title="Delete project" question="Do you want to delete the project #{model.name}?" />
 	</ui:define>
-	
+
 </ui:composition>
 

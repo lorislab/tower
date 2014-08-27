@@ -2,44 +2,48 @@
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
 				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
 	<ui:param name="menuChildSelected" value="SYSTEM" />
-	<ui:param name="pageTitle" value="Systems" />
+	<ui:param name="pageTitle" value="System" />
 	<ui:param name="pageIcon" value="icon-suitcase" />
 
 	<ui:param name="model" value="#{systemVC.model}" />
 	<ui:param name="viewController" value="#{systemVC}" />
 
     <ui:define name="form">
-		<i:checkbox id="enabled" value="#{model.enabled}" title="System enabled" />	
-		
-		<i:selectOne id="application" value="#{model.application}" values="#{systemVC.applicationConverter.data}" 
-					 converter="#{systemVC.applicationConverter}" required="true"
-							  title="Application" placeholder="--- select a application ---"/>
-		
-		<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="System name" />
-		<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />	
-		<i:checkbox id="timer" value="#{model.timer}" title="Timer" />			
-		<i:checkbox id="notification" value="#{model.notification}" title="Notification" />			
-		<i:input id="service" value="#{model.service}" title="Service" placeholder="The agent service" />		
-		<i:input id="domain" value="#{model.domain}" title="Domain" placeholder="Agent domain" />
-		<i:input id="clazz" value="#{model.classification}" title="Classification" placeholder="Agent classification" />		
-		<i:input id="link" value="#{model.link}" title="Link" placeholder="Link to the system" />
-		
-		<i:selectOne id="agent" value="#{model.agent}" values="#{systemVC.agentConverter.data}" 
-					 converter="#{systemVC.agentConverter}"
-							  title="Agent" placeholder="--- select a agent ---"/>
+		<c:callout title="System">
+			<i:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="System name" />
+			<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />
+			<i:input id="domain" value="#{model.domain}" title="Domain" placeholder="Agent domain" />
+			<i:input id="clazz" value="#{model.classification}" title="Classification" placeholder="Agent classification" />
+			<i:checkbox id="notification" value="#{model.notification}" title="Notification" />	
+			<i:input id="link" value="#{model.link}" title="Link" placeholder="Link to the system" />
+		</c:callout>
+		<c:callout title="Application">
+			<i:selectOne id="application" value="#{model.application}" values="#{systemVC.applicationConverter.data}" 
+						 converter="#{systemVC.applicationConverter}" required="true"
+						 title="Application" placeholder="--- select a application ---"/>
+		</c:callout>
+		<c:callout title="Agent">
+			<i:checkbox id="timer" value="#{model.timer}" title="Timer" />							
+			<i:input id="service" value="#{model.service}" title="Service" placeholder="The agent service" />		
+			<i:selectOne id="agent" value="#{model.agent}" values="#{systemVC.agentConverter.data}" 
+						 converter="#{systemVC.agentConverter}"
+						 title="Agent" placeholder="--- select a agent ---"/>
+		</c:callout>
     </ui:define>
-	
+
 	<ui:define name="button-right">
 		<d:open controller="#{viewController}" dialog="sd" />
 	</ui:define>
-	
+
 	<ui:define name="modal">
 		<d:dialog id="sd" controller="#{viewController}" title="Delete system" question="Do you want to delete the system #{model.name}?" />
 	</ui:define>
-	
+
 </ui:composition>
 

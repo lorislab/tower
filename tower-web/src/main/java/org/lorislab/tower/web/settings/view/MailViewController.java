@@ -15,13 +15,17 @@
  */
 package org.lorislab.tower.web.settings.view;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import org.lorislab.guardian.user.model.User;
 import org.lorislab.postman.api.model.EmailConfig;
+import org.lorislab.tower.process.ejb.TestService;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 import org.lorislab.tower.web.common.view.ConfigurationViewController;
+import org.lorislab.tower.web.settings.action.SendTestAction;
 
 /**
  * The project view controller.
@@ -41,13 +45,34 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
      * The change password view controller.
      */
     private final ChangePasswordViewController passwordVC;
-    
+
+    /**
+     * Send test email action.
+     */
+    private final SendTestAction sendTestAction;
+
+    /**
+     * The test service.
+     */
+    @EJB
+    private TestService testService;
+
     /**
      * The default constructor.
      */
     public MailViewController() {
         super(Context.MAIL, EmailConfig.class);
         passwordVC = new ChangePasswordViewController(this, Context.MAIL);
+        sendTestAction = new SendTestAction(this);
+    }
+
+    /**
+     * Gets the send test email action.
+     *
+     * @return the send test email action.
+     */
+    public SendTestAction getSendTestAction() {
+        return sendTestAction;
     }
 
     /**
@@ -58,7 +83,7 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
     public ChangePasswordViewController getPasswordVC() {
         return passwordVC;
     }
-    
+
     /**
      * {@inheritDoc }
      */
@@ -67,4 +92,16 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
         getModel().setPassword(data);
     }
 
+    /**
+     * {@inheritDoc }
+     */
+    public Object send() {
+        try {
+            User user = (User) this.userData.getUser();
+            testService.sendTestEmail(user.getProfile().getEmail());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

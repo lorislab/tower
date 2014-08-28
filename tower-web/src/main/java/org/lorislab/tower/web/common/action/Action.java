@@ -21,6 +21,11 @@ package org.lorislab.tower.web.common.action;
  * @author Andrej Petras
  */
 public enum Action {
+    
+    /**
+     * The key action.
+     */
+    KEY,
     /**
      * The test
      */

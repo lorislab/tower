@@ -31,6 +31,8 @@ import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
 import org.lorislab.tower.web.common.view.EntityViewController;
+import org.lorislab.tower.web.common.view.KeyListener;
+import org.lorislab.tower.web.common.view.KeyViewController;
 
 /**
  * The application view controller.
@@ -39,7 +41,7 @@ import org.lorislab.tower.web.common.view.EntityViewController;
  */
 @Named("systemVC")
 @SessionScoped
-public class SystemViewController extends EntityViewController<TargetSystem> {
+public class SystemViewController extends EntityViewController<TargetSystem> implements KeyListener {
 
     /**
      * The UID for this class.
@@ -63,17 +65,22 @@ public class SystemViewController extends EntityViewController<TargetSystem> {
      */
     @EJB
     private AgentService agentService;
-    
+
     /**
      * The application converter.
      */
     private final EntityPersistentConverter<Application> applicationConverter;
-    
+
     /**
      * The agent converter.
      */
     private final EntityPersistentConverter<Agent> agentConverter;
-    
+
+    /**
+     * The key view controller.
+     */
+    private final KeyViewController keyViewController;
+
     /**
      * The default constructor.
      */
@@ -81,6 +88,7 @@ public class SystemViewController extends EntityViewController<TargetSystem> {
         super(Context.SYSTEM);
         applicationConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.APPLICATION);
         agentConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.AGENT);
+        keyViewController = new KeyViewController(this, Context.SYSTEM);
     }
 
     /**
@@ -162,10 +170,10 @@ public class SystemViewController extends EntityViewController<TargetSystem> {
     private void loadSystems() {
         // load applications
         List<Agent> agents = agentService.getAgents();
-        agentConverter.setData(agents);          
+        agentConverter.setData(agents);
         // load applications
         List<Application> applications = applicationService.getApplications();
-        applicationConverter.setData(applications);        
+        applicationConverter.setData(applications);
     }
 
     /**
@@ -176,7 +184,7 @@ public class SystemViewController extends EntityViewController<TargetSystem> {
     public EntityPersistentConverter<Application> getApplicationConverter() {
         return applicationConverter;
     }
-    
+
     /**
      * Gets the agent converter.
      *
@@ -184,5 +192,22 @@ public class SystemViewController extends EntityViewController<TargetSystem> {
      */
     public EntityPersistentConverter<Agent> getAgentConverter() {
         return agentConverter;
-    }    
+    }
+
+    /**
+     * Gets the key view controller.
+     *
+     * @return the key view controller.
+     */
+    public KeyViewController getKeyViewController() {
+        return keyViewController;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void setKey(String data) {
+        getModel().setKey(data);
+    }
 }

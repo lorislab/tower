@@ -38,13 +38,13 @@
 				<span class="input-group-btn">
 					<button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}" 
 							jsf:action="#{cc.attrs.controller.changePasswordAction.open}">		
-						<f:ajax render="#{cc.attrs.dialog}:p:modalForm" execute="@this" onevent="function(d){if(d.status==='success')$('##{cc.attrs.dialog}\\\\:p\\\\:modal').modal('show');}"/>
+						<f:ajax render="@this #{cc.attrs.dialog}:p:modalForm" execute="@this" onevent="function(d){if(d.status==='success')$('##{cc.attrs.dialog}\\\\:p\\\\:modal').modal('show');}"/>
 						<i class="icon-lock"></i>
 						<f:actionListener type="org.lorislab.jel.jsf.listener.ResetInputAjaxActionListener"  />
 					</button>			
 					<button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.clearPasswordAction.available}"
 							jsf:action="#{cc.attrs.controller.clearPasswordAction.execute}">
-						<f:ajax render="#{cc.attrs.render}" execute="@this" />
+						<f:ajax render="@this #{cc.attrs.render}" execute="@this" />
 						<i class="icon-trash"></i>
 					</button>
 				</span>

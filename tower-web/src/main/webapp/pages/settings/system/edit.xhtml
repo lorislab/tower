@@ -3,6 +3,7 @@
 				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
 				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
 				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+				xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="SETTINGS" />
@@ -14,7 +15,7 @@
 	<ui:param name="viewController" value="#{systemVC}" />
 
     <ui:define name="form">
-		<c:callout title="System">
+		<c:callout id="b" title="System">
 			<i:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
 			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="System name" />
 			<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />
@@ -22,6 +23,7 @@
 			<i:input id="clazz" value="#{model.classification}" title="Classification" placeholder="Agent classification" />
 			<i:checkbox id="notification" value="#{model.notification}" title="Notification" />	
 			<i:input id="link" value="#{model.link}" title="Link" placeholder="Link to the system" />
+			<k:key id="key" value="#{model.key}" controller="#{systemVC.keyViewController}" />
 		</c:callout>
 		<c:callout title="Application">
 			<i:selectOne id="application" value="#{model.application}" values="#{systemVC.applicationConverter.data}" 

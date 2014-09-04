@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
@@ -28,7 +27,8 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import org.lorislab.barn.api.service.ConfigurationService;
-import org.lorislab.guardian.api.criteria.UserDataSearchCriteria;
+import org.lorislab.guardian.api.criteria.UserDataCriteria;
+import org.lorislab.guardian.api.model.UserData;
 import org.lorislab.guardian.api.service.UserDataService;
 import org.lorislab.jel.ejb.exception.ServiceException;
 import org.lorislab.postman.api.model.Email;
@@ -37,7 +37,7 @@ import org.lorislab.postman.api.service.EmailService;
 import org.lorislab.tower.activity.criteria.ActivityWrapperCriteria;
 import org.lorislab.tower.activity.ejb.ActivityWrapperService;
 import org.lorislab.tower.activity.wrapper.ActivityWrapper;
-import org.lorislab.tower.guardian.data.model.DefaultUserData;
+import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.process.resources.ErrorKeys;
 import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.criteria.BuildCriteria;
@@ -112,7 +112,7 @@ public class ProcessService {
     private SystemBuildService systemBuildService;
 
     @EJB
-    private UserDataService<DefaultUserData> userDataService;
+    private UserDataService userDataService;
 
     /**
      * The mail service.
@@ -362,13 +362,13 @@ public class ProcessService {
         List<String> userGuids = notificationGroupService.getNotificationUsers(system.getGuid());
 
         // load the users
-        UserDataSearchCriteria userDataCriteria = new UserDataSearchCriteria();
-        userDataCriteria.setGuids(new HashSet<>(userGuids));
+        UserDataCriteria userDataCriteria = new UserDataCriteria();
+        userDataCriteria.setUsers(new HashSet<>(userGuids));
         userDataCriteria.setFetchConfig(true);
 
-        List<DefaultUserData> users = null;
+        List<UserData> users = null;
         try {
-            users = userDataService.findUserData(userDataCriteria);
+            users = userDataService.findUserDataByCriteria(userDataCriteria);
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, "Error reading the user data by criteria", ex);
         }
@@ -401,14 +401,16 @@ public class ProcessService {
      * @param build the build.
      * @return the list of mails.
      */
-    private List<Email> createBuildDeployedMails(List<DefaultUserData> users, Object... values) {
+    private List<Email> createBuildDeployedMails(List<UserData> users, Object... values) {
         List<Email> result = null;
         if (users != null) {
-            result = new ArrayList<>();
-            for (DefaultUserData user : users) {
-                if (user.getConfig().isNotification()) {
+            result = new ArrayList<>();            
+            for (UserData user : users) {
+                UserConfig config = (UserConfig) user.getConfig();
+                
+                if (config.isNotification()) {
                     Email mail = new Email();
-                    mail.getTo().add(user.getUser().getProfile().getEmail());
+                    mail.getTo().add(user.getUserProfile().getEmail());
                     mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
                     // add the user to the parameters
                     mail.getParameters().put(user.getClass().getSimpleName(), user);

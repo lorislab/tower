@@ -17,9 +17,9 @@ package org.lorislab.tower.web.common.view;
 
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
-import org.lorislab.guardian.web.view.ActionContextViewController;
-import org.lorislab.jel.jsf.util.FacesResourceUtil;
-import org.lorislab.tower.web.common.action.Action;
+import org.lorislab.jel.jsf.api.util.FacesResourceUtil;
+import org.lorislab.jel.jsf.view.controller.ViewController;
+import org.lorislab.tower.web.common.action.Permission;
 import org.lorislab.tower.web.common.action.ChangePasswordAction;
 import org.lorislab.tower.web.common.action.ClearPasswordAction;
 import org.lorislab.tower.web.common.action.Context;
@@ -33,7 +33,7 @@ import org.lorislab.treasure.api.service.PasswordService;
  *
  * @author Andrej Petras
  */
-public class ChangePasswordViewController implements Serializable, ActionContextViewController {
+public class ChangePasswordViewController implements Serializable, ViewController {
 
     /**
      * The UID for this class.
@@ -69,8 +69,8 @@ public class ChangePasswordViewController implements Serializable, ActionContext
     public ChangePasswordViewController(ChangePasswordListener parent, Context context) {
         this.parent = parent;
         password = new ChangePassword();
-        clearPasswordAction = new ClearPasswordAction(this, context, Action.PASSWORD);
-        changePasswordAction = new ChangePasswordAction(this, context, Action.PASSWORD);
+        clearPasswordAction = new ClearPasswordAction(this, context, Permission.PASSWORD);
+        changePasswordAction = new ChangePasswordAction(this, context, Permission.PASSWORD);
     }
 
     /**

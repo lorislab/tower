@@ -15,7 +15,7 @@
  */
 package org.lorislab.tower.web.common.action;
 
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
+import org.lorislab.jel.jsf.view.controller.action.AbstractAction;
 import org.lorislab.tower.web.common.view.KeyViewController;
 
 /**
@@ -23,7 +23,7 @@ import org.lorislab.tower.web.common.view.KeyViewController;
  *
  * @author Andrej Petras
  */
-public class CreateKeyAction extends AbstractContextControllerAction<KeyViewController> {
+public class CreateKeyAction extends AbstractAction<KeyViewController> {
 
     /**
      * The UID for this class.

@@ -24,6 +24,10 @@ package org.lorislab.tower.web.common.action;
 public enum Context {
    
     /**
+     * The use profile context.
+     */
+    PROFILE,
+    /**
      * The timer.
      */
     TIMER,
@@ -54,9 +58,5 @@ public enum Context {
     /**
      * The project.
      */
-    PROJECT,
-    /**
-     * The menu.
-     */
-    MENU;
+    PROJECT;
 }

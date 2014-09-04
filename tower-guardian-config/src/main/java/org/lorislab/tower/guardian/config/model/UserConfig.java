@@ -22,7 +22,7 @@ import org.lorislab.guardian.api.model.UserDataConfig;
 import org.lorislab.jel.jpa.model.Persistent;
 
 /**
- * The user profile.
+ * The user configuration.
  *
  * @author Andrej Petras
  */
@@ -47,14 +47,48 @@ public class UserConfig extends Persistent implements UserDataConfig {
     @Column(name = "C_NOTIFY")
     private boolean notification;
 
+    /**
+     * The user key.
+     */
+    @Column(name = "C_KEY")
+    private String key;
+
+    /**
+     * Gets the key.
+     *
+     * @return the key.
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * Sets the key.
+     *
+     * @param key the key.
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * Gets the user notification flag.
+     *
+     * @return the user notification flag.
+     */
     public boolean isNotification() {
         return notification;
     }
 
+    /**
+     * Sets the user notification flag.
+     *
+     * @param notification the user notification flag.
+     */
     public void setNotification(boolean notification) {
         this.notification = notification;
     }
-          
+
     /**
      * Gets the user.
      *

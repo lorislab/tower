@@ -15,9 +15,9 @@
  */
 package org.lorislab.tower.web.settings.action;
 
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
-import org.lorislab.tower.web.common.action.Action;
+import org.lorislab.jel.jsf.view.controller.action.AbstractAction;
 import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.tower.web.common.action.Permission;
 import org.lorislab.tower.web.settings.view.MailViewController;
 
 /**
@@ -25,7 +25,7 @@ import org.lorislab.tower.web.settings.view.MailViewController;
  *
  * @author Andrej Petras
  */
-public class SendTestAction extends AbstractContextControllerAction<MailViewController> {
+public class SendTestAction extends AbstractAction<MailViewController> {
 
     /**
      * The UID for this class.
@@ -38,7 +38,7 @@ public class SendTestAction extends AbstractContextControllerAction<MailViewCont
      * @param parent the parent view controller.
      */
     public SendTestAction(MailViewController parent) {
-        super(parent, Context.MAIL, Action.TEST);
+        super(parent, Context.MAIL, Permission.TEST);
     }
 
     /**

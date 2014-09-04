@@ -1,17 +1,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
-                template="/templates/template.xhtml">
+				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
+                template="/templates/editTemplate.xhtml">
 
 	<ui:param name="menuParentSelected" value="PROFILE" />
 	<ui:param name="menuChildSelected" value="PROFILE" />
 	<ui:param name="pageTitle" value="Profile" />
 	<ui:param name="pageIcon" value="icon-user" />
 	
-    <ui:define name="body">
-		<div></div>
-		PROFILE
-    </ui:define>
+	<ui:param name="model" value="#{userC.user}" />
+	<ui:param name="viewController" value="#{userC}" />
+	
+    <ui:define name="form">
+		<i:input id="name" value="#{model.user.name}" required="true" title="Name" placeholder="User name" />
+	</ui:define>
 
 
 </ui:composition>

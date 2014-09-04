@@ -15,8 +15,8 @@
  */
 package org.lorislab.tower.web.settings.action;
 
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
-import org.lorislab.tower.web.common.action.Action;
+import org.lorislab.jel.jsf.view.controller.action.AbstractAction;
+import org.lorislab.tower.web.common.action.Permission;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.settings.view.TimerViewController;
 
@@ -25,7 +25,7 @@ import org.lorislab.tower.web.settings.view.TimerViewController;
  *
  * @author Andrej Petras
  */
-public class StartTimerAction extends AbstractContextControllerAction<TimerViewController> {
+public class StartTimerAction extends AbstractAction<TimerViewController> {
 
     /**
      * The UID for this class.
@@ -38,7 +38,7 @@ public class StartTimerAction extends AbstractContextControllerAction<TimerViewC
      * @param parent the parent view controller.
      */
     public StartTimerAction(TimerViewController parent) {
-        super(parent, Context.TIMER, Action.START);
+        super(parent, Context.TIMER, Permission.START);
     }
 
     /**

@@ -24,7 +24,7 @@ import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
-import org.lorislab.tower.web.common.view.EntityViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The project view controller.
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.common.view.EntityViewController;
  */
 @Named("btsVC")
 @SessionScoped
-public class BtsViewController extends EntityViewController<BTSystem> implements ChangePasswordListener {
+public class BtsViewController extends AbstractDefaultViewController<BTSystem> implements ChangePasswordListener {
 
     /**
      * The UID for this class.

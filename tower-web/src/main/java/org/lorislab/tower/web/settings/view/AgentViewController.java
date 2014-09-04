@@ -24,7 +24,7 @@ import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
-import org.lorislab.tower.web.common.view.EntityViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The agent view controller.
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.common.view.EntityViewController;
  */
 @Named("agentVC")
 @SessionScoped
-public class AgentViewController extends EntityViewController<Agent> implements ChangePasswordListener {
+public class AgentViewController extends AbstractDefaultViewController<Agent> implements ChangePasswordListener {
 
     /**
      * The UID for this class.

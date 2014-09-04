@@ -26,18 +26,20 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.lorislab.guardian.api.model.UserDataConfig;
 import org.lorislab.guardian.api.service.UserConfigService;
 import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
 import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.guardian.config.model.UserConfig_;
 
 /**
+ * The user configuration service.
  *
  * @author Andrej Petras
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig> implements UserConfigService<UserConfig> {
+public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig> implements UserConfigService {
 
     /**
      * The entity manager.
@@ -53,8 +55,11 @@ public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig>
         return em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public UserConfig getUserConfig(String user) throws Exception {
+    public UserDataConfig getUserConfig(String user) throws Exception {
         UserConfig result = null;
         CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
         CriteriaQuery<UserConfig> cq = getBaseEAO().createCriteriaQuery();
@@ -71,13 +76,30 @@ public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig>
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public UserConfig saveUserConfig(UserConfig data) throws Exception {
-        return this.save(data);
+    public UserDataConfig saveUserConfig(UserDataConfig data) throws Exception {
+        UserConfig tmp = (UserConfig) data;
+        return this.save(tmp);
     }
 
     @Override
-    public List<UserConfig> getUserConfigs(Set<String> users) throws Exception {
-        return this.getAll();
+    public List<? extends UserDataConfig> getUserConfigs(Set<String> users) throws Exception {
+        List<? extends UserDataConfig> result = null;
+
+        if (users != null && !users.isEmpty()) {
+            CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
+            CriteriaQuery<UserConfig> cq = getBaseEAO().createCriteriaQuery();
+            Root<UserConfig> root = cq.from(UserConfig.class);
+
+            cq.where(root.get(UserConfig_.user).in(users));
+
+            TypedQuery<UserConfig> query = getBaseEAO().createTypedQuery(cq);
+            result = query.getResultList();
+        }
+        return result;
     }
+
 }

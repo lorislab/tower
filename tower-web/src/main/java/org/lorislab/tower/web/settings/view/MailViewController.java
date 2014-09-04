@@ -17,8 +17,9 @@ package org.lorislab.tower.web.settings.view;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import org.lorislab.guardian.user.model.User;
+import org.lorislab.guardian.api.model.UserData;
 import org.lorislab.postman.api.model.EmailConfig;
 import org.lorislab.tower.process.ejb.TestService;
 import org.lorislab.tower.web.common.action.Context;
@@ -57,6 +58,9 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
     @EJB
     private TestService testService;
 
+    @Inject
+    private UserData userData;
+    
     /**
      * The default constructor.
      */
@@ -97,8 +101,8 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
      */
     public Object send() {
         try {
-            User user = (User) this.userData.getUser();
-            testService.sendTestEmail(user.getProfile().getEmail());
+            String email = userData.getUserProfile().getEmail();
+            testService.sendTestEmail(email);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

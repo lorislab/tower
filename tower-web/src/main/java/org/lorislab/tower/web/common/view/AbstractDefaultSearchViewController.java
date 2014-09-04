@@ -16,11 +16,9 @@
 package org.lorislab.tower.web.common.view;
 
 import java.util.List;
-import org.lorislab.guardian.web.view.AbstractContextSearchViewController;
-import org.lorislab.guardian.web.view.actions.ContextSearchAction;
 import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.jel.jsf.entity.controller.AbstractSearchViewController;
+import org.lorislab.jel.jsf.entity.controller.action.SearchAction;
 
 /**
  * The abstract search view controller.
@@ -30,7 +28,7 @@ import org.lorislab.tower.web.common.action.Context;
  *
  * @author Andrej Petras
  */
-public abstract class AbstractSearchViewController<T, S extends AbstractSearchCriteria> extends AbstractContextSearchViewController<T, S> {
+public abstract class AbstractDefaultSearchViewController<T, S extends AbstractSearchCriteria> extends AbstractSearchViewController<T, S> {
 
     /**
      * The UID for this class.
@@ -40,12 +38,12 @@ public abstract class AbstractSearchViewController<T, S extends AbstractSearchCr
     /**
      * The search action.
      */
-    private ContextSearchAction searchAction;
+    private SearchAction searchAction;
 
     /**
      * The default constructor.
      */
-    public AbstractSearchViewController() {
+    public AbstractDefaultSearchViewController() {
         // empty constructor
     }
 
@@ -54,8 +52,9 @@ public abstract class AbstractSearchViewController<T, S extends AbstractSearchCr
      *
      * @param context the context.
      */
-    public AbstractSearchViewController(Context context) {
-        searchAction = new ContextSearchAction(this, context, Action.SEARCH);
+    public AbstractDefaultSearchViewController(Enum context) {
+        super(context);
+        searchAction = new SearchAction(this, context);
     }
 
     /**
@@ -75,7 +74,7 @@ public abstract class AbstractSearchViewController<T, S extends AbstractSearchCr
      *
      * @return the search action.
      */
-    public ContextSearchAction getSearchAction() {
+    public SearchAction getSearchAction() {
         return searchAction;
     }
 

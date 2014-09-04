@@ -15,14 +15,14 @@
  */
 package org.lorislab.tower.web.common.view;
 
-import org.lorislab.guardian.web.view.ActionContextViewController;
+import org.lorislab.jel.jsf.view.controller.ViewController;
 
 /**
  * The abstract change password view controller.
  *
  * @author Andrej Petras
  */
-public interface ChangePasswordListener extends ActionContextViewController {
+public interface ChangePasswordListener extends ViewController {
 
     /**
      * The change password.

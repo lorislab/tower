@@ -24,7 +24,7 @@ import org.lorislab.tower.store.criteria.SCMSystemCriteria;
 import org.lorislab.tower.store.ejb.SCMSystemService;
 import org.lorislab.tower.store.model.SCMSystem;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractSearchViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
  * The SCM search view controller.
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
  */
 @Named("scmSVC")
 @SessionScoped
-public class ScmSearchViewController extends AbstractSearchViewController<SCMSystem, SCMSystemCriteria> {
+public class ScmSearchViewController extends AbstractDefaultSearchViewController<SCMSystem, SCMSystemCriteria> {
     
     /**
      * The UID for this class.

@@ -17,19 +17,18 @@ package org.lorislab.tower.web.common.view;
 
 import java.io.Serializable;
 import java.util.UUID;
-import org.lorislab.guardian.web.view.ActionContextViewController;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.ChangePasswordAction;
+import org.lorislab.jel.jsf.view.controller.ViewController;
 import org.lorislab.tower.web.common.action.ClearKeyAction;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.CreateKeyAction;
+import org.lorislab.tower.web.common.action.Permission;
 
 /**
  * The key view controller.
  *
  * @author Andrej Petras
  */
-public class KeyViewController implements Serializable, ActionContextViewController {
+public class KeyViewController implements Serializable, ViewController {
 
     /**
      * The UID for this class.
@@ -59,8 +58,8 @@ public class KeyViewController implements Serializable, ActionContextViewControl
      */
     public KeyViewController(KeyListener parent, Context context) {
         this.parent = parent;
-        clearKeyAction = new ClearKeyAction(this, context, Action.KEY);
-        createKeyAction = new CreateKeyAction(this, context, Action.KEY);
+        clearKeyAction = new ClearKeyAction(this, context, Permission.KEY);
+        createKeyAction = new CreateKeyAction(this, context, Permission.KEY);
     }
 
     /**

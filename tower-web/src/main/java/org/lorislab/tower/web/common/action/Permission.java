@@ -20,7 +20,7 @@ package org.lorislab.tower.web.common.action;
  *
  * @author Andrej Petras
  */
-public enum Action {
+public enum Permission {
     
     /**
      * The key action.
@@ -43,31 +43,7 @@ public enum Action {
      */
     PASSWORD,
     /**
-     * The create action.
-     */
-    CREATE,
-    /**
-     * The close action.
-     */
-    CLOSE,
-    /**
-     * The search action.
-     */
-    SEARCH,
-    /**
-     * The reset action.
-     */
-    RESET,
-    /**
      * The edit action.
      */
-    EDIT,
-    /**
-     * The save action.
-     */
-    SAVE,
-    /**
-     * The delete action.
-     */
-    DELETE;
+    EDIT;
 }

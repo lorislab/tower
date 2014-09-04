@@ -17,10 +17,9 @@ package org.lorislab.tower.web.menu.view;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import org.lorislab.guardian.web.view.AbstractActionContextViewController;
-import org.lorislab.guardian.web.view.actions.ContextLogoutAction;
-import org.lorislab.guardian.web.view.actions.ContextMenuAction;
-import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.jel.jsf.view.controller.AbstractViewController;
+import org.lorislab.jel.jsf.view.controller.action.LogoutAction;
+import org.lorislab.jel.jsf.view.controller.action.MenuAction;
 import org.lorislab.tower.web.common.action.Menu;
 import org.lorislab.tower.web.common.action.Navigation;
 
@@ -31,7 +30,7 @@ import org.lorislab.tower.web.common.action.Navigation;
  */
 @Named("menuVC")
 @SessionScoped
-public class MenuViewController extends AbstractActionContextViewController {
+public class MenuViewController extends AbstractViewController {
 
     /**
      * The UID for this class.
@@ -40,93 +39,93 @@ public class MenuViewController extends AbstractActionContextViewController {
     /**
      * The agent menu.
      */
-    private final ContextMenuAction agent;
+    private final MenuAction agent;
     /**
      * The application menu.
      */
-    private final ContextMenuAction application;
+    private final MenuAction application;
     /**
      * The bug tracking system menu.
      */
-    private final ContextMenuAction bts;
+    private final MenuAction bts;
     /**
      * The deployment menu.
      */
-    private final ContextMenuAction deployment;
+    private final MenuAction deployment;
     /**
      * The dashboard menu.
      */
-    private final ContextMenuAction dashboard;
+    private final MenuAction dashboard;
     /**
      * The deploy menu.
      */
-    private final ContextMenuAction deploy;
+    private final MenuAction deploy;
     /**
      * The settings menu.
      */
-    private final ContextMenuAction settings;
+    private final MenuAction settings;
     /**
      * The logout menu.
      */
-    private final ContextMenuAction logout;
+    private final MenuAction logout;
     /**
      * The project menu.
      */
-    private final ContextMenuAction project;
+    private final MenuAction project;
     /**
      * The mail menu.
      */
-    private final ContextMenuAction mail;
+    private final MenuAction mail;
     /**
      * The profile menu.
      */
-    private final ContextMenuAction profile;
+    private final MenuAction profile;
     /**
      * The role menu.
      */
-    private final ContextMenuAction role;
+    private final MenuAction role;
     /**
      * The source control management menu.
      */
-    private final ContextMenuAction scm;
+    private final MenuAction scm;
     /**
      * The system menu.
      */
-    private final ContextMenuAction system;
+    private final MenuAction system;
     /**
      * The timer menu.
      */
-    private final ContextMenuAction timer;
+    private final MenuAction timer;
     /**
      * The user management menu.
      */
-    private final ContextMenuAction userman;
+    private final MenuAction userman;
     /**
      * The user menu.
      */
-    private final ContextMenuAction user;
+    private final MenuAction user;
 
     /**
      * The default constructor.
      */
     public MenuViewController() {
-        agent = new ContextMenuAction(this, Context.MENU, Menu.AGENT, Navigation.TO_AGENT);
-        application = new ContextMenuAction(this, Context.MENU, Menu.APPLICATION, Navigation.TO_APPLICATION);
-        bts = new ContextMenuAction(this, Context.MENU, Menu.BTS, Navigation.TO_BTS);
-        deployment = new ContextMenuAction(this, Context.MENU, Menu.DEPLOYMENT);
-        mail = new ContextMenuAction(this, Context.MENU, Menu.MAIL, Navigation.TO_MAIL);
-        profile = new ContextMenuAction(this, Context.MENU, Menu.PROFILE, Navigation.TO_PROFILE);
-        role = new ContextMenuAction(this, Context.MENU, Menu.ROLE, Navigation.TO_ROLE);
-        scm = new ContextMenuAction(this, Context.MENU, Menu.SCM, Navigation.TO_SCM);
-        system = new ContextMenuAction(this, Context.MENU, Menu.SYSTEM, Navigation.TO_SYSTEM);
-        timer = new ContextMenuAction(this, Context.MENU, Menu.TIMER, Navigation.TO_TIMER);
-        userman = new ContextMenuAction(this, Context.MENU, Menu.USERMAN);
-        user = new ContextMenuAction(this, Context.MENU, Menu.USER, Navigation.TO_USER);
-        dashboard = new ContextMenuAction(this, Context.MENU, Menu.DASHBOARD, Navigation.TO_DASHBOARD);
-        deploy = new ContextMenuAction(this, Context.MENU, Menu.DEPLOY, Navigation.TO_DEPLOY);
-        settings = new ContextMenuAction(this, Context.MENU, Menu.SETTINGS);
-        logout = new ContextLogoutAction(this, Context.MENU, Menu.LOGOUT, Navigation.TO_HOME);
-        project = new ContextMenuAction(this, Context.MENU, Menu.PROJECT, Navigation.TO_PROJECT);
+        agent = new MenuAction(this, Menu.AGENT, Navigation.TO_AGENT);
+        application = new MenuAction(this, Menu.APPLICATION, Navigation.TO_APPLICATION);
+        bts = new MenuAction(this, Menu.BTS, Navigation.TO_BTS);
+        deployment = new MenuAction(this, Menu.DEPLOYMENT);
+        mail = new MenuAction(this, Menu.MAIL, Navigation.TO_MAIL);
+        profile = new MenuAction(this, Menu.PROFILE, Navigation.TO_PROFILE);
+        role = new MenuAction(this, Menu.ROLE, Navigation.TO_ROLE);
+        scm = new MenuAction(this, Menu.SCM, Navigation.TO_SCM);
+        system = new MenuAction(this, Menu.SYSTEM, Navigation.TO_SYSTEM);
+        timer = new MenuAction(this, Menu.TIMER, Navigation.TO_TIMER);
+        userman = new MenuAction(this, Menu.USERMAN);
+        user = new MenuAction(this, Menu.USER, Navigation.TO_USER);
+        dashboard = new MenuAction(this, Menu.DASHBOARD, Navigation.TO_DASHBOARD);
+        deploy = new MenuAction(this, Menu.DEPLOY, Navigation.TO_DEPLOY);
+        settings = new MenuAction(this, Menu.SETTINGS);
+        logout = new LogoutAction(this, Navigation.TO_HOME);
+        project = new MenuAction(this, Menu.PROJECT, Navigation.TO_PROJECT);
     }
 
     /**
@@ -134,7 +133,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the agent menu.
      */
-    public ContextMenuAction getAgent() {
+    public MenuAction getAgent() {
         return agent;
     }
 
@@ -143,7 +142,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the application menu.
      */
-    public ContextMenuAction getApplication() {
+    public MenuAction getApplication() {
         return application;
     }
 
@@ -152,7 +151,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the bug tracking system menu.
      */
-    public ContextMenuAction getBts() {
+    public MenuAction getBts() {
         return bts;
     }
 
@@ -161,7 +160,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the deployment menu.
      */
-    public ContextMenuAction getDeployment() {
+    public MenuAction getDeployment() {
         return deployment;
     }
 
@@ -170,7 +169,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the profile menu.
      */
-    public ContextMenuAction getProfile() {
+    public MenuAction getProfile() {
         return profile;
     }
 
@@ -179,7 +178,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the mail menu.
      */
-    public ContextMenuAction getMail() {
+    public MenuAction getMail() {
         return mail;
     }
 
@@ -188,7 +187,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the role menu.
      */
-    public ContextMenuAction getRole() {
+    public MenuAction getRole() {
         return role;
     }
 
@@ -197,7 +196,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the user menu.
      */
-    public ContextMenuAction getUser() {
+    public MenuAction getUser() {
         return user;
     }
 
@@ -206,7 +205,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the user management menu.
      */
-    public ContextMenuAction getUserman() {
+    public MenuAction getUserman() {
         return userman;
     }
 
@@ -215,7 +214,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the timer menu.
      */
-    public ContextMenuAction getTimer() {
+    public MenuAction getTimer() {
         return timer;
     }
 
@@ -224,7 +223,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the system menu.
      */
-    public ContextMenuAction getSystem() {
+    public MenuAction getSystem() {
         return system;
     }
 
@@ -233,7 +232,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the source control management.
      */
-    public ContextMenuAction getScm() {
+    public MenuAction getScm() {
         return scm;
     }
 
@@ -242,7 +241,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the project menu.
      */
-    public ContextMenuAction getProject() {
+    public MenuAction getProject() {
         return project;
     }
 
@@ -251,7 +250,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the logout menu.
      */
-    public ContextMenuAction getLogout() {
+    public MenuAction getLogout() {
         return logout;
     }
 
@@ -260,7 +259,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the dashboard menu.
      */
-    public ContextMenuAction getDashboard() {
+    public MenuAction getDashboard() {
         return dashboard;
     }
 
@@ -269,7 +268,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the deploy menu.
      */
-    public ContextMenuAction getDeploy() {
+    public MenuAction getDeploy() {
         return deploy;
     }
 
@@ -278,7 +277,7 @@ public class MenuViewController extends AbstractActionContextViewController {
      *
      * @return the settings menu.
      */
-    public ContextMenuAction getSettings() {
+    public MenuAction getSettings() {
         return settings;
     }
 }

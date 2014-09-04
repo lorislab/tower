@@ -15,7 +15,7 @@
  */
 package org.lorislab.tower.web.common.converter;
 
-import org.lorislab.jel.jsf.converter.EntityLabelCallback;
+import org.lorislab.jel.jsf.api.converter.EntityLabelCallback;
 import org.lorislab.tower.store.model.Agent;
 import org.lorislab.tower.store.model.Application;
 import org.lorislab.tower.store.model.BTSystem;

@@ -24,7 +24,7 @@ import org.lorislab.tower.store.criteria.TargetSystemCriteria;
 import org.lorislab.tower.store.ejb.TargetSystemService;
 import org.lorislab.tower.store.model.TargetSystem;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractSearchViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
  * The system search view controller.
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
  */
 @Named("systemSVC")
 @SessionScoped
-public class SystemSearchViewController extends AbstractSearchViewController<TargetSystem, TargetSystemCriteria> {
+public class SystemSearchViewController extends AbstractDefaultSearchViewController<TargetSystem, TargetSystemCriteria> {
     
     /**
      * The UID for this class.

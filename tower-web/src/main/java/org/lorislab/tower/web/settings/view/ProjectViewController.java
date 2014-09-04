@@ -27,8 +27,8 @@ import org.lorislab.tower.store.model.Project;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
-import org.lorislab.jel.jsf.converter.EntityPersistentConverter;
-import org.lorislab.tower.web.common.view.EntityViewController;
+import org.lorislab.jel.jsf.api.converter.EntityPersistentConverter;
+import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The project view controller.
@@ -37,7 +37,7 @@ import org.lorislab.tower.web.common.view.EntityViewController;
  */
 @Named("projectVC")
 @SessionScoped
-public class ProjectViewController extends EntityViewController<Project> {
+public class ProjectViewController extends AbstractDefaultViewController<Project> {
 
     /**
      * The UID for this class.

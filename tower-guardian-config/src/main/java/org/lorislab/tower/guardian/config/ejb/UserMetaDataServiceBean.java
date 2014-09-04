@@ -13,25 +13,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.lorislab.tower.guardian.config.ejb;
 
-package org.lorislab.tower.guardian.data.ejb;
-
+import java.util.List;
+import java.util.Set;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import org.lorislab.guardian.api.service.UserDataService;
-import org.lorislab.guardian.service.ejb.AbstractUserDataService;
-import org.lorislab.tower.guardian.config.model.UserConfig;
-import org.lorislab.tower.guardian.data.model.DefaultUserData;
+import org.lorislab.guardian.api.model.UserMetaData;
+import org.lorislab.guardian.api.service.UserMetaDataService;
 
 /**
+ * The default user meta data service.
  *
  * @author Andrej Petras
  */
 @Stateless
-@Local(UserDataService.class)
+@Local(UserMetaDataService.class)
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class DefaultUserDataService extends AbstractUserDataService<DefaultUserData, UserConfig> implements UserDataService<DefaultUserData> {
-    
+public class UserMetaDataServiceBean implements UserMetaDataService {
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public UserMetaData loadUserMetaData(String userGuid) throws Exception {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public UserMetaData saveUserMetaData(UserMetaData userMetaData) throws Exception {
+        return userMetaData;
+    }
+
+    @Override
+    public List<? extends UserMetaData> getUserMetaDatas(Set<String> users) throws Exception {
+        return null;
+    }
+
 }

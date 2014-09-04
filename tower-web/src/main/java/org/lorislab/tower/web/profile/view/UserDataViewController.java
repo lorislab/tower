@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lorislab.tower.web.common.view;
+package org.lorislab.tower.web.profile.view;
 
-import javax.ejb.EJB;
-import org.lorislab.barn.api.service.ConfigurationService;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import org.lorislab.guardian.api.model.UserData;
+import org.lorislab.guardian.web.user.controller.UserDataController;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.jel.jsf.entity.controller.CloseViewController;
 import org.lorislab.jel.jsf.entity.controller.OpenViewController;
@@ -24,74 +27,61 @@ import org.lorislab.jel.jsf.entity.controller.SaveViewController;
 import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
 import org.lorislab.jel.jsf.entity.controller.action.OpenAction;
 import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
+import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.tower.web.common.view.KeyListener;
 
 /**
- * The project view controller.
+ * The user profile view controller.
  *
- * @param <T> the type of the configuration model.
  * @author Andrej Petras
  */
-public class ConfigurationViewController<T> extends AbstractEntityViewController<T> implements OpenViewController, SaveViewController, CloseViewController {
+@Named("userDataVC")
+@SessionScoped
+public class UserDataViewController extends AbstractEntityViewController<UserData> implements KeyListener, OpenViewController, SaveViewController, CloseViewController {
 
     /**
      * The UID for this class.
      */
-    private static final long serialVersionUID = -1766808728513642285L;
-
-    /**
-     * The project service.
-     */
-    @EJB
-    private ConfigurationService service;
+    private static final long serialVersionUID = 7565895047085028278L;
 
     /**
      * The open action.
      */
-    private OpenAction openAction;
+    private final OpenAction openAction;
 
     /**
      * The save action.
      */
-    private SaveAction saveAction;
+    private final SaveAction saveAction;
 
     /**
      * The close action.
      */
-    private CloseAction closeAction;
+    private final CloseAction closeAction;
 
     /**
-     * The configuration class.
+     * The user service.
      */
-    private Class<T> clazz;
-
-    /**
-     * The default constructor.
-     */
-    public ConfigurationViewController() {
-        // empty consturctor
-    }
+    @Inject
+    private UserDataController controller;
 
     /**
      * The default constructor.
-     *
-     * @param context the context.
-     * @param clazz the configuration class.
      */
-    public ConfigurationViewController(Context context, Class<T> clazz) {
-        saveAction = new SaveAction(this, context);
-        openAction = new OpenAction(this, context);
-        closeAction = new CloseAction(this, context);
-        this.clazz = clazz;
+    public UserDataViewController() {
+        super();
+        closeAction = new CloseAction(this, Context.PROFILE);
+        saveAction = new SaveAction(this, Context.PROFILE);
+        openAction = new OpenAction(this, Context.PROFILE);
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
-        T tmp = service.getConfiguration(clazz);
-        setModel(tmp);
+    public Object open(String guid) throws Exception {
+        controller.load();
         return null;
     }
 
@@ -100,9 +90,25 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      */
     @Override
     public Object save() throws Exception {
-        T tmp = service.setConfiguration(getModel());
-        setModel(tmp);
+        controller.save();
         return null;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public Object close() throws Exception {
+        return null;
+    }
+
+    /**
+     * Gets the close action.
+     *
+     * @return the close action.
+     */
+    public CloseAction getCloseAction() {
+        return closeAction;
     }
 
     /**
@@ -127,17 +133,17 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      * {@inheritDoc }
      */
     @Override
-    public Object close() throws Exception {
-        return null;
+    public UserData getModel() {
+        return controller.getUserData();
     }
-
+    
     /**
-     * Gets the close action.
-     *
-     * @return the close action.
-     */
-    public CloseAction getCloseAction() {
-        return closeAction;
+     * {@inheritDoc }
+     */    
+    @Override
+    public void setKey(String data) {
+        UserData tmp = controller.getUserData();
+        UserConfig config = (UserConfig) tmp.getConfig();
+        config.setKey(data);
     }
-
 }

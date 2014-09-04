@@ -15,16 +15,19 @@
  */
 package org.lorislab.tower.web.common.view;
 
-import org.lorislab.guardian.web.view.AbstractContextEntityViewController;
-import org.lorislab.guardian.web.view.ContextEntityViewController;
-import org.lorislab.guardian.web.view.actions.ContextCloseAction;
-import org.lorislab.guardian.web.view.actions.ContextCreateAction;
-import org.lorislab.guardian.web.view.actions.ContextDeleteAction;
-import org.lorislab.guardian.web.view.actions.ContextOpenAction;
-import org.lorislab.guardian.web.view.actions.ContextSaveAction;
+
 import org.lorislab.jel.jpa.model.Persistent;
-import org.lorislab.tower.web.common.action.Action;
-import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
+import org.lorislab.jel.jsf.entity.controller.CloseViewController;
+import org.lorislab.jel.jsf.entity.controller.CreateViewController;
+import org.lorislab.jel.jsf.entity.controller.DeleteViewController;
+import org.lorislab.jel.jsf.entity.controller.OpenViewController;
+import org.lorislab.jel.jsf.entity.controller.SaveViewController;
+import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
+import org.lorislab.jel.jsf.entity.controller.action.CreateAction;
+import org.lorislab.jel.jsf.entity.controller.action.DeleteAction;
+import org.lorislab.jel.jsf.entity.controller.action.OpenAction;
+import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
 import org.lorislab.tower.web.common.action.EntityDeleteAction;
 
 /**
@@ -33,7 +36,8 @@ import org.lorislab.tower.web.common.action.EntityDeleteAction;
  * @author Andrej Petras
  * @param <T>
  */
-public abstract class EntityViewController<T extends Persistent> extends AbstractContextEntityViewController<T> implements ContextEntityViewController {
+public abstract class AbstractDefaultViewController<T extends Persistent> extends AbstractEntityViewController<T>
+            implements DeleteViewController, CreateViewController, OpenViewController, SaveViewController, CloseViewController {
 
     /**
      * The UID for this class.
@@ -43,32 +47,32 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
     /**
      * The open action.
      */
-    private ContextOpenAction openAction;
+    private OpenAction openAction;
 
     /**
      * The create action.
      */
-    private ContextCreateAction createAction;
+    private CreateAction createAction;
 
     /**
      * The close action.
      */
-    private ContextCloseAction closeAction;
+    private CloseAction closeAction;
 
     /**
      * The save action.
      */
-    private ContextSaveAction saveAction;
+    private SaveAction saveAction;
 
     /**
      * The delete action.
      */
-    private ContextDeleteAction deleteAction;
+    private DeleteAction deleteAction;
 
     /**
      * The default constructor.
      */
-    public EntityViewController() {
+    public AbstractDefaultViewController() {
         // empty constructor
     }
     
@@ -76,12 +80,13 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      * The default constructor.
      * @param context
      */
-    public EntityViewController(Context context) {
-        createAction = new ContextCreateAction(this, context, Action.CREATE);
-        closeAction = new ContextCloseAction(this, context, Action.CLOSE);
-        saveAction = new ContextSaveAction(this, context, Action.SAVE);
-        deleteAction = new EntityDeleteAction(this, context, Action.DELETE);
-        openAction = new ContextOpenAction(this, context, Action.EDIT);
+    public AbstractDefaultViewController(Enum context) {
+        super(context);
+        createAction = new CreateAction(this, context);
+        closeAction = new CloseAction(this, context);
+        saveAction = new SaveAction(this, context);
+        deleteAction = new EntityDeleteAction(this, context);
+        openAction = new OpenAction(this, context);
     }
    
     /**
@@ -89,7 +94,7 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      *
      * @return the open action.
      */
-    public ContextOpenAction getOpenAction() {
+    public OpenAction getOpenAction() {
         return openAction;
     }
 
@@ -98,7 +103,7 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      *
      * @return the close action.
      */
-    public ContextCloseAction getCloseAction() {
+    public CloseAction getCloseAction() {
         return closeAction;
     }
 
@@ -107,7 +112,7 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      *
      * @return the create action.
      */
-    public ContextCreateAction getCreateAction() {
+    public CreateAction getCreateAction() {
         return createAction;
     }
 
@@ -116,7 +121,7 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      *
      * @return the delete action.
      */
-    public ContextDeleteAction getDeleteAction() {
+    public DeleteAction getDeleteAction() {
         return deleteAction;
     }
 
@@ -125,7 +130,7 @@ public abstract class EntityViewController<T extends Persistent> extends Abstrac
      *
      * @return the save action.
      */
-    public ContextSaveAction getSaveAction() {
+    public SaveAction getSaveAction() {
         return saveAction;
     }
 

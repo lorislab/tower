@@ -1,118 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
     
-	<parent>
-		<groupId>org.lorislab.tower</groupId>
-		<artifactId>tower</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
+    <parent>
+        <groupId>org.lorislab.tower</groupId>
+        <artifactId>tower</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
 	
-	<name>tower-web</name>
-	<artifactId>tower-web</artifactId>	
-	<packaging>war</packaging>
+    <name>tower-web</name>
+    <artifactId>tower-web</artifactId>	
+    <packaging>war</packaging>
 
-	<dependencies>  
-		<dependency>
-			<groupId>org.lorislab.tower-base</groupId>
-			<artifactId>tower-base-api</artifactId>
-			<scope>provided</scope>
-		</dependency>		
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-store</artifactId>
-			<scope>provided</scope>
-			<type>ejb-client</type>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-ejb</artifactId>
-			<scope>provided</scope>
-			<type>ejb-client</type>
-			<version>${project.version}</version>
-		</dependency>					
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-guardian</artifactId>
-			<scope>provided</scope>
-			<type>ejb-client</type>
-			<version>${project.version}</version>
-		</dependency>
-		<!-- TREASURE -->
-		<dependency>
-			<groupId>org.lorislab.treasure</groupId>
-			<artifactId>treasure-lib</artifactId>
-			<scope>provided</scope>
-		</dependency>				
-		<!-- JEL -->
-		<dependency>
-			<groupId>org.lorislab.jel</groupId>
-			<artifactId>jel-jsf</artifactId>	
-			<exclusions>
-				<exclusion>
-					<artifactId>jel-log</artifactId>
-					<groupId>org.lorislab.jel</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jel-jpa</artifactId>
-					<groupId>org.lorislab.jel</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jel-base</artifactId>
-					<groupId>org.lorislab.jel</groupId>
-				</exclusion>
-			</exclusions>			   
-		</dependency>
-		<!-- BARN -->
-		<dependency>
-			<groupId>org.lorislab.postman</groupId>
-			<artifactId>postman-api</artifactId>
-			<scope>provided</scope>
-		</dependency>		
-		<!-- GUARDIAN -->
-		<dependency>
-			<groupId>org.lorislab.guardian</groupId>
-			<artifactId>guardian-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.guardian</groupId>
-			<artifactId>guardian-jsf</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>jel-log</artifactId>
-					<groupId>org.lorislab.jel</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jel-jpa</artifactId>
-					<groupId>org.lorislab.jel</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>jel-base</artifactId>
-					<groupId>org.lorislab.jel</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- CDI -->			
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>			
-			<scope>provided</scope>
-		</dependency>
-		<!-- JSF -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.faces</groupId>
-			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- EJB -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>  				
-	</dependencies>
+    <dependencies>  
+        <dependency>
+            <groupId>org.lorislab.tower-base</groupId>
+            <artifactId>tower-base-api</artifactId>
+            <scope>provided</scope>
+        </dependency>		
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-store</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-ejb</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-guardian-config</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+            <version>${project.version}</version>
+        </dependency>							
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-guardian</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- TREASURE -->
+        <dependency>
+            <groupId>org.lorislab.treasure</groupId>
+            <artifactId>treasure-lib</artifactId>
+            <scope>provided</scope>
+        </dependency>				
+        <!-- JEL -->
+        <dependency>
+            <groupId>org.lorislab.jel</groupId>
+            <artifactId>jel-jsf</artifactId>			   
+        </dependency>
+        <!-- BARN -->
+        <dependency>
+            <groupId>org.lorislab.postman</groupId>
+            <artifactId>postman-api</artifactId>
+            <scope>provided</scope>
+        </dependency>		
+        <!-- GUARDIAN -->
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-jsf</artifactId>
+        </dependency>
+        <!-- CDI -->			
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>			
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSF -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- EJB -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>  				
+    </dependencies>
 				
 </project>

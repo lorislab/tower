@@ -19,7 +19,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import org.lorislab.jel.jsf.converter.EntityPersistentConverter;
+import org.lorislab.jel.jsf.api.converter.EntityPersistentConverter;
 import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.ejb.ApplicationService;
 import org.lorislab.tower.store.ejb.ProjectService;
@@ -30,7 +30,7 @@ import org.lorislab.tower.store.model.SCMSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
-import org.lorislab.tower.web.common.view.EntityViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The application view controller.
@@ -39,7 +39,7 @@ import org.lorislab.tower.web.common.view.EntityViewController;
  */
 @Named("applicationVC")
 @SessionScoped
-public class ApplicationViewController extends EntityViewController<Application> {
+public class ApplicationViewController extends AbstractDefaultViewController<Application> {
 
     /**
      * The UID for this class.

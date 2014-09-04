@@ -23,7 +23,7 @@ import org.lorislab.tower.store.criteria.BTSystemCriteria;
 import org.lorislab.tower.store.ejb.BTSystemService;
 import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractSearchViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
  * The BTS search view controller.
@@ -32,7 +32,7 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
  */
 @Named("btsSVC")
 @SessionScoped
-public class BtsSearchViewController extends AbstractSearchViewController<BTSystem, BTSystemCriteria> {
+public class BtsSearchViewController extends AbstractDefaultSearchViewController<BTSystem, BTSystemCriteria> {
 
     /**
      * The UID for this class.

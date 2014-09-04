@@ -24,7 +24,7 @@ import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.ejb.ApplicationService;
 import org.lorislab.tower.store.model.Application;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractSearchViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
  * The application search view controller.
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
  */
 @Named("applicationSVC")
 @SessionScoped
-public class ApplicationSearchViewController extends AbstractSearchViewController<Application, ApplicationCriteria> {
+public class ApplicationSearchViewController extends AbstractDefaultSearchViewController<Application, ApplicationCriteria> {
     
     /**
      * The UID for this class.

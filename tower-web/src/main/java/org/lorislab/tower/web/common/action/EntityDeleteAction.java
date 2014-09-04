@@ -15,16 +15,16 @@
  */
 package org.lorislab.tower.web.common.action;
 
-import org.lorislab.guardian.web.view.actions.ContextDeleteAction;
 import org.lorislab.jel.jpa.model.Persistent;
-import org.lorislab.tower.web.common.view.EntityViewController;
+import org.lorislab.jel.jsf.entity.controller.action.DeleteAction;
+import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The entity delete action.
  *
  * @author Andrej Petras
  */
-public class EntityDeleteAction extends ContextDeleteAction<EntityViewController> {
+public class EntityDeleteAction extends DeleteAction<AbstractDefaultViewController> {
 
     /**
      * The UID for this class.
@@ -36,10 +36,9 @@ public class EntityDeleteAction extends ContextDeleteAction<EntityViewController
      *
      * @param parent the parent view controller.
      * @param context the context object.
-     * @param action the action.
      */
-    public EntityDeleteAction(EntityViewController parent, Enum context, Enum action) {
-        super(parent, context, action);
+    public EntityDeleteAction(AbstractDefaultViewController parent, Enum context) {
+        super(parent, context);
     }
 
     /**

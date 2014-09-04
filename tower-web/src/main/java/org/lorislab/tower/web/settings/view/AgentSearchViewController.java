@@ -24,7 +24,7 @@ import org.lorislab.tower.store.criteria.AgentCriteria;
 import org.lorislab.tower.store.ejb.AgentService;
 import org.lorislab.tower.store.model.Agent;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractSearchViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
  * The SCM search view controller.
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
  */
 @Named("agentSVC")
 @SessionScoped
-public class AgentSearchViewController extends AbstractSearchViewController<Agent, AgentCriteria> {
+public class AgentSearchViewController extends AbstractDefaultSearchViewController<Agent, AgentCriteria> {
     
     /**
      * The UID for this class.

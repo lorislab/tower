@@ -23,7 +23,7 @@ import org.lorislab.tower.store.criteria.ProjectCriteria;
 import org.lorislab.tower.store.ejb.ProjectService;
 import org.lorislab.tower.store.model.Project;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractSearchViewController;
+import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
  * The project search view controller.
@@ -32,7 +32,7 @@ import org.lorislab.tower.web.common.view.AbstractSearchViewController;
  */
 @Named(value = "projectSVC")
 @SessionScoped
-public class ProjectSearchViewController extends AbstractSearchViewController<Project, ProjectCriteria> {
+public class ProjectSearchViewController extends AbstractDefaultSearchViewController<Project, ProjectCriteria> {
 
     /**
      * The UID for this class.

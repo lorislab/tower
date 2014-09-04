@@ -15,14 +15,14 @@
  */
 package org.lorislab.tower.web.common.view;
 
-import org.lorislab.guardian.web.view.ActionContextViewController;
+import org.lorislab.jel.jsf.view.controller.ViewController;
 
 /**
  * The key view controller listener.
  *
  * @author Andrej Petras
  */
-public interface KeyListener extends ActionContextViewController {
+public interface KeyListener extends ViewController {
 
     /**
      * Sets the key.

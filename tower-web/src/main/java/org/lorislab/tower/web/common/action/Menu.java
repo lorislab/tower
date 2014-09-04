@@ -85,9 +85,5 @@ public enum Menu {
     /**
      * The user profile menu.
      */
-    PROFILE,
-    /**
-     * The logout menu.
-     */
-    LOGOUT;
+    PROFILE;
 }

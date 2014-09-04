@@ -15,7 +15,7 @@
  */
 package org.lorislab.tower.web.common.action;
 
-import org.lorislab.guardian.web.view.actions.AbstractContextControllerAction;
+import org.lorislab.jel.jsf.view.controller.action.AbstractAction;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 
 /**
@@ -23,7 +23,7 @@ import org.lorislab.tower.web.common.view.ChangePasswordViewController;
  *
  * @author Andrej Petras
  */
-public class ChangePasswordAction extends AbstractContextControllerAction<ChangePasswordViewController> {
+public class ChangePasswordAction extends AbstractAction<ChangePasswordViewController> {
 
     /**
      * The UID for this class.

@@ -72,7 +72,7 @@ public class ScmViewController extends AbstractDefaultViewController<SCMSystem> 
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         Object result = Navigation.TO_SCM_EDIT;
         SCMSystem tmp = service.getSCMSystem(guid);
         setModel(tmp);

@@ -19,10 +19,10 @@ import javax.ejb.EJB;
 import org.lorislab.barn.api.service.ConfigurationService;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.jel.jsf.entity.controller.CloseViewController;
-import org.lorislab.jel.jsf.entity.controller.OpenViewController;
+import org.lorislab.jel.jsf.entity.controller.EditViewController;
 import org.lorislab.jel.jsf.entity.controller.SaveViewController;
 import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
-import org.lorislab.jel.jsf.entity.controller.action.OpenAction;
+import org.lorislab.jel.jsf.entity.controller.action.EditAction;
 import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
 import org.lorislab.tower.web.common.action.Context;
 
@@ -32,7 +32,7 @@ import org.lorislab.tower.web.common.action.Context;
  * @param <T> the type of the configuration model.
  * @author Andrej Petras
  */
-public class ConfigurationViewController<T> extends AbstractEntityViewController<T> implements OpenViewController, SaveViewController, CloseViewController {
+public class ConfigurationViewController<T> extends AbstractEntityViewController<T> implements EditViewController, SaveViewController, CloseViewController {
 
     /**
      * The UID for this class.
@@ -48,7 +48,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
     /**
      * The open action.
      */
-    private OpenAction openAction;
+    private EditAction openAction;
 
     /**
      * The save action.
@@ -80,7 +80,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      */
     public ConfigurationViewController(Context context, Class<T> clazz) {
         saveAction = new SaveAction(this, context);
-        openAction = new OpenAction(this, context);
+        openAction = new EditAction(this, context);
         closeAction = new CloseAction(this, context);
         this.clazz = clazz;
     }
@@ -89,7 +89,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         T tmp = service.getConfiguration(clazz);
         setModel(tmp);
         return null;
@@ -110,7 +110,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      *
      * @return the open action.
      */
-    public OpenAction getOpenAction() {
+    public EditAction getOpenAction() {
         return openAction;
     }
 

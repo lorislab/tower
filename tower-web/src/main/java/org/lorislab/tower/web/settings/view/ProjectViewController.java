@@ -73,7 +73,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         Object result = Navigation.TO_PROJECT_EDIT;
         load(guid);
 

@@ -87,7 +87,7 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         Object result = Navigation.TO_APPLICATION_EDIT;
         load(guid);
 

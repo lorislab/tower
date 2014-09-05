@@ -95,7 +95,7 @@ public class SystemViewController extends AbstractDefaultViewController<TargetSy
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         Object result = Navigation.TO_SYSTEM_EDIT;
         load(guid);
 

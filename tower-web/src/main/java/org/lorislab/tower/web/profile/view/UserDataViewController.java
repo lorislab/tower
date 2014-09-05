@@ -22,10 +22,10 @@ import org.lorislab.guardian.api.model.UserData;
 import org.lorislab.guardian.web.user.controller.UserDataController;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.jel.jsf.entity.controller.CloseViewController;
-import org.lorislab.jel.jsf.entity.controller.OpenViewController;
+import org.lorislab.jel.jsf.entity.controller.EditViewController;
 import org.lorislab.jel.jsf.entity.controller.SaveViewController;
 import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
-import org.lorislab.jel.jsf.entity.controller.action.OpenAction;
+import org.lorislab.jel.jsf.entity.controller.action.EditAction;
 import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
 import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.web.common.action.Context;
@@ -38,7 +38,7 @@ import org.lorislab.tower.web.common.view.KeyListener;
  */
 @Named("userDataVC")
 @SessionScoped
-public class UserDataViewController extends AbstractEntityViewController<UserData> implements KeyListener, OpenViewController, SaveViewController, CloseViewController {
+public class UserDataViewController extends AbstractEntityViewController<UserData> implements KeyListener, EditViewController, SaveViewController, CloseViewController {
 
     /**
      * The UID for this class.
@@ -48,7 +48,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     /**
      * The open action.
      */
-    private final OpenAction openAction;
+    private final EditAction openAction;
 
     /**
      * The save action.
@@ -73,14 +73,14 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
         super();
         closeAction = new CloseAction(this, Context.PROFILE);
         saveAction = new SaveAction(this, Context.PROFILE);
-        openAction = new OpenAction(this, Context.PROFILE);
+        openAction = new EditAction(this, Context.PROFILE);
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) throws Exception {
+    public Object edit(String guid) throws Exception {
         controller.load();
         return null;
     }
@@ -116,7 +116,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
      *
      * @return the open action.
      */
-    public OpenAction getOpenAction() {
+    public EditAction getOpenAction() {
         return openAction;
     }
 

@@ -102,8 +102,8 @@ public class TimerViewController extends ConfigurationViewController<TimerConfig
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {        
-        Object result = super.open(guid);
+    public Object edit(String guid) {        
+        Object result = super.edit(guid);
         updateDate();
         return result;
     }

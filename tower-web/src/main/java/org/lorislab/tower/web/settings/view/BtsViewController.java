@@ -72,7 +72,7 @@ public class BtsViewController extends AbstractDefaultViewController<BTSystem> i
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         Object result = Navigation.TO_BTS_EDIT;
         BTSystem tmp = service.getBTSystem(guid);
         setModel(tmp);

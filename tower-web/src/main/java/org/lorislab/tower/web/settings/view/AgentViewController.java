@@ -72,7 +72,7 @@ public class AgentViewController extends AbstractDefaultViewController<Agent> im
      * {@inheritDoc }
      */
     @Override
-    public Object open(String guid) {
+    public Object edit(String guid) {
         Object result = Navigation.TO_AGENT_EDIT;
         Agent tmp = service.getAgent(guid);
         setModel(tmp);

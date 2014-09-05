@@ -21,12 +21,12 @@ import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.jel.jsf.entity.controller.CloseViewController;
 import org.lorislab.jel.jsf.entity.controller.CreateViewController;
 import org.lorislab.jel.jsf.entity.controller.DeleteViewController;
-import org.lorislab.jel.jsf.entity.controller.OpenViewController;
+import org.lorislab.jel.jsf.entity.controller.EditViewController;
 import org.lorislab.jel.jsf.entity.controller.SaveViewController;
 import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
 import org.lorislab.jel.jsf.entity.controller.action.CreateAction;
 import org.lorislab.jel.jsf.entity.controller.action.DeleteAction;
-import org.lorislab.jel.jsf.entity.controller.action.OpenAction;
+import org.lorislab.jel.jsf.entity.controller.action.EditAction;
 import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
 import org.lorislab.tower.web.common.action.EntityDeleteAction;
 
@@ -34,10 +34,10 @@ import org.lorislab.tower.web.common.action.EntityDeleteAction;
  * The project view controller.
  *
  * @author Andrej Petras
- * @param <T>
+ * @param <T> the model type.
  */
 public abstract class AbstractDefaultViewController<T extends Persistent> extends AbstractEntityViewController<T>
-            implements DeleteViewController, CreateViewController, OpenViewController, SaveViewController, CloseViewController {
+            implements DeleteViewController, CreateViewController, EditViewController, SaveViewController, CloseViewController {
 
     /**
      * The UID for this class.
@@ -47,7 +47,7 @@ public abstract class AbstractDefaultViewController<T extends Persistent> extend
     /**
      * The open action.
      */
-    private OpenAction openAction;
+    private EditAction openAction;
 
     /**
      * The create action.
@@ -81,12 +81,11 @@ public abstract class AbstractDefaultViewController<T extends Persistent> extend
      * @param context
      */
     public AbstractDefaultViewController(Enum context) {
-        super(context);
         createAction = new CreateAction(this, context);
         closeAction = new CloseAction(this, context);
         saveAction = new SaveAction(this, context);
         deleteAction = new EntityDeleteAction(this, context);
-        openAction = new OpenAction(this, context);
+        openAction = new EditAction(this, context);
     }
    
     /**
@@ -94,7 +93,7 @@ public abstract class AbstractDefaultViewController<T extends Persistent> extend
      *
      * @return the open action.
      */
-    public OpenAction getOpenAction() {
+    public EditAction getOpenAction() {
         return openAction;
     }
 

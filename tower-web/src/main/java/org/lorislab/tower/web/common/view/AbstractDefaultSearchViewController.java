@@ -53,7 +53,6 @@ public abstract class AbstractDefaultSearchViewController<T, S extends AbstractS
      * @param context the context.
      */
     public AbstractDefaultSearchViewController(Enum context) {
-        super(context);
         searchAction = new SearchAction(this, context);
     }
 

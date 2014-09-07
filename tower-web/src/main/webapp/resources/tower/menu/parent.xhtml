@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <composite:interface>
+        <composite:attribute name="title" required="true"/>
+        <composite:attribute name="icon" required="true"/>
+        <composite:attribute name="active" required="false" default="none"/>
+        <composite:attribute name="controller" required="true"/>
+    </composite:interface>
+
+    <composite:implementation>		
+        <li class="#{cc.attrs.active eq cc.attrs.controller.permission ? 'active' : ''}" jsf:rendered="#{cc.attrs.controller.available}">
+            <a> 
+                <i class="#{cc.attrs.icon}"></i> #{cc.attrs.title}
+            </a>
+            <ul class="nav nav-second-level">
+                <composite:insertChildren />
+            </ul>            
+        </li>   
+    </composite:implementation>
+</html>

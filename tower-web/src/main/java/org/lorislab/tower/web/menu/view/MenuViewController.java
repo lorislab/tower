@@ -17,8 +17,8 @@ package org.lorislab.tower.web.menu.view;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import org.lorislab.jel.jsf.menu.controller.LogoutAction;
-import org.lorislab.jel.jsf.menu.controller.MenuAction;
+import org.lorislab.jel.jsf.menu.controller.action.LogoutAction;
+import org.lorislab.jel.jsf.menu.controller.action.MenuAction;
 import org.lorislab.jel.jsf.view.controller.AbstractViewController;
 import org.lorislab.tower.web.common.action.Menu;
 import org.lorislab.tower.web.common.action.Navigation;

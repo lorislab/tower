@@ -40,7 +40,7 @@
 							jsf:action="#{cc.attrs.controller.changePasswordAction.open}">		
 						<f:ajax render="@this #{cc.attrs.dialog}:p:modalForm" execute="@this" onevent="function(d){if(d.status==='success')$('##{cc.attrs.dialog}\\\\:p\\\\:modal').modal('show');}"/>
 						<i class="icon-lock"></i>
-						<f:actionListener type="org.lorislab.jel.jsf.listener.ResetInputAjaxActionListener"  />
+						<f:actionListener type="org.lorislab.jel.jsf.api.listener.ResetInputAjaxActionListener"  />
 					</button>			
 					<button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.clearPasswordAction.available}"
 							jsf:action="#{cc.attrs.controller.clearPasswordAction.execute}">

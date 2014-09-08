@@ -1,129 +1,129 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     
-	<parent>
-		<groupId>org.lorislab.tower</groupId>
-		<artifactId>tower</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
+    <parent>
+        <groupId>org.lorislab.tower</groupId>
+        <artifactId>tower</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
 		
-	<artifactId>tower-ejb</artifactId>
-	<packaging>ejb</packaging>    
-	<name>tower-ejb</name>        
+    <artifactId>tower-ejb</artifactId>
+    <packaging>ejb</packaging>    
+    <name>tower-ejb</name>        
     
-	<dependencies>	
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-bts</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-scm</artifactId>
-			<version>${project.version}</version>
-		</dependency>		
-		<dependency>
-			<groupId>org.lorislab.tower-agent</groupId>
-			<artifactId>tower-agent-rs</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-store</artifactId>
-			<version>${project.version}</version>
-			<type>ejb-client</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-guardian</artifactId>
-			<scope>provided</scope>
-			<type>ejb-client</type>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.tower</groupId>
-			<artifactId>tower-guardian-config</artifactId>
-			<scope>provided</scope>
-			<type>ejb-client</type>
-			<version>${project.version}</version>
-		</dependency>
-		<!-- BRIDGE -->
-		<dependency>
-			<groupId>org.lorislab.tower-base</groupId>
-			<artifactId>tower-base-api</artifactId>
-			<scope>provided</scope>
-		</dependency>			
-		<!-- TREASURE -->
-		<dependency>
-			<groupId>org.lorislab.treasure</groupId>
-			<artifactId>treasure-lib</artifactId>
-			<scope>provided</scope>
-		</dependency>						
-		<!-- GUARDIAN -->
-		<dependency>
-			<groupId>org.lorislab.guardian</groupId>
-			<artifactId>guardian-api</artifactId>
-			<scope>provided</scope>
-		</dependency>						
-		<!-- BARN -->
-		<dependency>
-			<groupId>org.lorislab.barn</groupId>
-			<artifactId>barn-api</artifactId>
-		</dependency>
-		<!-- POSTMAN -->
-		<dependency>
-			<groupId>org.lorislab.postman</groupId>
-			<artifactId>postman-api</artifactId>
-		</dependency>						
-		<!-- JEL --> 		
-		<dependency>
-			<groupId>org.lorislab.jel</groupId>
-			<artifactId>jel-base</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.jel</groupId>
-			<artifactId>jel-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.lorislab.jel</groupId>
-			<artifactId>jel-ejb</artifactId>
-		</dependency>
-		<!-- RESTEASY -->                   
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<scope>provided</scope>
-		</dependency>			
-		<!-- JPA 2 -->
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- EJB -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- META-INF SERVICES -->
-		<dependency>
-			<groupId>org.kohsuke.metainf-services</groupId>
-			<artifactId>metainf-services</artifactId>
-			<optional>true</optional>
-		</dependency>												
-	</dependencies>  
+    <dependencies>	
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-bts</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-scm</artifactId>
+            <version>${project.version}</version>
+        </dependency>		
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-agent-rs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-store</artifactId>
+            <version>${project.version}</version>
+            <type>ejb-client</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-guardian</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-guardian-config</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- BRIDGE -->
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-base-api</artifactId>
+            <scope>provided</scope>
+        </dependency>			
+        <!-- TREASURE -->
+        <dependency>
+            <groupId>org.lorislab.treasure</groupId>
+            <artifactId>treasure-lib</artifactId>
+            <scope>provided</scope>
+        </dependency>						
+        <!-- GUARDIAN -->
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-api</artifactId>
+            <scope>provided</scope>
+        </dependency>						
+        <!-- BARN -->
+        <dependency>
+            <groupId>org.lorislab.barn</groupId>
+            <artifactId>barn-api</artifactId>
+        </dependency>
+        <!-- POSTMAN -->
+        <dependency>
+            <groupId>org.lorislab.postman</groupId>
+            <artifactId>postman-api</artifactId>
+        </dependency>						
+        <!-- JEL --> 		
+        <dependency>
+            <groupId>org.lorislab.jel</groupId>
+            <artifactId>jel-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.jel</groupId>
+            <artifactId>jel-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.jel</groupId>
+            <artifactId>jel-ejb</artifactId>
+        </dependency>
+        <!-- RESTEASY -->                   
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <scope>provided</scope>
+        </dependency>			
+        <!-- JPA 2 -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- EJB -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- META-INF SERVICES -->
+        <dependency>
+            <groupId>org.kohsuke.metainf-services</groupId>
+            <artifactId>metainf-services</artifactId>
+            <optional>true</optional>
+        </dependency>												
+    </dependencies>  
     	
 </project>

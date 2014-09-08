@@ -15,7 +15,7 @@
 
     <dependencies>  
         <dependency>
-            <groupId>org.lorislab.tower-base</groupId>
+            <groupId>org.lorislab.tower</groupId>
             <artifactId>tower-base-api</artifactId>
             <scope>provided</scope>
         </dependency>		

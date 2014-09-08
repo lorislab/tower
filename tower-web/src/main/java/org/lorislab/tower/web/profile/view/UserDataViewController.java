@@ -19,14 +19,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.guardian.web.user.controller.UserDataController;
+import org.lorislab.guardian.api.service.UserDataController;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
-import org.lorislab.jel.jsf.entity.controller.CloseViewController;
-import org.lorislab.jel.jsf.entity.controller.EditViewController;
-import org.lorislab.jel.jsf.entity.controller.SaveViewController;
-import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
-import org.lorislab.jel.jsf.entity.controller.action.EditAction;
-import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
 import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.KeyListener;
@@ -38,7 +33,7 @@ import org.lorislab.tower.web.common.view.KeyListener;
  */
 @Named("userDataVC")
 @SessionScoped
-public class UserDataViewController extends AbstractEntityViewController<UserData> implements KeyListener, EditViewController, SaveViewController, CloseViewController {
+public class UserDataViewController extends AbstractEntityViewController<UserData> implements KeyListener {
 
     /**
      * The UID for this class.
@@ -46,22 +41,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     private static final long serialVersionUID = 7565895047085028278L;
 
     /**
-     * The open action.
-     */
-    private final EditAction openAction;
-
-    /**
-     * The save action.
-     */
-    private final SaveAction saveAction;
-
-    /**
-     * The close action.
-     */
-    private final CloseAction closeAction;
-
-    /**
-     * The user service.
+     * The user data service.
      */
     @Inject
     private UserDataController controller;
@@ -70,16 +50,14 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
      * The default constructor.
      */
     public UserDataViewController() {
-        super();
-        closeAction = new CloseAction(this, Context.PROFILE);
-        saveAction = new SaveAction(this, Context.PROFILE);
-        openAction = new EditAction(this, Context.PROFILE);
+        super(Context.PROFILE);
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) throws Exception {
         controller.load();
         return null;
@@ -89,6 +67,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         controller.save();
         return null;
@@ -103,38 +82,11 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     }
 
     /**
-     * Gets the close action.
-     *
-     * @return the close action.
-     */
-    public CloseAction getCloseAction() {
-        return closeAction;
-    }
-
-    /**
-     * Gets the open action.
-     *
-     * @return the open action.
-     */
-    public EditAction getOpenAction() {
-        return openAction;
-    }
-
-    /**
-     * Gets the save action.
-     *
-     * @return the save action.
-     */
-    public SaveAction getSaveAction() {
-        return saveAction;
-    }
-
-    /**
      * {@inheritDoc }
      */
     @Override
     public UserData getModel() {
-        return controller.getUserData();
+        return controller.getModel();
     }
     
     /**
@@ -142,7 +94,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
      */    
     @Override
     public void setKey(String data) {
-        UserData tmp = controller.getUserData();
+        UserData tmp = controller.getModel();
         UserConfig config = (UserConfig) tmp.getConfig();
         config.setKey(data);
     }

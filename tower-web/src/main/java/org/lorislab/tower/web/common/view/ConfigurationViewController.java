@@ -17,13 +17,8 @@ package org.lorislab.tower.web.common.view;
 
 import javax.ejb.EJB;
 import org.lorislab.barn.api.service.ConfigurationService;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
-import org.lorislab.jel.jsf.entity.controller.CloseViewController;
-import org.lorislab.jel.jsf.entity.controller.EditViewController;
-import org.lorislab.jel.jsf.entity.controller.SaveViewController;
-import org.lorislab.jel.jsf.entity.controller.action.CloseAction;
-import org.lorislab.jel.jsf.entity.controller.action.EditAction;
-import org.lorislab.jel.jsf.entity.controller.action.SaveAction;
 import org.lorislab.tower.web.common.action.Context;
 
 /**
@@ -32,7 +27,7 @@ import org.lorislab.tower.web.common.action.Context;
  * @param <T> the type of the configuration model.
  * @author Andrej Petras
  */
-public class ConfigurationViewController<T> extends AbstractEntityViewController<T> implements EditViewController, SaveViewController, CloseViewController {
+public class ConfigurationViewController<T> extends AbstractEntityViewController<T> {
 
     /**
      * The UID for this class.
@@ -46,21 +41,6 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
     private ConfigurationService service;
 
     /**
-     * The open action.
-     */
-    private EditAction openAction;
-
-    /**
-     * The save action.
-     */
-    private SaveAction saveAction;
-
-    /**
-     * The close action.
-     */
-    private CloseAction closeAction;
-
-    /**
      * The configuration class.
      */
     private Class<T> clazz;
@@ -69,7 +49,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      * The default constructor.
      */
     public ConfigurationViewController() {
-        // empty consturctor
+        this(null, null);
     }
 
     /**
@@ -79,9 +59,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      * @param clazz the configuration class.
      */
     public ConfigurationViewController(Context context, Class<T> clazz) {
-        saveAction = new SaveAction(this, context);
-        openAction = new EditAction(this, context);
-        closeAction = new CloseAction(this, context);
+        super(context);
         this.clazz = clazz;
     }
 
@@ -89,6 +67,7 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {
         T tmp = service.getConfiguration(clazz);
         setModel(tmp);
@@ -99,45 +78,11 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         T tmp = service.setConfiguration(getModel());
         setModel(tmp);
         return null;
-    }
-
-    /**
-     * Gets the open action.
-     *
-     * @return the open action.
-     */
-    public EditAction getOpenAction() {
-        return openAction;
-    }
-
-    /**
-     * Gets the save action.
-     *
-     * @return the save action.
-     */
-    public SaveAction getSaveAction() {
-        return saveAction;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public Object close() throws Exception {
-        return null;
-    }
-
-    /**
-     * Gets the close action.
-     *
-     * @return the close action.
-     */
-    public CloseAction getCloseAction() {
-        return closeAction;
     }
 
 }

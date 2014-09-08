@@ -15,9 +15,8 @@
  */
 package org.lorislab.tower.web.common.view;
 
-import java.io.Serializable;
+import org.lorislab.jel.jsf.view.controller.AbstractChildViewController;
 import java.util.UUID;
-import org.lorislab.jel.jsf.view.controller.ViewController;
 import org.lorislab.tower.web.common.action.ClearKeyAction;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.CreateKeyAction;
@@ -28,7 +27,7 @@ import org.lorislab.tower.web.common.action.Permission;
  *
  * @author Andrej Petras
  */
-public class KeyViewController implements Serializable, ViewController {
+public class KeyViewController extends AbstractChildViewController<KeyListener> {
 
     /**
      * The UID for this class.
@@ -46,18 +45,13 @@ public class KeyViewController implements Serializable, ViewController {
     private final ClearKeyAction clearKeyAction;
 
     /**
-     * The parent.
-     */
-    private final KeyListener parent;
-
-    /**
      * The default constructor.
      *
      * @param parent the parent view controller.
      * @param context the context.
      */
     public KeyViewController(KeyListener parent, Context context) {
-        this.parent = parent;
+        super(parent);
         clearKeyAction = new ClearKeyAction(this, context, Permission.KEY);
         createKeyAction = new CreateKeyAction(this, context, Permission.KEY);
     }
@@ -87,7 +81,7 @@ public class KeyViewController implements Serializable, ViewController {
      * @throws java.lang.Exception if the method fails.
      */
     public Object clearKey() throws Exception {
-        parent.setKey(null);
+        getParent().setKey(null);
         return null;
     }
 
@@ -99,15 +93,8 @@ public class KeyViewController implements Serializable, ViewController {
      */
     public Object createKey() throws Exception {
         String tmp = UUID.randomUUID().toString();
-        parent.setKey(tmp);
+        getParent().setKey(tmp);
         return null;
     }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean hasUserAction(Enum action, Enum context) {
-        return parent.hasUserAction(action, context);
-    }
+  
 }

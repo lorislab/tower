@@ -46,6 +46,7 @@ public class UserMetaDataServiceBean implements UserMetaDataService {
      * {@inheritDoc }
      */
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public UserMetaData saveUserMetaData(UserMetaData userMetaData) throws Exception {
         return userMetaData;
     }

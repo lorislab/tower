@@ -18,13 +18,14 @@ package org.lorislab.tower.web.settings.view;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.store.ejb.BTSystemService;
 import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
-import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The project view controller.
@@ -33,7 +34,7 @@ import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
  */
 @Named("btsVC")
 @SessionScoped
-public class BtsViewController extends AbstractDefaultViewController<BTSystem> implements ChangePasswordListener {
+public class BtsViewController extends AbstractEntityViewController<BTSystem> implements ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -72,6 +73,7 @@ public class BtsViewController extends AbstractDefaultViewController<BTSystem> i
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {
         Object result = Navigation.TO_BTS_EDIT;
         BTSystem tmp = service.getBTSystem(guid);
@@ -87,6 +89,7 @@ public class BtsViewController extends AbstractDefaultViewController<BTSystem> i
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object delete() throws Exception {
         service.deleteBTSystem(getModel().getGuid());
         setModel(null);
@@ -97,6 +100,7 @@ public class BtsViewController extends AbstractDefaultViewController<BTSystem> i
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         BTSystem tmp = service.saveBTSystem(getModel());
         setModel(tmp);
@@ -107,6 +111,7 @@ public class BtsViewController extends AbstractDefaultViewController<BTSystem> i
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object close() throws Exception {
         setModel(null);
         return Navigation.TO_BTS;
@@ -116,6 +121,7 @@ public class BtsViewController extends AbstractDefaultViewController<BTSystem> i
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object create() throws Exception {
         setModel(new BTSystem());
         return Navigation.TO_BTS_EDIT;

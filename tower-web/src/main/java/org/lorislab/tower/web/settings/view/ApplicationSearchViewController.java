@@ -60,5 +60,5 @@ public class ApplicationSearchViewController extends AbstractDefaultSearchViewCo
     protected List<Application> doSearch() throws Exception {
         return service.getApplications();
     }
-        
+    
 }

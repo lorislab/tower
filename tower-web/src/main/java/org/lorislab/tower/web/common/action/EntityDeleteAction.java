@@ -16,15 +16,15 @@
 package org.lorislab.tower.web.common.action;
 
 import org.lorislab.jel.jpa.model.Persistent;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.jel.jsf.entity.controller.action.DeleteAction;
-import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The entity delete action.
  *
  * @author Andrej Petras
  */
-public class EntityDeleteAction extends DeleteAction<AbstractDefaultViewController> {
+public class EntityDeleteAction extends DeleteAction<AbstractEntityViewController> {
 
     /**
      * The UID for this class.
@@ -37,7 +37,7 @@ public class EntityDeleteAction extends DeleteAction<AbstractDefaultViewControll
      * @param parent the parent view controller.
      * @param context the context object.
      */
-    public EntityDeleteAction(AbstractDefaultViewController parent, Enum context) {
+    public EntityDeleteAction(AbstractEntityViewController parent, Enum context) {
         super(parent, context);
     }
 

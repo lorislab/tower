@@ -20,6 +20,7 @@ import javax.ejb.EJB;
 import javax.ejb.Timer;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.tower.timer.ejb.TimerService;
 import org.lorislab.tower.timer.model.TimerConfig;
 import org.lorislab.tower.web.common.action.Context;
@@ -55,12 +56,12 @@ public class TimerViewController extends ConfigurationViewController<TimerConfig
     /**
      * The start action.
      */
-    private StartTimerAction startAction;
+    private final StartTimerAction startAction;
 
     /**
      * The stop action.
      */
-    private StopTimerAction stopAction;
+    private final StopTimerAction stopAction;
 
     /**
      * The default constructor.
@@ -102,6 +103,7 @@ public class TimerViewController extends ConfigurationViewController<TimerConfig
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {        
         Object result = super.edit(guid);
         updateDate();
@@ -113,6 +115,7 @@ public class TimerViewController extends ConfigurationViewController<TimerConfig
      *
      * @return the navigation path.
      */
+    @FacesServiceMethod
     public String stop() {
         timerService.stop();
         updateDate();
@@ -124,12 +127,16 @@ public class TimerViewController extends ConfigurationViewController<TimerConfig
      *
      * @return navigation path.
      */
+    @FacesServiceMethod
     public String start() {
         timerService.start();
         updateDate();
         return null;
     }
-    
+        
+    /**
+     * Updates the date.
+     */
     private void updateDate() {
         date = null;
         Timer timer = timerService.getTimer();

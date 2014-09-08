@@ -410,7 +410,7 @@ public class ProcessService {
                 
                 if (config.isNotification()) {
                     Email mail = new Email();
-                    mail.getTo().add(user.getUserProfile().getEmail());
+                    mail.getTo().add(user.getProfile().getEmail());
                     mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
                     // add the user to the parameters
                     mail.getParameters().put(user.getClass().getSimpleName(), user);

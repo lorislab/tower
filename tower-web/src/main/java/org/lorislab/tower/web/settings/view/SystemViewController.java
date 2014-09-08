@@ -20,6 +20,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.jel.jsf.api.converter.EntityPersistentConverter;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.store.criteria.TargetSystemCriteria;
 import org.lorislab.tower.store.ejb.AgentService;
 import org.lorislab.tower.store.ejb.ApplicationService;
@@ -30,7 +32,6 @@ import org.lorislab.tower.store.model.TargetSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
-import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 import org.lorislab.tower.web.common.view.KeyListener;
 import org.lorislab.tower.web.common.view.KeyViewController;
 
@@ -41,7 +42,7 @@ import org.lorislab.tower.web.common.view.KeyViewController;
  */
 @Named("systemVC")
 @SessionScoped
-public class SystemViewController extends AbstractDefaultViewController<TargetSystem> implements KeyListener {
+public class SystemViewController extends AbstractEntityViewController<TargetSystem> implements KeyListener {
 
     /**
      * The UID for this class.
@@ -95,6 +96,7 @@ public class SystemViewController extends AbstractDefaultViewController<TargetSy
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {
         Object result = Navigation.TO_SYSTEM_EDIT;
         load(guid);
@@ -111,6 +113,7 @@ public class SystemViewController extends AbstractDefaultViewController<TargetSy
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object delete() throws Exception {
         service.deleteSystem(getModel().getGuid());
         setModel(null);
@@ -123,6 +126,7 @@ public class SystemViewController extends AbstractDefaultViewController<TargetSy
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         TargetSystem tmp = service.saveSystem(getModel());
         load(tmp.getGuid());
@@ -133,6 +137,7 @@ public class SystemViewController extends AbstractDefaultViewController<TargetSy
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object close() throws Exception {
         setModel(null);
         agentConverter.clear();
@@ -144,6 +149,7 @@ public class SystemViewController extends AbstractDefaultViewController<TargetSy
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object create() throws Exception {
         setModel(new TargetSystem());
         loadSystems();

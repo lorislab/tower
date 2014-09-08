@@ -20,6 +20,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.lorislab.guardian.api.model.UserData;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.postman.api.model.EmailConfig;
 import org.lorislab.tower.process.ejb.TestService;
 import org.lorislab.tower.web.common.action.Context;
@@ -58,6 +59,9 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
     @EJB
     private TestService testService;
 
+    /**
+     * The user data.
+     */
     @Inject
     private UserData userData;
     
@@ -99,9 +103,10 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
     /**
      * {@inheritDoc }
      */
+    @FacesServiceMethod
     public Object send() {
         try {
-            String email = userData.getUserProfile().getEmail();
+            String email = userData.getProfile().getEmail();
             testService.sendTestEmail(email);
         } catch (Exception ex) {
             ex.printStackTrace();

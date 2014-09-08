@@ -16,9 +16,10 @@
 package org.lorislab.tower.web.common.view;
 
 import java.util.List;
+import javax.annotation.PostConstruct;
 import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
-import org.lorislab.jel.jsf.entity.controller.AbstractSearchViewController;
-import org.lorislab.jel.jsf.entity.controller.action.SearchAction;
+import org.lorislab.jel.jsf.search.controller.AbstractSearchViewController;
+import org.lorislab.jel.jsf.search.controller.action.SearchAction;
 
 /**
  * The abstract search view controller.
@@ -36,15 +37,10 @@ public abstract class AbstractDefaultSearchViewController<T, S extends AbstractS
     private static final long serialVersionUID = 6562624144708822688L;
 
     /**
-     * The search action.
-     */
-    private SearchAction searchAction;
-
-    /**
      * The default constructor.
      */
     public AbstractDefaultSearchViewController() {
-        // empty constructor
+        this(null);
     }
 
     /**
@@ -53,28 +49,15 @@ public abstract class AbstractDefaultSearchViewController<T, S extends AbstractS
      * @param context the context.
      */
     public AbstractDefaultSearchViewController(Enum context) {
-        searchAction = new SearchAction(this, context);
+        super(context);
     }
-
+    
     /**
-     * {@inheritDoc}
+     * The initialise method.
      */
-    @Override
-    public List<T> getResult() {
-        List<T> tmp = super.getResult();
-        if (tmp == null) {
-            searchAction.execute();
-        }
-        return super.getResult();
+    @PostConstruct
+    protected void init () {
+        getSearchAction().execute();
     }
-
-    /**
-     * Gets the search action.
-     *
-     * @return the search action.
-     */
-    public SearchAction getSearchAction() {
-        return searchAction;
-    }
-
+    
 }

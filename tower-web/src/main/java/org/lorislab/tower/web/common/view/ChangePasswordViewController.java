@@ -15,6 +15,7 @@
  */
 package org.lorislab.tower.web.common.view;
 
+import org.lorislab.jel.jsf.view.controller.AbstractChildViewController;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import org.lorislab.jel.jsf.api.util.FacesResourceUtil;
@@ -33,7 +34,7 @@ import org.lorislab.treasure.api.service.PasswordService;
  *
  * @author Andrej Petras
  */
-public class ChangePasswordViewController implements Serializable, ViewController {
+public class ChangePasswordViewController extends AbstractChildViewController<ChangePasswordListener> {
 
     /**
      * The UID for this class.
@@ -54,11 +55,6 @@ public class ChangePasswordViewController implements Serializable, ViewControlle
      * The clear password action.
      */
     private final ClearPasswordAction clearPasswordAction;
-    
-    /**
-     * The parent.
-     */
-    private final ChangePasswordListener parent;
 
     /**
      * The default constructor.
@@ -67,7 +63,7 @@ public class ChangePasswordViewController implements Serializable, ViewControlle
      * @param context the context.
      */
     public ChangePasswordViewController(ChangePasswordListener parent, Context context) {
-        this.parent = parent;
+        super(parent);
         password = new ChangePassword();
         clearPasswordAction = new ClearPasswordAction(this, context, Permission.PASSWORD);
         changePasswordAction = new ChangePasswordAction(this, context, Permission.PASSWORD);
@@ -118,7 +114,7 @@ public class ChangePasswordViewController implements Serializable, ViewControlle
      * @throws java.lang.Exception if the method fails.
      */
     public Object clearPassword() throws Exception {
-        parent.changePassword(null);
+        getParent().changePassword(null);
         return null;
     }
 
@@ -133,7 +129,7 @@ public class ChangePasswordViewController implements Serializable, ViewControlle
             try {
                 PasswordService service = PasswordServiceFactory.getService();
                 String tmp = service.createPassword(password.getNew1());
-                parent.changePassword(tmp);
+                getParent().changePassword(tmp);
             } catch (Exception ex) {
                 FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_ERROR);
                 FacesContext.getCurrentInstance().validationFailed();
@@ -145,11 +141,4 @@ public class ChangePasswordViewController implements Serializable, ViewControlle
         return null;
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean hasUserAction(Enum action, Enum context) {
-        return parent.hasUserAction(action, context);
-    }
 }

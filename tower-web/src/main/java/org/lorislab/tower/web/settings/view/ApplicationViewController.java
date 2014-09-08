@@ -20,6 +20,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.jel.jsf.api.converter.EntityPersistentConverter;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.ejb.ApplicationService;
 import org.lorislab.tower.store.ejb.ProjectService;
@@ -30,7 +32,6 @@ import org.lorislab.tower.store.model.SCMSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
-import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The application view controller.
@@ -39,7 +40,7 @@ import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
  */
 @Named("applicationVC")
 @SessionScoped
-public class ApplicationViewController extends AbstractDefaultViewController<Application> {
+public class ApplicationViewController extends AbstractEntityViewController<Application> {
 
     /**
      * The UID for this class.
@@ -67,12 +68,12 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
     /**
      * The BTSystem converter.
      */
-    private EntityPersistentConverter<SCMSystem> scmSystemConverter;
+    private final EntityPersistentConverter<SCMSystem> scmSystemConverter;
 
     /**
      * The project converter.
      */
-    private EntityPersistentConverter<Project> projectConverter;
+    private final EntityPersistentConverter<Project> projectConverter;
     
     /**
      * The default constructor.
@@ -87,6 +88,7 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {
         Object result = Navigation.TO_APPLICATION_EDIT;
         load(guid);
@@ -103,6 +105,7 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object delete() throws Exception {
         service.deleteApplication(getModel().getGuid());
         setModel(null);
@@ -115,6 +118,7 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         Application tmp = service.saveApplication(getModel());
         load(tmp.getGuid());
@@ -125,6 +129,7 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object close() throws Exception {
         setModel(null);
         scmSystemConverter.clear();
@@ -136,6 +141,7 @@ public class ApplicationViewController extends AbstractDefaultViewController<App
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object create() throws Exception {
         setModel(new Application());
         loadSystems();

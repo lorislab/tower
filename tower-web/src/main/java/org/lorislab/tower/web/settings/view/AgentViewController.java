@@ -18,13 +18,14 @@ package org.lorislab.tower.web.settings.view;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.store.ejb.AgentService;
 import org.lorislab.tower.store.model.Agent;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
-import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
 
 /**
  * The agent view controller.
@@ -33,7 +34,7 @@ import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
  */
 @Named("agentVC")
 @SessionScoped
-public class AgentViewController extends AbstractDefaultViewController<Agent> implements ChangePasswordListener {
+public class AgentViewController extends AbstractEntityViewController<Agent> implements ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -72,6 +73,7 @@ public class AgentViewController extends AbstractDefaultViewController<Agent> im
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {
         Object result = Navigation.TO_AGENT_EDIT;
         Agent tmp = service.getAgent(guid);
@@ -87,6 +89,7 @@ public class AgentViewController extends AbstractDefaultViewController<Agent> im
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object delete() throws Exception {
         service.deleteAgent(getModel().getGuid());
         setModel(null);
@@ -97,6 +100,7 @@ public class AgentViewController extends AbstractDefaultViewController<Agent> im
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         Agent tmp = service.saveAgent(getModel());
         setModel(tmp);
@@ -107,6 +111,7 @@ public class AgentViewController extends AbstractDefaultViewController<Agent> im
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object close() throws Exception {
         setModel(null);
         return Navigation.TO_AGENT;
@@ -116,6 +121,7 @@ public class AgentViewController extends AbstractDefaultViewController<Agent> im
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object create() throws Exception {
         setModel(new Agent());
         return Navigation.TO_AGENT_EDIT;

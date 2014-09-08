@@ -28,7 +28,8 @@ import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
 import org.lorislab.jel.jsf.api.converter.EntityPersistentConverter;
-import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
+import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 
 /**
  * The project view controller.
@@ -37,7 +38,7 @@ import org.lorislab.tower.web.common.view.AbstractDefaultViewController;
  */
 @Named("projectVC")
 @SessionScoped
-public class ProjectViewController extends AbstractDefaultViewController<Project> {
+public class ProjectViewController extends AbstractEntityViewController<Project> {
 
     /**
      * The UID for this class.
@@ -59,7 +60,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
     /**
      * The BTSystem converter.
      */
-    private EntityPersistentConverter<BTSystem> btSystemConverter;
+    private final EntityPersistentConverter<BTSystem> btSystemConverter;
 
     /**
      * The default constructor.
@@ -73,6 +74,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object edit(String guid) {
         Object result = Navigation.TO_PROJECT_EDIT;
         load(guid);
@@ -89,6 +91,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object delete() throws Exception {
         service.deleteProject(getModel().getGuid());
         setModel(null);
@@ -100,6 +103,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object save() throws Exception {
         Project tmp = service.saveProject(getModel());
         load(tmp.getGuid());
@@ -110,6 +114,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object close() throws Exception {
         setModel(null);
         btSystemConverter.clear();
@@ -120,6 +125,7 @@ public class ProjectViewController extends AbstractDefaultViewController<Project
      * {@inheritDoc }
      */
     @Override
+    @FacesServiceMethod
     public Object create() throws Exception {
         setModel(new Project());
         loadSystems();

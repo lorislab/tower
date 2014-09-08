@@ -80,6 +80,7 @@ public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig>
      * {@inheritDoc}
      */
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public UserDataConfig saveUserConfig(UserDataConfig data) throws Exception {
         UserConfig tmp = (UserConfig) data;
         return this.save(tmp);

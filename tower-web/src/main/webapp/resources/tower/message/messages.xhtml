@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:composite="http://xmlns.jcp.org/jsf/composite"
-	  xmlns:jel="http://jel.lorislab.org/jsf"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:jel="http://xmlns.lorislab.org/jel/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<composite:interface></composite:interface>
+    <composite:interface></composite:interface>
 
-	<composite:implementation>		
-		<div class="control-group">
-			<ui:repeat var="item" value="#{jel:messages()}" >
-				<span class="label label-danger">#{item.summary}</span>
-			</ui:repeat>						
-		</div>	
-	</composite:implementation>
+    <composite:implementation>		
+        <div class="control-group">
+            <ui:repeat var="item" value="#{jel:messages()}" >
+                <span class="label label-danger">#{item.summary}</span>
+            </ui:repeat>						
+        </div>	
+    </composite:implementation>
 </html>

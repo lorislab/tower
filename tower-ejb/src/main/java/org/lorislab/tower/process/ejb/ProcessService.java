@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
@@ -41,6 +42,7 @@ import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.process.resources.ErrorKeys;
 import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.criteria.BuildCriteria;
+import org.lorislab.tower.store.criteria.NotificationGroupCriteria;
 import org.lorislab.tower.store.criteria.SystemBuildCriteria;
 import org.lorislab.tower.store.criteria.TargetSystemCriteria;
 import org.lorislab.tower.store.ejb.ActivityService;
@@ -52,6 +54,7 @@ import org.lorislab.tower.store.ejb.TargetSystemService;
 import org.lorislab.tower.store.model.Activity;
 import org.lorislab.tower.store.model.Application;
 import org.lorislab.tower.store.model.Build;
+import org.lorislab.tower.store.model.NotificationGroup;
 import org.lorislab.tower.store.model.SystemBuild;
 import org.lorislab.tower.store.model.TargetSystem;
 import org.lorislab.tower.store.model.enums.SystemBuildType;
@@ -126,9 +129,15 @@ public class ProcessService {
     @EJB
     private ActivityWrapperService activityWrapperService;
 
+    /**
+     * The notification group service.
+     */
     @EJB
     private NotificationGroupService notificationGroupService;
-    
+
+    /**
+     * The configuration service.
+     */
     @EJB
     private ConfigurationService configService;
 
@@ -151,6 +160,14 @@ public class ProcessService {
         installProcess(app, build);
     }
 
+    /**
+     * Installs the process.
+     *
+     * @param app the application.
+     * @param build the build.
+     * @return the installed build.
+     * @throws ServiceException if the method fails.
+     */
     private Build installProcess(final Application app, final Build build) throws ServiceException {
         // create new build and save it
         Build buildNew = null;
@@ -359,11 +376,22 @@ public class ProcessService {
         }
 
         // load the user guids for notification
-        List<String> userGuids = notificationGroupService.getNotificationUsers(system.getGuid());
+        NotificationGroupCriteria ngc = new NotificationGroupCriteria();
+        ngc.setFetchUsers(true);
+        ngc.setSystem(system.getGuid());        
+        List<NotificationGroup> groups = notificationGroupService.getNotificationGroups(ngc);
 
+        // create list of users guids.
+        Set<String> ug = new HashSet<>();
+        if (groups != null) {
+            for (NotificationGroup group : groups) {
+                ug.addAll(group.getUsers());
+            }
+        }
+        
         // load the users
         UserDataCriteria userDataCriteria = new UserDataCriteria();
-        userDataCriteria.setUsers(new HashSet<>(userGuids));
+        userDataCriteria.setUsers(ug);
         userDataCriteria.setFetchConfig(true);
 
         List<UserData> users = null;
@@ -404,10 +432,10 @@ public class ProcessService {
     private List<Email> createBuildDeployedMails(List<UserData> users, Object... values) {
         List<Email> result = null;
         if (users != null) {
-            result = new ArrayList<>();            
+            result = new ArrayList<>();
             for (UserData user : users) {
                 UserConfig config = (UserConfig) user.getConfig();
-                
+
                 if (config.isNotification()) {
                     Email mail = new Email();
                     mail.getTo().add(user.getProfile().getEmail());

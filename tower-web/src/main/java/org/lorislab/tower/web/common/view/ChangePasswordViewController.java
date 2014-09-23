@@ -16,10 +16,8 @@
 package org.lorislab.tower.web.common.view;
 
 import org.lorislab.jel.jsf.view.controller.AbstractChildViewController;
-import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import org.lorislab.jel.jsf.api.util.FacesResourceUtil;
-import org.lorislab.jel.jsf.view.controller.ViewController;
 import org.lorislab.tower.web.common.action.Permission;
 import org.lorislab.tower.web.common.action.ChangePasswordAction;
 import org.lorislab.tower.web.common.action.ClearPasswordAction;

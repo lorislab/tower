@@ -25,6 +25,7 @@ import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.KeyListener;
+import org.lorislab.tower.web.common.view.KeyViewController;
 
 /**
  * The user profile view controller.
@@ -47,10 +48,16 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     private UserDataController controller;
 
     /**
+     * The key view controller.
+     */
+    private final KeyViewController keyViewController;
+    
+    /**
      * The default constructor.
      */
     public UserDataViewController() {
         super(Context.PROFILE);
+        keyViewController = new KeyViewController(this, Context.PROFILE);
     }
 
     /**
@@ -98,4 +105,13 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
         UserConfig config = (UserConfig) tmp.getConfig();
         config.setKey(data);
     }
+    
+    /**
+     * Gets the key view controller.
+     *
+     * @return the key view controller.
+     */
+    public KeyViewController getKeyViewController() {
+        return keyViewController;
+    }    
 }

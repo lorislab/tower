@@ -24,6 +24,10 @@ package org.lorislab.tower.web.common.action;
 public enum Context {
    
     /**
+     * The ADS.
+     */
+    ADS,
+    /**
      * The use profile context.
      */
     PROFILE,

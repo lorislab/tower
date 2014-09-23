@@ -2,6 +2,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+                xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="menuParentSelected" value="PROFILE" />
@@ -19,11 +21,17 @@
     </ui:define>
 
     <ui:define name="form">
-        <i:input id="first" value="#{model.profile.firstName}" required="true" title="First name" placeholder="User first name" />
-        <i:input id="middle" value="#{model.profile.middleName}" required="false" title="Middle name" placeholder="User middle name" />
-        <i:input id="last" value="#{model.profile.lastName}" required="true" title="Lat name" placeholder="User last name" />
+        <c:callout title="User profile">
+            <i:input id="first" value="#{model.profile.firstName}" required="true" title="First name" placeholder="User first name" />
+            <i:input id="middle" value="#{model.profile.middleName}" required="false" title="Middle name" placeholder="User middle name" />
+            <i:input id="last" value="#{model.profile.lastName}" required="true" title="Last name" placeholder="User last name" />
+            <i:input id="last" type="email" value="#{model.profile.email}" required="true" title="Email" placeholder="User email" />
+        </c:callout>
+        <c:callout title="User configuration">
+            <i:checkbox id="notify" value="#{model.config.notification}" title="Email notification" />
+            <k:key id="key" value="#{model.config.key}" controller="#{userDataVC.keyViewController}" />
+        </c:callout>
     </ui:define>
-
 
 </ui:composition>
 

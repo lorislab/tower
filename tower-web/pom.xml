@@ -71,6 +71,12 @@
         <!-- GUARDIAN -->
         <dependency>
             <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-user-ads</artifactId>
+            <scope>provided</scope>
+            <type>ejb-client</type>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
             <artifactId>guardian-api</artifactId>
             <scope>provided</scope>
         </dependency>

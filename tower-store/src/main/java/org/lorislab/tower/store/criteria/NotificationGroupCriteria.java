@@ -13,48 +13,131 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.store.criteria;
 
 import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
 
 /**
+ * The notification group criteria.
  *
  * @author Andrej Petras
  */
 public class NotificationGroupCriteria extends AbstractSearchCriteria {
-    
+
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = -4685095438105046328L;
 
+    /**
+     * The system.
+     */
     private String system;
-    
+
+    /**
+     * The user.
+     */
     private String user;
-    
+
+    /**
+     * The fetch users flag.
+     */
+    private boolean fetchUsers;
+
+    /**
+     * The fetch systems flag.
+     */
+    private boolean fetchSystems;
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reset() {
         system = null;
         user = null;
+        fetchSystems = false;
+        fetchUsers = false;
     }
 
+    /**
+     * Sets the fetch systems flag.
+     *
+     * @param fetchSystems the fetch systems flag.
+     */
+    public void setFetchSystems(boolean fetchSystems) {
+        this.fetchSystems = fetchSystems;
+    }
+
+    /**
+     * Gets the fetch systems flag.
+     *
+     * @return the fetch systems flag.
+     */
+    public boolean isFetchSystems() {
+        return fetchSystems;
+    }
+
+    /**
+     * Sets the fetch users flag.
+     *
+     * @param fetchUsers the fetch users flag.
+     */
+    public void setFetchUsers(boolean fetchUsers) {
+        this.fetchUsers = fetchUsers;
+    }
+
+    /**
+     * Gets the fetch users flag.
+     *
+     * @return the fetch users flag.
+     */
+    public boolean isFetchUsers() {
+        return fetchUsers;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty() {
         return isEmpty(system, user);
     }
 
+    /**
+     * Gets the user.
+     *
+     * @return the user.
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * Sets the user.
+     *
+     * @param user the user.
+     */
     public void setUser(String user) {
         this.user = user;
     }
-    
+
+    /**
+     * Gets the system.
+     *
+     * @return the system.
+     */
     public String getSystem() {
         return system;
     }
 
+    /**
+     * Sets the system.
+     *
+     * @param system the system.
+     */
     public void setSystem(String system) {
         this.system = system;
     }
-    
+
 }

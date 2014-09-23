@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.lorislab.tower.store.model;
 
 import java.util.Set;
@@ -28,56 +27,100 @@ import javax.persistence.UniqueConstraint;
 import org.lorislab.jel.jpa.model.Persistent;
 
 /**
+ * The notification group.
  *
  * @author Andrej Petras
  */
 @Entity
-@Table(name = "TW_ST_NOTIFY_GROUP", uniqueConstraints = { @UniqueConstraint(columnNames = "C_NAME") })
+@Table(name = "TW_ST_NOTIFY_GROUP", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "C_NAME")})
 public class NotificationGroup extends Persistent {
-    
+
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 8971299788310715067L;
-    
+
+    /**
+     * The name.
+     */
     @Column(name = "C_NAME")
     private String name;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    /**
+     * The set of users.
+     */
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
             name = "TW_ST_NOTIFY_USERS",
-            joinColumns = @JoinColumn(name = "C_USER_GUID")            
+            joinColumns = @JoinColumn(name = "C_USER_GUID")
     )
     @Column(name = "C_USERS")
     private Set<String> users;
-    
-    @ElementCollection(fetch = FetchType.EAGER)
+
+    /**
+     * The set of systems.
+     */
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
             name = "TW_ST_NOTIFY_SYS",
-            joinColumns = @JoinColumn(name = "C_SYSTEM_GUID")            
+            joinColumns = @JoinColumn(name = "C_SYSTEM_GUID")
     )
     @Column(name = "C_USERS")
     private Set<String> systems;
-    
+
+    /**
+     * Gets the name.
+     *
+     * @return the name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name.
+     *
+     * @param name the name.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets the systems.
+     *
+     * @return the systems.
+     */
     public Set<String> getSystems() {
         return systems;
     }
 
+    /**
+     * Sets the systems.
+     *
+     * @param systems the systems.
+     */
     public void setSystems(Set<String> systems) {
         this.systems = systems;
     }
 
+    /**
+     * Gets the users.
+     *
+     * @return the users.
+     */
     public Set<String> getUsers() {
         return users;
     }
 
+    /**
+     * Sets the users.
+     *
+     * @param users the users.
+     */
     public void setUsers(Set<String> users) {
         this.users = users;
     }
-                
+
 }

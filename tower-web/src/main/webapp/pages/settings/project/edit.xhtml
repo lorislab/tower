@@ -1,40 +1,39 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
-				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
-				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="SETTINGS" />
-	<ui:param name="menuChildSelected" value="PROJECT" />
-	<ui:param name="pageTitle" value="Project" />
-	<ui:param name="pageIcon" value="icon-award" />
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="PROJECT" />
+    <ui:param name="pageTitle" value="Project" />
+    <ui:param name="pageIcon" value="icon-award" />
 
-	<ui:param name="model" value="#{projectVC.model}" />
-	<ui:param name="viewController" value="#{projectVC}" />
+    <ui:param name="model" value="#{projectVC.model}" />
+    <ui:param name="viewController" value="#{projectVC}" />
 
     <ui:define name="form">
-		<c:callout title="Project">
-			<i:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
-			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
-			<i:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />	
-		</c:callout>
-		<c:callout title="Bug tracking system">
-			<i:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
+        <b:callout title="Project">
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" />
+            <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />	
+        </b:callout>
+        <b:callout title="Bug tracking system">
+            <b:input id="btsId" value="#{model.btsId}" title="Bug tracking issue key" placeholder="Bug tracking issue key" />		
 
-			<i:selectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
-						 converter="#{projectVC.btSystemConverter}"
-						 title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
-		</c:callout>
+            <b:selectOne id="type" value="#{model.bts}" values="#{projectVC.btSystemConverter.data}" 
+                         converter="#{projectVC.btSystemConverter}"
+                         title="Bug tracking system" placeholder="--- select a bug tracking system ---"/>	
+        </b:callout>
     </ui:define>
 
-	<ui:define name="button-right">
-		<d:open controller="#{viewController}" dialog="pd" />
-	</ui:define>
+    <ui:define name="button-right">
+        <d:open controller="#{viewController}" dialog="pd" />
+    </ui:define>
 
-	<ui:define name="modal">
-		<d:dialog id="pd" controller="#{viewController}" title="Delete project" question="Do you want to delete the project #{model.name}?" />
-	</ui:define>
+    <ui:define name="modal">
+        <d:dialog id="pd" controller="#{viewController}" title="Delete project" question="Do you want to delete the project #{model.name}?" />
+    </ui:define>
 
 </ui:composition>
 

@@ -1,40 +1,39 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
-				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
-				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
-				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+                xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="SETTINGS" />
-	<ui:param name="menuChildSelected" value="SCM" />
-	<ui:param name="pageTitle" value="Source control system" />
-	<ui:param name="pageIcon" value="icon-fork" />
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="SCM" />
+    <ui:param name="pageTitle" value="Source control system" />
+    <ui:param name="pageIcon" value="icon-fork" />
 
-	<ui:param name="model" value="#{scmVC.model}" />
-	<ui:param name="viewController" value="#{scmVC}" />
+    <ui:param name="model" value="#{scmVC.model}" />
+    <ui:param name="viewController" value="#{scmVC}" />
 
     <ui:define name="form">
-		<c:callout title="Source control system">
-			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
-			<i:selectOne id="type" value="#{model.type}" values="#{applicationC.scmTypes}" title="Type" required="true"/>	
-			<i:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
-		</c:callout>
-		<c:callout id="b" title="Connection settings">
-			<i:checkbox id="enabled" value="#{model.auth}" title="Authentication" />			
-			<i:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
-			<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
-			<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="scmp"/>				
-		</c:callout>
+        <b:callout title="Source control system">
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
+            <b:selectOne id="type" value="#{model.type}" values="#{applicationC.scmTypes}" title="Type" required="true"/>	
+            <b:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
+        </b:callout>
+        <b:callout id="b" title="Connection settings">
+            <b:checkbox id="enabled" value="#{model.auth}" title="Authentication" />			
+            <b:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
+            <b:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
+            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="scmp"/>				
+        </b:callout>
     </ui:define>
 
-	<ui:define name="button-right">
-		<d:open controller="#{viewController}" dialog="scmd" />
-	</ui:define>
+    <ui:define name="button-right">
+        <d:open controller="#{viewController}" dialog="scmd" />
+    </ui:define>
 
-	<ui:define name="modal">
-		<d:dialog id="scmd" controller="#{viewController}" title="Delete source control system" question="Do you want to delete source control system #{model.name}?" />
-		<p:dialog id="scmp" controller="#{viewController.passwordVC}" />	
-	</ui:define>
+    <ui:define name="modal">
+        <d:dialog id="scmd" controller="#{viewController}" title="Delete source control system" question="Do you want to delete source control system #{model.name}?" />
+        <p:dialog id="scmp" controller="#{viewController.passwordVC}" />	
+    </ui:define>
 </ui:composition>
 

@@ -2,23 +2,23 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	<h:head>
-		<title>Tower</title>
-                <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>			
-		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/fontello.css"/>	
-		<h:outputStylesheet library="css" name="bootstrap.min.css"  />
-	</h:head>
-	
-	<body>
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container-full">
-				<ui:include src="/templates/includes/sidebar_header.xhtml" />
-			</div>
-		</div>
-		<div id="container" class="container-full">				
-			<ui:insert name="body">Body</ui:insert>					
-		</div>			
-	</body>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Tower</title>
+        <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>			
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/fontello.css"/>	
+        <h:outputStylesheet library="css" name="bootstrap.min.css"  />
+    </h:head>
+
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-full">
+                <ui:include src="/templates/includes/sidebar_header.xhtml" />
+            </div>
+        </div>
+        <div id="container" class="container-full">				
+            <ui:insert name="body">Body</ui:insert>					
+        </div>			
+    </body>
 </html>

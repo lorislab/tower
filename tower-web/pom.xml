@@ -103,5 +103,31 @@
             <scope>provided</scope>
         </dependency>  				
     </dependencies>
-				
+	
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>	
+    
+    <profiles>
+        <profile>
+            <id>sync</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.lorislab.maven</groupId>
+                        <artifactId>jboss-server-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>sync</goal>
+                                </goals>
+                            </execution>
+                        </executions>                        
+                    </plugin>					
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+                                   		
 </project>

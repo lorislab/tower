@@ -68,9 +68,12 @@ public class ConfigurationViewController<T> extends AbstractEntityViewController
      */
     @Override
     @FacesServiceMethod
-    public Object edit(String guid) {
-        T tmp = service.getConfiguration(clazz);
-        setModel(tmp);
+    public Object edit(String guid) throws Exception {
+        if (isEmpty()) {
+            super.edit(guid);
+            T tmp = service.getConfiguration(clazz);
+            setModel(tmp);
+        }
         return null;
     }
 

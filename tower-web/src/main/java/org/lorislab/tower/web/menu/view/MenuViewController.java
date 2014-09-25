@@ -81,10 +81,6 @@ public class MenuViewController extends AbstractViewController {
      */
     private final MenuAction profile;
     /**
-     * The role menu.
-     */
-    private final MenuAction role;
-    /**
      * The source control management menu.
      */
     private final MenuAction scm;
@@ -115,7 +111,6 @@ public class MenuViewController extends AbstractViewController {
         deployment = new MenuAction(this, Menu.DEPLOYMENT);
         mail = new MenuAction(this, Menu.MAIL, Navigation.TO_MAIL);
         profile = new MenuAction(this, Menu.PROFILE, Navigation.TO_PROFILE);
-        role = new MenuAction(this, Menu.ROLE, Navigation.TO_ROLE);
         scm = new MenuAction(this, Menu.SCM, Navigation.TO_SCM);
         system = new MenuAction(this, Menu.SYSTEM, Navigation.TO_SYSTEM);
         timer = new MenuAction(this, Menu.TIMER, Navigation.TO_TIMER);
@@ -180,15 +175,6 @@ public class MenuViewController extends AbstractViewController {
      */
     public MenuAction getMail() {
         return mail;
-    }
-
-    /**
-     * Gets the role menu.
-     *
-     * @return the role menu.
-     */
-    public MenuAction getRole() {
-        return role;
     }
 
     /**

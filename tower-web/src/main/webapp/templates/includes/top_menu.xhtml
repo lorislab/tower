@@ -1,33 +1,33 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"                
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:h="http://xmlns.jcp.org/jsf/html"
-				xmlns:jsf="http://xmlns.jcp.org/jsf">
-	
-	<h:form>
-		<ui:include src="/templates/includes/sidebar_header.xhtml" />
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-		<ul class="nav navbar-nav navbar-right">	
+    <h:form>
+        <ui:include src="/templates/includes/sidebar_header.xhtml" />
 
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-user"></i> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu dropdown-user">
-					<li>
-						<a jsf:outcome="#{menuVC.profile.execute()}" jsf:rendered="#{menuVC.profile.available}">
-							<i class="icon-user"></i> User Profile
-						</a>					
-					</li>					
-					<li jsf:rendered="#{menuVC.logout.available}">
-						<a jsf:action="#{menuVC.logout.execute}" jsf:rendered="#{menuVC.profile.available}"> 
-							<i class="icon-logout"></i> Logout
-						</a>
-					</li>
+        <ul class="nav navbar-nav navbar-right">	
 
-				</ul>
-			</li>					
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="icon-user"></i> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <a jsf:outcome="#{menuVC.profile.execute()}" jsf:rendered="#{menuVC.profile.available}">
+                            <i class="icon-user"></i> User Profile
+                        </a>					
+                    </li>					
+                    <li jsf:rendered="#{menuVC.logout.available}">
+                        <a jsf:action="#{menuVC.logout.execute}" jsf:rendered="#{menuVC.profile.available}"> 
+                            <i class="icon-logout"></i> Logout
+                        </a>
+                    </li>
 
-		</ul>							
-	</h:form>
+                </ul>
+            </li>					
+
+        </ul>							
+    </h:form>
 </ui:composition>
 

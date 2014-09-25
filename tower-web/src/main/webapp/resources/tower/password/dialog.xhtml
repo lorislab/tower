@@ -1,38 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:jsf="http://xmlns.jcp.org/jsf"
-	  xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
-	  xmlns:m="http://xmlns.jcp.org/jsf/composite/tower/modal"
-	  xmlns:s="http://xmlns.jcp.org/jsf/composite/tower/message"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:m="http://xmlns.jcp.org/jsf/composite/tower/modal"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite">
 
-	<composite:interface>
-		<composite:attribute name="controller" required="true"/>
-		<composite:attribute name="title" required="false" default="Title"/>
-		<composite:attribute name="question" required="false" default="Question?"/>
-		<composite:attribute name="render" required="false" default="editForm:b:password:input"/>		
-	</composite:interface>
+    <composite:interface>
+        <composite:attribute name="controller" required="true"/>
+        <composite:attribute name="title" required="false" default="Title"/>
+        <composite:attribute name="question" required="false" default="Question?"/>
+        <composite:attribute name="render" required="false" default="editForm:b:password:input"/>		
+    </composite:interface>
 
-	<composite:implementation>		
-		<m:modal id="p" title="Change password">								
-			<m:body>
-				<fieldset>
-					<i:input id="new1" value="#{cc.attrs.controller.password.new1}" type="password" required="true" title="New password" />
-					<i:input id="new2" value="#{cc.attrs.controller.password.new2}" type="password" required="true" title="Confirm password" />
-					<s:messages />
-				</fieldset>
-			</m:body>
-			<m:footer>				
-				<m:close />					
-				<button type="button" class="btn btn-danger" jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}"
-						jsf:action="#{cc.attrs.controller.changePasswordAction.execute}">
-					<f:ajax render="@form #{cc.attrs.render}" execute="@form"
-							onevent="function(d){if(d.status==='success')if($('##{cc.id}\\\\:p\\\\:modalForm\\\\:status').length === 0)$('##{cc.id}\\\\:p\\\\:modal').modal('hide');}" />
-					Change password
-				</button>						
-			</m:footer>			
-		</m:modal>	
-	</composite:implementation>
+    <composite:implementation>		
+        <m:modal id="p" title="Change password">								
+            <m:body>
+                <fieldset>
+                    <b:input id="new1" value="#{cc.attrs.controller.password.new1}" type="password" required="true" title="New password" />
+                    <b:input id="new2" value="#{cc.attrs.controller.password.new2}" type="password" required="true" title="Confirm password" />
+                    <b:messages />
+                </fieldset>
+            </m:body>
+            <m:footer>				
+                <m:close />					
+                <button type="button" class="btn btn-danger" jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}"
+                        jsf:action="#{cc.attrs.controller.changePasswordAction.execute}">
+                    <f:ajax render="@form #{cc.attrs.render}" execute="@form"
+                            onevent="function(d){if(d.status==='success')if($('##{cc.id}\\\\:p\\\\:modalForm\\\\:status').length === 0)$('##{cc.id}\\\\:p\\\\:modal').modal('hide');}" />
+                    Change password
+                </button>						
+            </m:footer>			
+        </m:modal>	
+    </composite:implementation>
 </html>

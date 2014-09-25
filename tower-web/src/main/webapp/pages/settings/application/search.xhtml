@@ -1,34 +1,32 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
-				xmlns:f="http://xmlns.jcp.org/jsf/core"
-				xmlns:h="http://xmlns.jcp.org/jsf/html"	
-				xmlns:t="http://xmlns.jcp.org/jsf/composite/tower/table"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"	
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/searchTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="SETTINGS" />
-	<ui:param name="menuChildSelected" value="APPLICATION" />
-	<ui:param name="pageTitle" value="Applications" />
-	<ui:param name="pageIcon" value="icon-beaker" />
-	
-	<ui:param name="viewController" value="#{applicationVC}" />
-	<ui:param name="searchViewController" value="#{applicationSVC}" />
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="APPLICATION" />
+    <ui:param name="pageTitle" value="Applications" />
+    <ui:param name="pageIcon" value="icon-beaker" />
+
+    <ui:param name="viewController" value="#{applicationVC}" />
+    <ui:param name="searchViewController" value="#{applicationSVC}" />
 
     <ui:define name="tableHead">
-		<th> </th>	
-		<th>Index</th>
-		<th>Enabled</th>				
-		<th>Name</th>
-		<th>Type</th>
-	</ui:define>
+        <th>Index</th>
+        <th>Enabled</th>				
+        <th>Name</th>
+        <th>Type</th>
+    </ui:define>
 
     <ui:define name="tableRow">
-		<td><t:open controller="#{viewController}" guid="#{item.guid}" /></td>
-		<td>#{item.index}</td>
-		<td><t:check status="#{item.enabled}"/></td>
-		<td>#{item.name}</td>												
-		<td>#{item.type}</td>
-	</ui:define>
+        <td>#{item.index}</td>
+        <td><b:check value="#{item.enabled}"/></td>
+        <td>#{item.name}</td>												
+        <td>#{item.type}</td>
+    </ui:define>
 
 
 </ui:composition>

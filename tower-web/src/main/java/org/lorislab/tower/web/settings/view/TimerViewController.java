@@ -104,7 +104,7 @@ public class TimerViewController extends ConfigurationViewController<TimerConfig
      */
     @Override
     @FacesServiceMethod
-    public Object edit(String guid) {        
+    public Object edit(String guid) throws Exception {        
         Object result = super.edit(guid);
         updateDate();
         return result;

@@ -37,7 +37,13 @@
             <groupId>org.lorislab.tower</groupId>
             <artifactId>tower-postman-templates</artifactId>
             <version>${project.version}</version>
-        </dependency>		
+        </dependency>
+        <!-- GUARDIAN -->
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-user-ads</artifactId>
+            <type>ejb</type>
+        </dependency>        		
         <!-- BARN -->	
         <dependency>
             <groupId>org.lorislab.barn</groupId>
@@ -133,6 +139,11 @@
                     <displayName>tower-ear</displayName>
                     <modules> 
                         <ejbModule>
+                            <groupId>org.lorislab.guardian</groupId>
+                            <artifactId>guardian-user-ads</artifactId>
+                            <bundleFileName>guardian-user-ads.jar</bundleFileName>
+                        </ejbModule>						                                    
+                        <ejbModule>
                             <groupId>org.lorislab.postman</groupId>
                             <artifactId>postman-service</artifactId>
                             <bundleFileName>tower-postman.jar</bundleFileName>
@@ -182,10 +193,46 @@
                     <plugin>
                         <groupId>org.lorislab.maven</groupId>
                         <artifactId>jboss-server-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>                        
                     </plugin>					
                 </plugins>
             </build>
-        </profile>		
+        </profile>
+        <profile>
+            <id>exdeploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <configuration>
+                            <unpackTypes>war,ejb</unpackTypes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.lorislab.maven</groupId>
+                        <artifactId>jboss-server-plugin</artifactId>
+                        <configuration>
+                            <exploded>true</exploded>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>                          
+                    </plugin>					
+                </plugins>
+            </build>
+        </profile>        		
     </profiles>	
 	
 </project>

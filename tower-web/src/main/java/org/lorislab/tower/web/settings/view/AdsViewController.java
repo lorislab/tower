@@ -18,7 +18,6 @@ package org.lorislab.tower.web.settings.view;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.user.ads.config.ConnectionConfig;
-import org.lorislab.tower.timer.model.TimerConfig;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;

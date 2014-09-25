@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-	<display-name>tower.web</display-name>
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+    <display-name>tower.web</display-name>
 	
-	<context-param>
-		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<param-value>server</param-value>
-	</context-param>
-	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
-	</context-param>
-	<!-- Facelets pages will use the .xhtml extension -->
-	<context-param>
-		<param-name>javax.faces.FACELETS_VIEW_MAPPINGS</param-name>
-		<param-value>*.xhtml</param-value>
-	</context-param>
-	<!-- session timeout length in minutes -->
-	<session-config>
-		<session-timeout>30</session-timeout>
-	</session-config>
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	<mime-mapping>
-		<extension>xcss</extension>
-		<mime-type>text/css</mime-type>
-	</mime-mapping>
+    <context-param>
+        <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+        <param-value>/WEB-INF/beefaces.taglib.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <!-- Facelets pages will use the .xhtml extension -->
+    <context-param>
+        <param-name>javax.faces.FACELETS_VIEW_MAPPINGS</param-name>
+        <param-value>*.xhtml</param-value>
+    </context-param>
+    <!-- session timeout length in minutes -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <mime-mapping>
+        <extension>xcss</extension>
+        <mime-type>text/css</mime-type>
+    </mime-mapping>
 	
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>tower</web-resource-name>
-			<url-pattern>/pages/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>user</role-name>
-		</auth-constraint>
-	</security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>tower</web-resource-name>
+            <url-pattern>/pages/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
 		
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/login.xhtml</form-login-page>
-			<form-error-page>/login.xhtml</form-error-page>
-		</form-login-config>		
-	</login-config>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/login.xhtml</form-error-page>
+        </form-login-config>		
+    </login-config>
 		
-	<security-role>
-		<role-name>user</role-name>		
-	</security-role>		
+    <security-role>
+        <role-name>user</role-name>		
+    </security-role>		
 </web-app>

@@ -1,123 +1,123 @@
 <?xml version="1.0"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-		version="2.2">
-
-	<navigation-rule>
-		<from-view-id>/*</from-view-id>
-		<!-- USER MANAGEMENT: USER -->
-		<navigation-case>
-			<from-outcome>toUser</from-outcome>
-			<to-view-id>/pages/userman/user/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- USER MANAGEMENT: ROLE -->
-		<navigation-case>
-			<from-outcome>toRole</from-outcome>
-			<to-view-id>/pages/userman/role/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>	
-		<!-- SETTINGS: AGENT -->
-		<navigation-case>
-			<from-outcome>toAgent</from-outcome>
-			<to-view-id>/pages/settings/agent/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>	
-		<navigation-case>
-			<from-outcome>toAgentEdit</from-outcome>
-			<to-view-id>/pages/settings/agent/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- SETTINGS: APPLICATION -->				
-		<navigation-case>
-			<from-outcome>toApplication</from-outcome>
-			<to-view-id>/pages/settings/application/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>toApplicationEdit</from-outcome>
-			<to-view-id>/pages/settings/application/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- SETTINGS: BTS -->								
-		<navigation-case>
-			<from-outcome>toBTS</from-outcome>
-			<to-view-id>/pages/settings/bts/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>toBTSEdit</from-outcome>
-			<to-view-id>/pages/settings/bts/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- SETTINGS: MAIL -->		
-		<navigation-case>
-			<from-outcome>toMail</from-outcome>
-			<to-view-id>/pages/settings/mail/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- SETTINGS: PROJECT -->
-		<navigation-case>
-			<from-outcome>toProject</from-outcome>
-			<to-view-id>/pages/settings/project/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>toProjectEdit</from-outcome>
-			<to-view-id>/pages/settings/project/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>	
-		<!-- SETTINGS: SCM -->		
-		<navigation-case>
-			<from-outcome>toSCM</from-outcome>
-			<to-view-id>/pages/settings/scm/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>toSCMEdit</from-outcome>
-			<to-view-id>/pages/settings/scm/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- SETTINGS: SYSTEM -->			
-		<navigation-case>
-			<from-outcome>toSystem</from-outcome>
-			<to-view-id>/pages/settings/system/search.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>toSystemEdit</from-outcome>
-			<to-view-id>/pages/settings/system/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>			
-		<!-- SETTINGS: TIMER -->
-		<navigation-case>
-			<from-outcome>toTimer</from-outcome>
-			<to-view-id>/pages/settings/timer/edit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>						
-		<!-- DASHBOARD -->			
-		<navigation-case>
-			<from-outcome>toDashboard</from-outcome>
-			<to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- DEPLOYMENT -->
-		<navigation-case>
-			<from-outcome>toDeploy</from-outcome>
-			<to-view-id>/pages/deploy/deploy.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<!-- OTHER -->
-		<navigation-case>
-			<from-outcome>toProfile</from-outcome>
-			<to-view-id>/pages/profile/profile.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>		
-		<navigation-case>
-			<from-outcome>toHome</from-outcome>
-			<to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>				
-	</navigation-rule>
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
+              
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <!-- USER MANAGEMENT: USER -->
+        <navigation-case>
+            <from-outcome>toUser</from-outcome>
+            <to-view-id>/pages/userman/user/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- USER MANAGEMENT: ROLE -->
+        <navigation-case>
+            <from-outcome>toRole</from-outcome>
+            <to-view-id>/pages/userman/role/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>	
+        <!-- SETTINGS: AGENT -->
+        <navigation-case>
+            <from-outcome>toAgent</from-outcome>
+            <to-view-id>/pages/settings/agent/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>	
+        <navigation-case>
+            <from-outcome>toAgentEdit</from-outcome>
+            <to-view-id>/pages/settings/agent/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- SETTINGS: APPLICATION -->				
+        <navigation-case>
+            <from-outcome>toApplication</from-outcome>
+            <to-view-id>/pages/settings/application/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toApplicationEdit</from-outcome>
+            <to-view-id>/pages/settings/application/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- SETTINGS: BTS -->								
+        <navigation-case>
+            <from-outcome>toBTS</from-outcome>
+            <to-view-id>/pages/settings/bts/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toBTSEdit</from-outcome>
+            <to-view-id>/pages/settings/bts/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- SETTINGS: MAIL -->		
+        <navigation-case>
+            <from-outcome>toMail</from-outcome>
+            <to-view-id>/pages/settings/mail/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- SETTINGS: PROJECT -->
+        <navigation-case>
+            <from-outcome>toProject</from-outcome>
+            <to-view-id>/pages/settings/project/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toProjectEdit</from-outcome>
+            <to-view-id>/pages/settings/project/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>	
+        <!-- SETTINGS: SCM -->		
+        <navigation-case>
+            <from-outcome>toSCM</from-outcome>
+            <to-view-id>/pages/settings/scm/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toSCMEdit</from-outcome>
+            <to-view-id>/pages/settings/scm/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- SETTINGS: SYSTEM -->			
+        <navigation-case>
+            <from-outcome>toSystem</from-outcome>
+            <to-view-id>/pages/settings/system/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toSystemEdit</from-outcome>
+            <to-view-id>/pages/settings/system/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>			
+        <!-- SETTINGS: TIMER -->
+        <navigation-case>
+            <from-outcome>toTimer</from-outcome>
+            <to-view-id>/pages/settings/timer/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>						
+        <!-- DASHBOARD -->			
+        <navigation-case>
+            <from-outcome>toDashboard</from-outcome>
+            <to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- DEPLOYMENT -->
+        <navigation-case>
+            <from-outcome>toDeploy</from-outcome>
+            <to-view-id>/pages/deploy/deploy.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <!-- OTHER -->
+        <navigation-case>
+            <from-outcome>toProfile</from-outcome>
+            <to-view-id>/pages/profile/profile.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>		
+        <navigation-case>
+            <from-outcome>toHome</from-outcome>
+            <to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>				
+    </navigation-rule>
 </faces-config>

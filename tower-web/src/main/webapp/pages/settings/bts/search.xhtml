@@ -1,32 +1,30 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:t="http://xmlns.jcp.org/jsf/composite/tower/table"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/searchTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="SETTINGS" />
-	<ui:param name="menuChildSelected" value="BTS" />
-	<ui:param name="pageTitle" value="Bug tracking systems" />
-	<ui:param name="pageIcon" value="icon-bug" />
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="BTS" />
+    <ui:param name="pageTitle" value="Bug tracking systems" />
+    <ui:param name="pageIcon" value="icon-bug" />
 
-	<ui:param name="viewController" value="#{btsVC}" />
-	<ui:param name="searchViewController" value="#{btsSVC}" />
+    <ui:param name="viewController" value="#{btsVC}" />
+    <ui:param name="searchViewController" value="#{btsSVC}" />
 
-    <ui:define name="tableHead">
-		<th> </th>					
-		<th>Authentication</th>
-		<th>Name</th>
-		<th>User</th>
-		<th>Server</th>
-		<th>Type</th>
-	</ui:define>
+    <ui:define name="tableHead">			
+        <th>Authentication</th>
+        <th>Name</th>
+        <th>User</th>
+        <th>Server</th>
+        <th>Type</th>
+    </ui:define>
 
     <ui:define name="tableRow">
-		<td><t:open controller="#{viewController}" guid="#{item.guid}" /></td>		
-		<td><t:check status="#{item.auth}"/></td>
-		<td>#{item.name}</td>
-		<td>#{item.user}</td>												
-		<td>#{item.server}</td>
-		<td>#{item.type}</td>	
-	</ui:define>
+        <td><b:check value="#{item.auth}"/></td>
+        <td>#{item.name}</td>
+        <td>#{item.user}</td>												
+        <td>#{item.server}</td>
+        <td>#{item.type}</td>	
+    </ui:define>
 
 </ui:composition>

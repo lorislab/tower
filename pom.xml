@@ -258,23 +258,11 @@
                     <groupId>org.lorislab.maven</groupId>
                     <artifactId>jboss-server-plugin</artifactId>
                     <version>1.0.4-SNAPSHOT</version>
-                    <executions>
-                        <execution>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>deploy</goal>
-                            </goals>
-                            <configuration>
-                                <jbossDir>${JBOSS_TOWER_HOME}</jbossDir>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>											
-                <plugin>
-                    <groupId>com.samaxes.maven</groupId>
-                    <artifactId>minify-maven-plugin</artifactId>
-                    <version>1.7.2</version>
-                </plugin>				
+                    <configuration>
+                        <ear>tower</ear>
+                        <jbossDir>${JBOSS_TOWER_HOME}</jbossDir>
+                    </configuration>
+                </plugin>															
                 <plugin>
                     <groupId>org.lorislab.maven</groupId>
                     <artifactId>messagebundles-plugin</artifactId>

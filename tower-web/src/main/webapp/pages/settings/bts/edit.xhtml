@@ -1,40 +1,39 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
-				xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
-				xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
-				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+                xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="SETTINGS" />
-	<ui:param name="menuChildSelected" value="BTS" />
-	<ui:param name="pageTitle" value="Bug tracking system" />
-	<ui:param name="pageIcon" value="icon-bug" />
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="BTS" />
+    <ui:param name="pageTitle" value="Bug tracking system" />
+    <ui:param name="pageIcon" value="icon-bug" />
 
-	<ui:param name="model" value="#{btsVC.model}" />
-	<ui:param name="viewController" value="#{btsVC}" />
+    <ui:param name="model" value="#{btsVC.model}" />
+    <ui:param name="viewController" value="#{btsVC}" />
 
     <ui:define name="form">
-		<c:callout title="Bug tracking system">				
-			<i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
-			<i:selectOne id="type" value="#{model.type}" values="#{applicationC.btsTypes}" title="Type" required="true"/>	
-			<i:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />			
-		</c:callout>
-		<c:callout id="b" title="Connection settings">
-			<i:checkbox id="enabled" value="#{model.auth}" title="Authentication" />
-			<i:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
-			<i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
-			<p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="btsp"/>				
-		</c:callout>
+        <b:callout title="Bug tracking system">				
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
+            <b:selectOne id="type" value="#{model.type}" values="#{applicationC.btsTypes}" title="Type" required="true"/>	
+            <b:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />			
+        </b:callout>
+        <b:callout id="b" title="Connection settings">
+            <b:checkbox id="enabled" value="#{model.auth}" title="Authentication" />
+            <b:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
+            <b:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
+            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="btsp"/>				
+        </b:callout>
     </ui:define>
 
-	<ui:define name="button-right">
-		<d:open controller="#{viewController}" dialog="btsd" />
-	</ui:define>
+    <ui:define name="button-right">
+        <d:open controller="#{viewController}" dialog="btsd" />
+    </ui:define>
 
-	<ui:define name="modal">
-		<d:dialog id="btsd" controller="#{viewController}" title="Delete bug tracking system" question="Do you want to delete bug tracking system #{model.name}?" />
-		<p:dialog id="btsp" controller="#{viewController.passwordVC}" />	
-	</ui:define>
+    <ui:define name="modal">
+        <d:dialog id="btsd" controller="#{viewController}" title="Delete bug tracking system" question="Do you want to delete bug tracking system #{model.name}?" />
+        <p:dialog id="btsp" controller="#{viewController.passwordVC}" />	
+    </ui:define>
 </ui:composition>
 

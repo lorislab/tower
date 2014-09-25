@@ -1,52 +1,44 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:f="http://xmlns.jcp.org/jsf/core"
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
-				xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
-				xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="SETTINGS" />
-	<ui:param name="menuChildSelected" value="TIMER" />
-	<ui:param name="pageTitle" value="Timer" />
-	<ui:param name="pageIcon" value="icon-clock" />
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="TIMER" />
+    <ui:param name="pageTitle" value="Timer" />
+    <ui:param name="pageIcon" value="icon-clock" />
 
-	<ui:param name="model" value="#{timerVC.model}" />
-	<ui:param name="viewController" value="#{timerVC}" />
+    <ui:param name="model" value="#{timerVC.model}" />
+    <ui:param name="viewController" value="#{timerVC}" />
 
-	<ui:define name="metadata">
-		<f:metadata>
-			<f:viewAction action="#{timerVC.openAction.execute}" onPostback="true"/>
-		</f:metadata>
-	</ui:define>
-
-	<ui:define name="form">
-		<c:callout id="b" title="Timer">
-			<i:checkbox id="auto" value="#{model.start}" title="Automatically start the timer" />	
-			<i:checkbox id="enabled" value="#{model.enabled}" title="Enable timer execution" />	
-			<i:input id="hour" value="#{model.hour}" title="Hours" placeholder="Hour timer interval" />
-			<i:input id="minute" value="#{model.minute}" title="Minutes" placeholder="Minutes timer interval" />
-			<i:input id="second" value="#{model.second}" title="Seconds" placeholder="Seconds timer interval" />
-			<i:output id="date" value="#{timerVC.date}" title="Timer next execution" />
-		</c:callout>
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewAction action="#{timerVC.editAction.execute}" onPostback="true"/>
+        </f:metadata>
     </ui:define>
 
-	<ui:define name="button-right">
-		<button name="" jsf:id="stopTimer" type="button" class="btn btn-danger" style="margin-right: 5px;"
-				jsf:rendered="#{timerVC.stopAction.available}" 
-				jsf:disabled="#{!timerVC.stopAction.enabled}" 
-				jsf:action="#{timerVC.stopAction.execute}">
-			<f:ajax render="@this editForm:startTimer editForm:b:date:input" execute="@this"/>
-			<i class="icon-stop"></i> Stop
-		</button>		
-		<button name="" jsf:id="startTimer" type="button" class="btn btn-success"
-				jsf:rendered="#{timerVC.startAction.available}" 
-				jsf:disabled="#{!timerVC.startAction.enabled}" 
-				jsf:action="#{timerVC.startAction.execute}">
-			<f:ajax render="@this editForm:stopTimer editForm:b:date:input" execute="@this"/>
-			<i class="icon-play"></i> Start
-		</button>
-	</ui:define>
+    <ui:define name="form">
+        <b:callout id="b" title="Timer">
+            <b:checkbox id="auto" value="#{model.start}" title="Automatically start the timer" />	
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enable timer execution" />	
+            <b:input id="hour" value="#{model.hour}" title="Hours" placeholder="Hour timer interval" />
+            <b:input id="minute" value="#{model.minute}" title="Minutes" placeholder="Minutes timer interval" />
+            <b:input id="second" value="#{model.second}" title="Seconds" placeholder="Seconds timer interval" />
+            <b:output id="date" value="#{timerVC.date}" title="Timer next execution" />
+        </b:callout>
+    </ui:define>
+
+    <ui:define name="button-right">
+        <b:button type="danger" ctr="#{timerVC.stopAction}" title="Stop" icon="stop">
+            <f:ajax event="click" render="@this editForm:startTimer editForm:b:date:input" execute="@this"/>
+        </b:button>	
+        <span style="padding-right: 5px" />
+        <b:button type="success" ctr="#{timerVC.startAction}" title="Start" icon="play">
+            <f:ajax event="click" render="@this editForm:startTimer editForm:b:date:input" execute="@this"/>
+        </b:button>
+    </ui:define>
 
 </ui:composition>
 

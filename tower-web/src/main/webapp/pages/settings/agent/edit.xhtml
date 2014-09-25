@@ -1,9 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:i="http://xmlns.jcp.org/jsf/composite/tower/input"
                 xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
-                xmlns:c="http://xmlns.jcp.org/jsf/composite/tower/callout"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="menuParentSelected" value="SETTINGS" />
@@ -15,17 +14,17 @@
     <ui:param name="viewController" value="#{agentVC}" />
 
     <ui:define name="form">
-        <c:callout title="Agent">
-            <i:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
-            <i:selectOne id="type" value="#{model.type}" values="#{applicationC.agentTypes}"
+        <b:callout title="Agent">
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
+            <b:selectOne id="type" value="#{model.type}" values="#{applicationC.agentTypes}"
                          converter="#{applicationC.enumConverter}" title="Type" placeholder="--- select agent type ---"/>
-        </c:callout>
-        <c:callout id="b" title="Connection settings">
-            <i:checkbox id="auth" value="#{model.authentication}" title="Authentication" />	
-            <i:input id="url" value="#{model.url}" required="true" title="The agent URL" placeholder="The URL fo the agent" />				
-            <i:input id="user" value="#{model.user}" title="User" placeholder="The user name" />				
+        </b:callout>
+        <b:callout id="b" title="Connection settings">
+            <b:checkbox id="auth" value="#{model.authentication}" title="Authentication" />	
+            <b:input id="url" value="#{model.url}" required="true" title="The agent URL" placeholder="The URL fo the agent" />				
+            <b:input id="user" value="#{model.user}" title="User" placeholder="The user name" />				
             <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="agentp"/>			
-        </c:callout>		
+        </b:callout>		
     </ui:define>
 
     <ui:define name="button-right">

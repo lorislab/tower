@@ -66,6 +66,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     @Override
     @FacesServiceMethod
     public Object edit(String guid) throws Exception {
+        super.edit(guid);
         controller.load();
         return null;
     }

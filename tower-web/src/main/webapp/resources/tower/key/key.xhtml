@@ -1,42 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:composite="http://xmlns.jcp.org/jsf/composite"
-	  xmlns:jsf="http://xmlns.jcp.org/jsf"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-	<composite:interface>
-		<composite:attribute name="title" required="false" default="Key"/>
-		<composite:attribute name="controller" required="true"/>
-		<composite:attribute name="value" required="true"/>
-		<composite:attribute name="render" required="false" default="editForm:b:key:input"/>
-	</composite:interface>
+    <composite:interface>
+        <composite:attribute name="title" required="false" default="Key"/>
+        <composite:attribute name="controller" required="true"/>
+        <composite:attribute name="value" required="true"/>
+        <composite:attribute name="render" required="false" default="editForm:b:key:input"/>
+    </composite:interface>
 
-	<composite:implementation>		
-		<div class="control-group">
-			
-			<label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
-			<div class="input-group">	
-				<span class="input-group-addon">
-					<i class="icon-doc-text"></i>
-				</span>
-				<h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="false" readonly="true"></h:inputText>				
-				<span class="input-group-btn">
-					<button name="" type="button" class="btn btn-primary"  
-							jsf:rendered="#{cc.attrs.controller.createKeyAction.available}" 
-							jsf:action="#{cc.attrs.controller.createKeyAction.execute}">		
-						<f:ajax render="@this #{cc.attrs.render}" execute="@this" />
-						<i class="icon-key"></i>
-					</button>			
-					<button name="" type="button" class="btn btn-primary"  
-							jsf:rendered="#{cc.attrs.controller.clearKeyAction.available}"
-							jsf:action="#{cc.attrs.controller.clearKeyAction.execute}">
-						<f:ajax render="@this #{cc.attrs.render}" execute="@this" />
-						<i class="icon-trash"></i>
-					</button>
-				</span>
-			</div>
-		</div>			
-	</composite:implementation>
+    <composite:implementation>		
+        <div class="control-group">
+            <label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
+            <div class="input-group">	
+                <span class="input-group-addon">
+                    <i class="icon-doc-text"></i>
+                </span>
+                <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="false" readonly="true"></h:inputText>				
+                <span class="input-group-btn">
+                    <b:button ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="key">
+                        <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
+                    </b:button>
+                    <b:button ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="trash">
+                        <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
+                    </b:button>
+                </span>
+            </div>
+        </div>			
+    </composite:implementation>
 </html>

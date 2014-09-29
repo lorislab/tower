@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
@@ -27,13 +27,14 @@
         </b:callout>		
     </ui:define>
 
-    <ui:define name="button-right">
-        <d:open controller="#{viewController}" dialog="agentd" />
-    </ui:define>
 
     <ui:define name="modal">
-        <d:dialog id="agentd" controller="#{viewController}" title="Delete agent" question="Do you want to delete agent #{model.name}?" />
-        <p:dialog id="agentp" controller="#{viewController.passwordVC}" />	
+        <h:form id="modalForm" class="form-horizontal" prependId="false" >
+            <p:dialog id="agentp" controller="#{viewController.passwordVC}" />	
+        </h:form>
+        <h:form id="pdForm" class="form-horizontal" prependId="false" >
+            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete agent" question="Do you want to delete agent #{model.name}?" />
+        </h:form>          
     </ui:define>
 </ui:composition>
 

@@ -55,7 +55,6 @@ public class NotificationGroup extends Persistent {
             name = "TW_ST_NOTIFY_USERS",
             joinColumns = @JoinColumn(name = "C_USER_GUID")
     )
-    @Column(name = "C_USERS")
     private Set<String> users;
 
     /**
@@ -66,9 +65,19 @@ public class NotificationGroup extends Persistent {
             name = "TW_ST_NOTIFY_SYS",
             joinColumns = @JoinColumn(name = "C_SYSTEM_GUID")
     )
-    @Column(name = "C_USERS")
+    @Column(name = "C_SYSTEMS")
     private Set<String> systems;
 
+    /**
+     * The set of application.
+     */
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+            name = "TW_ST_NOTIFY_APP",
+            joinColumns = @JoinColumn(name = "C_APP_GUID")
+    )
+    private Set<String> applications;
+    
     /**
      * Gets the name.
      *
@@ -87,6 +96,24 @@ public class NotificationGroup extends Persistent {
         this.name = name;
     }
 
+    /**
+     * Gets the applications.
+     *
+     * @return the applications.
+     */
+    public Set<String> getApplications() {
+        return applications;
+    }
+
+    /**
+     * Sets the applications.
+     *
+     * @param applications the applications.
+     */
+    public void setApplications(Set<String> applications) {
+        this.applications = applications;
+    }
+    
     /**
      * Gets the systems.
      *

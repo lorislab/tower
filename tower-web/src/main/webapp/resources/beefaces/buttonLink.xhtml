@@ -6,6 +6,7 @@
 
     <composite:interface>
         <composite:attribute name="ctr" required="true"/>
+        <composite:attribute name="type" required="false" default="default"/>
         <composite:attribute name="title" required="false"/>
         <composite:attribute name="icon" required="false" default="cancel"/>
         <composite:attribute name="immediate" required="false" default="true"/>
@@ -13,7 +14,7 @@
     </composite:interface>
 
     <composite:implementation>
-        <a jsf:immediate="#{cc.attrs.immediate}" jsf:rendered="#{cc.attrs.ctr.available}" jsf:action="#{cc.attrs.ctr.execute}">
+        <a class="btn btn-#{cc.attrs.type}" jsf:immediate="#{cc.attrs.immediate}" jsf:rendered="#{cc.attrs.ctr.available}" jsf:action="#{cc.attrs.ctr.execute}">
             <i class="icon-#{cc.attrs.icon}"></i> #{cc.attrs.title}
             <composite:insertChildren />
         </a>		

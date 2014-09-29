@@ -6,11 +6,12 @@
 
     <composite:interface>
         <composite:attribute name="ctr" required="true"/>
-        <composite:attribute name="title" required="false" default="Save"/>
+        <composite:attribute name="title" required="false" default=""/>
         <composite:attribute name="name" required="false" default=""/>
         <composite:attribute name="icon" required="false" default="floppy"/>
-        <composite:attribute name="type" required="false" default="default"/>
-        <composite:clientBehavior name="click" targets="b" event="action" />
+        <composite:attribute name="type" required="false" default="default" />
+        <composite:clientBehavior name="click" event="click" targets="#{cc.attrs.id}:b"/>
+        <composite:actionSource name="button" targets="#{cc.attrs.id}:b" />
     </composite:interface>
 
     <composite:implementation>

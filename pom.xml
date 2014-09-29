@@ -441,7 +441,7 @@
         </profile>		
         <!-- Hibernate HBM2DDL -->
         <profile>
-            <id>schema</id>           
+            <id>ddl</id>           
             <build>
                 <resources>
                     <resource>
@@ -452,6 +452,7 @@
                     <plugin>
                         <groupId>de.smartics.maven.plugin</groupId>
                         <artifactId>hibernate4-maven-plugin</artifactId>
+                        <version>0.2.0</version>
                         <executions>
                             <execution>
                                 <id>export</id>

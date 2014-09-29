@@ -10,48 +10,24 @@
         <h:form id="searchForm" prependId="false">
             <div class="row">
                 <div class="col-lg-12">	
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="input-group">
-                                <input jsf:id="input-filter" data-action="tableFilter" data-filters="#table" type="search" placeholder="Search" class="form-control"></input>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" data-action="tableFiltetClear"><i class="icon-erase"></i></button>
-                                    <button class="btn btn-default"
-                                            jsf:action="#{searchViewController.searchAction.execute}" jsf:rendered="#{searchViewController.searchAction.available}">
-                                        <f:ajax render="table input-filter" execute="@this"/>
-                                        <i class="icon-arrows-cw"></i>
-                                    </button>     
-                                    <b:link ctr="#{viewController.createAction}" icon="doc-text" />
-                                </span>				
-                            </div>			
-                        </div>						
-                        <table jsf:id="table" class="table table-striped sortable">							
-                            <thead jsf:rendered="#{not empty searchViewController.result}">
-                                <tr>
-                                    <th></th>
-                                    <ui:insert name="tableHead" />
-                                </tr>
-                            </thead>
-                            <tbody jsf:rendered="#{not empty searchViewController.result}">
-                                <ui:repeat var="item" value="#{searchViewController.result}" >
-                                    <tr>
-                                        <td>
-                                            <a jsf:action="#{viewController.editAction.execute}" jsf:rendered="#{viewController.editAction.available}" > 					
-                                                <i class="icon-pencil"></i>
-                                                <f:param name="guid" value="#{item.guid}" />
-                                            </a>
-                                        </td>
-                                        <ui:insert name="tableRow" />
-                                    </tr>
-                                </ui:repeat>
-                            </tbody>
-                            <tbody jsf:rendered="#{empty searchViewController.result}">
-                                <tr>
-                                    <td>No results found</td>
-                                </tr>
-                            </tbody>
-                        </table>										
-                    </div>
+                    <b:table ctr="#{searchViewController}" >
+                        <f:facet name="toolbar">
+                            <b:button ctr="#{searchViewController.searchAction}" icon="arrows-cw">
+                                <f:ajax event="click" render="table input-filter" execute="@this"/>
+                            </b:button>
+                            <b:buttonLink ctr="#{viewController.createAction}" icon="doc-text" />    
+                        </f:facet>
+                        <f:facet name="header">
+                            <th></th>
+                            <ui:insert name="tableHead" />
+                        </f:facet>
+                        <td>
+                            <b:link ctr="#{viewController.editAction}" icon="pencil">
+                                <f:param name="guid" value="#{item.guid}" />
+                            </b:link>
+                        </td>
+                        <ui:insert name="tableRow" />                       
+                    </b:table>                  
                 </div>
             </div>
         </h:form>

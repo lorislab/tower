@@ -1,14 +1,3 @@
-tower = {
-	id: function(id) {
-		return "#" + id.replace(/:/g, "\\:");
-	},
-	closeModal: function(id, check) {
-		if ($(this.id(check)).length === 0) {
-			$(this.id(id)).modal('hide');
-		}
-	}	
-};
-
 (function() {
 	'use strict';
 	var $ = jQuery;

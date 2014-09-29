@@ -28,7 +28,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import org.lorislab.barn.api.service.ConfigurationService;
-import org.lorislab.guardian.api.criteria.UserDataCriteria;
 import org.lorislab.guardian.api.model.UserData;
 import org.lorislab.guardian.api.service.UserDataService;
 import org.lorislab.jel.ejb.exception.ServiceException;
@@ -390,13 +389,9 @@ public class ProcessService {
         }
         
         // load the users
-        UserDataCriteria userDataCriteria = new UserDataCriteria();
-        userDataCriteria.setUsers(ug);
-        userDataCriteria.setFetchConfig(true);
-
         List<UserData> users = null;
         try {
-            users = userDataService.findUserDataByCriteria(userDataCriteria);
+            users = userDataService.getUserData(ug);
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, "Error reading the user data by criteria", ex);
         }

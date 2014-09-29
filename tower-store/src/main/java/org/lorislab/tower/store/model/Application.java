@@ -64,6 +64,12 @@ public class Application extends Persistent {
     private SCMSystem scm;
 
     /**
+     * The notification flag.
+     */
+    @Column(name = "C_NOTIFY")
+    private boolean notification;
+    
+    /**
      * The name.
      */
     @Column(name = "C_NAME")
@@ -136,6 +142,24 @@ public class Application extends Persistent {
     @Column(name = "C_INDEX")
     private Integer index;
 
+    /**
+     * Gets the notification flag.
+     *
+     * @return the notification flag.
+     */
+    public boolean isNotification() {
+        return notification;
+    }
+
+    /**
+     * Sets the notification flag.
+     *
+     * @param notification the notification flag.
+     */
+    public void setNotification(boolean notification) {
+        this.notification = notification;
+    }
+    
     /**
      * Gets the SCM repository type.
      *

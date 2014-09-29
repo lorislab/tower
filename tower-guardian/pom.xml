@@ -13,29 +13,12 @@
     <packaging>ejb</packaging>    
     <name>tower-guardian</name>        
     
-    <dependencies>	
-        <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-guardian-config</artifactId>
-            <version>${project.version}</version>
-            <type>ejb-client</type>
-            <scope>provided</scope>
-        </dependency>						
+    <dependencies>						
         <!-- GUARDIAN --> 		
         <dependency>
             <groupId>org.lorislab.guardian</groupId>
-            <artifactId>guardian-user-model</artifactId>
+            <artifactId>guardian-model</artifactId>
             <type>ejb</type>			
-        </dependency>
-        <dependency>
-            <groupId>org.lorislab.guardian</groupId>
-            <artifactId>guardian-app-model</artifactId>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>org.lorislab.guardian</groupId>
-            <artifactId>guardian-service</artifactId>
-            <type>ejb</type>
         </dependency>
         <!-- META-INF SERVICES -->
         <dependency>
@@ -65,9 +48,7 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <artifactSet>
                                 <includes>
-                                    <include>org.lorislab.guardian:guardian-user-model</include>
-                                    <include>org.lorislab.guardian:guardian-app-model</include>
-                                    <include>org.lorislab.guardian:guardian-service</include>
+                                    <include>org.lorislab.guardian:guardian-model</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

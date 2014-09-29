@@ -41,9 +41,18 @@
         <!-- GUARDIAN -->
         <dependency>
             <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-api</artifactId>
+        </dependency>	        
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
             <artifactId>guardian-user-ads</artifactId>
             <type>ejb</type>
-        </dependency>        		
+        </dependency>   
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-service</artifactId>
+            <type>ejb</type>
+        </dependency>             		
         <!-- BARN -->	
         <dependency>
             <groupId>org.lorislab.barn</groupId>
@@ -51,12 +60,9 @@
         </dependency>
         <dependency>
             <groupId>org.lorislab.barn</groupId>
-            <artifactId>barn-transformer</artifactId>
-        </dependency>					
-        <dependency>
-            <groupId>org.lorislab.guardian</groupId>
-            <artifactId>guardian-api</artifactId>
-        </dependency>		
+            <artifactId>barn-standalone-ejb</artifactId>
+            <type>ejb</type>
+        </dependency>      	
         <!-- MODULES -->		
         <dependency>
             <groupId>org.lorislab.postman</groupId>
@@ -82,15 +88,7 @@
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>guardian-app-model</artifactId>
-                    <groupId>org.lorislab.guardian</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>guardian-user-model</artifactId>
-                    <groupId>org.lorislab.guardian</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>guardian-service</artifactId>
+                    <artifactId>guardian-model</artifactId>
                     <groupId>org.lorislab.guardian</groupId>
                 </exclusion>
             </exclusions>
@@ -103,14 +101,6 @@
             <exclusions>
                 <exclusion>
                     <artifactId>barn-db</artifactId>
-                    <groupId>org.lorislab.barn</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>barn-standalone-ejb</artifactId>
-                    <groupId>org.lorislab.barn</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>barn-adapter-resteasy</artifactId>
                     <groupId>org.lorislab.barn</groupId>
                 </exclusion>
             </exclusions>			
@@ -139,10 +129,20 @@
                     <displayName>tower-ear</displayName>
                     <modules> 
                         <ejbModule>
+                            <groupId>org.lorislab.barn</groupId>
+                            <artifactId>barn-standalone-ejb</artifactId>
+                            <bundleFileName>barn-standalone-ejb.jar</bundleFileName>
+                        </ejbModule>                         
+                        <ejbModule>
                             <groupId>org.lorislab.guardian</groupId>
                             <artifactId>guardian-user-ads</artifactId>
                             <bundleFileName>guardian-user-ads.jar</bundleFileName>
-                        </ejbModule>						                                    
+                        </ejbModule>	
+                        <ejbModule>
+                            <groupId>org.lorislab.guardian</groupId>
+                            <artifactId>guardian-service</artifactId>
+                            <bundleFileName>guardian-service.jar</bundleFileName>
+                        </ejbModule>                        					                                    
                         <ejbModule>
                             <groupId>org.lorislab.postman</groupId>
                             <artifactId>postman-service</artifactId>

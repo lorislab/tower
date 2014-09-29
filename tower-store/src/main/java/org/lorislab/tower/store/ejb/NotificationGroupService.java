@@ -30,10 +30,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
 import org.lorislab.tower.store.criteria.NotificationGroupCriteria;
-import org.lorislab.tower.store.model.Application_;
 import org.lorislab.tower.store.model.NotificationGroup;
 import org.lorislab.tower.store.model.NotificationGroup_;
-import org.lorislab.tower.store.model.Project;
 
 /**
  * The notification group service.
@@ -91,15 +89,32 @@ public class NotificationGroupService extends AbstractEntityServiceBean<Notifica
         CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
         CriteriaQuery<NotificationGroup> cq = getBaseEAO().createCriteriaQuery();
         Root<NotificationGroup> root = cq.from(NotificationGroup.class);
-
+                
         List<Predicate> predicates = new ArrayList<>();
         if (criteria != null) {
+            
+            if (criteria.isFetchSystems()) {
+                root.fetch(NotificationGroup_.systems);
+            }
+            
+            if (criteria.isFetchApplications()) {
+                root.fetch(NotificationGroup_.applications);
+            }
+            
+            if (criteria.isFetchUsers()) {
+                root.fetch(NotificationGroup_.users);
+            }
+            
             if (criteria.getSystem() != null) {
                 predicates.add(cb.isMember(criteria.getSystem(), root.get(NotificationGroup_.systems)));
             }
 
             if (criteria.getUser() != null) {
                 predicates.add(cb.isMember(criteria.getUser(), root.get(NotificationGroup_.users)));
+            }
+            
+            if (criteria.getApplication() != null) {
+                predicates.add(cb.isMember(criteria.getApplication(), root.get(NotificationGroup_.applications)));
             }
         }
         cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));

@@ -40,6 +40,11 @@ public class NotificationGroupCriteria extends AbstractSearchCriteria {
     private String user;
 
     /**
+     * The application.
+     */
+    private String application;
+
+    /**
      * The fetch users flag.
      */
     private boolean fetchUsers;
@@ -50,14 +55,57 @@ public class NotificationGroupCriteria extends AbstractSearchCriteria {
     private boolean fetchSystems;
 
     /**
+     * The fetch applications flag.
+     */
+    private boolean fetchApplications;
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public void reset() {
         system = null;
         user = null;
+        application = null;
         fetchSystems = false;
         fetchUsers = false;
+        fetchApplications = false;
+    }
+
+    /**
+     * Gets the application.
+     *
+     * @return the application.
+     */
+    public String getApplication() {
+        return application;
+    }
+
+    /**
+     * Sets the application.
+     *
+     * @param application the application.
+     */
+    public void setApplication(String application) {
+        this.application = application;
+    }
+
+    /**
+     * Sets the fetch applications flag.
+     *
+     * @param fetchApplications the fetch applications flag.
+     */
+    public void setFetchApplications(boolean fetchApplications) {
+        this.fetchApplications = fetchApplications;
+    }
+
+    /**
+     * Gets the fetch applications flag.
+     *
+     * @return the fetch applications flag.
+     */
+    public boolean isFetchApplications() {
+        return fetchApplications;
     }
 
     /**

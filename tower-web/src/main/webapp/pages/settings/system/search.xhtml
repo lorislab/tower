@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/searchTemplate.xhtml">
 
@@ -9,10 +10,11 @@
     <ui:param name="pageTitle" value="Systems" />
     <ui:param name="pageIcon" value="icon-suitcase" />
 
-    <ui:param name="viewController" value="#{systemVC}" />
-    <ui:param name="searchViewController" value="#{systemSVC}" />
+    <ui:param name="vc" value="#{systemVC}" />
+    <ui:param name="svc" value="#{systemSVC}" />
 
     <ui:define name="tableHead">
+        <th></th>
         <th>Index</th>
         <th>Enabled</th>
         <th>Name</th>
@@ -24,6 +26,7 @@
     </ui:define>
 
     <ui:define name="tableRow">
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.guid}" /></b:link></td>        
         <td>#{item.index}</td>
         <td><b:check value="#{item.enabled}"/></td>
         <td>#{item.name}</td>												

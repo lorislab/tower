@@ -15,48 +15,31 @@
  */
 package org.lorislab.tower.web.settings.view;
 
-import java.util.List;
-import javax.ejb.EJB;
+import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.guardian.api.model.UserDataProfile;
-import org.lorislab.guardian.api.service.UserDataService;
-import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
+import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
 /**
- *
+ * The user view controller.
+ * 
  * @author Andrej_Petras
  */
-@Named("userSVC")
+@Named("userVC")
 @SessionScoped
-public class UserSearchViewController extends AbstractDefaultSearchViewController<UserDataProfile, AbstractSearchCriteria> {
+public class UserViewController extends AbstractEntityViewController<UserData> implements Serializable {
     
     /**
      * The UID for this class.
      */
-    private static final long serialVersionUID = -6156249847954640059L;
+    private static final long serialVersionUID = -9056528681264454508L;
     
-    /**
-     * The user data service.
-     */
-    @EJB
-    private UserDataService service;
-
     /**
      * The default constructor.
-     */    
-    public UserSearchViewController() {
+     */
+    public UserViewController() {
         super(Context.USER);
-    }
-    
-    /**
-     * {@inheritDoc }
-     */    
-    @Override
-    protected List<UserDataProfile> doSearch() throws Exception {
-        return service.getUserDataProfiles();
     }
 }

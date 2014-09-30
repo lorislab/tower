@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/searchTemplate.xhtml">
 
@@ -9,10 +10,11 @@
     <ui:param name="pageTitle" value="Source control system" />
     <ui:param name="pageIcon" value="icon-fork" />
 
-    <ui:param name="viewController" value="#{scmVC}" />
-    <ui:param name="searchViewController" value="#{scmSVC}" />
+    <ui:param name="vc" value="#{scmVC}" />
+    <ui:param name="svc" value="#{scmSVC}" />
 
-    <ui:define name="tableHead">			
+    <ui:define name="tableHead">
+        <th></th>
         <th>Authentication</th>
         <th>Name</th>
         <th>User</th>
@@ -21,6 +23,7 @@
     </ui:define>
 
     <ui:define name="tableRow">
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.guid}" /></b:link></td>        
         <td><b:check value="#{item.auth}"/></td>
         <td>#{item.name}</td>
         <td>#{item.user}</td>												

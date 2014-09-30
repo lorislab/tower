@@ -11,10 +11,11 @@
     <ui:param name="pageTitle" value="Projects" />
     <ui:param name="pageIcon" value="icon-award" />
 
-    <ui:param name="viewController" value="#{projectVC}" />
-    <ui:param name="searchViewController" value="#{projectSVC}" />
+    <ui:param name="vc" value="#{projectVC}" />
+    <ui:param name="svc" value="#{projectSVC}" />
 
     <ui:define name="tableHead">
+        <th></th>
         <th>Index</th>
         <th>Enabled</th>				
         <th>Name</th>
@@ -22,6 +23,7 @@
     </ui:define>
 
     <ui:define name="tableRow">
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.guid}" /></b:link></td>        
         <td>#{item.index}</td>
         <td><b:check value="#{item.enabled}"/></td>
         <td>#{item.name}</td>												

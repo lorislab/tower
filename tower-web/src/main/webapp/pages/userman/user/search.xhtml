@@ -1,19 +1,41 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
-                template="/templates/template.xhtml">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                template="/templates/searchTemplate.xhtml">
 
-	<ui:param name="menuParentSelected" value="USERMAN" />
-	<ui:param name="menuChildSelected" value="USER" />
-	<ui:param name="pageTitle" value="Users" />
-	<ui:param name="pageIcon" value="icon-user" />
-	
-    <ui:define name="body">
-		<div></div>
+    <ui:param name="menuParentSelected" value="USERMAN" />
+    <ui:param name="menuChildSelected" value="USER" />
+    <ui:param name="pageTitle" value="Users" />
+    <ui:param name="pageIcon" value="icon-user" />
 
-		Users table
+    <ui:param name="vc" value="#{userVC}" />
+    <ui:param name="searchViewController" value="#{userSVC}" />
+    
+    <ui:define name="tableHead">
+        <th></th>
+        <th>Index</th>
+        <th>Enabled</th>
+        <th>Name</th>
+        <th>Service</th>
+        <th>Domain</th>
+        <th>Classification</th>
+        <th>Notification</th>
+        <th>Timer</th>
     </ui:define>
 
+    <ui:define name="tableRow">
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.userGuid}" /></b:link></td>        
+        <td>#{item.FirstName}</td>
+        <td><b:check value="#{item.enabled}"/></td>
+        <td>#{item.MiddleName}</td>												
+        <td>#{item.LastName}</td>
+        <td>#{item.Email}</td>
+        <td>#{item.classification}</td>
+        <td><b:check value="#{item.notification}"/></td>
+        <td><b:check value="#{item.timer}"/></td>
+    </ui:define>
 
 </ui:composition>
 

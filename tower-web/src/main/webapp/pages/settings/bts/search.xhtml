@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/templates/searchTemplate.xhtml">
 
     <ui:param name="menuParentSelected" value="SETTINGS" />
@@ -8,10 +9,11 @@
     <ui:param name="pageTitle" value="Bug tracking systems" />
     <ui:param name="pageIcon" value="icon-bug" />
 
-    <ui:param name="viewController" value="#{btsVC}" />
-    <ui:param name="searchViewController" value="#{btsSVC}" />
+    <ui:param name="vc" value="#{btsVC}" />
+    <ui:param name="svc" value="#{btsSVC}" />
 
-    <ui:define name="tableHead">			
+    <ui:define name="tableHead">
+        <th></th>
         <th>Authentication</th>
         <th>Name</th>
         <th>User</th>
@@ -20,6 +22,7 @@
     </ui:define>
 
     <ui:define name="tableRow">
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.guid}" /></b:link></td>
         <td><b:check value="#{item.auth}"/></td>
         <td>#{item.name}</td>
         <td>#{item.user}</td>												

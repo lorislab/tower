@@ -10,22 +10,17 @@
         <h:form id="searchForm" prependId="false">
             <div class="row">
                 <div class="col-lg-12">	
-                    <b:table ctr="#{searchViewController}" >
+                    <b:table ctr="#{svc}" >
                         <f:facet name="toolbar">
-                            <b:button ctr="#{searchViewController.searchAction}" icon="arrows-cw">
+                            <b:button ctr="#{svc.searchAction}" icon="arrows-cw">
                                 <f:ajax event="click" render="table input-filter" execute="@this"/>
                             </b:button>
-                            <b:buttonLink ctr="#{viewController.createAction}" icon="doc-text" />    
+                            <b:buttonLink ctr="#{vc.createAction}" icon="doc-text" />    
                         </f:facet>
                         <f:facet name="header">
                             <th></th>
                             <ui:insert name="tableHead" />
                         </f:facet>
-                        <td>
-                            <b:link ctr="#{viewController.editAction}" icon="pencil">
-                                <f:param name="guid" value="#{item.guid}" />
-                            </b:link>
-                        </td>
                         <ui:insert name="tableRow" />                       
                     </b:table>                  
                 </div>

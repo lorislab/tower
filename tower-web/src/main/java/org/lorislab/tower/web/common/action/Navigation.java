@@ -61,7 +61,7 @@ public final class Navigation {
     /**
      * The navigation to system edit.
      */
-    public static String TO_SYSTEM_EDIT = "toSystemEdit";    
+    public static String TO_SYSTEM_EDIT = "toSystemEdit";
     /**
      * The navigation to source control search.
      */
@@ -120,5 +120,10 @@ public final class Navigation {
      * The navigation to deploy.
      */
     public static String TO_DEPLOY = "toDeploy";
+
+    /**
+     * The navigation to ads configuration.
+     */
+    public static String TO_AD = "toAd";
 
 }

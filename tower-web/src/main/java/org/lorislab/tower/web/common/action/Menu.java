@@ -23,6 +23,10 @@ package org.lorislab.tower.web.common.action;
 public enum Menu {
 
     /**
+     * The ADS configuration menu
+     */
+    AD,
+    /**
      * The top dashboard.
      */
     DASHBOARD,

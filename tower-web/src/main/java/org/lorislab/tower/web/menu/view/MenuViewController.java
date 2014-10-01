@@ -102,6 +102,11 @@ public class MenuViewController extends AbstractViewController {
     private final MenuAction user;
 
     /**
+     * The active directory configuration menu.
+     */
+    private final MenuAction ad;
+    
+    /**
      * The default constructor.
      */
     public MenuViewController() {
@@ -121,8 +126,17 @@ public class MenuViewController extends AbstractViewController {
         settings = new MenuAction(this, Menu.SETTINGS);
         logout = new LogoutAction(this, Navigation.TO_HOME);
         project = new MenuAction(this, Menu.PROJECT, Navigation.TO_PROJECT);
+        ad = new MenuAction(this, Menu.AD, Navigation.TO_AD);
     }
 
+    /**
+     * Gets the active directory menu.
+     * @return the active directory menu.
+     */
+    public MenuAction getAd() {
+        return ad;
+    }
+    
     /**
      * Gets the agent menu.
      *

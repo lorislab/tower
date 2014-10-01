@@ -95,7 +95,13 @@
             <from-outcome>toTimer</from-outcome>
             <to-view-id>/pages/settings/timer/edit.xhtml</to-view-id>
             <redirect />
-        </navigation-case>						
+        </navigation-case>	
+        <!-- SETTINGS: ADS -->
+        <navigation-case>
+            <from-outcome>toAd</from-outcome>
+            <to-view-id>/pages/settings/ad/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        					
         <!-- DASHBOARD -->			
         <navigation-case>
             <from-outcome>toDashboard</from-outcome>
@@ -118,6 +124,6 @@
             <from-outcome>toHome</from-outcome>
             <to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
             <redirect />
-        </navigation-case>				
+        </navigation-case>        				
     </navigation-rule>
 </faces-config>

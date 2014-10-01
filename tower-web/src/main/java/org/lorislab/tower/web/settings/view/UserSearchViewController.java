@@ -20,7 +20,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.guardian.api.model.UserDataProfile;
 import org.lorislab.guardian.api.service.UserDataService;
 import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
 import org.lorislab.tower.web.common.action.Context;
@@ -32,7 +31,7 @@ import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
  */
 @Named("userSVC")
 @SessionScoped
-public class UserSearchViewController extends AbstractDefaultSearchViewController<UserDataProfile, AbstractSearchCriteria> {
+public class UserSearchViewController extends AbstractDefaultSearchViewController<UserData, AbstractSearchCriteria> {
     
     /**
      * The UID for this class.
@@ -56,7 +55,7 @@ public class UserSearchViewController extends AbstractDefaultSearchViewControlle
      * {@inheritDoc }
      */    
     @Override
-    protected List<UserDataProfile> doSearch() throws Exception {
-        return service.getUserDataProfiles();
+    protected List<UserData> doSearch() throws Exception {
+        return service.getUserData();
     }
 }

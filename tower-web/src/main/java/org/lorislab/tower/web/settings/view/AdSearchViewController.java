@@ -30,7 +30,7 @@ import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
  * 
  * @author Andrej_Petras
  */
-@Named("adVC")
+@Named("adSVC")
 @SessionScoped
 public class AdSearchViewController extends AbstractDefaultSearchViewController<UserSourceData, UserSourceSearchCriteria> {
     

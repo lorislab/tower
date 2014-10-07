@@ -15,8 +15,8 @@
  */
 package org.lorislab.tower.web.settings.action;
 
+import org.lorislab.guardian.user.api.model.UserSourceData;
 import org.lorislab.jel.jsf.view.controller.action.AbstractAction;
-import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Permission;
 import org.lorislab.tower.web.settings.view.UserViewController;
 
@@ -33,12 +33,29 @@ public class ImportUserAction extends AbstractAction<UserViewController> {
     private static final long serialVersionUID = 6247687898528170823L;
 
     /**
+     * The user source data.
+     */
+    private UserSourceData user;
+    
+    /**
      * The default constructor.
      *
      * @param parent the parent view controller.
+     * @param context the context.
      */
-    public ImportUserAction(UserViewController parent) {
-        super(parent, Context.USER, Permission.IMPORT);
+    public ImportUserAction(UserViewController parent, Enum context) {
+        super(parent, context, Permission.IMPORT);
     }
 
+    public void setUser(UserSourceData user) {
+        this.user = user;
+    }
+
+    @Override
+    protected Object doExecute() throws Exception {
+        return getParent().importUser(user);
+    }
+
+
+    
 }

@@ -9,21 +9,20 @@
         <!-- USER MANAGEMENT: ACTIVE DIRECTORY SEARCH -->
         <navigation-case>
             <from-outcome>toAdSearch</from-outcome>
-            <to-view-id>/pages/userman/ad/search.xhtml</to-view-id>
+            <to-view-id>/pages/user/ad/search.xhtml</to-view-id>
             <redirect />
         </navigation-case>        
         <!-- USER MANAGEMENT: USER -->
         <navigation-case>
             <from-outcome>toUser</from-outcome>
-            <to-view-id>/pages/userman/user/search.xhtml</to-view-id>
+            <to-view-id>/pages/user/user/search.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-        <!-- USER MANAGEMENT: ROLE -->
         <navigation-case>
-            <from-outcome>toRole</from-outcome>
-            <to-view-id>/pages/userman/role/search.xhtml</to-view-id>
+            <from-outcome>toUserEdit</from-outcome>
+            <to-view-id>/pages/user/user/edit.xhtml</to-view-id>
             <redirect />
-        </navigation-case>	
+        </navigation-case>	        	
         <!-- SETTINGS: AGENT -->
         <navigation-case>
             <from-outcome>toAgent</from-outcome>

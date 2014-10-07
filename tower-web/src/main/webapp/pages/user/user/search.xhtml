@@ -11,30 +11,24 @@
     <ui:param name="pageIcon" value="icon-user" />
 
     <ui:param name="vc" value="#{userVC}" />
-    <ui:param name="searchViewController" value="#{userSVC}" />
+    <ui:param name="svc" value="#{userSVC}" />
     
     <ui:define name="tableHead">
         <th></th>
-        <th>Index</th>
-        <th>Enabled</th>
-        <th>Name</th>
-        <th>Service</th>
-        <th>Domain</th>
-        <th>Classification</th>
-        <th>Notification</th>
-        <th>Timer</th>
+        <th>Enabled</th>        
+        <th>First name</th>        
+        <th>Middle name</th>
+        <th>Last name</th>
+        <th>Email</th>
     </ui:define>
 
     <ui:define name="tableRow">
-        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.userGuid}" /></b:link></td>        
-        <td>#{item.FirstName}</td>
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.profile.userGuid}" /></b:link></td>        
         <td><b:check value="#{item.enabled}"/></td>
-        <td>#{item.MiddleName}</td>												
-        <td>#{item.LastName}</td>
-        <td>#{item.Email}</td>
-        <td>#{item.classification}</td>
-        <td><b:check value="#{item.notification}"/></td>
-        <td><b:check value="#{item.timer}"/></td>
+        <td>#{item.profile.firstName}</td>        
+        <td>#{item.profile.middleName}</td>												
+        <td>#{item.profile.lastName}</td>
+        <td>#{item.profile.email}</td>
     </ui:define>
 
 </ui:composition>

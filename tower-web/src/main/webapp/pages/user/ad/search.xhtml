@@ -10,15 +10,29 @@
     <ui:param name="pageTitle" value="Active directory search" />
     <ui:param name="pageIcon" value="icon-user" />
 
-    <ui:param name="vc" value="#{userVC}" />
-    <ui:param name="searchViewController" value="#{userSVC}" />
+    <ui:param name="vc" value="#{adVC}" />
+    <ui:param name="svc" value="#{adSVC}" />
     
     <ui:define name="tableHead">
         <th></th>
+        <th>User id</th>        
+        <th>Principal</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>        
     </ui:define>
 
     <ui:define name="tableRow">
-        <td></td>        
+        <td>
+            <b:link ctr="#{userVC.importAction}" icon="pencil">
+                <f:setPropertyActionListener for="propertyAction" target="#{userVC.importAction.user}" value="#{item}" />
+            </b:link>
+        </td>        
+        <td>#{item.userId}</td>
+        <td>#{item.principal}</td>
+        <td>#{item.name}</td>
+        <td>#{item.surname}</td>
+        <td>#{item.email}</td>        
     </ui:define>
 
 </ui:composition>

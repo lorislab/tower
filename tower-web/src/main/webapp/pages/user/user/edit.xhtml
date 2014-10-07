@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                template="/templates/editTemplate.xhtml">
+
+    <ui:param name="menuParentSelected" value="USERMAN" />
+    <ui:param name="menuChildSelected" value="USER" />
+    <ui:param name="pageTitle" value="Users" />
+    <ui:param name="pageIcon" value="icon-user" />
+
+    <ui:param name="model" value="#{userVC.model}" />
+    <ui:param name="viewController" value="#{userVC}" />
+
+    <ui:define name="form">
+      
+    </ui:define>
+
+</ui:composition>
+

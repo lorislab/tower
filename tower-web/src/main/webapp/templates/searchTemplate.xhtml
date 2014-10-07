@@ -10,15 +10,16 @@
         <h:form id="searchForm" prependId="false">
             <div class="row">
                 <div class="col-lg-12">	
-                    <b:table ctr="#{svc}" >
+                    <b:table id="table" ctr="#{svc}" >
                         <f:facet name="toolbar">
-                            <b:button ctr="#{svc.searchAction}" icon="arrows-cw">
-                                <f:ajax event="click" render="table input-filter" execute="@this"/>
-                            </b:button>
-                            <b:buttonLink ctr="#{vc.createAction}" icon="doc-text" />    
+                            <ui:insert name="toolbar" >
+                                <b:button ctr="#{svc.searchAction}" icon="arrows-cw">
+                                    <f:ajax event="click" render="table:table table:input-filter" execute="@this"/>
+                                </b:button>
+                                <b:buttonLink ctr="#{vc.createAction}" icon="doc-text" />    
+                            </ui:insert>
                         </f:facet>
                         <f:facet name="header">
-                            <th></th>
                             <ui:insert name="tableHead" />
                         </f:facet>
                         <ui:insert name="tableRow" />                       

@@ -23,7 +23,11 @@ package org.lorislab.tower.web.common.action;
 public enum Menu {
 
     /**
-     * The ADS configuration menu
+     * The active directory search configuration menu
+     */
+    AD_SEARCH,    
+    /**
+     * The active directory configuration menu
      */
     AD,
     /**

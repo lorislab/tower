@@ -28,9 +28,9 @@ import org.lorislab.tower.web.common.view.ConfigurationViewController;
  *
  * @author Andrej Petras
  */
-@Named("adsVC")
+@Named("adVC")
 @SessionScoped
-public class AdsViewController extends ConfigurationViewController<ConnectionConfig> implements ChangePasswordListener {
+public class AdViewController extends ConfigurationViewController<ConnectionConfig> implements ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -45,9 +45,9 @@ public class AdsViewController extends ConfigurationViewController<ConnectionCon
     /**
      * The default constructor.
      */
-    public AdsViewController() {
-        super(Context.ADS, ConnectionConfig.class);
-        passwordVC = new ChangePasswordViewController(this, Context.ADS);
+    public AdViewController() {
+        super(Context.AD, ConnectionConfig.class);
+        passwordVC = new ChangePasswordViewController(this, Context.AD);
     }
 
     /**

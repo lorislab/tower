@@ -122,8 +122,11 @@ public final class Navigation {
     public static String TO_DEPLOY = "toDeploy";
 
     /**
-     * The navigation to ads configuration.
+     * The navigation to active directory configuration.
      */
     public static String TO_AD = "toAd";
-
+    /**
+     * The navigation to active directory search configuration.
+     */
+    public static String TO_AD_SEARCH = "toAdSearch";
 }

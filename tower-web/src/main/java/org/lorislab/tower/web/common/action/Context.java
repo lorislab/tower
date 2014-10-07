@@ -28,9 +28,13 @@ public enum Context {
      */
     USER,
     /**
-     * The ADS.
+     * The active directory.
      */
-    ADS,
+    AD,
+    /**
+     * The active directory.
+     */
+    AD_SEARCH,    
     /**
      * The use profile context.
      */

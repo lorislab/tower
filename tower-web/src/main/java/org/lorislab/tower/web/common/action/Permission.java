@@ -23,6 +23,10 @@ package org.lorislab.tower.web.common.action;
 public enum Permission {
     
     /**
+     * The import permission.
+     */
+    IMPORT,
+    /**
      * The key action.
      */
     KEY,

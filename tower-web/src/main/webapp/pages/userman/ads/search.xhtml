@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                template="/templates/searchTemplate.xhtml">
+
+    <ui:param name="menuParentSelected" value="USERMAN" />
+    <ui:param name="menuChildSelected" value="AD_SEARCH" />
+    <ui:param name="pageTitle" value="Active directory search" />
+    <ui:param name="pageIcon" value="icon-user" />
+
+    <ui:param name="vc" value="#{userVC}" />
+    <ui:param name="searchViewController" value="#{userSVC}" />
+    
+    <ui:define name="tableHead">
+        <th></th>
+    </ui:define>
+
+    <ui:define name="tableRow">
+        <td></td>        
+    </ui:define>
+
+</ui:composition>
+

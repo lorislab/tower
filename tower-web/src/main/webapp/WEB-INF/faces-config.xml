@@ -6,6 +6,12 @@
               
     <navigation-rule>
         <from-view-id>/*</from-view-id>
+        <!-- USER MANAGEMENT: ACTIVE DIRECTORY SEARCH -->
+        <navigation-case>
+            <from-outcome>toAdSearch</from-outcome>
+            <to-view-id>/pages/userman/ad/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
         <!-- USER MANAGEMENT: USER -->
         <navigation-case>
             <from-outcome>toUser</from-outcome>
@@ -96,7 +102,7 @@
             <to-view-id>/pages/settings/timer/edit.xhtml</to-view-id>
             <redirect />
         </navigation-case>	
-        <!-- SETTINGS: ADS -->
+        <!-- SETTINGS: AD -->
         <navigation-case>
             <from-outcome>toAd</from-outcome>
             <to-view-id>/pages/settings/ad/edit.xhtml</to-view-id>

@@ -23,10 +23,10 @@
                 </span>
                 <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="false" readonly="true"></h:inputText>				
                 <span class="input-group-btn">
-                    <b:button ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="key">
+                    <b:button name="" ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="key">
                         <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
                     </b:button>
-                    <b:button ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="trash">
+                    <b:button name="" ctr="#{cc.attrs.controller.clearKeyAction}" type="primary" icon="trash">
                         <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
                     </b:button>
                 </span>

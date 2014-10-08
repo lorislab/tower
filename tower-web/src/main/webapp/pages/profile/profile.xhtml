@@ -26,7 +26,7 @@
             <b:input id="last" value="#{model.profile.lastName}" required="true" title="Last name" placeholder="User last name" />
             <b:input id="email" type="email" value="#{model.profile.email}" required="true" title="Email" placeholder="User email" />
         </b:callout>
-        <b:callout title="User configuration">
+        <b:callout id="b" title="User configuration">
             <b:checkbox id="notify" value="#{model.config.notification}" title="Email notification" />
             <k:key id="key" value="#{model.config.key}" controller="#{userDataVC.keyViewController}" />
         </b:callout>

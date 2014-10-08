@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
 
@@ -13,11 +14,12 @@
     <ui:param name="viewController" value="#{applicationVC}" />
 
     <ui:define name="form">			
-        <b:callout title="Application">
+        <b:callout id="b" title="Application">
             <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" />
             <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />		
             <b:input id="type" value="#{model.type}" title="Type" placeholder="The application type" />		
+            <k:key id="key" value="#{model.key}" controller="#{applicationVC.keyViewController}" />
         </b:callout>
         <b:callout title="Project">
             <b:selectOne id="project" value="#{model.project}" values="#{applicationVC.projectConverter.data}" 

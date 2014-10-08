@@ -32,6 +32,8 @@ import org.lorislab.tower.store.model.SCMSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
+import org.lorislab.tower.web.common.view.KeyListener;
+import org.lorislab.tower.web.common.view.KeyViewController;
 
 /**
  * The application view controller.
@@ -40,12 +42,17 @@ import org.lorislab.tower.web.common.converter.EntityLabelCallbackInstances;
  */
 @Named("applicationVC")
 @SessionScoped
-public class ApplicationViewController extends AbstractEntityViewController<Application> {
+public class ApplicationViewController extends AbstractEntityViewController<Application> implements KeyListener {
 
     /**
      * The UID for this class.
      */
     private static final long serialVersionUID = -1766808728513642285L;
+
+    /**
+     * The key view controller.
+     */
+    private final KeyViewController keyViewController;
 
     /**
      * The project service.
@@ -64,7 +71,7 @@ public class ApplicationViewController extends AbstractEntityViewController<Appl
      */
     @EJB
     private ProjectService projectService;
-    
+
     /**
      * The BTSystem converter.
      */
@@ -74,7 +81,7 @@ public class ApplicationViewController extends AbstractEntityViewController<Appl
      * The project converter.
      */
     private final EntityPersistentConverter<Project> projectConverter;
-    
+
     /**
      * The default constructor.
      */
@@ -82,6 +89,7 @@ public class ApplicationViewController extends AbstractEntityViewController<Appl
         super(Context.APPLICATION);
         scmSystemConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.SCMSYSTEM);
         projectConverter = new EntityPersistentConverter(EntityLabelCallbackInstances.PROJECT);
+        keyViewController = new KeyViewController(this, Context.APPLICATION);
     }
 
     /**
@@ -171,7 +179,7 @@ public class ApplicationViewController extends AbstractEntityViewController<Appl
         scmSystemConverter.setData(tmp);
         // load projects
         List<Project> projects = projectService.getProjects();
-        projectConverter.setData(projects);        
+        projectConverter.setData(projects);
     }
 
     /**
@@ -190,5 +198,22 @@ public class ApplicationViewController extends AbstractEntityViewController<Appl
      */
     public EntityPersistentConverter<Project> getProjectConverter() {
         return projectConverter;
-    }    
+    }
+
+    /**
+     * Gets the key view controller.
+     *
+     * @return the key view controller.
+     */
+    public KeyViewController getKeyViewController() {
+        return keyViewController;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void setKey(String data) {
+        getModel().setKey(data);
+    }
 }

@@ -37,7 +37,6 @@ import org.lorislab.postman.api.service.EmailService;
 import org.lorislab.tower.activity.criteria.ActivityWrapperCriteria;
 import org.lorislab.tower.activity.ejb.ActivityWrapperService;
 import org.lorislab.tower.activity.wrapper.ActivityWrapper;
-import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.process.resources.ErrorKeys;
 import org.lorislab.tower.store.criteria.ApplicationCriteria;
 import org.lorislab.tower.store.criteria.BuildCriteria;
@@ -429,22 +428,22 @@ public class ProcessService {
         if (users != null) {
             result = new ArrayList<>();
             for (UserData user : users) {
-                UserConfig config = (UserConfig) user.getConfig();
-
-                if (config.isNotification()) {
-                    Email mail = new Email();
-                    mail.getTo().add(user.getProfile().getEmail());
-                    mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
-                    // add the user to the parameters
-                    mail.getParameters().put(user.getClass().getSimpleName(), user);
-                    // add the list of values to the parameters
-                    if (values != null) {
-                        for (Object value : values) {
-                            mail.getParameters().put(value.getClass().getSimpleName(), value);
-                        }
-                    }
-                    result.add(mail);
-                }
+//                UserConfig config = (UserConfig) user.getConfig();
+//
+//                if (config.isNotification()) {
+//                    Email mail = new Email();
+//                    mail.getTo().add(user.getProfile().getEmail());
+//                    mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
+//                    // add the user to the parameters
+//                    mail.getParameters().put(user.getClass().getSimpleName(), user);
+//                    // add the list of values to the parameters
+//                    if (values != null) {
+//                        for (Object value : values) {
+//                            mail.getParameters().put(value.getClass().getSimpleName(), value);
+//                        }
+//                    }
+//                    result.add(mail);
+//                }
             }
         }
         return result;

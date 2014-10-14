@@ -19,7 +19,7 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.guardian.user.api.model.UserSourceData;
+import org.lorislab.guardian.api.user.model.UserSourceData;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;

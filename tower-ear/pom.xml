@@ -42,7 +42,12 @@
         <dependency>
             <groupId>org.lorislab.guardian</groupId>
             <artifactId>guardian-api</artifactId>
-        </dependency>	        
+        </dependency>	
+        <dependency>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-model</artifactId>
+            <type>ejb</type>
+        </dependency>                 
         <dependency>
             <groupId>org.lorislab.guardian</groupId>
             <artifactId>guardian-user-ads</artifactId>
@@ -62,7 +67,12 @@
             <groupId>org.lorislab.barn</groupId>
             <artifactId>barn-standalone-ejb</artifactId>
             <type>ejb</type>
-        </dependency>      	
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.barn</groupId>
+            <artifactId>barn-db</artifactId>
+            <type>ejb</type>
+        </dependency>              	
         <!-- MODULES -->		
         <dependency>
             <groupId>org.lorislab.postman</groupId>
@@ -75,36 +85,6 @@
             <type>ejb</type>
             <version>${project.version}</version>
         </dependency>		
-        <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-guardian-config</artifactId>
-            <type>ejb</type>
-            <version>${project.version}</version>
-        </dependency>		
-        <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-guardian</artifactId>
-            <type>ejb</type>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>guardian-model</artifactId>
-                    <groupId>org.lorislab.guardian</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-barn</artifactId>
-            <type>ejb</type>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>barn-db</artifactId>
-                    <groupId>org.lorislab.barn</groupId>
-                </exclusion>
-            </exclusions>			
-        </dependency>
         <dependency>
             <groupId>org.lorislab.tower</groupId>
             <artifactId>tower-ejb</artifactId>
@@ -132,7 +112,12 @@
                             <groupId>org.lorislab.barn</groupId>
                             <artifactId>barn-standalone-ejb</artifactId>
                             <bundleFileName>barn-standalone-ejb.jar</bundleFileName>
-                        </ejbModule>                         
+                        </ejbModule> 
+                        <ejbModule>
+                            <groupId>org.lorislab.barn</groupId>
+                            <artifactId>barn-db</artifactId>
+                            <bundleFileName>barn-db.jar</bundleFileName>
+                        </ejbModule>                                                
                         <ejbModule>
                             <groupId>org.lorislab.guardian</groupId>
                             <artifactId>guardian-user-ads</artifactId>
@@ -142,7 +127,12 @@
                             <groupId>org.lorislab.guardian</groupId>
                             <artifactId>guardian-service</artifactId>
                             <bundleFileName>guardian-service.jar</bundleFileName>
-                        </ejbModule>                        					                                    
+                        </ejbModule> 
+                        <ejbModule>
+                            <groupId>org.lorislab.guardian</groupId>
+                            <artifactId>guardian-model</artifactId>
+                            <bundleFileName>guardian-model.jar</bundleFileName>
+                        </ejbModule>                                               					                                    
                         <ejbModule>
                             <groupId>org.lorislab.postman</groupId>
                             <artifactId>postman-service</artifactId>
@@ -155,24 +145,9 @@
                         </ejbModule>
                         <ejbModule>
                             <groupId>org.lorislab.tower</groupId>
-                            <artifactId>tower-guardian-config</artifactId>
-                            <bundleFileName>tower-guardian-config.jar</bundleFileName>
-                        </ejbModule>												       
-                        <ejbModule>
-                            <groupId>org.lorislab.tower</groupId>
-                            <artifactId>tower-guardian</artifactId>
-                            <bundleFileName>tower-guardian.jar</bundleFileName>
-                        </ejbModule>
-                        <ejbModule>
-                            <groupId>org.lorislab.tower</groupId>
                             <artifactId>tower-store</artifactId>
                             <bundleFileName>tower-store.jar</bundleFileName>
-                        </ejbModule>						
-                        <ejbModule>
-                            <groupId>org.lorislab.tower</groupId>
-                            <artifactId>tower-barn</artifactId>
-                            <bundleFileName>tower-barn.jar</bundleFileName>
-                        </ejbModule>						
+                        </ejbModule>												
                         <webModule>
                             <groupId>org.lorislab.tower</groupId>
                             <artifactId>tower-web</artifactId>

@@ -19,9 +19,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import org.lorislab.guardian.user.api.criteria.UserSourceSearchCriteria;
-import org.lorislab.guardian.user.api.model.UserSourceData;
-import org.lorislab.guardian.user.api.service.UserSourceService;
+import org.lorislab.guardian.api.user.criteria.UserSourceSearchCriteria;
+import org.lorislab.guardian.api.user.model.UserSourceData;
+import org.lorislab.guardian.api.user.service.UserSourceService;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 

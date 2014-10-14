@@ -103,4 +103,10 @@ public class UserConfigServiceBean extends AbstractEntityServiceBean<UserConfig>
         return result;
     }
 
+    @Override
+    public UserDataConfig createUserConfig() throws Exception {
+         UserConfig result = new UserConfig();
+         return result;
+    }
+
 }

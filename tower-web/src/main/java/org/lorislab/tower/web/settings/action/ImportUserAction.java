@@ -15,7 +15,7 @@
  */
 package org.lorislab.tower.web.settings.action;
 
-import org.lorislab.guardian.user.api.model.UserSourceData;
+import org.lorislab.guardian.api.user.model.UserSourceData;
 import org.lorislab.jel.jsf.view.controller.action.AbstractAction;
 import org.lorislab.tower.web.common.action.Permission;
 import org.lorislab.tower.web.settings.view.UserViewController;

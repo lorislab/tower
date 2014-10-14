@@ -36,18 +36,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-guardian</artifactId>
+            <groupId>org.lorislab.guardian</groupId>
+            <artifactId>guardian-service</artifactId>
             <scope>provided</scope>
             <type>ejb-client</type>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-guardian-config</artifactId>
-            <scope>provided</scope>
-            <type>ejb-client</type>
-            <version>${project.version}</version>
         </dependency>
         <!-- BRIDGE -->
         <dependency>

@@ -18,8 +18,8 @@ package org.lorislab.tower.web.settings.view;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import org.lorislab.guardian.api.model.UserData;
 import org.lorislab.guardian.api.user.model.UserSourceData;
+import org.lorislab.guardian.user.model.User;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;
@@ -33,7 +33,7 @@ import org.lorislab.tower.web.settings.action.ImportUserAction;
  */
 @Named("userVC")
 @SessionScoped
-public class UserViewController extends AbstractEntityViewController<UserData> implements Serializable {
+public class UserViewController extends AbstractEntityViewController<User> implements Serializable {
 
     /**
      * The UID for this class.
@@ -81,8 +81,7 @@ public class UserViewController extends AbstractEntityViewController<UserData> i
     public Object importUser(UserSourceData user) {
         Object result = null;
         if (user != null) {
-            UserData tmp = new UserData();
-            setModel(tmp);
+          
             result = Navigation.TO_USER_EDIT;
         }
         return result;

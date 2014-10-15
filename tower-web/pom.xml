@@ -77,7 +77,8 @@
         </dependency>
         <dependency>
             <groupId>org.lorislab.guardian</groupId>
-            <artifactId>guardian-api</artifactId>
+            <artifactId>guardian-model</artifactId>
+            <type>ejb-client</type>
             <scope>provided</scope>
         </dependency>
         <dependency>

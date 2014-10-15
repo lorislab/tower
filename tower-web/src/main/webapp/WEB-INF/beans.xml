@@ -6,6 +6,6 @@
         <class>org.lorislab.jel.jsf.api.interceptor.FacesInterceptor</class>
     </interceptors>
     <alternatives>
-        <class>org.lorislab.guardian.web.user.controller.UserDataControllerBean</class>
+        <class>org.lorislab.guardian.web.user.controller.UserPermissionController</class>
     </alternatives>	
 </beans>

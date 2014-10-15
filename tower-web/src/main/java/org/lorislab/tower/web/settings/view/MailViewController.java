@@ -19,7 +19,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.lorislab.guardian.api.model.UserData;
+import org.lorislab.guardian.user.model.User;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.postman.api.model.EmailConfig;
 import org.lorislab.tower.process.ejb.TestService;
@@ -63,7 +63,7 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
      * The user data.
      */
     @Inject
-    private UserData userData;
+    private User userData;
     
     /**
      * The default constructor.

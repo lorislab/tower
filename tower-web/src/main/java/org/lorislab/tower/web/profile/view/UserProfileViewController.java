@@ -15,14 +15,17 @@
  */
 package org.lorislab.tower.web.profile.view;
 
+import java.security.Principal;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.guardian.api.service.UserDataController;
+import org.lorislab.guardian.user.ejb.UserService;
+import org.lorislab.guardian.user.model.User;
+import org.lorislab.guardian.web.user.controller.UserController;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
-import org.lorislab.tower.guardian.config.model.UserConfig;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.KeyListener;
 import org.lorislab.tower.web.common.view.KeyViewController;
@@ -32,9 +35,9 @@ import org.lorislab.tower.web.common.view.KeyViewController;
  *
  * @author Andrej Petras
  */
-@Named("userDataVC")
+@Named("userProfileVC")
 @SessionScoped
-public class UserDataViewController extends AbstractEntityViewController<UserData> implements KeyListener {
+public class UserProfileViewController extends AbstractEntityViewController<User> implements KeyListener {
 
     /**
      * The UID for this class.
@@ -45,7 +48,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
      * The user data service.
      */
     @Inject
-    private UserDataController controller;
+    private UserController service;
 
     /**
      * The key view controller.
@@ -55,7 +58,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     /**
      * The default constructor.
      */
-    public UserDataViewController() {
+    public UserProfileViewController() {
         super(Context.PROFILE);
         keyViewController = new KeyViewController(this, Context.PROFILE);
     }
@@ -67,7 +70,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     @FacesServiceMethod
     public Object edit(String guid) throws Exception {
         super.edit(guid);
-        controller.load();
+        service.load();
         return null;
     }
 
@@ -77,7 +80,7 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
     @Override
     @FacesServiceMethod
     public Object save() throws Exception {
-        controller.save();
+        service.save();
         return null;
     }
 
@@ -86,25 +89,24 @@ public class UserDataViewController extends AbstractEntityViewController<UserDat
      */
     @Override
     public Object close() throws Exception {
+        setModel(null);
         return null;
     }
 
     /**
      * {@inheritDoc }
-     */
+     */       
     @Override
-    public UserData getModel() {
-        return controller.getModel();
+    public User getModel() {
+        return service.getUser();
     }
-    
+     
     /**
      * {@inheritDoc }
      */    
     @Override
     public void setKey(String data) {
-        UserData tmp = controller.getModel();
-        UserConfig config = (UserConfig) tmp.getConfig();
-        config.setKey(data);
+        getModel().getConfig().setKey(data);
     }
     
     /**

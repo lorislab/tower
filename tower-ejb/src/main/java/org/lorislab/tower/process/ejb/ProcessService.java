@@ -28,8 +28,10 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import org.lorislab.barn.api.service.ConfigurationService;
-import org.lorislab.guardian.api.model.UserData;
-import org.lorislab.guardian.api.service.UserDataService;
+import org.lorislab.guardian.user.criteria.UserSearchCriteria;
+import org.lorislab.guardian.user.ejb.UserService;
+import org.lorislab.guardian.user.model.User;
+import org.lorislab.guardian.user.model.UserConfig;
 import org.lorislab.jel.ejb.exception.ServiceException;
 import org.lorislab.postman.api.model.Email;
 import org.lorislab.postman.api.model.EmailConfig;
@@ -113,7 +115,7 @@ public class ProcessService {
     private SystemBuildService systemBuildService;
 
     @EJB
-    private UserDataService userDataService;
+    private UserService userService;
 
     /**
      * The mail service.
@@ -388,9 +390,13 @@ public class ProcessService {
         }
         
         // load the users
-        List<UserData> users = null;
-        try {
-            users = userDataService.getUserData(ug);
+        List<User> users = null;
+        try {            
+            UserSearchCriteria uc = new UserSearchCriteria();
+            uc.setFetchConfig(true);
+            uc.setFetchProfile(true);
+            uc.setGuids(ug);            
+            users = userService.getUsers(uc);
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, "Error reading the user data by criteria", ex);
         }
@@ -423,27 +429,27 @@ public class ProcessService {
      * @param build the build.
      * @return the list of mails.
      */
-    private List<Email> createBuildDeployedMails(List<UserData> users, Object... values) {
+    private List<Email> createBuildDeployedMails(List<User> users, Object... values) {
         List<Email> result = null;
         if (users != null) {
             result = new ArrayList<>();
-            for (UserData user : users) {
-//                UserConfig config = (UserConfig) user.getConfig();
-//
-//                if (config.isNotification()) {
-//                    Email mail = new Email();
-//                    mail.getTo().add(user.getProfile().getEmail());
-//                    mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
-//                    // add the user to the parameters
-//                    mail.getParameters().put(user.getClass().getSimpleName(), user);
-//                    // add the list of values to the parameters
-//                    if (values != null) {
-//                        for (Object value : values) {
-//                            mail.getParameters().put(value.getClass().getSimpleName(), value);
-//                        }
-//                    }
-//                    result.add(mail);
-//                }
+            for (User user : users) {
+                UserConfig config = user.getConfig();
+
+                if (config.isNotification()) {
+                    Email mail = new Email();
+                    mail.getTo().add(user.getProfile().getEmail());
+                    mail.setTemplate(MAIL_BUILD_DEPLOYED_TEMPLATE);
+                    // add the user to the parameters
+                    mail.getParameters().put(user.getClass().getSimpleName(), user);
+                    // add the list of values to the parameters
+                    if (values != null) {
+                        for (Object value : values) {
+                            mail.getParameters().put(value.getClass().getSimpleName(), value);
+                        }
+                    }
+                    result.add(mail);
+                }
             }
         }
         return result;

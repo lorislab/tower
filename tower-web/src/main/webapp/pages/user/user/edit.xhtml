@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
@@ -11,10 +12,21 @@
     <ui:param name="pageIcon" value="icon-user" />
 
     <ui:param name="model" value="#{userVC.model}" />
+    <ui:param name="profile" value="#{userVC.model.profile}" />
+    <ui:param name="config" value="#{userVC.model.config}" />
     <ui:param name="viewController" value="#{userVC}" />
 
     <ui:define name="form">
-      
+        <b:callout title="User profile">
+            <b:input id="first" value="#{profile.firstName}" required="true" title="First name" placeholder="User first name" />
+            <b:input id="middle" value="#{profile.middleName}" required="false" title="Middle name" placeholder="User middle name" />
+            <b:input id="last" value="#{profile.lastName}" required="true" title="Last name" placeholder="User last name" />
+            <b:input id="email" type="email" value="#{profile.email}" required="true" title="Email" placeholder="User email" />
+        </b:callout>
+        <b:callout id="b" title="User configuration">
+            <b:checkbox id="notify" value="#{config.notification}" title="Email notification" />
+            <k:key id="key" value="#{config.key}" controller="#{userVC.keyViewController}" />
+        </b:callout>      
     </ui:define>
 
 </ui:composition>

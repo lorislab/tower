@@ -30,4 +30,11 @@ public interface KeyListener extends ViewController {
      * @param data the new key.
      */
     public void setKey(String data);
+
+    /**
+     * Gets the key view controller instance.
+     *
+     * @return the key view controller instance.
+     */
+    public KeyViewController getKeyViewController();
 }

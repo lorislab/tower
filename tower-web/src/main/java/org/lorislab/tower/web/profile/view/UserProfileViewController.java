@@ -15,13 +15,9 @@
  */
 package org.lorislab.tower.web.profile.view;
 
-import java.security.Principal;
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.lorislab.guardian.user.ejb.UserService;
 import org.lorislab.guardian.user.model.User;
 import org.lorislab.guardian.web.user.controller.UserController;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
@@ -108,13 +104,14 @@ public class UserProfileViewController extends AbstractEntityViewController<User
     public void setKey(String data) {
         getModel().getConfig().setKey(data);
     }
-    
+
     /**
-     * Gets the key view controller.
-     *
-     * @return the key view controller.
+     * {@inheritDoc }
      */
+    @Override
     public KeyViewController getKeyViewController() {
         return keyViewController;
-    }    
+    }
+    
+   
 }

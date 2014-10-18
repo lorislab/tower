@@ -23,7 +23,7 @@
     </ui:define>
 
     <ui:define name="tableRow">
-        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.profile.userGuid}" /></b:link></td>        
+        <td><b:link ctr="#{vc.editAction}" icon="pencil"><f:param name="guid" value="#{item.guid}" /></b:link></td>        
         <td><b:check value="#{item.enabled}"/></td>
         <td>#{item.profile.firstName}</td>        
         <td>#{item.profile.middleName}</td>												

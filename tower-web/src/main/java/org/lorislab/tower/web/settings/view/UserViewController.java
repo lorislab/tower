@@ -15,15 +15,18 @@
  */
 package org.lorislab.tower.web.settings.view;
 
-import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.guardian.api.user.model.UserSourceData;
+import org.lorislab.guardian.user.ejb.UserService;
 import org.lorislab.guardian.user.model.User;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
+import org.lorislab.tower.web.common.view.KeyListener;
+import org.lorislab.tower.web.common.view.KeyViewController;
 import org.lorislab.tower.web.settings.action.ImportUserAction;
 
 /**
@@ -33,7 +36,7 @@ import org.lorislab.tower.web.settings.action.ImportUserAction;
  */
 @Named("userVC")
 @SessionScoped
-public class UserViewController extends AbstractEntityViewController<User> implements Serializable {
+public class UserViewController extends AbstractEntityViewController<User> implements KeyListener {
 
     /**
      * The UID for this class.
@@ -46,11 +49,23 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     private final ImportUserAction importAction;
 
     /**
+     * The user service.
+     */
+    @EJB
+    private UserService service;
+    
+    /**
+     * The key view controller.
+     */
+    private final KeyViewController keyViewController;
+    
+    /**
      * The default constructor.
      */
     public UserViewController() {
         super(Context.USER);
         importAction = new ImportUserAction(this, Context.USER);
+        keyViewController = new KeyViewController(this, Context.USER);
     }
 
     /**
@@ -61,7 +76,29 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     public ImportUserAction getImportAction() {
         return importAction;
     }
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public Object save() throws Exception {
+        User tmp = service.saveUser(getModel());
+        tmp = service.getFullUser(tmp.getGuid());
+        setModel(tmp);        
+        return super.save();
+    }
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public Object edit(String guid) throws Exception {
+        User tmp = service.getFullUser(guid);
+        setModel(tmp);
+        return Navigation.TO_USER_EDIT;
+    }
 
+    
     /**
      * {@inheritDoc }
      */
@@ -87,4 +124,20 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setKey(String data) {
+        getModel().getConfig().setKey(data);
+    }
+
+    /**
+     * Gets the key view controller.
+     *
+     * @return the key view controller.
+     */
+    public KeyViewController getKeyViewController() {
+        return keyViewController;
+    }     
 }

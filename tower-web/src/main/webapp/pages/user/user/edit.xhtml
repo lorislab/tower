@@ -3,30 +3,40 @@
                 xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 template="/templates/editTemplate.xhtml">
-
-    <ui:param name="menuParentSelected" value="USERMAN" />
-    <ui:param name="menuChildSelected" value="USER" />
-    <ui:param name="pageTitle" value="Users" />
-    <ui:param name="pageIcon" value="icon-user" />
 
     <ui:param name="model" value="#{userVC.model}" />
     <ui:param name="profile" value="#{userVC.model.profile}" />
     <ui:param name="config" value="#{userVC.model.config}" />
     <ui:param name="viewController" value="#{userVC}" />
+    
+    <ui:param name="menuParentSelected" value="USERMAN" />
+    <ui:param name="menuChildSelected" value="USER" />
+    <ui:param name="pageTitle" value="#{profile.firstName} #{profile.lastName}" />
+    <ui:param name="pageIcon" value="icon-user" />
 
     <ui:define name="form">
-        <b:callout title="User profile">
-            <b:input id="first" value="#{profile.firstName}" required="true" title="First name" placeholder="User first name" />
+        <b:callout id="c" title="User profile">
+            <b:input id="first" value="#{profile.firstName}" required="true" title="First name" placeholder="User first name" >
+                <f:ajax event="keyup" render="header" execute="@this"/> 
+            </b:input>
             <b:input id="middle" value="#{profile.middleName}" required="false" title="Middle name" placeholder="User middle name" />
-            <b:input id="last" value="#{profile.lastName}" required="true" title="Last name" placeholder="User last name" />
+            <b:input id="last" value="#{profile.lastName}" required="true" title="Last name" placeholder="User last name" >
+                <f:ajax event="keyup" render="header" execute="@this"/> 
+            </b:input>
             <b:input id="email" type="email" value="#{profile.email}" required="true" title="Email" placeholder="User email" />
         </b:callout>
         <b:callout id="b" title="User configuration">
             <b:checkbox id="notify" value="#{config.notification}" title="Email notification" />
             <k:key id="key" value="#{config.key}" controller="#{userVC.keyViewController}" />
         </b:callout>      
+        <b:callout title="User roles">
+            <ui:repeat value="#{userVC.roleItems}" var="item">
+                <b:checkbox value="#{item.selected}" title="#{role[item.role.name]}" />
+            </ui:repeat>
+        </b:callout>
     </ui:define>
 
 </ui:composition>

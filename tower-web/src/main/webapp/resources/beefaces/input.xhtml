@@ -14,6 +14,7 @@
         <composite:attribute name="type" required="false" default="text"/>
         <composite:attribute name="required" required="false" default="false"/>
         <composite:attribute name="error" required="false" default="attention"/>
+        <composite:clientBehavior name="keyup" event="keyup" targets="#{cc.attrs.id}:input"/>
     </composite:interface>
 
     <composite:implementation>		

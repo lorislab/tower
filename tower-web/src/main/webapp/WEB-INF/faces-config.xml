@@ -4,6 +4,13 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
               version="2.2">
               
+    <application>
+        <resource-bundle>
+            <base-name>org.lorislab.tower.web.guardian.app.model.role</base-name>
+            <var>role</var>
+        </resource-bundle>
+    </application>
+         
     <navigation-rule>
         <from-view-id>/*</from-view-id>
         <!-- USER MANAGEMENT: ACTIVE DIRECTORY SEARCH -->

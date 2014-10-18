@@ -15,14 +15,19 @@
  */
 package org.lorislab.tower.web.profile.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.lorislab.guardian.app.model.Role;
 import org.lorislab.guardian.user.model.User;
 import org.lorislab.guardian.web.user.controller.UserController;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;
+import org.lorislab.tower.web.common.model.RoleItem;
+import org.lorislab.tower.web.common.view.ApplicationController;
 import org.lorislab.tower.web.common.view.KeyListener;
 import org.lorislab.tower.web.common.view.KeyViewController;
 
@@ -51,6 +56,11 @@ public class UserProfileViewController extends AbstractEntityViewController<User
      */
     private final KeyViewController keyViewController;
     
+    private List<RoleItem> roleItems;
+    
+    @Inject
+    private ApplicationController applicationController;
+    
     /**
      * The default constructor.
      */
@@ -67,9 +77,20 @@ public class UserProfileViewController extends AbstractEntityViewController<User
     public Object edit(String guid) throws Exception {
         super.edit(guid);
         service.load();
+        roleItems = new ArrayList<>();     
+        User tmp = getModel();
+        for (Role role : applicationController.getRoles()) {
+            if (tmp.getRoles().contains(role.getName())) {
+                roleItems.add(new RoleItem(role, true));
+            }
+        }        
         return null;
     }
 
+    public List<RoleItem> getRoleItems() {
+        return roleItems;
+    }
+    
     /**
      * {@inheritDoc }
      */

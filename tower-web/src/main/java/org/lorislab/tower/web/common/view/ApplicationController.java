@@ -22,10 +22,13 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import org.lorislab.guardian.app.ejb.RoleService;
+import org.lorislab.guardian.app.model.Role;
 import org.lorislab.jel.jsf.api.converter.EnumConverter;
 import org.lorislab.jel.jsf.api.util.FacesResourceUtil;
 import org.lorislab.tower.base.loader.PrmLoader;
@@ -54,6 +57,12 @@ public class ApplicationController implements Serializable {
     private static final Logger LOGGER = Logger.getLogger(ApplicationController.class.getName());
 
     /**
+     * The role service.
+     */
+    @EJB
+    private RoleService roleService;
+
+    /**
      * The bug tracking system types.
      */
     private final List<SelectItem> btsTypes = new ArrayList<>();
@@ -74,6 +83,11 @@ public class ApplicationController implements Serializable {
     private final List<SelectItem> agentTypes = new ArrayList<>();
 
     /**
+     * The list of application roles.
+     */
+    private List<Role> roles;
+
+    /**
      * The project release model.
      */
     private Prm prm;
@@ -88,6 +102,10 @@ public class ApplicationController implements Serializable {
      */
     @PostConstruct
     public void init() {
+
+        // load application roles
+        roles = roleService.getRoles();
+
         // load BTS types
         Map<String, String> tmp = BtsService.getTypes();
         for (Map.Entry<String, String> item : tmp.entrySet()) {
@@ -112,6 +130,15 @@ public class ApplicationController implements Serializable {
         // load version
         prm = PrmLoader.load(ApplicationController.class);
         LOGGER.log(Level.INFO, "********* Starting the Tower version {0} {1} *********", new Object[]{prm.getVersion(), prm.getBuild()});
+    }
+
+    /**
+     * The the application roles.
+     *
+     * @return the application roles.
+     */
+    public List<Role> getRoles() {
+        return roles;
     }
 
     /**

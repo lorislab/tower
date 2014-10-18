@@ -3,19 +3,23 @@
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/templates/editTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="SCM" />
-    <ui:param name="pageTitle" value="Source control system" />
-    <ui:param name="pageIcon" value="icon-fork" />
 
     <ui:param name="model" value="#{scmVC.model}" />
     <ui:param name="viewController" value="#{scmVC}" />
+    
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="SCM" />
+    <ui:param name="pageTitle" value="#{model.name}" />
+    <ui:param name="pageIcon" value="icon-fork" />
 
     <ui:define name="form">
-        <b:callout title="Source control system">
-            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" />
+        <b:callout id="c" title="Source control system">
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" >
+                <f:ajax event="keyup" render="header" execute="editForm:c:name:input"/> 
+            </b:input>
             <b:selectOne id="type" value="#{model.type}" values="#{applicationC.scmTypes}" title="Type" required="true"/>	
             <b:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />
         </b:callout>

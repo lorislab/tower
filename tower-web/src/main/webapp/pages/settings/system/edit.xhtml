@@ -3,20 +3,24 @@
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/templates/editTemplate.xhtml">
-
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="SYSTEM" />
-    <ui:param name="pageTitle" value="System" />
-    <ui:param name="pageIcon" value="icon-suitcase" />
 
     <ui:param name="model" value="#{systemVC.model}" />
     <ui:param name="viewController" value="#{systemVC}" />
+    
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="SYSTEM" />
+    <ui:param name="pageTitle" value="#{model.name}" />
+    <ui:param name="pageIcon" value="icon-suitcase" />
+
 
     <ui:define name="form">
         <b:callout id="b" title="System">
             <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
-            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="System name" />
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="System name" >
+                <f:ajax event="keyup" render="header" execute="editForm:b:name:input"/> 
+            </b:input>
             <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />
             <b:input id="domain" value="#{model.domain}" title="Domain" placeholder="Agent domain" />
             <b:input id="clazz" value="#{model.classification}" title="Classification" placeholder="Agent classification" />

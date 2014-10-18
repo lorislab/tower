@@ -15,7 +15,7 @@
 
                 <div class="control-group" style="margin-top: 20px;">					
                     <b:button type="success" ctr="#{viewController.saveAction}" title="Save" icon="floppy">
-                        <f:ajax event="click" render="@form" execute="@form" />
+                        <f:ajax event="click" render="@form header" execute="@form" />
                     </b:button>	   
                     <span style="padding-right: 5px" />
                     <b:buttonLink ctr="#{viewController.closeAction}" title="Close" icon="cancel" />

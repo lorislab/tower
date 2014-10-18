@@ -15,19 +15,25 @@
  */
 package org.lorislab.tower.web.settings.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import org.lorislab.guardian.api.user.model.UserSourceData;
+import org.lorislab.guardian.app.model.Role;
 import org.lorislab.guardian.user.ejb.UserService;
 import org.lorislab.guardian.user.model.User;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
+import org.lorislab.tower.web.common.view.ApplicationController;
 import org.lorislab.tower.web.common.view.KeyListener;
 import org.lorislab.tower.web.common.view.KeyViewController;
 import org.lorislab.tower.web.settings.action.ImportUserAction;
+import org.lorislab.tower.web.common.model.RoleItem;
 
 /**
  * The user view controller.
@@ -54,10 +60,15 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     @EJB
     private UserService service;
     
+    @Inject
+    private ApplicationController applicationController;
+    
     /**
      * The key view controller.
      */
     private final KeyViewController keyViewController;
+    
+    private List<RoleItem> roleItems;
     
     /**
      * The default constructor.
@@ -68,6 +79,19 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         keyViewController = new KeyViewController(this, Context.USER);
     }
 
+    private void loadUser(String guid) throws Exception {
+        roleItems = new ArrayList<>();        
+        User tmp = service.getFullUser(guid);
+        for (Role role : applicationController.getRoles()) {
+            roleItems.add(new RoleItem(role, tmp.getRoles().contains(role.getName())));
+        }
+        setModel(tmp);        
+    }
+
+    public List<RoleItem> getRoleItems() {
+        return roleItems;
+    }
+        
     /**
      * Gets the import user action.
      *
@@ -82,9 +106,15 @@ public class UserViewController extends AbstractEntityViewController<User> imple
      */
     @Override
     public Object save() throws Exception {
-        User tmp = service.saveUser(getModel());
-        tmp = service.getFullUser(tmp.getGuid());
-        setModel(tmp);        
+        User tmp = getModel();
+        tmp.getRoles().clear();
+        for (RoleItem item : roleItems) {
+            if (item.isSelected()) {
+                tmp.getRoles().add(item.getRole().getName());
+            }
+        }
+        tmp = service.saveUser(getModel());
+        loadUser(tmp.getGuid());
         return super.save();
     }
     
@@ -93,8 +123,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
      */
     @Override
     public Object edit(String guid) throws Exception {
-        User tmp = service.getFullUser(guid);
-        setModel(tmp);
+        loadUser(guid);
         return Navigation.TO_USER_EDIT;
     }
 

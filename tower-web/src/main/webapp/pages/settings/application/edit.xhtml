@@ -3,20 +3,24 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:k="http://xmlns.jcp.org/jsf/composite/tower/key"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/templates/editTemplate.xhtml">
-
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="APPLICATION" />
-    <ui:param name="pageTitle" value="Application" />
-    <ui:param name="pageIcon" value="icon-beaker" />
 
     <ui:param name="model" value="#{applicationVC.model}" />
     <ui:param name="viewController" value="#{applicationVC}" />
 
+   
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="APPLICATION" />
+    <ui:param name="pageTitle" value="#{model.name}" />
+    <ui:param name="pageIcon" value="icon-beaker" />
+
     <ui:define name="form">			
         <b:callout id="b" title="Application">
             <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />
-            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" />
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" >
+                <f:ajax event="keyup" render="header" execute="editForm:b:name:input"/> 
+            </b:input>
             <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />		
             <b:input id="type" value="#{model.type}" title="Type" placeholder="The application type" />		
             <k:key id="key" value="#{model.key}" controller="#{applicationVC.keyViewController}" />

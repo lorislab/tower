@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:insert name="metadata" />
@@ -26,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header"><i class="#{pageIcon}"></i> #{pageTitle}</h1>
+                            <h1 jsf:id="header" class="page-header"><i class="#{pageIcon}"></i> #{pageTitle}</h1>
                         </div>
                     </div>
                     <ui:insert name="body">Body</ui:insert>

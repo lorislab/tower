@@ -34,6 +34,7 @@
         C_ENABLED boolean,
         C_PRINCIPAL varchar(255),
         C_CONFIG_GUID varchar(255),
+        C_PASSWORD_GUID varchar(255),
         C_PROFILE_GUID varchar(255),
         primary key (C_GUID)
     );
@@ -50,7 +51,6 @@
         C_GUID varchar(255) not null,
         C_OPLOCK integer,
         C_PASSWORD varchar(255),
-        C_USER_GUID varchar(255),
         primary key (C_GUID)
     );
 
@@ -83,6 +83,11 @@
         add constraint FKF555B708D030A00B 
         foreign key (C_ROLE_GUID) 
         references GU_ROLE;
+
+    alter table GU_USER 
+        add constraint FK4248F87CC1DE04B2 
+        foreign key (C_PASSWORD_GUID) 
+        references GU_USER_PASSWORD;
 
     alter table GU_USER 
         add constraint FK4248F87C76906792 

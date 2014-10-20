@@ -81,6 +81,11 @@ public class MenuViewController extends AbstractViewController {
      */
     private final MenuAction profile;
     /**
+     * The profile password menu.
+     */
+    private final MenuAction password;
+
+    /**
      * The source control management menu.
      */
     private final MenuAction scm;
@@ -105,12 +110,12 @@ public class MenuViewController extends AbstractViewController {
      * The active directory configuration menu.
      */
     private final MenuAction ad;
-    
+
     /**
      * The active directory configuration menu.
      */
-    private final MenuAction adSearch;    
-    
+    private final MenuAction adSearch;
+
     /**
      * The default constructor.
      */
@@ -133,24 +138,36 @@ public class MenuViewController extends AbstractViewController {
         project = new MenuAction(this, Menu.PROJECT, Navigation.TO_PROJECT);
         ad = new MenuAction(this, Menu.AD, Navigation.TO_AD);
         adSearch = new MenuAction(this, Menu.AD_SEARCH, Navigation.TO_AD_SEARCH);
+        password = new MenuAction(this, Menu.PASSWORD, Navigation.TO_PASSWORD);
+    }
+
+    /**
+     * Gets the user password menu.
+     *
+     * @return the user password menu.
+     */
+    public MenuAction getPassword() {
+        return password;
     }
 
     /**
      * Gets the active directory search menu.
+     *
      * @return the active directory search menu.
      */
     public MenuAction getAdSearch() {
         return adSearch;
     }
-    
+
     /**
      * Gets the active directory menu.
+     *
      * @return the active directory menu.
      */
     public MenuAction getAd() {
         return ad;
     }
-    
+
     /**
      * Gets the agent menu.
      *

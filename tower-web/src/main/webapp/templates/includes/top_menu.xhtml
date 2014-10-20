@@ -17,7 +17,12 @@
                         <a jsf:outcome="#{menuVC.profile.execute()}" jsf:rendered="#{menuVC.profile.available}">
                             <i class="icon-user"></i> User Profile
                         </a>					
-                    </li>					
+                    </li>
+                    <li>
+                        <a jsf:outcome="#{menuVC.password.execute()}" jsf:rendered="#{menuVC.password.available}">
+                            <i class="icon-user"></i> Change password
+                        </a>					
+                    </li>                    
                     <li jsf:rendered="#{menuVC.logout.available}">
                         <a jsf:action="#{menuVC.logout.execute}" jsf:rendered="#{menuVC.profile.available}"> 
                             <i class="icon-logout"></i> Logout

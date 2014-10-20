@@ -37,7 +37,10 @@ public final class Navigation {
      * The navigation to user profile.
      */
     public static String TO_PROFILE = "toProfile";
-
+    /**
+     * The navigation to user password.
+     */
+    public static String TO_PASSWORD = "toPassword";
     /**
      * The navigation to project search.
      */

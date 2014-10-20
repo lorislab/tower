@@ -23,6 +23,10 @@ package org.lorislab.tower.web.common.action;
 public enum Menu {
 
     /**
+     * The user password menu.
+     */
+    PASSWORD,
+    /**
      * The active directory search configuration menu
      */
     AD_SEARCH,    

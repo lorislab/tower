@@ -6,6 +6,9 @@
         drop constraint FKF555B708D030A00B;
 
     alter table GU_USER 
+        drop constraint FK4248F87CC1DE04B2;
+
+    alter table GU_USER 
         drop constraint FK4248F87C76906792;
 
     alter table GU_USER 

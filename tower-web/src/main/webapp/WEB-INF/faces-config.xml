@@ -131,7 +131,12 @@
             <from-outcome>toProfile</from-outcome>
             <to-view-id>/pages/profile/profile.xhtml</to-view-id>
             <redirect />
-        </navigation-case>		
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toPassword</from-outcome>
+            <to-view-id>/pages/profile/password.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        		
         <navigation-case>
             <from-outcome>toHome</from-outcome>
             <to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>

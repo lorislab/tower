@@ -30,4 +30,11 @@ public interface ChangePasswordListener extends ViewController {
      * @param data the new password.
      */
     public void changePassword(String data);
+    
+    /**
+     * Gets the password view controller.
+     *
+     * @return the password view controller.
+     */    
+    public ChangePasswordViewController getPasswordVC();
 }

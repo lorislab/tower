@@ -19,36 +19,72 @@ import java.io.Serializable;
 import org.lorislab.guardian.app.model.Role;
 
 /**
+ * The role item.
  *
  * @author Andrej_Petras
  */
 public class RoleItem implements Serializable {
-    
+
+    /**
+     * The UID for this class.
+     */
     private static final long serialVersionUID = 2603014614581275490L;
-    
+
+    /**
+     * The role.
+     */
     private Role role;
-    
+
+    /**
+     * The selected flag.
+     */
     private boolean selected;
 
+    /**
+     * The default constructor.
+     *
+     * @param role the role.
+     * @param selected the selected flag.
+     */
     public RoleItem(Role role, boolean selected) {
         this.role = role;
         this.selected = selected;
     }
-    
+
+    /**
+     * Gets the role.
+     *
+     * @return the role.
+     */
     public Role getRole() {
         return role;
     }
 
+    /**
+     * Sets the role.
+     *
+     * @param role the role.
+     */
     public void setRole(Role role) {
         this.role = role;
     }
 
+    /**
+     * Gets the selected flag.
+     *
+     * @return the selected flag.
+     */
     public boolean isSelected() {
         return selected;
     }
 
+    /**
+     * Sets the selected flag.
+     *
+     * @param selected the selected flag.
+     */
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
-        
+
 }

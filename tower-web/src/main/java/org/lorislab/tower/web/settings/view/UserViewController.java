@@ -34,6 +34,8 @@ import org.lorislab.tower.web.common.view.KeyListener;
 import org.lorislab.tower.web.common.view.KeyViewController;
 import org.lorislab.tower.web.settings.action.ImportUserAction;
 import org.lorislab.tower.web.common.model.RoleItem;
+import org.lorislab.tower.web.common.view.ChangePasswordListener;
+import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 
 /**
  * The user view controller.
@@ -42,7 +44,7 @@ import org.lorislab.tower.web.common.model.RoleItem;
  */
 @Named("userVC")
 @SessionScoped
-public class UserViewController extends AbstractEntityViewController<User> implements KeyListener {
+public class UserViewController extends AbstractEntityViewController<User> implements KeyListener, ChangePasswordListener {
 
     /**
      * The UID for this class.
@@ -55,21 +57,32 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     private final ImportUserAction importAction;
 
     /**
+     * The change password view controller.
+     */
+    private final ChangePasswordViewController passwordVC;
+
+    /**
      * The user service.
      */
     @EJB
     private UserService service;
-    
+
+    /**
+     * The application controller.
+     */
     @Inject
     private ApplicationController applicationController;
-    
+
     /**
      * The key view controller.
      */
     private final KeyViewController keyViewController;
-    
+
+    /**
+     * The list of role items.
+     */
     private List<RoleItem> roleItems;
-    
+
     /**
      * The default constructor.
      */
@@ -77,21 +90,42 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         super(Context.USER);
         importAction = new ImportUserAction(this, Context.USER);
         keyViewController = new KeyViewController(this, Context.USER);
+        passwordVC = new ChangePasswordViewController(this, Context.USER);
     }
 
+    /**
+     * Loads the user by user GUID.
+     *
+     * @param guid the user GUID.
+     * @throws java.lang.Exception if the method fails.
+     */
     private void loadUser(String guid) throws Exception {
-        roleItems = new ArrayList<>();        
+        roleItems = new ArrayList<>();
         User tmp = service.getFullUser(guid);
         for (Role role : applicationController.getRoles()) {
             roleItems.add(new RoleItem(role, tmp.getRoles().contains(role.getName())));
         }
-        setModel(tmp);        
+        setModel(tmp);
     }
 
+    /**
+     * Gets the password view controller.
+     *
+     * @return the password view controller.
+     */
+    public ChangePasswordViewController getPasswordVC() {
+        return passwordVC;
+    }
+
+    /**
+     * Gets the role items.
+     *
+     * @return the role items.
+     */
     public List<RoleItem> getRoleItems() {
         return roleItems;
     }
-        
+
     /**
      * Gets the import user action.
      *
@@ -100,7 +134,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     public ImportUserAction getImportAction() {
         return importAction;
     }
-    
+
     /**
      * {@inheritDoc }
      */
@@ -117,7 +151,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         loadUser(tmp.getGuid());
         return super.save();
     }
-    
+
     /**
      * {@inheritDoc }
      */
@@ -127,7 +161,6 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         return Navigation.TO_USER_EDIT;
     }
 
-    
     /**
      * {@inheritDoc }
      */
@@ -147,7 +180,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     public Object importUser(UserSourceData user) {
         Object result = null;
         if (user != null) {
-          
+
             result = Navigation.TO_USER_EDIT;
         }
         return result;
@@ -168,5 +201,13 @@ public class UserViewController extends AbstractEntityViewController<User> imple
      */
     public KeyViewController getKeyViewController() {
         return keyViewController;
-    }     
+    }
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public void changePassword(String data) {
+        getModel().getPassword().setPassword(data);
+    }    
 }

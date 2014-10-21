@@ -27,6 +27,7 @@
                 <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
             <b:input id="email" type="email" value="#{profile.email}" required="true" title="Email" placeholder="User email" />
+            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password.password}" dialog="up" render="editForm:c:password:input"/>
         </b:callout>
         <b:callout id="b" title="User configuration">
             <b:checkbox id="notify" value="#{config.notification}" title="Email notification" />
@@ -39,5 +40,14 @@
         </b:callout>
     </ui:define>
 
+    <ui:define name="modal">
+        <h:form id="modalForm" class="form-horizontal" prependId="false" >
+            <p:dialog id="up" controller="#{viewController.passwordVC}" render="editForm:c:password:input"/>	
+        </h:form>
+        <h:form id="pdForm" class="form-horizontal" prependId="false" >
+            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete user" question="Do you want to delete user #{profile.firstName} #{profile.lastName}?" />
+        </h:form>          
+    </ui:define>
+    
 </ui:composition>
 

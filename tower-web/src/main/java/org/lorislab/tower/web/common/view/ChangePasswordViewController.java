@@ -55,13 +55,30 @@ public class ChangePasswordViewController extends AbstractChildViewController<Ch
     private final ClearPasswordAction clearPasswordAction;
 
     /**
+     * The secret flag.
+     */
+    private boolean secret;
+    
+    /**
      * The default constructor.
      *
      * @param parent the parent view controller.
      * @param context the context.
      */
     public ChangePasswordViewController(ChangePasswordListener parent, Context context) {
+        this(parent, context, false);
+    }   
+    
+    /**
+     * The default constructor.
+     *
+     * @param parent the parent view controller.
+     * @param context the context.
+     * @param secret the secret password flag.
+     */
+    public ChangePasswordViewController(ChangePasswordListener parent, Context context, boolean secret) {
         super(parent);
+        this.secret = secret;
         password = new ChangePassword();
         clearPasswordAction = new ClearPasswordAction(this, context, Permission.PASSWORD);
         changePasswordAction = new ChangePasswordAction(this, context, Permission.PASSWORD);
@@ -125,8 +142,13 @@ public class ChangePasswordViewController extends AbstractChildViewController<Ch
     public Object changePassword() throws Exception {
         if (password.isValid()) {
             try {
+                String tmp;
                 PasswordService service = PasswordServiceFactory.getService();
-                String tmp = service.createPassword(password.getNew1());
+                if (secret) {
+                    tmp = service.createSecretPassword(password.getNew1());
+                } else {                    
+                    tmp = service.createPassword(password.getNew1());                    
+                }
                 getParent().changePassword(tmp);
             } catch (Exception ex) {
                 FacesResourceUtil.addFacesErrorMessage(ValidationErrorKey.PASSWORD_ERROR);

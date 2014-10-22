@@ -30,6 +30,10 @@ public class ChangePassword implements Serializable {
      */
     private static final long serialVersionUID = -680608891056515070L;
     /**
+     * The old password.
+     */
+    private char[] old;
+    /**
      * The new password.
      */
     private char[] new1;
@@ -37,6 +41,24 @@ public class ChangePassword implements Serializable {
      * The confirm password.
      */
     private char[] new2;
+
+    /**
+     * Gets the old password.
+     *
+     * @return the old password.
+     */
+    public char[] getOld() {
+        return old;
+    }
+
+    /**
+     * Sets the old password.
+     *
+     * @param old the old password.
+     */
+    public void setOld(char[] old) {
+        this.old = old;
+    }
 
     /**
      * Gets the new password.
@@ -80,6 +102,7 @@ public class ChangePassword implements Serializable {
     public void clear() {
         new1 = null;
         new2 = null;
+        old = null;
     }
 
     /**

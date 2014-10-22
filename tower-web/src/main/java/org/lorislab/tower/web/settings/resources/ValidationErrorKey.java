@@ -24,5 +24,7 @@ public enum ValidationErrorKey {
     
     PASSWORD_ERROR,
     
+    PASSWORD_DOES_NOT_MACH_OLD,
+    
     PASSWORD_DOES_NOT_MACH;
 }

@@ -90,7 +90,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         super(Context.USER);
         importAction = new ImportUserAction(this, Context.USER);
         keyViewController = new KeyViewController(this, Context.USER);
-        passwordVC = new ChangePasswordViewController(this, Context.USER);
+        passwordVC = new ChangePasswordViewController(this, Context.USER, true);
     }
 
     /**

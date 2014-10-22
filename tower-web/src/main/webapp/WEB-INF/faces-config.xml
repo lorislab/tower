@@ -79,7 +79,18 @@
             <from-outcome>toProjectEdit</from-outcome>
             <to-view-id>/pages/settings/project/edit.xhtml</to-view-id>
             <redirect />
-        </navigation-case>	
+        </navigation-case>
+        <!-- SETTINGS: NOTIFICATION GROUP -->
+        <navigation-case>
+            <from-outcome>toNotifyGroup</from-outcome>
+            <to-view-id>/pages/settings/notify/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toNotifyGroupEdit</from-outcome>
+            <to-view-id>/pages/settings/notify/edit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        	
         <!-- SETTINGS: SCM -->		
         <navigation-case>
             <from-outcome>toSCM</from-outcome>

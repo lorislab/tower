@@ -132,4 +132,13 @@ public final class Navigation {
      * The navigation to active directory search configuration.
      */
     public static String TO_AD_SEARCH = "toAdSearch";
+    
+    /**
+     * The navigation to notification group search.
+     */
+    public static String TO_NOTIFY_GROUP = "toNotifyGroup";
+    /**
+     * The navigation to notification group edit.
+     */
+    public static String TO_NOTIFY_GROUP_EDIT = "toNotifyGroupEdit";    
 }

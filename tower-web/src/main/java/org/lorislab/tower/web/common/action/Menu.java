@@ -23,6 +23,10 @@ package org.lorislab.tower.web.common.action;
 public enum Menu {
 
     /**
+     * The notification group menu.
+     */
+    NOTIFY_GROUP,
+    /**
      * The user password menu.
      */
     PASSWORD,

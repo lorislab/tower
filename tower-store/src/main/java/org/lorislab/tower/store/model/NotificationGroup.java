@@ -48,6 +48,12 @@ public class NotificationGroup extends Persistent {
     private String name;
 
     /**
+     * The enabled flag.
+     */
+    @Column(name = "C_ENABLED")
+    private boolean enabled;
+
+    /**
      * The set of users.
      */
     @ElementCollection(fetch = FetchType.LAZY)
@@ -77,7 +83,25 @@ public class NotificationGroup extends Persistent {
             joinColumns = @JoinColumn(name = "C_APP_GUID")
     )
     private Set<String> applications;
-    
+
+    /**
+     * Sets the enabled flag.
+     *
+     * @param enabled the enabled flag.
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
+     * Gets the enabled flag.
+     *
+     * @return the enabled flag.
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
+
     /**
      * Gets the name.
      *
@@ -113,7 +137,7 @@ public class NotificationGroup extends Persistent {
     public void setApplications(Set<String> applications) {
         this.applications = applications;
     }
-    
+
     /**
      * Gets the systems.
      *

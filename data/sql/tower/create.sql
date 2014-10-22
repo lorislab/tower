@@ -115,6 +115,7 @@
     create table TW_ST_NOTIFY_GROUP (
         C_GUID varchar(255) not null,
         C_OPLOCK integer,
+        C_ENABLED smallint,
         C_NAME varchar(255),
         primary key (C_GUID)
     );

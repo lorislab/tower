@@ -115,7 +115,11 @@ public class MenuViewController extends AbstractViewController {
      * The active directory configuration menu.
      */
     private final MenuAction adSearch;
-
+    /**
+     * The notification group menu.
+     */
+    private final MenuAction notify;
+    
     /**
      * The default constructor.
      */
@@ -139,8 +143,18 @@ public class MenuViewController extends AbstractViewController {
         ad = new MenuAction(this, Menu.AD, Navigation.TO_AD);
         adSearch = new MenuAction(this, Menu.AD_SEARCH, Navigation.TO_AD_SEARCH);
         password = new MenuAction(this, Menu.PASSWORD, Navigation.TO_PASSWORD);
+        notify = new MenuAction(this, Menu.NOTIFY_GROUP, Navigation.TO_NOTIFY_GROUP);
     }
 
+    /**
+     * Gets the notification group menu.
+     *
+     * @return the notification group menu.
+     */    
+    public MenuAction getNotify() {
+        return notify;
+    }
+    
     /**
      * Gets the user password menu.
      *

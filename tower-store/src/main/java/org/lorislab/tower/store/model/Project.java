@@ -50,6 +50,9 @@ public class Project extends Persistent {
     @JoinColumn(name = "C_BTS")
     private BTSystem bts;
 
+    /**
+     * The enabled flag.
+     */    
     @Column(name = "C_ENABLED")
     private boolean enabled;
 

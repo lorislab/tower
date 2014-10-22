@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/templates/editTemplate.xhtml">
+    
+    <ui:param name="model" value="#{notifyGroupVC.model}" />
+    <ui:param name="viewController" value="#{notifyGroupVC}" />
+
+    <ui:param name="menuParentSelected" value="SETTINGS" />
+    <ui:param name="menuChildSelected" value="NOTIFY_GROUP" />
+    <ui:param name="pageTitle" value="#{model.name}" />
+    <ui:param name="pageIcon" value="icon-bell" />
+
+    <ui:define name="form">
+        <b:callout id="c" title="Group">
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Notification group name" >
+                <f:ajax event="keyup" render="header" execute="editForm:c:name:input"/> 
+            </b:input>
+        </b:callout>      
+    </ui:define>
+
+</ui:composition>
+

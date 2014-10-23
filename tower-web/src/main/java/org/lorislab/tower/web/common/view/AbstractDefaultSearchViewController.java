@@ -15,11 +15,9 @@
  */
 package org.lorislab.tower.web.common.view;
 
-import java.util.List;
 import javax.annotation.PostConstruct;
 import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
 import org.lorislab.jel.jsf.search.controller.AbstractSearchViewController;
-import org.lorislab.jel.jsf.search.controller.action.SearchAction;
 
 /**
  * The abstract search view controller.

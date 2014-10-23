@@ -2,8 +2,9 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/templates/editTemplate.xhtml">
-    
+
     <ui:param name="model" value="#{notifyGroupVC.model}" />
     <ui:param name="viewController" value="#{notifyGroupVC}" />
 
@@ -18,8 +19,39 @@
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Notification group name" >
                 <f:ajax event="keyup" render="header" execute="editForm:c:name:input"/> 
             </b:input>
-        </b:callout>      
+        </b:callout>    
+
+        <div class="row">
+            <div class="col-sm-4">
+                <b:callout title="Users">
+                    <ui:repeat value="#{notifyGroupVC.user.data}" var="item">
+                        <b:checkbox value="#{item.selected}" title="#{item.data.profile.firstName} #{item.data.profile.lastName}" />
+                    </ui:repeat>
+                </b:callout>
+            </div>
+            <div class="col-sm-4">
+                <b:callout title="Systems">
+                    <ui:repeat value="#{notifyGroupVC.system.data}" var="item">
+                        <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
+                    </ui:repeat>
+                </b:callout>
+            </div>
+            <div class="col-sm-4">
+                <b:callout title="Applications">
+                    <ui:repeat value="#{notifyGroupVC.application.data}" var="item">
+                        <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
+                    </ui:repeat>                 
+                </b:callout>
+            </div>
+        </div>        
+
     </ui:define>
 
+    <ui:define name="modal">
+        <h:form id="pdForm" class="form-horizontal" prependId="false" >
+            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete project" question="Do you want to delete the notification group #{model.name}?" />
+        </h:form>  
+    </ui:define>
+    
 </ui:composition>
 

@@ -34,7 +34,7 @@
         </b:callout>
         <b:callout title="Roles">
             <ui:repeat value="#{userProfileVC.roleItems}" var="item">
-                <b:output icon="key" value="#{role[item.role.name]}" title="" />
+                <b:output icon="key" value="#{role[item.data.name]}" title="" />
             </ui:repeat>
         </b:callout>        
     </ui:define>

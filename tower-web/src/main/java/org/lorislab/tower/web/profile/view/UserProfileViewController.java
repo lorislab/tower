@@ -26,7 +26,7 @@ import org.lorislab.guardian.web.user.controller.UserController;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
 import org.lorislab.tower.web.common.action.Context;
-import org.lorislab.tower.web.common.model.RoleItem;
+import org.lorislab.jel.jsf.entity.model.EntitySelectItem;
 import org.lorislab.tower.web.common.view.ApplicationController;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
@@ -40,7 +40,7 @@ import org.lorislab.tower.web.common.view.KeyViewController;
  */
 @Named("userProfileVC")
 @SessionScoped
-public class UserProfileViewController extends AbstractEntityViewController<User> implements KeyListener, ChangePasswordListener {
+public class UserProfileViewController extends AbstractEntityViewController<User> implements KeyListener {
 
     /**
      * The UID for this class.
@@ -54,11 +54,6 @@ public class UserProfileViewController extends AbstractEntityViewController<User
     private UserController service;
 
     /**
-     * The change password view controller.
-     */
-    private final ChangePasswordViewController passwordVC;
-
-    /**
      * The key view controller.
      */
     private final KeyViewController keyViewController;
@@ -66,7 +61,7 @@ public class UserProfileViewController extends AbstractEntityViewController<User
     /**
      * The role items.
      */
-    private List<RoleItem> roleItems;
+    private List<EntitySelectItem<Role>> roleItems;
 
     /**
      * The application controller.
@@ -80,16 +75,6 @@ public class UserProfileViewController extends AbstractEntityViewController<User
     public UserProfileViewController() {
         super(Context.PROFILE);
         keyViewController = new KeyViewController(this, Context.PROFILE);
-        passwordVC = new ChangePasswordViewController(this, Context.PROFILE);
-    }
-
-    /**
-     * Gets the password view controller.
-     *
-     * @return the password view controller.
-     */
-    public ChangePasswordViewController getPasswordVC() {
-        return passwordVC;
     }
 
     /**
@@ -104,7 +89,7 @@ public class UserProfileViewController extends AbstractEntityViewController<User
         User tmp = getModel();
         for (Role role : applicationController.getRoles()) {
             if (tmp.getRoles().contains(role.getName())) {
-                roleItems.add(new RoleItem(role, true));
+                roleItems.add(new EntitySelectItem<>(role, true));
             }
         }
         return null;
@@ -115,7 +100,7 @@ public class UserProfileViewController extends AbstractEntityViewController<User
      *
      * @return the role items.
      */
-    public List<RoleItem> getRoleItems() {
+    public List<EntitySelectItem<Role>> getRoleItems() {
         return roleItems;
     }
 
@@ -162,11 +147,4 @@ public class UserProfileViewController extends AbstractEntityViewController<User
         return keyViewController;
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public void changePassword(String data) {
-
-    }
 }

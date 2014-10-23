@@ -34,8 +34,8 @@
             <k:key id="key" value="#{config.key}" controller="#{userVC.keyViewController}" />
         </b:callout>      
         <b:callout title="User roles">
-            <ui:repeat value="#{userVC.roleItems}" var="item">
-                <b:checkbox value="#{item.selected}" title="#{role[item.role.name]}" />
+            <ui:repeat value="#{userVC.roles.data}" var="item">
+                <b:checkbox value="#{item.selected}" title="#{role[item.data.name]}" />
             </ui:repeat>
         </b:callout>
     </ui:define>

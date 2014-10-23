@@ -15,8 +15,6 @@
  */
 package org.lorislab.tower.web.settings.view;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -27,13 +25,13 @@ import org.lorislab.guardian.user.ejb.UserService;
 import org.lorislab.guardian.user.model.User;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
+import org.lorislab.jel.jsf.entity.controller.EntitySelectItemListController;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.action.Navigation;
 import org.lorislab.tower.web.common.view.ApplicationController;
 import org.lorislab.tower.web.common.view.KeyListener;
 import org.lorislab.tower.web.common.view.KeyViewController;
 import org.lorislab.tower.web.settings.action.ImportUserAction;
-import org.lorislab.tower.web.common.model.RoleItem;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
 
@@ -81,7 +79,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     /**
      * The list of role items.
      */
-    private List<RoleItem> roleItems;
+    private final EntitySelectItemListController<Role> roles;
 
     /**
      * The default constructor.
@@ -91,6 +89,16 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         importAction = new ImportUserAction(this, Context.USER);
         keyViewController = new KeyViewController(this, Context.USER);
         passwordVC = new ChangePasswordViewController(this, Context.USER, true);
+        roles = new EntitySelectItemListController<Role>() {
+            
+            private static final long serialVersionUID = -2372754672340949068L;
+
+            @Override
+            protected String getKey(Role model) {
+                return model.getName();
+            }
+            
+        };
     }
 
     /**
@@ -100,11 +108,8 @@ public class UserViewController extends AbstractEntityViewController<User> imple
      * @throws java.lang.Exception if the method fails.
      */
     private void loadUser(String guid) throws Exception {
-        roleItems = new ArrayList<>();
         User tmp = service.getFullUser(guid);
-        for (Role role : applicationController.getRoles()) {
-            roleItems.add(new RoleItem(role, tmp.getRoles().contains(role.getName())));
-        }
+        roles.loadData(applicationController.getRoles(), tmp.getRoles());
         setModel(tmp);
     }
 
@@ -122,8 +127,8 @@ public class UserViewController extends AbstractEntityViewController<User> imple
      *
      * @return the role items.
      */
-    public List<RoleItem> getRoleItems() {
-        return roleItems;
+    public EntitySelectItemListController<Role> getRoles() {
+        return roles;
     }
 
     /**
@@ -141,12 +146,7 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     @Override
     public Object save() throws Exception {
         User tmp = getModel();
-        tmp.getRoles().clear();
-        for (RoleItem item : roleItems) {
-            if (item.isSelected()) {
-                tmp.getRoles().add(item.getRole().getName());
-            }
-        }
+        tmp.setRoles(roles.getKeys());
         tmp = service.saveUser(getModel());
         loadUser(tmp.getGuid());
         return super.save();

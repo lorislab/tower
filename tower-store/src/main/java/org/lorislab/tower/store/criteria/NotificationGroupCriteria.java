@@ -30,6 +30,11 @@ public class NotificationGroupCriteria extends AbstractSearchCriteria {
     private static final long serialVersionUID = -4685095438105046328L;
 
     /**
+     * The GUID.
+     */
+    private String guid;
+    
+    /**
      * The system.
      */
     private String system;
@@ -66,12 +71,21 @@ public class NotificationGroupCriteria extends AbstractSearchCriteria {
     public void reset() {
         system = null;
         user = null;
+        guid = null;
         application = null;
         fetchSystems = false;
         fetchUsers = false;
         fetchApplications = false;
     }
 
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+    
     /**
      * Gets the application.
      *
@@ -149,7 +163,7 @@ public class NotificationGroupCriteria extends AbstractSearchCriteria {
      */
     @Override
     public boolean isEmpty() {
-        return isEmpty(system, user);
+        return isEmpty(system, user, application, guid);
     }
 
     /**

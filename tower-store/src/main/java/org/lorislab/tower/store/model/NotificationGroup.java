@@ -15,6 +15,7 @@
  */
 package org.lorislab.tower.store.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -61,7 +62,7 @@ public class NotificationGroup extends Persistent {
             name = "TW_ST_NOTIFY_USERS",
             joinColumns = @JoinColumn(name = "C_USER_GUID")
     )
-    private Set<String> users;
+    private Set<String> users = new HashSet<>();
 
     /**
      * The set of systems.
@@ -72,7 +73,7 @@ public class NotificationGroup extends Persistent {
             joinColumns = @JoinColumn(name = "C_SYSTEM_GUID")
     )
     @Column(name = "C_SYSTEMS")
-    private Set<String> systems;
+    private Set<String> systems = new HashSet<>();
 
     /**
      * The set of application.
@@ -82,7 +83,7 @@ public class NotificationGroup extends Persistent {
             name = "TW_ST_NOTIFY_APP",
             joinColumns = @JoinColumn(name = "C_APP_GUID")
     )
-    private Set<String> applications;
+    private Set<String> applications = new HashSet<>();
 
     /**
      * Sets the enabled flag.

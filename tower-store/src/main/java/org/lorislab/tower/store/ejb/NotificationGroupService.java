@@ -26,6 +26,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
@@ -68,6 +69,17 @@ public class NotificationGroupService extends AbstractEntityServiceBean<Notifica
     }
 
     /**
+     * Deletes the notification group.
+     *
+     * @param guid the GUID.
+     * @return <code>true</code> if the notification group was deleted.
+     */
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean deleteNotificationGroup(String guid) {
+        return this.delete(guid);
+    }
+
+    /**
      * Gets the notification group by GUID.
      *
      * @param guid the notification group GUID.
@@ -75,6 +87,28 @@ public class NotificationGroupService extends AbstractEntityServiceBean<Notifica
      */
     public NotificationGroup getNotificationGroup(String guid) {
         return getById(guid);
+    }
+
+    /**
+     * Gets the full notification group by GUID.
+     *
+     * @param guid the notification group GUID.
+     * @return the corresponding full notification group.
+     */
+    public NotificationGroup getFullNotificationGroup(String guid) {
+        NotificationGroup result = null;
+
+        NotificationGroupCriteria ngc = new NotificationGroupCriteria();
+        ngc.setFetchApplications(true);
+        ngc.setFetchSystems(true);
+        ngc.setFetchUsers(true);
+        ngc.setGuid(guid);
+
+        List<NotificationGroup> tmp = getNotificationGroups(ngc);
+        if (tmp != null && !tmp.isEmpty()) {
+            result = tmp.get(0);
+        }
+        return result;
     }
 
     /**
@@ -89,22 +123,26 @@ public class NotificationGroupService extends AbstractEntityServiceBean<Notifica
         CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
         CriteriaQuery<NotificationGroup> cq = getBaseEAO().createCriteriaQuery();
         Root<NotificationGroup> root = cq.from(NotificationGroup.class);
-                
+
         List<Predicate> predicates = new ArrayList<>();
         if (criteria != null) {
-            
+
             if (criteria.isFetchSystems()) {
-                root.fetch(NotificationGroup_.systems);
+                root.fetch(NotificationGroup_.systems, JoinType.LEFT);
             }
-            
+
             if (criteria.isFetchApplications()) {
-                root.fetch(NotificationGroup_.applications);
+                root.fetch(NotificationGroup_.applications, JoinType.LEFT);
             }
-            
+
             if (criteria.isFetchUsers()) {
-                root.fetch(NotificationGroup_.users);
+                root.fetch(NotificationGroup_.users, JoinType.LEFT);
             }
-            
+
+            if (criteria.getGuid() != null) {
+                predicates.add(cb.equal(root.get(NotificationGroup_.guid), criteria.getGuid()));
+            }
+
             if (criteria.getSystem() != null) {
                 predicates.add(cb.isMember(criteria.getSystem(), root.get(NotificationGroup_.systems)));
             }
@@ -112,7 +150,7 @@ public class NotificationGroupService extends AbstractEntityServiceBean<Notifica
             if (criteria.getUser() != null) {
                 predicates.add(cb.isMember(criteria.getUser(), root.get(NotificationGroup_.users)));
             }
-            
+
             if (criteria.getApplication() != null) {
                 predicates.add(cb.isMember(criteria.getApplication(), root.get(NotificationGroup_.applications)));
             }

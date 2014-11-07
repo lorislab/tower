@@ -36,7 +36,8 @@ import org.lorislab.jel.jpa.model.Persistent;
  * @author Andrej Petras
  */
 @Entity
-@Table(name = "TW_ST_BUILD", uniqueConstraints={@UniqueConstraint(columnNames={"C_DATE", "C_KEY", "C_APP"})})
+@Table(name = "TW_ST_BUILD", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"C_DATE", "C_KEY", "C_APP"})})
 public class Build extends Persistent {
 
     /**
@@ -44,60 +45,117 @@ public class Build extends Persistent {
      */
     private static final long serialVersionUID = -1095643007199796298L;
 
+    /**
+     * The application.
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "C_APP")
     private Application application;
 
+    /**
+     * The agent.
+     */
     @Column(name = "C_AGENT")
     private String agent;
 
+    /**
+     * The UID.
+     */
     @Column(name = "C_UID")
     private String uid;
 
+    /**
+     * The key.
+     */
     @Column(name = "C_KEY")
     private String key;
-    
+
+    /**
+     * The version.
+     */
     @Column(name = "C_VERSION")
     private Integer ver;
 
+    /**
+     * The date.
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "C_DATE")
     private Date date;
 
+    /**
+     * The install date.
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "C_INSTALL")
     private Date install;
-    
+
+    /**
+     * The service.
+     */
     @Column(name = "C_SERVICE")
     private String service;
 
+    /**
+     * The group ID.
+     */
     @Column(name = "C_MVN_GROUP_ID")
     private String groupId;
 
+    /**
+     * The artifact ID.
+     */
     @Column(name = "C_MVN_ARTIFACT_ID")
     private String artifactId;
 
+    /**
+     * The MAVEN version.
+     */
     @Column(name = "C_MVN_VERSION")
     private String mavenVersion;
 
+    /**
+     * The source code management.
+     */
     @Column(name = "C_SCM")
     private String scm;
 
+    /**
+     * The build.
+     */
     @Column(name = "C_BUILD")
     private String build;
 
+    /**
+     * The build parameters.
+     */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "C_BUILD")
     private Set<BuildParameter> parameters;
 
+    /**
+     * Gets the key.
+     *
+     * @return the key.
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * Sets the key.
+     *
+     * @param key the key.
+     */
     public void setKey(String key) {
         this.key = key;
     }
-    
+
+    /**
+     * Gets the date of the install.
+     *
+     * @return the date of the install.
+     */
     public Date getInstall() {
         return install;
     }
@@ -105,7 +163,7 @@ public class Build extends Persistent {
     public void setInstall(Date install) {
         this.install = install;
     }
-    
+
     public String getAgent() {
         return agent;
     }

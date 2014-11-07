@@ -22,7 +22,7 @@ import javax.inject.Named;
 import org.lorislab.guardian.user.model.User;
 import org.lorislab.jel.jsf.api.interceptor.annotations.FacesServiceMethod;
 import org.lorislab.postman.api.model.EmailConfig;
-import org.lorislab.tower.process.ejb.TestService;
+import org.lorislab.tower.service.system.ejb.TestSystemService;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.ChangePasswordListener;
 import org.lorislab.tower.web.common.view.ChangePasswordViewController;
@@ -57,7 +57,7 @@ public class MailViewController extends ConfigurationViewController<EmailConfig>
      * The test service.
      */
     @EJB
-    private TestService testService;
+    private TestSystemService testService;
 
     /**
      * The user data.

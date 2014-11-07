@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.lorislab.tower</groupId>
+        <artifactId>tower</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+	
+    <name>tower-web-rs</name>
+    <artifactId>tower-web-rs</artifactId>	
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-base-server-rs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-ejb</artifactId>
+            <type>ejb-client</type>
+            <scope>provided</scope>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- SERVLER -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>	
+        <!-- RS -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>          
+        <!-- CDI -->			
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>			
+            <scope>provided</scope>
+        </dependency>
+        <!-- EJB -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>  				
+    </dependencies>
+	
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>	
+
+</project>

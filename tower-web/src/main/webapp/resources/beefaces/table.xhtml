@@ -17,7 +17,7 @@
         <div class="panel panel-#{cc.attrs.type}">
             <div class="panel-heading">                
                 <div class="input-group">    
-                    <span class="input-group-addon"># #{cc.attrs.ctr.result.size()}</span>
+                    <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.ctr.result.size()}</span>
                     <input jsf:id="input-filter" data-action="tableFilter" data-filters="##{cc.attrs.id}\\:table" type="search" placeholder="Search" class="form-control"></input>
                     <span class="input-group-btn">
                         <button class="btn btn-#{cc.attrs.type}" type="button" data-action="tableFiltetClear"><i class="icon-erase"></i></button>

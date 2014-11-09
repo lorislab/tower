@@ -3,6 +3,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
                 xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="menuParentSelected" value="SETTINGS" />
@@ -10,7 +11,7 @@
     <ui:param name="pageTitle" value="Mail system" />
     <ui:param name="pageIcon" value="icon-mail-alt" />
 
-    <ui:param name="vc" value="#{mailVC}" />
+    <ui:param name="viewController" value="#{mailVC}" />
     <ui:param name="model" value="#{viewController.model}" />
 
     <ui:define name="metadata">
@@ -43,13 +44,15 @@
     </ui:define>
 
     <ui:define name="button-right">
-        <b:button type="success" ctr="#{timerVC.startAction}" title="Send test email" icon="mail-alt">
+        <b:button type="success" ctr="#{viewController.sendTestAction}" title="Send test email" icon="mail-alt">
             <f:ajax event="click" render="@this" execute="@this"/>
         </b:button>        
     </ui:define>
 
     <ui:define name="modal">
-        <p:dialog id="mailp" controller="#{viewController.passwordVC}"/>	
+        <h:form id="modalForm" class="form-horizontal" prependId="false" >
+            <p:dialog id="mailp" controller="#{viewController.passwordVC}"/>	
+        </h:form>
     </ui:define>
 
 </ui:composition>

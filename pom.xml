@@ -247,7 +247,7 @@
                 <plugin>
                     <groupId>org.lorislab.maven</groupId>
                     <artifactId>jboss-server-plugin</artifactId>
-                    <version>1.0.4-SNAPSHOT</version>
+                    <version>1.0.4</version>
                     <configuration>
                         <ear>tower</ear>
                         <jbossDir>${JBOSS_TOWER_HOME}</jbossDir>

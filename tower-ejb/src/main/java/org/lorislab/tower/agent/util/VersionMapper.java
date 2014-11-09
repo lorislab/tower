@@ -56,6 +56,7 @@ public final class VersionMapper {
         result.setService(data.getService());
         result.setVer(data.getVer());
         result.setKey(data.getKey());
+        result.setProjectVersion(data.getProject());
         result.setParameters(new HashSet<BuildParameter>());
         result.getParameters().addAll(createStoreBuildParameter(data.getManifest(), BuildParameterType.MANIFEST));
         result.getParameters().addAll(createStoreBuildParameter(data.getOther(), BuildParameterType.OTHER));

@@ -14,7 +14,7 @@
                         <f:facet name="toolbar">
                             <ui:insert name="toolbar" >
                                 <b:button ctr="#{svc.searchAction}" icon="arrows-cw">
-                                    <f:ajax event="click" render="table:table table:input-filter" execute="@this"/>
+                                    <f:ajax event="click" render="table:table table:input-filter table:header-count" execute="@this"/>
                                 </b:button>
                                 <b:buttonLink ctr="#{vc.createAction}" icon="doc-text" />    
                             </ui:insert>

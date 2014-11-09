@@ -92,6 +92,7 @@
         C_SCM varchar(255),
         C_SERVICE varchar(255),
         C_UID varchar(255),
+		C_PROJECT_VERSION varchar(255),
         C_VERSION integer,
         C_APP varchar(255),
         primary key (C_GUID)

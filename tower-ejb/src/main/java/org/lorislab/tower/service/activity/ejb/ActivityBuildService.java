@@ -17,11 +17,9 @@ package org.lorislab.tower.service.activity.ejb;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -91,14 +89,13 @@ public class ActivityBuildService {
      */
     @EJB
     private ScmClientService scmService;
-    
+
     /**
      * The BTS system service.
      */
     @EJB
     private BtsClientService btsService;
 
-    
     public Activity createActivityForApplication(final String guid, final Build build) throws Exception {
         ApplicationCriteria criteria = new ApplicationCriteria();
         criteria.setGuid(guid);
@@ -135,10 +132,10 @@ public class ActivityBuildService {
         bc.setPassword(pswd);
         bc.setAuth(bts.isAuth());
         bc.setType(bts.getType());
-        
-        bc.setVersion(build.getMavenVersion());
+
+        bc.setVersion(build.getProjectVersion());
         bc.setProject(project.getBtsId());
-        BtsResult btsResult = btsService.getIssues(bc);        
+        BtsResult btsResult = btsService.getIssues(bc);
         Map<String, ActivityChange> changes = new HashMap<>();
         if (btsResult != null && !btsResult.isEmpty()) {
             for (BtsIssue issue : btsResult.getIssues()) {
@@ -165,23 +162,21 @@ public class ActivityBuildService {
         sbc.setApplication(application.getGuid());
         sbc.setMavenVersion(build.getMavenVersion());
         sbc.setOrderByDate(Boolean.TRUE);
-        List<Build> builds =  buildService.getBuilds(sbc);        
+        List<Build> builds = buildService.getBuilds(sbc);
 
         // the issue in the commits but not in the bts
         Set<String> errors = new HashSet<>();
 
         // create key pattern
         String kkey = btsService.getIdPattern(project.getBts().getType(), project.getBtsId());
-        Pattern pattern = Pattern.compile(kkey);        
+        Pattern pattern = Pattern.compile(kkey);
         // create logs        
         SCMSystem scm = application.getScm();
         String ttype = application.getScmBranches();
         if (application.getScmType() == ApplicationScmRepository.TRUNK) {
             ttype = application.getScmTrunk();
-        } else {
-            if (application.getScmType() == ApplicationScmRepository.TAG) {
-                ttype = application.getScmTags();
-            }
+        } else if (application.getScmType() == ApplicationScmRepository.TAG) {
+            ttype = application.getScmTags();
         }
         String server = LinkUtil.createLink(ttype, scm, build);
 
@@ -194,7 +189,7 @@ public class ActivityBuildService {
         criteria.setPassword(pswds);
         criteria.setReadTimeout(scm.getReadTimeout());
         criteria.setConnectionTimeout(scm.getConnectionTimeout());
-        ScmResult scmResult = scmService.getLog(criteria);        
+        ScmResult scmResult = scmService.getLog(criteria);
 
         if (scmResult != null && !scmResult.isEmpty()) {
 
@@ -256,7 +251,7 @@ public class ActivityBuildService {
             btsc.setPassword(pswd);
             btsc.setAuth(bts.isAuth());
             btsc.setType(bts.getType());
-        
+
             for (String key : errors) {
                 ActivityChange change = changes.get(key);
                 // check if the issue exists
@@ -289,7 +284,5 @@ public class ActivityBuildService {
         }
         return result;
     }
-
-
 
 }

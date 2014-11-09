@@ -127,11 +127,35 @@ public class Build extends Persistent {
     private String build;
 
     /**
+     * The project version.
+     */
+    @Column(name = "C_PROJECT_VERSION")
+    private String projectVersion;
+
+    /**
      * The build parameters.
      */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "C_BUILD")
     private Set<BuildParameter> parameters;
+
+    /**
+     * Gets the project version.
+     *
+     * @return the project version.
+     */
+    public String getProjectVersion() {
+        return projectVersion;
+    }
+
+    /**
+     * Sets the project version.
+     *
+     * @param projectVersion the project version.
+     */
+    public void setProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
+    }
 
     /**
      * Gets the key.

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<security-domain>tower-rs</security-domain>
+	<context-root>tower-rs</context-root>
+</jboss-web>

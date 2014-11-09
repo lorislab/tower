@@ -14,22 +14,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- RESTEASY -->   
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson-provider</artifactId>
-            <scope>compile</scope>
-        </dependency>                        
+        <!-- RESTEASY -->                         
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <scope>compile</scope>
-        </dependency>				
+            <scope>provided</scope>
+        </dependency>			
         <!-- JIRA-JAXRS -->
         <dependency>
             <groupId>org.lorislab.jira</groupId>

@@ -25,6 +25,11 @@
             <scope>provided</scope>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-base-api</artifactId>
+            <scope>provided</scope>            
+        </dependency>
         <!-- SERVLER -->
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>
@@ -50,9 +55,5 @@
             <scope>provided</scope>
         </dependency>  				
     </dependencies>
-	
-    <build>
-        <finalName>${project.artifactId}</finalName>
-    </build>	
 
 </project>

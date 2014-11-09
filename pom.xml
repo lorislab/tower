@@ -44,6 +44,7 @@
         <module>tower-store</module>
         <module>tower-ejb</module>
         <module>tower-web</module>		
+        <module>tower-web-rs</module>
         <module>tower-ear</module>
         <module>tower-postman-templates</module>
     </modules>

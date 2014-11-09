@@ -97,6 +97,12 @@
             <type>war</type>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.lorislab.tower</groupId>
+            <artifactId>tower-web-rs</artifactId>
+            <type>war</type>
+            <version>${project.version}</version>
+        </dependency>        
     </dependencies>  
     
 	
@@ -154,6 +160,12 @@
                             <bundleFileName>tower-web.war</bundleFileName>
                             <contextRoot>tower</contextRoot>
                         </webModule>
+                        <webModule>
+                            <groupId>org.lorislab.tower</groupId>
+                            <artifactId>tower-web-rs</artifactId>
+                            <bundleFileName>tower-web-rs.war</bundleFileName>
+                            <contextRoot>tower-rs</contextRoot>
+                        </webModule>                        
                     </modules>
                 </configuration>
             </plugin>

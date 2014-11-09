@@ -24,7 +24,7 @@ import javax.ws.rs.core.Application;
  * 
  * @author Andrej Petras
  */
-@ApplicationPath("service")
+@ApplicationPath("/")
 public class RSActivator extends Application {
     
 }

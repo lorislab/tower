@@ -16,6 +16,10 @@
 package org.lorislab.tower.rs.service;
 
 import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import org.lorislab.jel.base.resources.ResourceManager;
@@ -31,6 +35,9 @@ import org.lorislab.tower.process.ejb.ProcessService;
  *
  * @author Andrej Petras
  */
+@Stateless
+@Local(ServerService.class)
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class ServerServiceImpl implements ServerService {
 
     /**

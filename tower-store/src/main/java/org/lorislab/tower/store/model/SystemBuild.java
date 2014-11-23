@@ -44,50 +44,102 @@ public class SystemBuild extends Persistent {
      */
     private static final long serialVersionUID = -5357640264532302086L;
 
+    /**
+     * The target system.
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "C_SYSTEM")
     private TargetSystem system;
 
+    /**
+     * The build.
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "C_BUILD")
     private Build build;
 
+    /**
+     * The date.
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "C_DATE")
     private Date date;
 
+    /**
+     * The system build type.
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "C_TYPE")
     private SystemBuildType type;
 
+    /**
+     * Gets the system build type.
+     *
+     * @return the system build type.
+     */
     public SystemBuildType getType() {
         return type;
     }
 
+    /**
+     * Sets the system build type.
+     *
+     * @param type the system build type.
+     */
     public void setType(SystemBuildType type) {
         this.type = type;
     }
 
+    /**
+     * Gets the date.
+     *
+     * @return the date.
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Sets the date.
+     *
+     * @param date the date.
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Gets the target system.
+     *
+     * @return the target system.
+     */
     public TargetSystem getSystem() {
         return system;
     }
 
+    /**
+     * Sets the target system.
+     *
+     * @param system the target system.
+     */
     public void setSystem(TargetSystem system) {
         this.system = system;
     }
 
+    /**
+     * Gets the build.
+     *
+     * @return the build.
+     */
     public Build getBuild() {
         return build;
     }
 
+    /**
+     * Sets the build.
+     *
+     * @param build the build.
+     */
     public void setBuild(Build build) {
         this.build = build;
     }

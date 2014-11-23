@@ -169,6 +169,7 @@ public class Project extends Persistent {
 
     /**
      * Gets the name.
+     *
      * @return the name.
      */
     public String getName() {
@@ -176,7 +177,9 @@ public class Project extends Persistent {
     }
 
     /**
-     * @param name the name to set
+     * Sets the name.
+     *
+     * @param name the name to set.
      */
     public void setName(String name) {
         this.name = name;

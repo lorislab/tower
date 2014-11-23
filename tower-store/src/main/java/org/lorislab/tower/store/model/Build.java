@@ -267,6 +267,7 @@ public class Build extends Persistent {
 
     /**
      * Gets the UID.
+     *
      * @return the UID.
      */
     public String getUid() {
@@ -275,6 +276,7 @@ public class Build extends Persistent {
 
     /**
      * Sets the UID.
+     *
      * @param uid the UID to set.
      */
     public void setUid(String uid) {
@@ -282,98 +284,126 @@ public class Build extends Persistent {
     }
 
     /**
-     * @return the ver
+     * Gets the version of the request.
+     *
+     * @return the version of the request.
      */
     public int getVer() {
         return ver;
     }
 
     /**
-     * @param ver the ver to set
+     * Sets the version of the request.
+     *
+     * @param ver the version of the request to set
      */
     public void setVer(int ver) {
         this.ver = ver;
     }
 
     /**
-     * @return the date
+     * Gets the date.
+     *
+     * @return the date.
      */
     public Date getDate() {
         return date;
     }
 
     /**
-     * @param date the date to set
+     * Sets the date.
+     *
+     * @param date the date to set.
      */
     public void setDate(Date date) {
         this.date = date;
     }
 
     /**
-     * @return the service
+     * Gets the service.
+     *
+     * @return the service.
      */
     public String getService() {
         return service;
     }
 
     /**
-     * @param service the service to set
+     * Sets the service.
+     *
+     * @param service the service to set.
      */
     public void setService(String service) {
         this.service = service;
     }
 
     /**
-     * @return the groupdId
+     * Gets the group ID.
+     *
+     * @return the group ID.
      */
     public String getGroupId() {
         return groupId;
     }
 
     /**
-     * @param groupId the groupdId to set
+     * Sets the group ID.
+     *
+     * @param groupId the group ID to set
      */
     public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
     /**
-     * @return the artifactId
+     * Gets the artifact ID.
+     *
+     * @return the artifact ID.
      */
     public String getArtifactId() {
         return artifactId;
     }
 
     /**
-     * @param artifactId the artifactId to set
+     * Sets the artifact ID .
+     *
+     * @param artifactId the artifact ID to set.
      */
     public void setArtifactId(String artifactId) {
         this.artifactId = artifactId;
     }
 
     /**
-     * @return the mavenVersion
+     * Gets the MAVEN version.
+     *
+     * @return the MAVEN version.
      */
     public String getMavenVersion() {
         return mavenVersion;
     }
 
     /**
-     * @param mavenVersion the mavenVersion to set
+     * Sets the MAVEN version.
+     *
+     * @param mavenVersion the MAVEN version to set.
      */
     public void setMavenVersion(String mavenVersion) {
         this.mavenVersion = mavenVersion;
     }
 
     /**
-     * @return the scm
+     * Gets the SCM.
+     *
+     * @return the SCM.
      */
     public String getScm() {
         return scm;
     }
 
     /**
-     * @param scm the scm to set
+     * Sets the SCM.
+     *
+     * @param scm the SCM to set.
      */
     public void setScm(String scm) {
         this.scm = scm;

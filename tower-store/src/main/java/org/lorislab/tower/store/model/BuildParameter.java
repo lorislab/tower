@@ -15,7 +15,6 @@
  */
 package org.lorislab.tower.store.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,36 +37,75 @@ public class BuildParameter extends Persistent {
      */
     private static final long serialVersionUID = -5508967118564416749L;
 
+    /**
+     * The build parameter type.
+     */
     @Column(name = "C_TYPE")
     @Enumerated(EnumType.STRING)
     private BuildParameterType type;
 
+    /**
+     * The name.
+     */
     @Column(name = "C_NAME")
     private String name;
 
+    /**
+     * The value.
+     */
     @Column(name = "C_VALUE")
     private String value;
 
+    /**
+     * Gets the name.
+     *
+     * @return the name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name.
+     *
+     * @param name the name.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets the build parameter type.
+     *
+     * @return the build parameter type.
+     */
     public BuildParameterType getType() {
         return type;
     }
 
+    /**
+     * Sets the build parameter tye.
+     *
+     * @param type the build parameter type.
+     */
     public void setType(BuildParameterType type) {
         this.type = type;
     }
 
+    /**
+     * Gets the value.
+     *
+     * @return the value.
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Sets the value.
+     *
+     * @param value the value.
+     */
     public void setValue(String value) {
         this.value = value;
     }

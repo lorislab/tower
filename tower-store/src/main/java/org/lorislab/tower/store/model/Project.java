@@ -40,22 +40,34 @@ public class Project extends Persistent {
      */
     private static final long serialVersionUID = -4437511008574023358L;
 
+    /**
+     * The name.
+     */
     @Column(name = "C_NAME")
     private String name;
 
+    /**
+     * The BTS ID.
+     */
     @Column(name = "C_BTS_ID")
     private String btsId;
 
+    /**
+     * The BTS system.
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "C_BTS")
     private BTSystem bts;
 
     /**
      * The enabled flag.
-     */    
+     */
     @Column(name = "C_ENABLED")
     private boolean enabled;
 
+    /**
+     * The list of applications.
+     */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "project")
     private Set<Application> applications;
 
@@ -82,41 +94,82 @@ public class Project extends Persistent {
     public void setIndex(Integer index) {
         this.index = index;
     }
-    
+
+    /**
+     * Gets the BTS system.
+     *
+     * @return the BTS system.
+     */
     public BTSystem getBts() {
         return bts;
     }
 
+    /**
+     * Sets the BTS system.
+     *
+     * @param bts the BTS system.
+     */
     public void setBts(BTSystem bts) {
         this.bts = bts;
     }
 
+    /**
+     * Gets the list of applications.
+     *
+     * @return the list of applications.
+     */
     public Set<Application> getApplications() {
         return applications;
     }
 
+    /**
+     * Sets the list of applications.
+     *
+     * @param applications the list of applications.
+     */
     public void setApplications(Set<Application> applications) {
         this.applications = applications;
     }
 
+    /**
+     * Sets enabled flag.
+     *
+     * @param enabled the enabled flag.
+     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
+    /**
+     * Gets the enabled flag.
+     *
+     * @return the enabled flag.
+     */
     public boolean isEnabled() {
         return enabled;
     }
 
+    /**
+     * Gets the BTS ID.
+     *
+     * @return the BTS ID.
+     */
     public String getBtsId() {
         return btsId;
     }
 
+    /**
+     * Sets the BTS ID.
+     *
+     * @param btsId the BTS ID.
+     */
     public void setBtsId(String btsId) {
         this.btsId = btsId;
     }
 
     /**
-     * @return the name
+     * Gets the name.
+     * @return the name.
      */
     public String getName() {
         return name;

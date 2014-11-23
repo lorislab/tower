@@ -59,6 +59,11 @@ public class BTSystemService extends AbstractEntityServiceBean<BTSystem> {
         return em;
     }
     
+    /**
+     * Saves the BTS system.
+     * @param system the BTS system to be saved.
+     * @return the saved BTS system.
+     */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public BTSystem saveBTSystem(BTSystem system) {
         return this.save(system);

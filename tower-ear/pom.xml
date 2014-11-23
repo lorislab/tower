@@ -111,7 +111,8 @@
         <plugins>
             <plugin>
                 <artifactId>maven-ear-plugin</artifactId>
-                <configuration>			
+                <configuration>	
+                    <filtering>true</filtering>	
                     <displayName>tower-ear</displayName>
                     <modules> 
                         <ejbModule>

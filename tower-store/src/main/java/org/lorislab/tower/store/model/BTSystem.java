@@ -38,6 +38,9 @@ public class BTSystem extends Persistent {
      */
     private static final long serialVersionUID = -4923603154378426272L;
 
+    /**
+     * The list of projects.
+     */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "bts")
     private Set<Project> projects;
 
@@ -47,21 +50,39 @@ public class BTSystem extends Persistent {
     @Column(name = "C_NAME")
     private String name;
 
+    /**
+     * The user.
+     */
     @Column(name = "C_USER")
     private String user;
 
+    /**
+     * The password.
+     */
     @Column(name = "C_PASWORD")
     private String password;
 
+    /**
+     * The authentication flag.
+     */
     @Column(name = "C_AUTH")
     private boolean auth;
 
+    /**
+     * The server.
+     */
     @Column(name = "C_SERVER")
     private String server;
 
+    /**
+     * The link.
+     */
     @Column(name = "C_LINK")
     private String link;
 
+    /**
+     * The type.
+     */
     @Column(name = "C_TYPE")
     private String type;
 
@@ -84,98 +105,126 @@ public class BTSystem extends Persistent {
     }
 
     /**
-     * @return the projects
+     * Gets the list of projects.
+     *
+     * @return the list of projects.
      */
     public Set<Project> getProjects() {
         return projects;
     }
 
     /**
-     * @param projects the projects to set
+     * Sets the list of projects.
+     *
+     * @param projects the projects to set.
      */
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
 
     /**
-     * @return the user
+     * Gets the user.
+     *
+     * @return the user.
      */
     public String getUser() {
         return user;
     }
 
     /**
-     * @param user the user to set
+     * Sets the user.
+     *
+     * @param user the user to set.
      */
     public void setUser(String user) {
         this.user = user;
     }
 
     /**
-     * @return the password
+     * Gets the password.
+     *
+     * @return the password.
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * @param password the password to set
+     * Sets the password.
+     *
+     * @param password the password to set.
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * @return the auth
+     * Gets the authentication flag.
+     *
+     * @return the authentication flag.
      */
     public boolean isAuth() {
         return auth;
     }
 
     /**
-     * @param auth the auth to set
+     * Sets the authentication flag
+     *
+     * @param auth the authentication flag.
      */
     public void setAuth(boolean auth) {
         this.auth = auth;
     }
 
     /**
-     * @return the server
+     * Gets the server.
+     *
+     * @return the server.
      */
     public String getServer() {
         return server;
     }
 
     /**
-     * @param server the server to set
+     * Sets the server.
+     *
+     * @param server the server to set.
      */
     public void setServer(String server) {
         this.server = server;
     }
 
     /**
-     * @return the link
+     * Gets the link.
+     *
+     * @return the link.
      */
     public String getLink() {
         return link;
     }
 
     /**
-     * @param link the link to set
+     * Sets the link.
+     *
+     * @param link the link to set.
      */
     public void setLink(String link) {
         this.link = link;
     }
 
     /**
-     * @return the btsType
+     * Gets the BTS type.
+     *
+     * @return the BTS type.
      */
     public String getType() {
         return type;
     }
 
     /**
-     * @param btsType the btsType to set
+     * Sets the type.
+     *
+     * @param type the type to set.
      */
     public void setType(String type) {
         this.type = type;

@@ -47,22 +47,40 @@ public class Agent extends Persistent {
     @Column(name = "C_NAME")
     private String name;
 
+    /**
+     * The systems.
+     */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "agent")
     private Set<TargetSystem> systems;
 
+    /**
+     * The URL.
+     */
     @Column(name = "C_URL")
     private String url;
 
+    /**
+     * The agent type.
+     */
     @Column(name = "C_TYPE")
     @Enumerated(EnumType.STRING)
     private AgentType type;
 
+    /**
+     * The authentication flag.
+     */
     @Column(name = "C_AUTH")
     private boolean authentication;
 
+    /**
+     * The user.
+     */
     @Column(name = "C_USER")
     private String user;
 
+    /**
+     * The password.
+     */
     @Column(name = "C_PASSWORD")
     private String password;
 
@@ -84,50 +102,110 @@ public class Agent extends Persistent {
         this.name = name;
     }
 
+    /**
+     * Gets the list of systems.
+     *
+     * @return the list of systems.
+     */
     public Set<TargetSystem> getSystems() {
         return systems;
     }
 
+    /**
+     * The the list of systems.
+     *
+     * @param systems the list of systems.
+     */
     public void setSystems(Set<TargetSystem> systems) {
         this.systems = systems;
     }
 
+    /**
+     * Gets the authentication flag.
+     *
+     * @return the authentication flag.
+     */
     public boolean isAuthentication() {
         return authentication;
     }
 
+    /**
+     * Sets the authentication flag
+     *
+     * @param authentication the authentication flag
+     */
     public void setAuthentication(boolean authentication) {
         this.authentication = authentication;
     }
 
+    /**
+     * Gets the user.
+     *
+     * @return the user.
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * Sets the user.
+     *
+     * @param user the user.
+     */
     public void setUser(String user) {
         this.user = user;
     }
 
+    /**
+     * Gets the password.
+     *
+     * @return the password.
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets the password.
+     *
+     * @param password the password.
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Gets the URL.
+     *
+     * @return the URL.
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Sets the URL.
+     *
+     * @param url the URL.
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     * Gets the agent type.
+     *
+     * @return the agent type.
+     */
     public AgentType getType() {
         return type;
     }
 
+    /**
+     * Sets the agent type.
+     *
+     * @param type the agent type.
+     */
     public void setType(AgentType type) {
         this.type = type;
     }

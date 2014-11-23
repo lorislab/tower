@@ -37,7 +37,7 @@ import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
 
 /**
  * The agent service.
- * 
+ *
  * @author Andrej Petras
  */
 @Stateless
@@ -57,7 +57,7 @@ public class AgentService extends AbstractEntityServiceBean<Agent> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     /**
      * Deletes the agent.
      *
@@ -68,22 +68,45 @@ public class AgentService extends AbstractEntityServiceBean<Agent> {
     public boolean deleteAgent(String guid) {
         return this.delete(guid);
     }
-    
+
+    /**
+     * Saves the agent.
+     *
+     * @param agent the agent to be saved.
+     * @return the saved agent.
+     */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Agent saveAgent(Agent agent) {
         return this.save(agent);
     }
 
+    /**
+     * Gets the agent by GUID.
+     *
+     * @param guid the agent GUID.
+     * @return the corresponding agent.
+     */
     public Agent getAgent(String guid) {
         AgentCriteria criteria = new AgentCriteria();
         criteria.setGuid(guid);
         return loadAgent(criteria);
     }
 
+    /**
+     * Gets the list of all agents.
+     *
+     * @return the list of all agents.
+     */
     public List<Agent> getAgents() {
         return getAgents(new AgentCriteria());
     }
 
+    /**
+     * Loads agent by criteria.
+     *
+     * @param criteria the agent criteria.
+     * @return the corresponding agent.
+     */
     public Agent loadAgent(AgentCriteria criteria) {
         Agent result = null;
         List<Agent> tmp = getAgents(criteria);
@@ -93,6 +116,12 @@ public class AgentService extends AbstractEntityServiceBean<Agent> {
         return result;
     }
 
+    /**
+     * Gets the agents by criteria.
+     *
+     * @param criteria the agent criteria.
+     * @return the list of corresponding agents.
+     */
     public List<Agent> getAgents(AgentCriteria criteria) {
         List<Agent> result = new ArrayList<>();
 

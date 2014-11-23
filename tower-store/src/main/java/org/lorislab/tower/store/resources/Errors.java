@@ -23,7 +23,13 @@ package org.lorislab.tower.store.resources;
  */
 public enum Errors {
     
+    /**
+     * The delete role error.
+     */
     DELETE_ROLE_ERROR,
     
+    /**
+     * The delete role system error.s
+     */
     DELETE_ROLE_SYSTEM_ERROR;
 }

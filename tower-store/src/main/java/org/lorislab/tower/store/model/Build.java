@@ -184,51 +184,98 @@ public class Build extends Persistent {
         return install;
     }
 
+    /**
+     * Sets the install date.
+     *
+     * @param install the install date.
+     */
     public void setInstall(Date install) {
         this.install = install;
     }
 
+    /**
+     * Gets the agent.
+     *
+     * @return the agent.
+     */
     public String getAgent() {
         return agent;
     }
 
+    /**
+     * Sets the agent.
+     *
+     * @param agent the agent.
+     */
     public void setAgent(String agent) {
         this.agent = agent;
     }
 
+    /**
+     * Gets the list of build parameter.
+     *
+     * @return the list of build parameter.
+     */
     public Set<BuildParameter> getParameters() {
         return parameters;
     }
 
+    /**
+     * Sets the list of build parameters.
+     *
+     * @param parameters the list of build parameters.
+     */
     public void setParameters(Set<BuildParameter> parameters) {
         this.parameters = parameters;
     }
 
+    /**
+     * Gets the build.
+     *
+     * @return the build.
+     */
     public String getBuild() {
         return build;
     }
 
+    /**
+     * Sets the build.
+     *
+     * @param build the build.
+     */
     public void setBuild(String build) {
         this.build = build;
     }
 
+    /**
+     * Gets the application.
+     *
+     * @return the application.
+     */
     public Application getApplication() {
         return application;
     }
 
+    /**
+     * Sets the application.
+     *
+     * @param application the application.
+     */
     public void setApplication(Application application) {
         this.application = application;
     }
 
     /**
-     * @return the uid
+     * Gets the UID.
+     * @return the UID.
      */
     public String getUid() {
         return uid;
     }
 
     /**
-     * @param uid the uid to set
+     * Sets the UID.
+     * @param uid the UID to set.
      */
     public void setUid(String uid) {
         this.uid = uid;

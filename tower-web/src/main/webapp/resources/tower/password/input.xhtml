@@ -6,7 +6,7 @@
       xmlns:jel="http://xmlns.lorislab.org/jel/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+      xmlns:b="http://lorislab.org/beefaces/cp"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <composite:interface>
@@ -24,12 +24,12 @@
             <div class="input-group">
                 <span class="input-group-addon"
                       jsf:rendered="#{jel:isNotMessage(cc.clientId,':input')}">
-                    <i class="icon-doc-text"></i>
+                    <i class="fa fa-file-text-o"></i>
                 </span>
 
                 <span class="input-group-addon alert-danger"
                       jsf:rendered="#{jel:isMessage(cc.clientId,':input')}">
-                    <i class="icon-attention alert-danger"></i>
+                    <i class="fa fa-exclamation-triangle alert-danger"></i>
                 </span>	
 
                 <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="#{cc.attrs.required}" readonly="true">
@@ -40,7 +40,7 @@
                     <button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}" 
                             jsf:action="#{cc.attrs.controller.changePasswordAction.open}">		
                         <f:ajax render="@this #{cc.attrs.dialog}:p:modal" execute="@this" onevent="function(d){if(d.status==='success')$('##{cc.attrs.dialog}\\\\:p\\\\:modal').modal('show');}"/>
-                        <i class="icon-lock"></i>
+                        <i class="fa fa-lock"></i>
                         <f:actionListener type="org.lorislab.jel.jsf.api.listener.ResetInputAjaxActionListener"  />
                     </button>                    
                     <b:button ctr="#{cc.attrs.controller.clearPasswordAction}" icon="trash">

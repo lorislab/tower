@@ -1,1 +1,1 @@
-<% response.sendRedirect("pages/dashboard/dashboard.xhtml"); %>
+<% response.sendRedirect("dashboard/overview"); %>

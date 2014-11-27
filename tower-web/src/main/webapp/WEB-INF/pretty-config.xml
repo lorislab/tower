@@ -1,0 +1,43 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <!-- LOGIN -->
+    <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/login.xhtml" />
+    </url-mapping>
+  
+    <!-- DASHBOARD -->
+    <url-mapping id="dashboard">
+        <pattern value="/dashboard/overview" />
+        <view-id value="/pages/dashboard/dashboard.xhtml" />
+    </url-mapping>
+
+    <!-- DEPLOYMENT -->
+    <url-mapping id="deployment">
+        <pattern value="/deployment" />
+        <view-id value="/pages/deploy/deploy.xhtml" />
+    </url-mapping>
+        
+    <!-- SETTINGS -->
+    <url-mapping id="settings">
+        <pattern value="/settings" />
+        <view-id value="/pages/settings/project/search.xhtml" />
+    </url-mapping>
+    
+    <!-- USER MANAGEMENT -->
+    <url-mapping id="users">
+        <pattern value="/users" />
+        <view-id value="/pages/user/user/search.xhtml" />
+    </url-mapping>
+    <url-mapping id="user-edit">
+        <pattern value="/users/edit" />
+        <view-id value="/pages/user/user/edit.xhtml" />
+    </url-mapping> 
+    <url-mapping id="users-ads">
+        <pattern value="/users/ads" />
+        <view-id value="/pages/user/ad/search.xhtml" />
+    </url-mapping>       
+</pretty-config>

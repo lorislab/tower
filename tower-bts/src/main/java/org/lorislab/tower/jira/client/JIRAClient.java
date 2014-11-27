@@ -15,14 +15,9 @@
  */
 package org.lorislab.tower.jira.client;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.jboss.resteasy.client.ClientExecutor;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ProxyFactory;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.lorislab.jira.jaxrs.services.MyPermissionsClient;
 import org.lorislab.jira.jaxrs.services.MySelfClient;
 import org.lorislab.jira.jaxrs.services.ProjectClient;
@@ -36,18 +31,9 @@ import org.lorislab.jira.jaxrs.services.SearchClient;
 public class JIRAClient {
 
     /**
-     * The HTTPS prefix.
-     */
-    private static final String HTTPS = "https";
-    /**
      * The server.
      */
-    private final String server;
-
-    /**
-     * The client executor.
-     */
-    private ClientExecutor executor = ClientRequest.getDefaultExecutor();
+    private final ResteasyWebTarget target;
 
     /**
      * Creates the JIRA client.
@@ -59,16 +45,13 @@ public class JIRAClient {
      * @throws Exception if the method fails.
      */
     public JIRAClient(String server, String username, char[] password, boolean auth) throws Exception {
-        this.server = server;
-
-        HttpClient httpClient = new DefaultHttpClient();
-        if (server.startsWith(HTTPS)) {
-            SSLSocketFactory sslSocketFactory = new SSLSocketFactory(new TrustSelfSignedStrategy(), SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            httpClient.getConnectionManager().getSchemeRegistry().register(new Scheme(HTTPS, 443, sslSocketFactory));
-        }
+        
+        //FIXME: security!!
+        ResteasyClient client = new ResteasyClientBuilder().disableTrustManager().register(JSONJiraClientProvider.class).build();    
         if (auth) {
-            this.executor = new JiraApacheHttpClient4Executor(username, password, httpClient);
+            client.register(new BasicAuthenticator(username, password));
         }
+        target = client.target(server);               
     }
 
     /**
@@ -77,7 +60,7 @@ public class JIRAClient {
      * @return the search client.
      */
     public SearchClient createSearchClient() {
-        return ProxyFactory.create(SearchClient.class, server, executor);
+        return target.proxy(SearchClient.class);
     }
 
     /**
@@ -86,7 +69,7 @@ public class JIRAClient {
      * @return the project client.
      */
     public ProjectClient createProjectClient() {
-        return ProxyFactory.create(ProjectClient.class, server, executor);
+        return target.proxy(ProjectClient.class);
     }
 
     /**
@@ -95,7 +78,7 @@ public class JIRAClient {
      * @return the my self client.
      */
     public MySelfClient createMySelfClient() {
-        return ProxyFactory.create(MySelfClient.class, server, executor);
+        return target.proxy(MySelfClient.class);
     }
     
     /**
@@ -104,6 +87,6 @@ public class JIRAClient {
      * @return the my permissions client.
      */
     public MyPermissionsClient createMyPermissionsClient() {
-        return ProxyFactory.create(MyPermissionsClient.class, server, executor);
+        return target.proxy(MyPermissionsClient.class);
     }    
 }

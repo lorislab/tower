@@ -4,18 +4,17 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://xmlns.jcp.org/jsf/composite/tower/password"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:b="http://xmlns.jcp.org/jsf/composite/beefaces"
+                xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="model" value="#{userVC.model}" />
     <ui:param name="profile" value="#{userVC.model.profile}" />
-    <ui:param name="config" value="#{userVC.model.config}" />
     <ui:param name="viewController" value="#{userVC}" />
     
     <ui:param name="menuParentSelected" value="USERMAN" />
     <ui:param name="menuChildSelected" value="USER" />
     <ui:param name="pageTitle" value="#{profile.firstName} #{profile.lastName}" />
-    <ui:param name="pageIcon" value="icon-user" />
+    <ui:param name="pageIcon" value="user" />
 
     <ui:define name="form">
         <b:callout id="c" title="User profile">
@@ -30,8 +29,8 @@
             <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password.password}" dialog="up" render="editForm:c:password:input"/>
         </b:callout>
         <b:callout id="b" title="User configuration">
-            <b:checkbox id="notify" value="#{config.notification}" title="Email notification" />
-            <k:key id="key" value="#{config.key}" controller="#{userVC.keyViewController}" />
+            <b:checkbox id="notify" value="#{model.config.notification}" title="Email notification" />
+            <k:key id="key" value="#{model.config.key}" controller="#{userVC.keyViewController}" />
         </b:callout>      
         <b:callout title="User roles">
             <ui:repeat value="#{userVC.roles.data}" var="item">

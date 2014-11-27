@@ -90,14 +90,14 @@ public class UserViewController extends AbstractEntityViewController<User> imple
         keyViewController = new KeyViewController(this, Context.USER);
         passwordVC = new ChangePasswordViewController(this, Context.USER, true);
         roles = new EntitySelectItemListController<Role>() {
-            
+
             private static final long serialVersionUID = -2372754672340949068L;
 
             @Override
             protected String getKey(Role model) {
                 return model.getName();
             }
-            
+
         };
     }
 
@@ -202,12 +202,12 @@ public class UserViewController extends AbstractEntityViewController<User> imple
     public KeyViewController getKeyViewController() {
         return keyViewController;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public void changePassword(String data) {
         getModel().getPassword().setPassword(data);
-    }    
+    }
 }

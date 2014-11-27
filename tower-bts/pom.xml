@@ -13,13 +13,18 @@
     <artifactId>tower-bts</artifactId>
     <packaging>jar</packaging>
 
-    <dependencies>
+    <dependencies>                
         <!-- RESTEASY -->                         
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
+            <artifactId>resteasy-client</artifactId>
             <scope>provided</scope>
-        </dependency>			
+        </dependency>    
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson2-provider</artifactId>
+            <scope>provided</scope>
+        </dependency>             		
         <!-- JIRA-JAXRS -->
         <dependency>
             <groupId>org.lorislab.jira</groupId>
@@ -30,7 +35,21 @@
             <groupId>org.kohsuke.metainf-services</groupId>
             <artifactId>metainf-services</artifactId>
             <optional>true</optional>
-        </dependency>		
+        </dependency>                    
     </dependencies>
 	
+    <build>
+        <plugins> 
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Dependencies>com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>                                
+            </plugin>
+        </plugins>
+    </build>
 </project>

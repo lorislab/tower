@@ -5,30 +5,28 @@
 
     <div id="sidebar">
         <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <m:menu>
-                    <m:item icon="icon-gauge" title="Dashboard" controller="#{menuVC.dashboard}" active="#{menuParentSelected}" />
-                    <m:parent icon="icon-rocket" title="Deployment" controller="#{menuVC.deployment}" active="#{menuParentSelected}">
-                        <m:item icon="icon-rocket" title="Deploy" controller="#{menuVC.deploy}" active="#{menuChildSelected}" />
-                    </m:parent>
-                    <m:parent icon="icon-cog-alt" title="Settings" controller="#{menuVC.settings}" active="#{menuParentSelected}" >
-                        <m:item icon="icon-award" title="Projects" controller="#{menuVC.project}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-beaker" title="Applications" controller="#{menuVC.application}" active="#{menuChildSelected}" />                        
-                        <m:item icon="icon-suitcase" title="Systems" controller="#{menuVC.system}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-fork" title="SCM Systems" controller="#{menuVC.scm}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-bug" title="BTS Systems" controller="#{menuVC.bts}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-user-md" title="Agents" controller="#{menuVC.agent}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-mail-alt" title="Mail service" controller="#{menuVC.mail}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-clock" title="Timer service" controller="#{menuVC.timer}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-box" title="Active directory" controller="#{menuVC.ad}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-bell" title="Notification group" controller="#{menuVC.notify}" active="#{menuChildSelected}" />
-                    </m:parent>
-                    <m:parent icon="icon-users" title="User management" controller="#{menuVC.userman}" active="#{menuParentSelected}">
-                        <m:item icon="icon-user" title="Users" controller="#{menuVC.user}" active="#{menuChildSelected}" />
-                        <m:item icon="icon-user" title="AD search" controller="#{menuVC.adSearch}" active="#{menuChildSelected}" />
-                    </m:parent>                    
-                </m:menu>
-            </div>
+            <m:menu>
+                <m:item icon="icon-gauge" title="Dashboard" controller="#{menuVC.dashboard}" active="#{menuParentSelected}" />
+                <!--<m:parent icon="icon-rocket" title="Deployment" controller="#{menuVC.deployment}" active="#{menuParentSelected}">-->
+                    <m:item icon="icon-rocket" title="Deploy" controller="#{menuVC.deploy}" active="#{menuChildSelected}" />
+                <!--</m:parent>-->
+                <!--<m:parent icon="icon-cog-alt" title="Settings" controller="#{menuVC.settings}" active="#{menuParentSelected}" >-->
+                    <m:item icon="icon-award" title="Projects" controller="#{menuVC.project}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-beaker" title="Applications" controller="#{menuVC.application}" active="#{menuChildSelected}" />                        
+                    <m:item icon="icon-suitcase" title="Systems" controller="#{menuVC.system}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-fork" title="SCM Systems" controller="#{menuVC.scm}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-bug" title="BTS Systems" controller="#{menuVC.bts}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-user-md" title="Agents" controller="#{menuVC.agent}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-mail-alt" title="Mail service" controller="#{menuVC.mail}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-clock" title="Timer service" controller="#{menuVC.timer}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-box" title="Active directory" controller="#{menuVC.ad}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-bell" title="Notification group" controller="#{menuVC.notify}" active="#{menuChildSelected}" />
+                <!--</m:parent>-->
+                <!--<m:parent icon="icon-users" title="User management" controller="#{menuVC.userman}" active="#{menuParentSelected}">-->
+                    <m:item icon="icon-user" title="Users" controller="#{menuVC.user}" active="#{menuChildSelected}" />
+                    <m:item icon="icon-user" title="AD search" controller="#{menuVC.adSearch}" active="#{menuChildSelected}" />
+                <!--</m:parent>-->                    
+            </m:menu>
         </div>
     </div>
 </ui:composition>

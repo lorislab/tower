@@ -57,16 +57,25 @@
         <mime-type>text/css</mime-type>
     </mime-mapping>
 	
+        
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>tower</web-resource-name>
-            <url-pattern>/pages/*</url-pattern>
+            <url-pattern>/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>tower_user</role-name>
         </auth-constraint>
     </security-constraint>
-		
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>public</web-resource-name>
+            <url-pattern>/resources/*</url-pattern>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+            <url-pattern>/login</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
@@ -78,4 +87,26 @@
     <security-role>
         <role-name>tower_user</role-name>		
     </security-role>		
+    
+    <!-- web fonts -->
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>  
+        <extension>otf</extension>  
+        <mime-type>font/opentype</mime-type>  
+    </mime-mapping>      
+    <mime-mapping>  
+        <extension>ttf</extension>  
+        <mime-type>application/x-font-ttf</mime-type>  
+    </mime-mapping>      
+    <mime-mapping>  
+        <extension>woff</extension>  
+        <mime-type>application/x-font-woff</mime-type>  
+    </mime-mapping>
+    <mime-mapping>  
+        <extension>svg</extension>  
+        <mime-type>image/svg+xml</mime-type>  
+    </mime-mapping>    
 </web-app>

@@ -7,18 +7,26 @@
         <title>Tower</title>
         <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>			
-        <h:outputStylesheet library="css" name="fontello.css"  />	
-        <h:outputStylesheet library="css" name="bootstrap.min.css"  />
+        <h:outputStylesheet library="beefaces" name="css/font-awesome.min.css"  />
+        <h:outputStylesheet library="beefaces" name="css/bootstrap.min.css"  />   
+
     </h:head>
 
     <body>
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container-full">
-                <ui:include src="/templates/includes/sidebar_header.xhtml" />
+                <div class="navbar-header"> 
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand"><b><i class="fa fa-at"></i> Tower</b></span>			  
+                </div>
             </div>
         </div>
         <div id="container" class="container-full">				
-            <ui:insert name="body">Body</ui:insert>					
+            <ui:insert name="body"></ui:insert>					
         </div>			
     </body>
 </html>

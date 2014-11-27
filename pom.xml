@@ -125,15 +125,7 @@
                 <groupId>org.lorislab.jira</groupId>
                 <artifactId>jira-jaxrs</artifactId>							
                 <version>0.0.4</version>
-            </dependency>														
-            <!-- EJB/Persistence libraries -->
-            <dependency>
-                <groupId>org.jboss.spec</groupId>
-                <artifactId>jboss-javaee-7.0</artifactId>
-                <version>1.0.1.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>							
+            </dependency>														          							
             <!-- CDI -->
             <dependency>
                 <groupId>javax.enterprise</groupId>
@@ -144,21 +136,24 @@
             <!-- RESTEASY -->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-bom</artifactId>
-                <version>2.3.5.Final</version>
+                <artifactId>resteasy-jaxrs-all</artifactId>
+                <version>3.0.8.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-jaxrs</artifactId>
-                <version>2.3.5.Final</version>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.2.1</version>
             </dependency>
+            <!-- SPEC -->
             <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-jackson-provider</artifactId>
-                <version>2.3.5.Final</version>
-            </dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-7.0</artifactId>
+                <version>1.0.1.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>             
             <!-- SVN -->
             <dependency>
                 <groupId>org.tmatesoft.svnkit</groupId>
@@ -196,7 +191,18 @@
                 <version>7.2.0.Final</version>
                 <scope>provided</scope>
                 <type>jar</type>
-            </dependency>											
+            </dependency>
+            <!-- PRETTYFACES -->
+            <dependency>
+                <groupId>org.ocpsoft.rewrite</groupId>
+                <artifactId>rewrite-servlet</artifactId>
+                <version>2.0.12.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ocpsoft.rewrite</groupId>
+                <artifactId>rewrite-config-prettyfaces</artifactId>
+                <version>2.0.12.Final</version>
+            </dependency>            											
         </dependencies>
     </dependencyManagement>    
     

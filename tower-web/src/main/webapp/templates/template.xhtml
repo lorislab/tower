@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:m="http://xmlns.jcp.org/jsf/composite/tower/menu"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:insert name="metadata" />
@@ -20,12 +21,8 @@
 
         <div id="left-menu" class="side-nav">
             <span style="padding: 15px 15px; color: #777; font-weight: bold">MENU</span>
-            <a onclick="$(body).toggleClass('hidden-side-nav');" class="link-simple"><i class="icon-cancel"/></a> 
-            <ul class="nav navbar-nav">                
-                <li><a jsf:outcome="pretty:dashboard"><i class="icon-rocket"/> Deployment</a></li>
-                <li><a jsf:outcome="pretty:settings"><i class="icon-cog-alt"/> Settings</a></li>
-                <li><a jsf:outcome="pretty:users"><i class="icon-users"/> User management</a></li>
-            </ul>               			            
+            <a onclick="$(body).toggleClass('hidden-side-nav');" class="link-simple"><i class="fa fa-times"/></a>               			          
+            <m:menu />
         </div>
 
         <div id="main">

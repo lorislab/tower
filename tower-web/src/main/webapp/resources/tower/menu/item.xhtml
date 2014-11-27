@@ -15,7 +15,7 @@
         <li jsf:rendered="#{cc.attrs.controller.available}">                   
             <a jsf:outcome="#{cc.attrs.controller.execute()}"              
                class="#{cc.attrs.active eq cc.attrs.controller.permission ? 'active' : ''}"> 
-                <i class="#{cc.attrs.icon}"></i> #{cc.attrs.title}
+                <i class="fa fa-#{cc.attrs.icon}"></i> #{cc.attrs.title}
             </a>            
         </li>                
     </composite:implementation>

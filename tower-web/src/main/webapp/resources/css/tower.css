@@ -151,3 +151,9 @@ table.dataTable thead .sorting:after {
 .bs-callout-warning h4 {
     color: #f0ad4e;
 }
+
+#menu li.panel{
+    margin-bottom: 0px;
+    background: none;
+    box-shadow: none;
+}

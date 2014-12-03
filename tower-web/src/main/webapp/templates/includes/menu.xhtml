@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"                
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"               
+                xmlns:m="http://xmlns.jcp.org/jsf/composite/tower/menu">
+
+
+    <m:parent controller="#{menuVC.dashboard}" icon="dashboard" title="Dashboard">
+        <m:item icon="dashboard" title="Overview" controller="#{menuVC.dashboard}" />
+    </m:parent>
+    <m:parent controller="#{menuVC.deployment}" icon="rocket" title="Deployment">
+        <m:item icon="rocket" title="Deploy" controller="#{menuVC.deploy}" />
+    </m:parent>
+    <m:parent controller="#{menuVC.settings}" icon="gears" title="Settings">
+        <m:item icon="umbrella" title="Projects" controller="#{menuVC.project}"  />                
+        <m:item icon="beaker" title="Applications" controller="#{menuVC.application}"  />                        
+        <m:item icon="suitcase" title="Systems" controller="#{menuVC.system}"  />
+        <m:item icon="fork" title="SCM Systems" controller="#{menuVC.scm}"  />
+        <m:item icon="bug" title="BTS Systems" controller="#{menuVC.bts}"  />
+        <m:item icon="user-md" title="Agents" controller="#{menuVC.agent}"  />
+        <m:item icon="mail-alt" title="Mail service" controller="#{menuVC.mail}"  />
+        <m:item icon="clock" title="Timer service" controller="#{menuVC.timer}"  />
+        <m:item icon="box" title="Active directory" controller="#{menuVC.ad}"  />
+        <m:item icon="bell" title="Notification group" controller="#{menuVC.notify}"  />                
+    </m:parent>
+    <m:parent controller="#{menuVC.userman}" icon="users" title="User management">
+        <m:item icon="user" title="Users" controller="#{menuVC.user}"  />
+        <m:item icon="user" title="AD search" controller="#{menuVC.adSearch}" />    
+    </m:parent>
+
+</ui:composition>
+

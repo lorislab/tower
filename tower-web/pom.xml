@@ -105,12 +105,10 @@
         <dependency>
             <groupId>org.ocpsoft.rewrite</groupId>
             <artifactId>rewrite-servlet</artifactId>
-            <version>2.0.12.Final</version>
         </dependency>
         <dependency>
             <groupId>org.ocpsoft.rewrite</groupId>
             <artifactId>rewrite-config-prettyfaces</artifactId>
-            <version>2.0.12.Final</version>
         </dependency>          				
     </dependencies>
 	
@@ -138,5 +136,27 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sync-and-touch</id>           
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.lorislab.maven</groupId>
+                        <artifactId>jboss-server-plugin</artifactId>
+                        <configuration>
+                            <touch>true</touch>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>sync</goal>
+                                </goals>
+                            </execution>
+                        </executions>                        
+                    </plugin>					
+                </plugins>
+            </build>
+        </profile>        
     </profiles>
 </project>

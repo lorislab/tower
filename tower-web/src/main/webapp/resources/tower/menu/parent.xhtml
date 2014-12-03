@@ -7,18 +7,15 @@
     <composite:interface>
         <composite:attribute name="title" required="true"/>
         <composite:attribute name="icon" required="true"/>
-        <composite:attribute name="active" required="false" default="none"/>
         <composite:attribute name="controller" required="true"/>
     </composite:interface>
 
     <composite:implementation>		
-        <li class="#{cc.attrs.active eq cc.attrs.controller.permission ? 'active' : ''}" jsf:rendered="#{cc.attrs.controller.available}">
-            <a> 
-                <i class="#{cc.attrs.icon}"></i> #{cc.attrs.title}
-            </a>
-            <ul class="nav nav-second-level">
+        <li class="treeview #{menu_selected eq cc.attrs.controller.permission ? 'active' : ''}" jsf:rendered="#{cc.attrs.controller.available}">
+            <a href="#"><i class="fa fa-#{cc.attrs.icon}"></i> <span>#{cc.attrs.title}</span><i class="fa fa-angle-left pull-right"></i></a>                                
+            <ul class="treeview-menu" >
                 <composite:insertChildren />
-            </ul>            
-        </li>   
+            </ul>        
+        </li> 
     </composite:implementation>
 </html>

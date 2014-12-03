@@ -7,14 +7,12 @@
     <composite:interface>
         <composite:attribute name="title" required="true"/>
         <composite:attribute name="icon" required="true"/>
-        <composite:attribute name="active" required="false" default="none"/>
         <composite:attribute name="controller" required="true"/>
     </composite:interface>
 
-    <composite:implementation>	                
-        <li jsf:rendered="#{cc.attrs.controller.available}">                   
-            <a jsf:outcome="#{cc.attrs.controller.execute()}"              
-               class="#{cc.attrs.active eq cc.attrs.controller.permission ? 'active' : ''}"> 
+    <composite:implementation>	        
+        <li jsf:rendered="#{cc.attrs.controller.available}" class="#{menu_selected eq cc.attrs.controller.permission ? 'active' : ''}">                   
+            <a jsf:outcome="#{cc.attrs.controller.execute()}"> 
                 <i class="fa fa-#{cc.attrs.icon}"></i> #{cc.attrs.title}
             </a>            
         </li>                

@@ -1,41 +1,40 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/templates/template.xhtml">
 
-	<ui:param name="menuParentSelected" value="DASHBOARD" />
-	<ui:param name="menuChildSelected" value="DASHBOARD" />
-	<ui:param name="pageTitle" value="Dashboard" />
-	<ui:param name="pageIcon" value="icon-gauge" />
-	
+    <ui:param name="menu_selected" value="DASHBOARD" />
+    <ui:param name="page_title" value="Dashboard" />
+    <ui:param name="page_subtitle" value="Overview" />
+
     <ui:define name="body">
 
-		<div class="row">
-			<div class="col-lg-12">		
-				<ui:repeat var="project" value="#{dashboardVC.dashboard.projects}">
-					<h2>#{project.name}</h2>
-					<ui:repeat var="app" value="#{project.applications}">
-						<h3><i class="icon-beaker"></i> #{app.name}</h3>
-						<div class="row">
-							<ui:repeat var="system" value="#{app.systems}">
-								<div class="col-lg-4">
-									<div class="panel panel-success">
-										<div class="panel-heading" style="min-height: 140px">
-											<div class="row">
-												<div class="col-xs-10" style="font-size: 25px;">
-													<span>#{system.name}</span>
-													<span>#{system.clazz}</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>		
-							</ui:repeat>
-						</div>
-					</ui:repeat>
-				</ui:repeat>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-lg-12">		
+                <ui:repeat var="project" value="#{dashboardVC.dashboard.projects}">
+                    <h2>#{project.name}</h2>
+                    <ui:repeat var="app" value="#{project.applications}">
+                        <h3><i class="icon-beaker"></i> #{app.name}</h3>
+                        <div class="row">
+                            <ui:repeat var="system" value="#{app.systems}">
+                                <div class="col-lg-4">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading" style="min-height: 140px">
+                                            <div class="row">
+                                                <div class="col-xs-10" style="font-size: 25px;">
+                                                    <span>#{system.name}</span>
+                                                    <span>#{system.clazz}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>		
+                            </ui:repeat>
+                        </div>
+                    </ui:repeat>
+                </ui:repeat>
+            </div>
+        </div>
     </ui:define>
 
 

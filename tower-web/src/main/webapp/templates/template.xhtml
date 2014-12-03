@@ -3,7 +3,6 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:m="http://xmlns.jcp.org/jsf/composite/tower/menu"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:insert name="metadata" />
@@ -13,38 +12,94 @@
         <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico" />
         <h:outputStylesheet library="beefaces" name="css/font-awesome.min.css"  />
         <h:outputStylesheet library="beefaces" name="css/bootstrap.min.css"  />               
-        <h:outputStylesheet library="css" name="tower.css"  />
+        <h:outputStylesheet library="beefaces" name="css/AdminLTE.css"  />               
     </h:head>
-    <body>
+    <body class="skin-blue">
 
-        <ui:include src="/templates/includes/header.xhtml" />
+        <header class="header">
+            <a href="#{request.contextPath}" class="logo">Tower</a>
+            <nav class="navbar navbar-static-top" role="navigation">
 
-        <div id="left-menu" class="side-nav">
-            <span style="padding: 15px 15px; color: #777; font-weight: bold">MENU</span>
-            <a onclick="$(body).toggleClass('hidden-side-nav');" class="link-simple"><i class="fa fa-times"/></a>               			          
-            <m:menu />
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>Jane Doe <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <i class="glyphicon glyphicon-user img-circle"></i>
+                                    <p>
+                                        Jane Doe - Web Developer
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>                        
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <aside class="left-side sidebar-offcanvas">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <ui:include src="/templates/includes/menu.xhtml" />                                              
+                    </ul>
+                </section>               
+            </aside>
+
+            <aside class="right-side">
+                <section class="content-header">
+                    <h1 jsf:id="header">#{page_title}<small>#{page_subtitle}</small></h1>
+                </section>                
+                <section class="content">
+                    <ui:insert name="body" />
+                </section>
+
+            </aside>
         </div>
-
-        <div id="main">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 jsf:id="header" class="page-header"><i class="fa fa-#{pageIcon}"></i> #{pageTitle}</h2>
-                    </div>
-                </div>               
-                <ui:insert name="body" />
-                <div style="margin-top: 40px"></div>
-            </div>
-        </div>
-
-        <footer>
-            <b>Tower</b> #{applicationC.prm.version} #{applicationC.prm.build}
-            &#169; 2013 <a href="http://www.lorislab.org">lorislab.org</a>
-            Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.
-        </footer>
 
         <h:outputScript library="beefaces" name="js/jquery.min.js" />
         <h:outputScript library="beefaces" name="js/bootstrap.min.js" />					
-        <h:outputScript library="js" name="tower.js" />		
+        <h:outputScript library="beefaces" name="js/app.js" />					
+        <h:outputScript library="js" name="tower.js" />		        
     </body>
+    <!--
+            <footer>
+                <b>Tower</b> #{applicationC.prm.version} #{applicationC.prm.build}
+                &#169; 2013 <a href="http://www.lorislab.org">lorislab.org</a>
+                Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.
+            </footer>	
+        -->
 </html>

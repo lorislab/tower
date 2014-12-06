@@ -46,6 +46,7 @@
         <module>tower-web</module>		
         <module>tower-web-rs</module>
         <module>tower-ear</module>
+		<module>tower-test</module>
         <module>tower-postman-templates</module>
     </modules>
 
@@ -341,6 +342,7 @@
                         <generateClient>true</generateClient>
                         <clientExcludes>
                             <clientExclude>**/*Impl.class</clientExclude>
+                            <clientExclude>**/*Bean.class</clientExclude>
                             <clientExclude>META-INF/*.xml</clientExclude>
                             <clientExclude>META-INF/services/**</clientExclude>
                         </clientExcludes>	
@@ -440,11 +442,6 @@
         <profile>
             <id>ddl</id>           
             <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                </resources>
                 <plugins>
                     <plugin>
                         <groupId>de.smartics.maven.plugin</groupId>

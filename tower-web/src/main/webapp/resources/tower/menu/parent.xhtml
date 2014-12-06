@@ -11,7 +11,7 @@
     </composite:interface>
 
     <composite:implementation>		
-        <li class="treeview #{menu_selected eq cc.attrs.controller.permission ? 'active' : ''}" jsf:rendered="#{cc.attrs.controller.available}">
+        <li class="treeview #{menu_parent eq cc.attrs.controller.permission ? 'active' : ''}" jsf:rendered="#{cc.attrs.controller.available}">
             <a href="#"><i class="fa fa-#{cc.attrs.icon}"></i> <span>#{cc.attrs.title}</span><i class="fa fa-angle-left pull-right"></i></a>                                
             <ul class="treeview-menu" >
                 <composite:insertChildren />

@@ -9,14 +9,12 @@
         <composite:attribute name="placeholder" required="false" default=""/>
         <composite:attribute name="value" required="true"/>
         <composite:attribute name="type" required="false" default="text"/>
-        <composite:attribute name="icon" required="false" default="file-text-o"/>
     </composite:interface>
 
     <composite:implementation>		
         <div class="control-group">			
             <label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-#{cc.attrs.icon}"></i></span>
                 <input name="" jsf:id="input" type="#{cc.attrs.type}" class="form-control" 
                        jsf:value="#{cc.attrs.value}" 
                        readonly="true"

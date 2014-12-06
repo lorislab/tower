@@ -6,7 +6,9 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/template.xhtml">
 
-    <ui:param name="page_subtitle" value="Search" />
+    <ui:define name="header">
+        <h1 jsf:id="header">#{page_title}<small>Search</small></h1>
+    </ui:define>
     
     <ui:define name="body">
         <h:form id="searchForm" prependId="false">

@@ -13,6 +13,7 @@
         <h:outputStylesheet library="beefaces" name="css/font-awesome.min.css"  />
         <h:outputStylesheet library="beefaces" name="css/bootstrap.min.css"  />               
         <h:outputStylesheet library="beefaces" name="css/AdminLTE.css"  />               
+        <h:outputStylesheet library="css" name="tower.css"  />               
     </h:head>
     <body class="skin-blue">
 
@@ -26,47 +27,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <i class="glyphicon glyphicon-user img-circle"></i>
-                                    <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>                        
-                    </ul>
-                </div>
+                <h:form>
+                    <div class="navbar-right">
+
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <span>#{userC.user.profile.firstName} #{userC.user.profile.lastName}<i class="caret"></i></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li jsf:rendered="#{menuVC.profile.available}"><a jsf:outcome="#{menuVC.profile.execute()}" jsf:rendered="#{menuVC.profile.available}"><i class="fa fa-user"/> User Profile</a></li>
+                                    <li jsf:rendered="#{menuVC.password.available}"><a jsf:outcome="#{menuVC.password.execute()}" jsf:rendered="#{menuVC.password.available}"><i class="fa fa-key"/> Change password</a></li>                    
+                                    <li jsf:rendered="#{menuVC.logout.available}"><a jsf:action="#{menuVC.logout.execute}" jsf:rendered="#{menuVC.profile.available}"><i class="fa fa-sign-out"/> Logout</a></li>                                
+                                </ul>
+                            </li>                        
+                        </ul>
+
+                    </div>
+                </h:form>
             </nav>
         </header>
 
@@ -81,7 +60,7 @@
 
             <aside class="right-side">
                 <section class="content-header">
-                    <h1 jsf:id="header">#{page_title}<small>#{page_subtitle}</small></h1>
+                    <ui:insert name="header" />                    
                 </section>                
                 <section class="content">
                     <ui:insert name="body" />
@@ -101,5 +80,5 @@
                 &#169; 2013 <a href="http://www.lorislab.org">lorislab.org</a>
                 Released under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.
             </footer>	
-        -->
+    -->
 </html>

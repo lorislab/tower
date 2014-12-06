@@ -5,11 +5,13 @@
 
     <composite:interface>
         <composite:attribute name="enable" required="false" default="check"/>
-        <composite:attribute name="disable" required="false" default="check-empty"/>
+        <composite:attribute name="disable" required="false" default="times"/>
         <composite:attribute name="value" required="true"/>
     </composite:interface>
 
     <composite:implementation>
-        <i class="fa fa-#{cc.attrs.value ? cc.attrs.enable : cc.attrs.disable}"></i>		
+        <span class="label label-#{cc.attrs.value ? 'success' : 'danger'}">
+            <i class="fa fa-#{cc.attrs.value ? cc.attrs.enable : cc.attrs.disable}"></i>		
+        </span>
     </composite:implementation>
 </html>

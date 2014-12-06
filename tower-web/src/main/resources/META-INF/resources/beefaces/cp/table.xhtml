@@ -14,36 +14,40 @@
     </composite:interface>
 
     <composite:implementation>		
-        <div class="panel panel-#{cc.attrs.type}">
-            <div class="panel-heading">                
-                <div class="input-group">    
-                    <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.ctr.result.size()}</span>
-                    <input jsf:id="input-filter" data-action="tableFilter" data-filters="##{cc.attrs.id}\\:table" type="search" placeholder="Search" class="form-control"></input>
-                    <span class="input-group-btn">
-                        <button class="btn btn-#{cc.attrs.type}" type="button" data-action="tableFiltetClear"><i class="fa fa-eraser"></i></button>
-                        <composite:renderFacet name="toolbar" />
-                    </span>				
-                </div>			
-            </div>						
-            <table jsf:id="table" class="table table-striped sortable">							
-                <thead jsf:rendered="#{not empty cc.attrs.ctr.result}">
-                    <tr>
-                        <composite:renderFacet name="header" />
-                    </tr>
-                </thead>
-                <tbody jsf:rendered="#{not empty cc.attrs.ctr.result}">
-                    <ui:repeat var="item" value="#{cc.attrs.ctr.result}" >
+        <div class="box box-#{cc.attrs.type}">
+            <div class="box-header"> 
+                <div class="box-tools">
+                    <div class="input-group">
+                        <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.ctr.result.size()}</span>
+                        <input jsf:id="input-filter" data-action="tableFilter" data-filters="##{cc.attrs.id}\\:table" type="search" placeholder="Search" class="form-control"></input>                         
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-action="tableFiltetClear"><i class="fa fa-eraser"></i></button>
+                            <composite:renderFacet name="toolbar" />
+                        </span>				
+                    </div>			
+                </div>
+            </div>	
+            <div class="box-body table-responsive no-padding">
+                <table jsf:id="table" class="table table-hover sortable">							
+                    <thead jsf:rendered="#{not empty cc.attrs.ctr.result}">
                         <tr>
-                            <composite:insertChildren />
+                            <composite:renderFacet name="header" />
                         </tr>
-                    </ui:repeat>
-                </tbody>
-                <tbody jsf:rendered="#{empty cc.attrs.ctr.result}">
-                    <tr>
-                        <td>No results found</td>
-                    </tr>
-                </tbody>
-            </table>										
+                    </thead>
+                    <tbody jsf:rendered="#{not empty cc.attrs.ctr.result}">
+                        <ui:repeat var="item" value="#{cc.attrs.ctr.result}" >
+                            <tr>
+                                <composite:insertChildren />
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                    <tbody jsf:rendered="#{empty cc.attrs.ctr.result}">
+                        <tr>
+                            <td>No results found</td>
+                        </tr>
+                    </tbody>
+                </table>	
+            </div>
         </div>   		
     </composite:implementation>
 </html>

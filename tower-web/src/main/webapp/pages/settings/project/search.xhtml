@@ -6,8 +6,8 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="PROJECT" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="PROJECT" />
     <ui:param name="page_title" value="Projects" />
     
     
@@ -15,7 +15,7 @@
     <ui:param name="svc" value="#{projectSVC}" />
 
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Index</th>
         <th>Enabled</th>				
         <th>Name</th>

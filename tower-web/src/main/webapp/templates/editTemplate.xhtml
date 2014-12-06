@@ -7,30 +7,31 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/template.xhtml">
 
-    <ui:param name="page_subtitle" value="Edit" />
-    
+    <ui:define name="header">
+        <h1 jsf:id="header">#{page_title}<small><i class="fa fa-pencil-square-o"></i></small></h1>
+    </ui:define>
     <ui:define name="body">
-        <h:form id="editForm" class="form-horizontal">
-            <fieldset>
-
-                <ui:insert name="form">Form</ui:insert>
-
-                <div class="control-group" style="margin-top: 20px;">					                    
-                    <b:buttonLink ctr="#{viewController.closeAction}" title="Close" icon="times" />
-                    <span style="padding-right: 5px" />
-                    <b:button type="success" ctr="#{viewController.saveAction}" title="Save" icon="floppy-o">
-                        <f:ajax event="click" render="@form header" execute="@form" />
-                    </b:button>	                       
-                    <ui:insert name="button-left"></ui:insert>				
-                    <span style="float: right">                        
-                        <button type="button" class="btn btn-danger"  jsf:rendered="#{viewController.deleteAction.available}" 
-                                onclick="$('#pd\\:modal').modal('show');return false;">		
+        <h:form id="editForm" role="form">
+            <b:box id="box">                
+                <div class="row">
+                    <ui:insert name="form" />
+                </div>
+                <f:facet name="footer">
+                        <b:buttonLink ctr="#{vc.closeAction}" title="Close" icon="times" />
+                        <b:button type="success" ctr="#{vc.saveAction}" title="Save" icon="floppy-o">
+                            <f:ajax event="click" render="@form header" execute="@form" />
+                        </b:button>	                                           
+                        <ui:insert name="button-left" />
+                    <span class="pull-right">
+                        <button type="button" class="btn btn-danger"  jsf:rendered="#{vc.deleteAction.available}" 
+                                onclick="$('#pd\\:modal').modal('show');
+                                        return false;">		
                             <i class="fa fa-trash"></i> Delete
                         </button>                        
-                        <ui:insert name="button-right"></ui:insert>
+                        <ui:insert name="button-right" />
                     </span>
-                </div>	
-            </fieldset>
+                </f:facet>
+            </b:box>
         </h:form>
 
         <ui:insert name="modal"></ui:insert>

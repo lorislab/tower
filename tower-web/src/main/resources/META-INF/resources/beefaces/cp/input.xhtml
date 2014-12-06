@@ -18,6 +18,12 @@
     </composite:interface>
 
     <composite:implementation>		
+        
+        <div class="control-group">
+            <label jsf:for="input">#{cc.attrs.title}</label>
+            <input type="#{cc.attrs.type}" class="form-control" jsf:id="input" jsf:value="#{cc.attrs.value}" placeholder="#{cc.attrs.placeholder}" />
+        </div>
+<!--        
         <div class="control-group">
 
             <label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
@@ -41,5 +47,6 @@
                 <span class="label label-danger">#{item.detail}</span>
             </ui:repeat>
         </div>			
+-->
     </composite:implementation>
 </html>

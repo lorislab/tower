@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <composite:interface>
+        <composite:attribute name="type" required="false" default="solid"/>
+        <composite:facet name="header" />
+        <composite:facet name="footer" />
+    </composite:interface>
+
+    <composite:implementation>		        
+        <div class="box box-#{cc.attrs.type}" >
+            <div class="box-header" jsf:rendered="#{not empty cc.facets.header}">
+                <composite:renderFacet name="header" />
+            </div>
+            <div class="box-body">
+                <composite:insertChildren />
+            </div> 
+            <div class="box-footer" jsf:rendered="#{not empty cc.facets.footer}">
+                <composite:renderFacet name="footer" />
+            </div>
+        </div>			
+    </composite:implementation>
+</html>

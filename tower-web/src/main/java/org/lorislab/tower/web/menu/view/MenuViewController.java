@@ -119,7 +119,12 @@ public class MenuViewController extends AbstractViewController {
      * The notification group menu.
      */
     private final MenuAction notify;
-    
+
+    /**
+     * The left menu collapsed flag.
+     */
+    private boolean collapsed;
+
     /**
      * The default constructor.
      */
@@ -147,14 +152,39 @@ public class MenuViewController extends AbstractViewController {
     }
 
     /**
+     * Gets the collapsed menu flag.
+     *
+     * @return the collapsed menu flag.
+     */
+    public boolean isCollapsed() {
+        return collapsed;
+    }
+
+    /**
+     * Sets the collapsed menu flag.
+     *
+     * @param collapsed the collapsed menu flag.
+     */
+    public void setCollapsed(boolean collapsed) {
+        this.collapsed = collapsed;
+    }
+
+    /**
+     * Collapse menu.
+     */
+    public void collapse() {
+        collapsed = !collapsed;
+    }
+
+    /**
      * Gets the notification group menu.
      *
      * @return the notification group menu.
-     */    
+     */
     public MenuAction getNotify() {
         return notify;
     }
-    
+
     /**
      * Gets the user password menu.
      *

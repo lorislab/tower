@@ -12,14 +12,12 @@
     </composite:interface>
 
     <composite:implementation>		
-        <div class="control-group">			
-            <label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
-            <div class="input-group">
-                <input name="" jsf:id="input" type="#{cc.attrs.type}" class="form-control" 
-                       jsf:value="#{cc.attrs.value}" 
-                       readonly="true"
-                       placeholder="#{cc.attrs.placeholder}" ></input>					
-            </div>
+        <div class="form-group">			
+            <label jsf:for="input">#{cc.attrs.title}</label>
+            <input name="" jsf:id="input" type="#{cc.attrs.type}" class="form-control" 
+                   jsf:value="#{cc.attrs.value}" 
+                   readonly="true"
+                   placeholder="#{cc.attrs.placeholder}" ></input>					
         </div>			
     </composite:implementation>
 </html>

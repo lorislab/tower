@@ -4,16 +4,15 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="BTS" />
-    <ui:param name="pageTitle" value="Bug tracking systems" />
-    <ui:param name="pageIcon" value="icon-bug" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="BTS" />
+    <ui:param name="page_title" value="Bug tracking systems" />
 
     <ui:param name="vc" value="#{btsVC}" />
     <ui:param name="svc" value="#{btsSVC}" />
 
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Authentication</th>
         <th>Name</th>
         <th>User</th>

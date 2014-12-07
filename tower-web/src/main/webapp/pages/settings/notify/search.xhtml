@@ -6,16 +6,15 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="NOTIFY_GROUP" />
-    <ui:param name="pageTitle" value="Notification group" />
-    <ui:param name="pageIcon" value="icon-bell" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="NOTIFY_GROUP" />
+    <ui:param name="page_title" value="Notification group" />
 
     <ui:param name="vc" value="#{notifyGroupVC}" />
     <ui:param name="svc" value="#{notifyGroupSVC}" />
 
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Name</th>        
         <th>Enabled</th>				        
     </ui:define>

@@ -8,36 +8,37 @@
 
 
     <ui:param name="model" value="#{agentVC.model}" />
-    <ui:param name="viewController" value="#{agentVC}" />
+    <ui:param name="vc" value="#{agentVC}" />
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="AGENT" />
-    <ui:param name="pageTitle" value="#{model.name}" />
-    <ui:param name="pageIcon" value="icon-user-md" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="AGENT" />
+    <ui:param name="page_title" value="#{model.name}" />
     
     <ui:define name="form">
-        <b:callout id="c" title="Agent">
+        <div class="col-md-6">                
+            <h6 class="page-header">Details</h6> 
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" >
                 <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
             <b:selectOne id="type" value="#{model.type}" values="#{applicationC.agentTypes}"
-                         converter="#{applicationC.enumConverter}" title="Type" placeholder="--- select agent type ---"/>
-        </b:callout>
-        <b:callout id="b" title="Connection settings">
-            <b:checkbox id="auth" value="#{model.authentication}" title="Authentication" />	
+                         converter="#{applicationC.enumConverter}" title="Type" placeholder="Select agent type"/>            
+        </div>
+        <div class="col-md-6">                
+            <h6 class="page-header">Connection settings</h6>             
             <b:input id="url" value="#{model.url}" required="true" title="The agent URL" placeholder="The URL fo the agent" />				
             <b:input id="user" value="#{model.user}" title="User" placeholder="The user name" />				
-            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="agentp"/>			
-        </b:callout>		
+            <p:input id="password" controller="#{vc.passwordVC}" value="#{model.password}" dialog="agentp"/>			
+            <b:checkbox id="auth" value="#{model.authentication}" title="Enable the agent authentication" />	
+        </div>		
     </ui:define>
 
 
     <ui:define name="modal">
-        <h:form id="modalForm" class="form-horizontal" prependId="false" >
-            <p:dialog id="agentp" controller="#{viewController.passwordVC}" />	
+        <h:form id="modalForm" prependId="false" >
+            <p:dialog id="agentp" controller="#{vc.passwordVC}" />	
         </h:form>
-        <h:form id="pdForm" class="form-horizontal" prependId="false" >
-            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete agent" question="Do you want to delete agent #{model.name}?" />
+        <h:form id="pdForm" prependId="false" >
+            <b:question id="pd" ctr="#{vc.deleteAction}" title="Delete agent" question="Do you want to delete agent #{model.name}?" />
         </h:form>          
     </ui:define>
 </ui:composition>

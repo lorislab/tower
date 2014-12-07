@@ -5,16 +5,15 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="AGENT" />
-    <ui:param name="pageTitle" value="Agents" />
-    <ui:param name="pageIcon" value="icon-user-md" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="AGENT" />
+    <ui:param name="page_title" value="Agents" />
 
     <ui:param name="vc" value="#{agentVC}" />
     <ui:param name="svc" value="#{agentSVC}" />
 
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Name</th>
         <th>Authentication</th>	
         <th>User</th>

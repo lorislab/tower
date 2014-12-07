@@ -6,13 +6,12 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/templates/editTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="MAIL" />
-    <ui:param name="pageTitle" value="Mail system" />
-    <ui:param name="pageIcon" value="icon-mail-alt" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="MAIL" />
+    <ui:param name="page_title" value="Mail system" />
 
-    <ui:param name="viewController" value="#{mailVC}" />
-    <ui:param name="model" value="#{viewController.model}" />
+    <ui:param name="vc" value="#{mailVC}" />
+    <ui:param name="model" value="#{vc.model}" />
 
     <ui:define name="metadata">
         <f:metadata>
@@ -20,38 +19,44 @@
         </f:metadata>
     </ui:define>
 
-    <ui:define name="form">	
-        <b:checkbox id="enabled" value="#{model.enabled}" title="Enable email notification" />	
-        <b:callout title="Server configuration">
+    <ui:define name="form">
+        <div class="col-md-6">                
+            <h6 class="page-header">Details</h6> 
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enable email notification" />	            
+        </div>
+        <div class="col-md-6">                
+            <h6 class="page-header">Server configuration</h6> 
             <b:input id="jndi" value="#{model.jndi}" title="JNDI" placeholder="JNDI service" />
-        </b:callout>
-        <b:callout id="b" title="Manual configuration">
-            <b:checkbox id="ssl" value="#{model.ssl}" title="Enable SSL" />
+        </div>        
+        <div class="col-md-6">                
+            <h6 class="page-header">Manual configuration</h6>             
             <b:input id="host" value="#{model.host}" title="Host" placeholder="SMTP server" />
             <b:input id="port" value="#{model.port}" title="Port" placeholder="SMTP port" type="number" />
             <b:input id="user" value="#{model.user}" title="User" placeholder="SMTP user authentication" />				
-            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="mailp"/>	
-        </b:callout>
-        <b:callout title="Templates configuration">
+            <p:input id="password" controller="#{vc.passwordVC}" value="#{model.password}" dialog="mailp"/>	            
+            <b:checkbox id="ssl" value="#{model.ssl}" title="Enable SSL" />
+        </div>
+        <div class="col-md-6">                
+            <h6 class="page-header">Templates configuration</h6> 
             <b:input id="server" value="#{model.server}" title="Server" placeholder="The server callback URL" />				
             <b:input id="url" value="#{model.url}" title="URL" placeholder="The server public URL" />
             <b:input id="locale" value="#{model.locale}" title="Locale" placeholder="The default locale" />
             <b:input id="from" value="#{model.from}" title="From" placeholder="The from email address" />
             <b:input id="contentType" value="#{model.contentType}" title="Content type" placeholder="The content type" />
             <b:input id="contentCharset" value="#{model.contentCharset}" title="Content char set" placeholder="The content char set" />
-            <b:input id="transferEncoding" value="#{model.transferEncoding}" title="Transfer encoding" placeholder="The transfer encoding" />
-        </b:callout>
+            <b:input id="transferEncoding" value="#{model.transferEncoding}" title="Transfer encoding" placeholder="The transfer encoding" />            
+        </div>
     </ui:define>
 
     <ui:define name="button-right">
-        <b:button type="success" ctr="#{viewController.sendTestAction}" title="Send test email" icon="mail-alt">
+        <b:button type="success" ctr="#{vc.sendTestAction}" title="Send test email" icon="mail-alt">
             <f:ajax event="click" render="@this" execute="@this"/>
         </b:button>        
     </ui:define>
 
     <ui:define name="modal">
-        <h:form id="modalForm" class="form-horizontal" prependId="false" >
-            <p:dialog id="mailp" controller="#{viewController.passwordVC}"/>	
+        <h:form id="modalForm" prependId="false" >
+            <p:dialog id="mailp" controller="#{vc.passwordVC}"/>	
         </h:form>
     </ui:define>
 

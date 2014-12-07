@@ -5,13 +5,12 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/editTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="TIMER" />
-    <ui:param name="pageTitle" value="Timer" />
-    <ui:param name="pageIcon" value="icon-clock" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="TIMER" />
+    <ui:param name="page_title" value="Timer" />
 
     <ui:param name="model" value="#{timerVC.model}" />
-    <ui:param name="viewController" value="#{timerVC}" />
+    <ui:param name="vc" value="#{timerVC}" />
 
     <ui:define name="metadata">
         <f:metadata>
@@ -20,23 +19,24 @@
     </ui:define>
 
     <ui:define name="form">
-        <b:callout id="b" title="Timer">
+        <div class="col-md-6">                
+            <h6 class="page-header">Details</h6> 
             <b:checkbox id="auto" value="#{model.start}" title="Automatically start the timer" />	
             <b:checkbox id="enabled" value="#{model.enabled}" title="Enable timer execution" />	
             <b:input id="hour" value="#{model.hour}" title="Hours" placeholder="Hour timer interval" />
             <b:input id="minute" value="#{model.minute}" title="Minutes" placeholder="Minutes timer interval" />
             <b:input id="second" value="#{model.second}" title="Seconds" placeholder="Seconds timer interval" />
             <b:output id="date" value="#{timerVC.date}" title="Timer next execution" />
-        </b:callout>
+        </div>
     </ui:define>
 
     <ui:define name="button-right">
-        <b:button type="danger" ctr="#{timerVC.stopAction}" title="Stop" icon="stop">
-            <f:ajax event="click" render="@this editForm:startTimer editForm:b:date:input" execute="@this"/>
+        <b:button type="danger" ctr="#{vc.stopAction}" title="Stop" icon="stop">
+            <f:ajax event="click" render="@this editForm:startTimer editForm:box:date:input" execute="@this"/>
         </b:button>	
         <span style="padding-right: 5px" />
-        <b:button type="success" ctr="#{timerVC.startAction}" title="Start" icon="play">
-            <f:ajax event="click" render="@this editForm:startTimer editForm:b:date:input" execute="@this"/>
+        <b:button type="success" ctr="#{vc.startAction}" title="Start" icon="play">
+            <f:ajax event="click" render="@this editForm:startTimer editForm:box:date:input" execute="@this"/>
         </b:button>
     </ui:define>
 

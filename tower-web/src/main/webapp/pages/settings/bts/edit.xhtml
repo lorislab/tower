@@ -8,35 +8,36 @@
 
 
     <ui:param name="model" value="#{btsVC.model}" />
-    <ui:param name="viewController" value="#{btsVC}" />
+    <ui:param name="vc" value="#{btsVC}" />
     
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="BTS" />
-    <ui:param name="pageTitle" value="#{model.name}" />
-    <ui:param name="pageIcon" value="icon-bug" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="BTS" />
+    <ui:param name="page_title" value="#{model.name}" />
 
     <ui:define name="form">
-        <b:callout id="c" title="Bug tracking system">				
+        <div class="col-md-6">                
+            <h6 class="page-header">Details</h6> 
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Bug tracking system name" >
-                <f:ajax event="keyup" render="header" execute="editForm:c:name:input"/> 
+                <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
             <b:selectOne id="type" value="#{model.type}" values="#{applicationC.btsTypes}" title="Type" required="true"/>	
-            <b:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />			
-        </b:callout>
-        <b:callout id="b" title="Connection settings">
-            <b:checkbox id="enabled" value="#{model.auth}" title="Authentication" />
+            <b:input id="link" value="#{model.link}" title="Issue link" placeholder="The link to the issue" />			            
+        </div>
+        <div class="col-md-6">                
+            <h6 class="page-header">Connection settings</h6>             
             <b:input id="server" value="#{model.server}" required="true" title="Server URL" placeholder="The URL fo the server" />		
             <b:input id="user" value="#{model.user}" title="User" placeholder="The user name" />		
-            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password}" dialog="btsp"/>				
-        </b:callout>
+            <p:input id="password" controller="#{vc.passwordVC}" value="#{model.password}" dialog="btsp"/>				
+            <b:checkbox id="enabled" value="#{model.auth}" title="Enable the authentication" />
+        </div>
     </ui:define>
 
     <ui:define name="modal">
-        <h:form id="pdForm" class="form-horizontal" prependId="false" >
-            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete bug tracking system" question="Do you want to delete bug tracking system #{model.name}?" />
+        <h:form id="pdForm" prependId="false" >
+            <b:question id="pd" ctr="#{vc.deleteAction}" title="Delete bug tracking system" question="Do you want to delete bug tracking system #{model.name}?" />
         </h:form>          
-        <h:form id="modalForm" class="form-horizontal" prependId="false" >
-            <p:dialog id="btsp" controller="#{viewController.passwordVC}" />	
+        <h:form id="modalForm" prependId="false" >
+            <p:dialog id="btsp" controller="#{vc.passwordVC}" />	
         </h:form>
     </ui:define>
 </ui:composition>

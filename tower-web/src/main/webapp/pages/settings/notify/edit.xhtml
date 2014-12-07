@@ -6,45 +6,40 @@
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="model" value="#{notifyGroupVC.model}" />
-    <ui:param name="viewController" value="#{notifyGroupVC}" />
+    <ui:param name="vc" value="#{notifyGroupVC}" />
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="NOTIFY_GROUP" />
-    <ui:param name="pageTitle" value="#{model.name}" />
-    <ui:param name="pageIcon" value="icon-bell" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="NOTIFY_GROUP" />
+    <ui:param name="page_title" value="#{model.name}" />
 
     <ui:define name="form">
-        <b:callout id="c" title="Group">
-            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+        <div class="col-md-6">                
+            <h6 class="page-header">Details</h6>         
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enable the group" />	
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Notification group name" >
-                <f:ajax event="keyup" render="header" execute="editForm:c:name:input"/> 
+                <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
-        </b:callout>    
-
-        <div class="row">
-            <div class="col-sm-4">
-                <b:callout title="Users">
-                    <ui:repeat value="#{notifyGroupVC.user.data}" var="item">
-                        <b:checkbox value="#{item.selected}" title="#{item.data.profile.firstName} #{item.data.profile.lastName}" />
-                    </ui:repeat>
-                </b:callout>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <h6 class="page-header">Users</h6> 
+                <ui:repeat value="#{notifyGroupVC.user.data}" var="item">
+                    <b:checkbox value="#{item.selected}" title="#{item.data.profile.firstName} #{item.data.profile.lastName}" />
+                </ui:repeat>            
             </div>
-            <div class="col-sm-4">
-                <b:callout title="Systems">
-                    <ui:repeat value="#{notifyGroupVC.system.data}" var="item">
-                        <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
-                    </ui:repeat>
-                </b:callout>
+            <div class="col-md-4">
+                <h6 class="page-header">Systems</h6> 
+                <ui:repeat value="#{notifyGroupVC.system.data}" var="item">
+                    <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
+                </ui:repeat>                
             </div>
-            <div class="col-sm-4">
-                <b:callout title="Applications">
-                    <ui:repeat value="#{notifyGroupVC.application.data}" var="item">
-                        <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
-                    </ui:repeat>                 
-                </b:callout>
+            <div class="col-md-4">
+                <h6 class="page-header">Applications</h6> 
+                <ui:repeat value="#{notifyGroupVC.application.data}" var="item">
+                    <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
+                </ui:repeat> 
             </div>
-        </div>        
-
+        </div>
     </ui:define>
 
     <ui:define name="modal">
@@ -52,6 +47,6 @@
             <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete project" question="Do you want to delete the notification group #{model.name}?" />
         </h:form>  
     </ui:define>
-    
+
 </ui:composition>
 

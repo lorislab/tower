@@ -6,16 +6,15 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="APPLICATION" />
-    <ui:param name="pageTitle" value="Applications" />
-    <ui:param name="pageIcon" value="icon-beaker" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="APPLICATION" />
+    <ui:param name="page_title" value="Applications" />
 
     <ui:param name="vc" value="#{applicationVC}" />
     <ui:param name="svc" value="#{applicationSVC}" />
 
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Index</th>
         <th>Enabled</th>				
         <th>Name</th>

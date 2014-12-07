@@ -16,10 +16,10 @@
         <div class="col-md-6">                
             <h6 class="page-header">Details</h6>            
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Project name" >
-                <f:ajax event="keyup" render="header" execute="editForm:name:input"/> 
+                <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>                
             <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the project" />	                		
-            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled the project"/>	
         </div>        
         <div class="col-md-6">
             <h6 class="page-header">Bug tracking</h6>

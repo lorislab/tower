@@ -7,39 +7,42 @@
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="model" value="#{systemVC.model}" />
-    <ui:param name="viewController" value="#{systemVC}" />
-    
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="SYSTEM" />
-    <ui:param name="pageTitle" value="#{model.name}" />
-    <ui:param name="pageIcon" value="icon-suitcase" />
+    <ui:param name="vc" value="#{systemVC}" />
+
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="SYSTEM" />
+    <ui:param name="page_title" value="#{model.name}" />
 
 
-    <ui:define name="form">
-        <b:callout id="b" title="System">
-            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />	
+    <ui:define name="form">      
+        <div class="col-md-6">     
+            <h6 class="page-header">Details</h6>
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled the system" />	                        
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="System name" >
-                <f:ajax event="keyup" render="header" execute="editForm:b:name:input"/> 
+                <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
-            <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />
-            <b:input id="domain" value="#{model.domain}" title="Domain" placeholder="Agent domain" />
-            <b:input id="clazz" value="#{model.classification}" title="Classification" placeholder="Agent classification" />
-            <b:checkbox id="notification" value="#{model.notification}" title="Notification" />	
-            <b:input id="link" value="#{model.link}" title="Link" placeholder="Link to the system" />
+            <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />                                    
             <k:key id="key" value="#{model.key}" controller="#{systemVC.keyViewController}" />
-        </b:callout>
-        <b:callout title="Application">
             <b:selectOne id="application" value="#{model.application}" values="#{systemVC.applicationConverter.data}" 
                          converter="#{systemVC.applicationConverter}" required="true"
-                         title="Application" placeholder="--- select a application ---"/>
-        </b:callout>
-        <b:callout title="Agent">
-            <b:checkbox id="timer" value="#{model.timer}" title="Timer" />							
+                         title="Application" placeholder="Select a application"/>                        
+        </div>
+        <div class="col-md-6">             
+            <h6 class="page-header">Settings</h6>
+            <b:checkbox id="notification" value="#{model.notification}" title="Active the system notification" />	                        
+            <b:input id="clazz" value="#{model.classification}" title="Classification" placeholder="System classification" />
+            <b:input id="domain" value="#{model.domain}" title="Domain" placeholder="Agent domain" />
+            <b:input id="link" value="#{model.link}" title="Link" placeholder="Link to the system" />                
+        </div>
+        <div class="col-md-6"> 
+            <h6 class="page-header">Agent</h6>            
+            <b:checkbox id="timer" value="#{model.timer}" title="Activate the agent scheduler service" />            
             <b:input id="service" value="#{model.service}" title="Service" placeholder="The agent service" />		
             <b:selectOne id="agent" value="#{model.agent}" values="#{systemVC.agentConverter.data}" 
                          converter="#{systemVC.agentConverter}"
-                         title="Agent" placeholder="--- select a agent ---"/>
-        </b:callout>
+                         title="Agent" placeholder="Select a agent"/>                           
+        </div>
+
     </ui:define>
 
     <ui:define name="modal">

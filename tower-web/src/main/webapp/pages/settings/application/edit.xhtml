@@ -7,44 +7,44 @@
                 template="/templates/editTemplate.xhtml">
 
     <ui:param name="model" value="#{applicationVC.model}" />
-    <ui:param name="viewController" value="#{applicationVC}" />
+    <ui:param name="vc" value="#{applicationVC}" />
 
-   
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="APPLICATION" />
-    <ui:param name="pageTitle" value="#{model.name}" />
-    <ui:param name="pageIcon" value="icon-beaker" />
 
-    <ui:define name="form">			
-        <b:callout id="b" title="Application">
-            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="APPLICATION" />
+    <ui:param name="page_title" value="#{model.name}" />
+
+    <ui:define name="form">		
+        <div class="col-md-6">                
+            <h6 class="page-header">Details</h6>
+
             <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Application name" >
-                <f:ajax event="keyup" render="header" execute="editForm:b:name:input"/> 
+                <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
             <b:input id="index" value="#{model.index}" type="number" title="Index" placeholder="The index of the application" />		
             <b:input id="type" value="#{model.type}" title="Type" placeholder="The application type" />		
-            <k:key id="key" value="#{model.key}" controller="#{applicationVC.keyViewController}" />
-        </b:callout>
-        <b:callout title="Project">
+            <k:key id="key" value="#{model.key}" controller="#{applicationVC.keyViewController}" />                       
             <b:selectOne id="project" value="#{model.project}" values="#{applicationVC.projectConverter.data}" 
                          converter="#{applicationVC.projectConverter}" required="true"
-                         title="Project" placeholder="--- select a project ---"/>
-        </b:callout>		
-        <b:callout title="Source code">
+                         title="Project" placeholder="Select a project"/>            
+            <b:checkbox id="enabled" value="#{model.enabled}" title="Enabled the application" />
+        </div>
+        <div class="col-md-6"> 
+            <h6 class="page-header">Source code</h6>
             <b:selectOne id="scmId" value="#{model.scm}" values="#{applicationVC.scmSystemConverter.data}" 
                          converter="#{applicationVC.scmSystemConverter}"
-                         title="Source control management system" placeholder="--- select source control system ---"/>	
+                         title="Management system" placeholder="Select management system"/>	
 
-            <b:input id="scmTrunk" value="#{model.scmTrunk}" title="Source code trunk" placeholder="Link to the trunk" />
-            <b:input id="scmBranches" value="#{model.scmBranches}" title="Source code branches" placeholder="Link to the branches" />
-            <b:input id="scmTags" value="#{model.scmTags}" title="Source code tags" placeholder="Link to the tags" />
+            <b:input id="scmTrunk" value="#{model.scmTrunk}" title="Trunk" placeholder="Link to the trunk" />
+            <b:input id="scmBranches" value="#{model.scmBranches}" title="Branches" placeholder="Link to the branches" />
+            <b:input id="scmTags" value="#{model.scmTags}" title="Tags" placeholder="Link to the tags" />
 
             <b:selectOne id="scmType" value="#{model.scmType}" values="#{applicationC.appScmTypes}"
                          converter="#{applicationC.enumConverter}"
-                         title="Source control management type" placeholder="--- select source control system type ---"/>	
+                         title="Management type" placeholder="Select system type"/>	
 
-            <b:input id="repoLink" value="#{model.repoLink}" title="Repository link" placeholder="Link to the repository" />
-        </b:callout>
+            <b:input id="repoLink" value="#{model.repoLink}" title="Repository link" placeholder="Link to the repository" />            
+        </div>
     </ui:define>
 
 

@@ -46,8 +46,8 @@
     </ui:define>
 
     <ui:define name="modal">
-        <h:form id="pdForm" class="form-horizontal" prependId="false" >
-            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Deletesystem" question="Do you want to delete the system #{model.name}?" />
+        <h:form id="pdForm" prependId="false" >
+            <b:question id="pd" ctr="#{vc.deleteAction}" title="Deletesystem" question="Do you want to delete the system #{model.name}?" />
         </h:form>                  
     </ui:define>
 

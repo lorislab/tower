@@ -5,16 +5,15 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="SETTINGS" />
-    <ui:param name="menuChildSelected" value="SCM" />
-    <ui:param name="pageTitle" value="Source control system" />
-    <ui:param name="pageIcon" value="icon-fork" />
+    <ui:param name="menu_parent" value="SETTINGS" />
+    <ui:param name="menu_item" value="SCM" />
+    <ui:param name="page_title" value="Source control system" />
 
     <ui:param name="vc" value="#{scmVC}" />
     <ui:param name="svc" value="#{scmSVC}" />
 
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Authentication</th>
         <th>Name</th>
         <th>User</th>

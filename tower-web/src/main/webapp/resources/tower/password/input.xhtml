@@ -14,7 +14,7 @@
         <composite:attribute name="value" required="true"/>
         <composite:attribute name="required" required="false" default="false"/>
         <composite:attribute name="dialog" required="true"/>
-        <composite:attribute name="render" required="false" default="editForm:b:password:input"/>
+        <composite:attribute name="render" required="false" default="editForm:box:password:input"/>
     </composite:interface>
 
     <composite:implementation>		
@@ -22,7 +22,7 @@
 
             <label class="control-label" jsf:for="input">Password</label>
             <div class="input-group">
-                <span class="input-group-addon"
+<!--                <span class="input-group-addon"
                       jsf:rendered="#{jel:isNotMessage(cc.clientId,':input')}">
                     <i class="fa fa-file-text-o"></i>
                 </span>
@@ -30,7 +30,7 @@
                 <span class="input-group-addon alert-danger"
                       jsf:rendered="#{jel:isMessage(cc.clientId,':input')}">
                     <i class="fa fa-exclamation-triangle alert-danger"></i>
-                </span>	
+                </span>	-->
 
                 <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="#{cc.attrs.required}" readonly="true">
                     <f:passThroughAttribute name="type" value="password" />

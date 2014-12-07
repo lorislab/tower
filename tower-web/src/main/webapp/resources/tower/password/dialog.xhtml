@@ -9,7 +9,7 @@
         <composite:attribute name="controller" required="true"/>
         <composite:attribute name="title" required="false" default="Title"/>
         <composite:attribute name="question" required="false" default="Question?"/>		
-        <composite:attribute name="render" required="false" default="editForm:b:password:input"/>		
+        <composite:attribute name="render" required="false" default="editForm:box:password:input"/>		
     </composite:interface>
 
     <composite:implementation>		
@@ -20,11 +20,10 @@
                             onevent="function(d){if(d.status==='success')if($('##{cc.id}\\\\:p\\\\:status').length === 0)$('##{cc.id}\\\\:p\\\\:modal').modal('hide');}" />
                 </b:button>                
             </f:facet>
-            <fieldset>
-                <b:input id="new1" value="#{cc.attrs.controller.password.new1}" type="password" required="true" title="New password" />
-                <b:input id="new2" value="#{cc.attrs.controller.password.new2}" type="password" required="true" title="Confirm password" />
-                <b:messages />
-            </fieldset>            
+
+            <b:input id="new1" value="#{cc.attrs.controller.password.new1}" type="password" required="true" title="New password" />
+            <b:input id="new2" value="#{cc.attrs.controller.password.new2}" type="password" required="true" title="Confirm password" />
+            <b:messages />
         </b:modal>	
     </composite:implementation>
 </html>

@@ -71,6 +71,7 @@
         <web-resource-collection>
             <web-resource-name>public</web-resource-name>
             <url-pattern>/resources/*</url-pattern>
+            <url-pattern>/favicon.ico</url-pattern>
             <url-pattern>/javax.faces.resource/*</url-pattern>
             <url-pattern>/login</url-pattern>
         </web-resource-collection>

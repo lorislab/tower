@@ -9,15 +9,16 @@
 
     <ui:param name="model" value="#{userVC.model}" />
     <ui:param name="profile" value="#{userVC.model.profile}" />
-    <ui:param name="viewController" value="#{userVC}" />
+    <ui:param name="vc" value="#{userVC}" />
     
-    <ui:param name="menuParentSelected" value="USERMAN" />
-    <ui:param name="menuChildSelected" value="USER" />
-    <ui:param name="pageTitle" value="#{profile.firstName} #{profile.lastName}" />
-    <ui:param name="pageIcon" value="user" />
+    <ui:param name="menu_parent" value="USERMAN" />
+    <ui:param name="menu_item" value="USER" />
+    <ui:param name="page_title" value="#{profile.firstName} #{profile.lastName}" />
+
 
     <ui:define name="form">
-        <b:callout id="c" title="User profile">
+        <div class="col-md-6">                
+            <h6 class="page-header">User profile</h6> 
             <b:input id="first" value="#{profile.firstName}" required="true" title="First name" placeholder="User first name" >
                 <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
@@ -26,25 +27,27 @@
                 <f:ajax event="keyup" render="header" execute="@this"/> 
             </b:input>
             <b:input id="email" type="email" value="#{profile.email}" required="true" title="Email" placeholder="User email" />
-            <p:input id="password" controller="#{viewController.passwordVC}" value="#{model.password.password}" dialog="up" render="editForm:c:password:input"/>
-        </b:callout>
-        <b:callout id="b" title="User configuration">
+            <p:input id="password" controller="#{vc.passwordVC}" value="#{model.password.password}" dialog="up" render="editForm:box:password:input"/>            
+        </div>
+        <div class="col-md-6">                
+            <h6 class="page-header">Configuration</h6> 
             <b:checkbox id="notify" value="#{model.config.notification}" title="Email notification" />
             <k:key id="key" value="#{model.config.key}" controller="#{userVC.keyViewController}" />
-        </b:callout>      
-        <b:callout title="User roles">
+        </div>      
+        <div class="col-md-6">                
+            <h6 class="page-header">Roles</h6>         
             <ui:repeat value="#{userVC.roles.data}" var="item">
                 <b:checkbox value="#{item.selected}" title="#{role[item.data.name]}" />
             </ui:repeat>
-        </b:callout>
+        </div>
     </ui:define>
 
     <ui:define name="modal">
-        <h:form id="modalForm" class="form-horizontal" prependId="false" >
-            <p:dialog id="up" controller="#{viewController.passwordVC}" render="editForm:c:password:input"/>	
+        <h:form id="modalForm" prependId="false" >
+            <p:dialog id="up" controller="#{vc.passwordVC}"/>	
         </h:form>
-        <h:form id="pdForm" class="form-horizontal" prependId="false" >
-            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete user" question="Do you want to delete user #{profile.firstName} #{profile.lastName}?" />
+        <h:form id="pdForm" prependId="false" >
+            <b:question id="pd" ctr="#{vc.deleteAction}" title="Delete user" question="Do you want to delete user #{profile.firstName} #{profile.lastName}?" />
         </h:form>          
     </ui:define>
     

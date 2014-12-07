@@ -5,16 +5,15 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="USERMAN" />
-    <ui:param name="menuChildSelected" value="USER" />
-    <ui:param name="pageTitle" value="Users" />
-    <ui:param name="pageIcon" value="user" />
+    <ui:param name="menu_parent" value="USERMAN" />
+    <ui:param name="menu_item" value="USER" />
+    <ui:param name="page_title" value="Users" />
 
     <ui:param name="vc" value="#{userVC}" />
     <ui:param name="svc" value="#{userSVC}" />
     
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>Enabled</th>        
         <th>First name</th>        
         <th>Middle name</th>

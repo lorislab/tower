@@ -5,16 +5,15 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 template="/templates/searchTemplate.xhtml">
 
-    <ui:param name="menuParentSelected" value="USERMAN" />
-    <ui:param name="menuChildSelected" value="AD_SEARCH" />
-    <ui:param name="pageTitle" value="Active directory search" />
-    <ui:param name="pageIcon" value="icon-user" />
+    <ui:param name="menu_parent" value="USERMAN" />
+    <ui:param name="menu_item" value="AD_SEARCH" />
+    <ui:param name="page_title" value="Active directory" />
 
     <ui:param name="vc" value="#{adVC}" />
     <ui:param name="svc" value="#{adSVC}" />
     
     <ui:define name="tableHead">
-        <th></th>
+        <th>Action</th>
         <th>User id</th>        
         <th>Principal</th>
         <th>Name</th>

@@ -2,7 +2,9 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:composite="http://xmlns.jcp.org/jsf/composite"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:jel="http://xmlns.lorislab.org/jel/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <composite:interface>
         <composite:attribute name="title" required="false" default="Input text"/>
@@ -13,13 +15,17 @@
     </composite:interface>
 
     <composite:implementation>		
-        <div class="form-group">
+        <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
+        <div class="form-group #{error ? 'has-error' : ''}">
             <label class="control-label" for="#{cc.id}:checkbox" jsf:rendered="#{cc.attrs.showLabel}">#{cc.attrs.label}</label>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" jsf:id="checkbox" jsf:value="#{cc.attrs.value}"/> #{cc.attrs.title}
                 </label>
             </div>
-        </div>		
+            <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" rendered="#{error}" >
+                <div class="text-red">#{item.detail}</div>
+            </ui:repeat>            
+        </div>	        
     </composite:implementation>
 </html>

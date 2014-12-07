@@ -20,39 +20,17 @@
     </composite:interface>
 
     <composite:implementation>	
-
-        <div class="form-group">
+        <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
+        <div class="form-group #{error ? 'has-error' : ''}">
             <label for="input" jsf:for="input">#{cc.attrs.title}</label>
             <h:selectManyMenu id="input" value="#{cc.attrs.value}" class="form-control" required="#{cc.attrs.required}"
-                             converter="#{cc.attrs.converter}">					
-                <f:selectItem rendered="#{not empty cc.attrs.placeholder}" itemLabel="#{cc.attrs.placeholder}" />
+                              converter="#{cc.attrs.converter}">					
+                <f:selectItem rendered="#{not empty cc.attrs.placeholder}" itemValue="" itemLabel="#{cc.attrs.placeholder}" />
                 <f:selectItems value="#{cc.attrs.values}" />
-            </h:selectOneMenu>
+                </h:selectOneMenu>
+                <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" rendered="#{error}" >
+                    <div class="text-red">#{item.detail}</div>
+                </ui:repeat>   
         </div>
-<!--
-        <div class="control-group">
-            <label class="control-label" for="input" jsf:for="input">#{cc.attrs.title}</label>
-            <div class="input-group">
-                <span class="input-group-addon"
-                      jsf:rendered="#{jel:isNotMessage(cc.clientId,':input')}">
-                    <i class="fa fa-#{cc.attrs.icon}"></i>
-                </span>
-
-                <span class="input-group-addon alert-danger"
-                      jsf:rendered="#{jel:isMessage(cc.clientId,':input')}">
-                    <i class="fa fa-#{cc.attrs.error} alert-danger"></i>
-                </span>	
-
-                <h:selectOneMenu id="input" value="#{cc.attrs.value}" class="form-control" required="#{cc.attrs.required}"
-                                 converter="#{cc.attrs.converter}">					
-                    <f:selectItem rendered="#{not empty cc.attrs.placeholder}" itemLabel="#{cc.attrs.placeholder}" />
-                    <f:selectItems value="#{cc.attrs.values}" />
-                </h:selectOneMenu>			
-
-            </div>			
-            <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" >
-                <span class="label label-danger">#{item.summary}</span>
-            </ui:repeat>			
-        </div>			-->
     </composite:implementation>
 </html>

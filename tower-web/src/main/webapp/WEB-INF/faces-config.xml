@@ -5,6 +5,12 @@
               version="2.2">
               
     <application>
+        <message-bundle>org.lorislab.tower.web.jsf.FacesMessages</message-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>de</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>        
         <resource-bundle>
             <base-name>org.lorislab.tower.web.guardian.app.model.role</base-name>
             <var>role</var>

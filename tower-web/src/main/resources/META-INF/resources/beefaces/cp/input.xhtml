@@ -18,35 +18,16 @@
     </composite:interface>
 
     <composite:implementation>		
-        
-        <div class="form-group">
-            <label jsf:for="input">#{cc.attrs.title}</label>
-            <input type="#{cc.attrs.type}" class="form-control" jsf:id="input" jsf:value="#{cc.attrs.value}" placeholder="#{cc.attrs.placeholder}" />
+        <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
+        <div class="form-group #{error ? 'has-error' : ''}">
+            <label jsf:for="input"><i class="fa fa-times-circle-o" jsf:rendered="#{error}" />
+                #{cc.attrs.title}</label>
+            <input type="#{cc.attrs.type}" class="form-control" jsf:id="input"
+                   required="#{cc.attrs.required}"
+                   jsf:value="#{cc.attrs.value}" placeholder="#{cc.attrs.placeholder}" />         
+            <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" rendered="#{error}" >
+                <div class="text-red">#{item.detail}</div>
+            </ui:repeat>                
         </div>
-<!--        
-        <div class="control-group">
-
-            <label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
-            <div class="input-group">
-                <span class="input-group-addon"
-                      jsf:rendered="#{jel:isNotMessage(cc.clientId,':input')}">
-                    <i class="fa fa-#{cc.attrs.icon}"></i>
-                </span>
-
-                <span class="input-group-addon alert-danger"
-                      jsf:rendered="#{jel:isMessage(cc.clientId,':input')}">
-                    <i class="fa fa-#{cc.attrs.error} alert-danger"></i>
-                </span>	
-
-                <input jsf:id="input" type="#{cc.attrs.type}" class="form-control" 
-                       jsf:value="#{cc.attrs.value}" required="#{cc.attrs.required}" placeholder="#{cc.attrs.placeholder}" >
-                </input>					
-            </div>
-
-            <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" >
-                <span class="label label-danger">#{item.detail}</span>
-            </ui:repeat>
-        </div>			
--->
     </composite:implementation>
 </html>

@@ -133,8 +133,8 @@
         </navigation-case>        					
         <!-- DASHBOARD -->			
         <navigation-case>
-            <from-outcome>toDashboard</from-outcome>
-            <to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
+            <from-outcome>toDashboardOverview</from-outcome>
+            <to-view-id>/pages/dashboard/overview.xhtml</to-view-id>
             <redirect />
         </navigation-case>
         <!-- DEPLOYMENT -->

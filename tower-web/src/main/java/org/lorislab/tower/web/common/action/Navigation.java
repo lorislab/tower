@@ -117,7 +117,7 @@ public final class Navigation {
     /**
      * The navigation to dashboard.
      */
-    public static String TO_DASHBOARD = "toDashboard";
+    public static String TO_DASHBOARD_OVERVIEW = "toDashboardOverview";
 
     /**
      * The navigation to deploy.

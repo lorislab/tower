@@ -1,16 +1,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="/templates/template.xhtml">
 
-	<ui:param name="menuParentSelected" value="DEPLOYMENT" />
-	<ui:param name="menuChildSelected" value="DEPLOY" />
-	<ui:param name="pageTitle" value="Deploy" />
-	<ui:param name="pageIcon" value="icon-rocket" />
-	
-    <ui:define name="body">
-		<div></div>
+    <ui:param name="menu_parent" value="DEPLOYMENT" />
+    <ui:param name="menu_item" value="DEPLOY" />
+    <ui:param name="page_title" value="Deployment" />
 
+
+    <ui:define name="header">
+        <h1 jsf:id="header">#{page_title}<small>deploy the builds</small></h1>
+    </ui:define>
+
+    <ui:define name="body">
+        <div></div>
     </ui:define>
 
 

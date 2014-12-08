@@ -43,6 +43,10 @@ public enum Menu {
      */
     DASHBOARD,
     /**
+     * The top dashboard overview.
+     */
+    OVERVIEW,    
+    /**
      * The top deployment menu.
      */
     DEPLOYMENT,

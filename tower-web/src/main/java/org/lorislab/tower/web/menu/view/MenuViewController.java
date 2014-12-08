@@ -57,6 +57,10 @@ public class MenuViewController extends AbstractViewController {
      */
     private final MenuAction dashboard;
     /**
+     * The overview menu.
+     */
+    private final MenuAction overview;
+    /**
      * The deploy menu.
      */
     private final MenuAction deploy;
@@ -140,7 +144,8 @@ public class MenuViewController extends AbstractViewController {
         timer = new MenuAction(this, Menu.TIMER, Navigation.TO_TIMER);
         userman = new MenuAction(this, Menu.USERMAN);
         user = new MenuAction(this, Menu.USER, Navigation.TO_USER);
-        dashboard = new MenuAction(this, Menu.DASHBOARD, Navigation.TO_DASHBOARD);
+        dashboard = new MenuAction(this, Menu.DASHBOARD);
+        overview = new MenuAction(this, Menu.OVERVIEW, Navigation.TO_DASHBOARD_OVERVIEW);
         deploy = new MenuAction(this, Menu.DEPLOY, Navigation.TO_DEPLOY);
         settings = new MenuAction(this, Menu.SETTINGS);
         logout = new LogoutAction(this, Navigation.TO_HOME);
@@ -174,6 +179,15 @@ public class MenuViewController extends AbstractViewController {
      */
     public void collapse() {
         collapsed = !collapsed;
+    }
+
+    /**
+     * Gets the dashboard overview menu.
+     *
+     * @return the dashboard overview menu.
+     */
+    public MenuAction getOverview() {
+        return overview;
     }
 
     /**

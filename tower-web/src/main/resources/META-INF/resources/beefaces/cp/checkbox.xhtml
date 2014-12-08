@@ -17,12 +17,11 @@
     <composite:implementation>		
         <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
         <div class="form-group #{error ? 'has-error' : ''}">
-            <label class="control-label" for="#{cc.id}:checkbox" jsf:rendered="#{cc.attrs.showLabel}">#{cc.attrs.label}</label>
+            <label class="control-label" jsf:rendered="#{cc.attrs.showLabel}">#{cc.attrs.label}</label>            
             <div class="checkbox">
-                <label>
-                    <input type="checkbox" jsf:id="checkbox" jsf:value="#{cc.attrs.value}"/> #{cc.attrs.title}
-                </label>
-            </div>
+                <input type="checkbox" jsf:id="input" jsf:value="#{cc.attrs.value}"/>
+                <label jsf:for="input">#{cc.attrs.title}</label>
+            </div>            
             <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" rendered="#{error}" >
                 <div class="text-red">#{item.detail}</div>
             </ui:repeat>            

@@ -3,10 +3,6 @@
     border-bottom: 1px solid #ddd;
 }
 
-.radio label, .checkbox label {
-    padding-left: 0px;
-}
-
 .box-footer .btn {
     margin-right: 5px;
 }

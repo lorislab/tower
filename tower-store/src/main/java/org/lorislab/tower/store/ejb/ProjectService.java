@@ -66,7 +66,7 @@ public class ProjectService extends AbstractEntityServiceBean<Project> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     /**
      * Saves the project.
      *
@@ -88,7 +88,7 @@ public class ProjectService extends AbstractEntityServiceBean<Project> {
     public boolean deleteProject(String guid) {
         return this.delete(guid);
     }
-    
+
     /**
      * Gets the project by GUID.
      *
@@ -130,8 +130,6 @@ public class ProjectService extends AbstractEntityServiceBean<Project> {
      * @return the projects list for the dashboard.
      */
     public List<Project> getDashboardProjects() {
-        List<Project> result = new ArrayList<>();
-
         CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
         CriteriaQuery<Project> cq = getBaseEAO().createCriteriaQuery();
         Root<Project> root = cq.from(Project.class);
@@ -146,14 +144,12 @@ public class ProjectService extends AbstractEntityServiceBean<Project> {
 
         Join<Application, TargetSystem> systems = (Join<Application, TargetSystem>) applications.fetch(Application_.systems, JoinType.LEFT);
         predicates.add(cb.equal(systems.get(TargetSystem_.enabled), true));
-        
+
         cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
-        try {
-            TypedQuery<Project> typeQuery = getBaseEAO().createTypedQuery(cq);
-            result = typeQuery.getResultList();
-        } catch (NoResultException ex) {
-            // do nothing
-        }
+
+        TypedQuery<Project> typeQuery = getBaseEAO().createTypedQuery(cq);
+        List<Project> result = typeQuery.getResultList();
+
         return result;
     }
 

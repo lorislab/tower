@@ -156,7 +156,7 @@
         </navigation-case>        		
         <navigation-case>
             <from-outcome>toHome</from-outcome>
-            <to-view-id>/pages/dashboard/dashboard.xhtml</to-view-id>
+            <to-view-id>/pages/dashboard/overview.xhtml</to-view-id>
             <redirect />
         </navigation-case>        				
     </navigation-rule>

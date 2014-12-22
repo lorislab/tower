@@ -16,16 +16,16 @@
 
         <div class="row">
             <div class="col-lg-12">		
-                <ui:repeat var="project" value="#{dashboardVC.dashboard.projects}">
-                    <h2 class="page-header">#{project.name}</h2> 
-                    <ui:repeat var="app" value="#{project.applications}">
-                        <h4><i class="icon-beaker"></i> #{app.name}</h4>
+                <ui:repeat var="project" value="#{dashboardVC.result}">
+                    <h2 class="page-header">#{project.model.name}</h2> 
+                    <ui:repeat var="app" value="#{project.items}">
+                        <h4><i class="icon-beaker"></i> #{app.model.name}</h4>
                         <div class="row">
-                            <ui:repeat var="system" value="#{app.systems}">
+                            <ui:repeat var="system" value="#{app.items}">
                                 <div class="col-lg-4">
                                     <div class="box box-solid bg-green">
-                                        <div class="box-header"><h4>#{system.name}</h4></div>
-                                        <div class="box-body">#{system.clazz}</div>
+                                        <div class="box-header"><h4>#{system.model.name}</h4></div>
+                                        <div class="box-body">#{system.model.classification}</div>
                                     </div>                                   
                                 </div>		
                             </ui:repeat>

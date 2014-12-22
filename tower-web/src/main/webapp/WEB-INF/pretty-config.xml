@@ -12,7 +12,7 @@
     <!-- DASHBOARD -->
     <url-mapping id="dashboard">
         <pattern value="/dashboard/overview" />
-        <view-id value="/pages/dashboard/dashboard.xhtml" />
+        <view-id value="/pages/dashboard/overview.xhtml" />
     </url-mapping>
 
     <!-- DEPLOYMENT -->

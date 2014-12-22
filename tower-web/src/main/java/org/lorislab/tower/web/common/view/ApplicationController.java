@@ -129,7 +129,7 @@ public class ApplicationController implements Serializable {
 
         // load version
         prm = PrmLoader.load(ApplicationController.class);
-        LOGGER.log(Level.INFO, "********* Starting the Tower version {0} {1} *********", new Object[]{prm.getVersion(), prm.getBuild()});
+        LOGGER.log(Level.INFO, "********* Starting Tower {0} {1} *********", new Object[]{prm.getVersion(), prm.getBuild()});
     }
 
     /**

@@ -46,7 +46,6 @@
         <module>tower-web</module>		
         <module>tower-web-rs</module>
         <module>tower-ear</module>
-		<module>tower-test</module>
         <module>tower-postman-templates</module>
     </modules>
 

@@ -91,12 +91,6 @@
             <type>ejb</type>
             <version>${project.version}</version>
         </dependency>
-		        <dependency>
-            <groupId>org.lorislab.tower</groupId>
-            <artifactId>tower-test</artifactId>
-            <type>ejb</type>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.lorislab.tower</groupId>
             <artifactId>tower-web</artifactId>
@@ -160,11 +154,6 @@
                             <groupId>org.lorislab.tower</groupId>
                             <artifactId>tower-store</artifactId>
                             <bundleFileName>tower-store.jar</bundleFileName>
-                        </ejbModule>	
-                        <ejbModule>
-                            <groupId>org.lorislab.tower</groupId>
-                            <artifactId>tower-test</artifactId>
-                            <bundleFileName>tower-test.jar</bundleFileName>
                         </ejbModule>						
                         <webModule>
                             <groupId>org.lorislab.tower</groupId>

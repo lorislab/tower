@@ -24,6 +24,10 @@ package org.lorislab.tower.web.common.action;
 public enum Context {
    
     /**
+     * The dashboard overview.
+     */
+    DB_OVERVIEW,
+    /**
      * The notification group.
      */
     NOTIFY_GROUP,

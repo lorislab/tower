@@ -22,8 +22,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import org.lorislab.tower.service.dashboard.model.Dashboard;
 import org.lorislab.tower.service.dashboard.model.DashboardApplication;
-import org.lorislab.tower.service.dashboard.model.DashboardApplicationSystem;
+import org.lorislab.tower.service.dashboard.model.DashboardTargetSystem;
 import org.lorislab.tower.service.dashboard.model.DashboardProject;
 import org.lorislab.tower.store.ejb.ProjectService;
 import org.lorislab.tower.store.model.Application;
@@ -41,17 +42,19 @@ public class DashboardService {
     @EJB
     private ProjectService projectService;
 
-    public List<DashboardProject> getDashboardProjects() {
-        List<DashboardProject> result = null;
+    public Dashboard getDashboardProjects() {
+        Dashboard result = null;
 
         List<Project> projects = projectService.getDashboardProjects();
         if (projects != null) {
-            result = new ArrayList<>(projects.size());
+            result = new Dashboard();
+            result.setItems(new ArrayList<DashboardProject>(projects.size()));
+            
 
             for (Project project : projects) {
 
                 DashboardProject dp = new DashboardProject(project);
-                result.add(dp);
+                result.getItems().add(dp);
                 
                 Set<Application> applications = project.getApplications();
                 if (applications != null) {
@@ -63,12 +66,13 @@ public class DashboardService {
                         
                         Set<TargetSystem> systems = application.getSystems();
                         if (systems != null) {
-                            da.setItems(new ArrayList<DashboardApplicationSystem>(systems.size()));
+                            da.setItems(new ArrayList<DashboardTargetSystem>(systems.size()));
                             
                             for (TargetSystem system : systems) {
                                 
-                                DashboardApplicationSystem das = new DashboardApplicationSystem(system);
+                                DashboardTargetSystem das = new DashboardTargetSystem(system);
                                 da.getItems().add(das);
+                                result.getSystems().put(das.getGuid(), das);
                             }
                         }
                     }

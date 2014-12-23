@@ -11,7 +11,6 @@
     </composite:interface>
 
     <composite:implementation>		
-        <!--<div jsf:id="parent">-->
             <div class="modal fade" jsf:id="modal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div jsf:id="content" class="modal-content">
@@ -19,7 +18,6 @@
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&#215;</span><span class="sr-only">#{cc.attrs.close}</span></button>
                             <h4 class="modal-title" id="modelLabel">#{cc.attrs.title}</h4>												
                         </div>
-                        <!--<h:form id="modalForm" class="form-horizontal" >-->
                             <span jsf:id="status" jsf:rendered="#{facesContext.validationFailed}" style="display: none"> </span>
                             <div class="modal-body">
                                 <composite:insertChildren />
@@ -28,10 +26,8 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">#{cc.attrs.close}</button>	                                
                                 <composite:renderFacet name="footer" />
                             </div>                            
-                        <!--</h:form>-->
                     </div>
                 </div>
-            </div>		
-        <!--</div>-->			
+            </div>				
     </composite:implementation>
 </html>

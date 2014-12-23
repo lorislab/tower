@@ -15,19 +15,23 @@
  */
 package org.lorislab.tower.service.dashboard.model;
 
-import org.lorislab.tower.store.model.TargetSystem;
+import java.util.HashMap;
+import java.util.Map;
+import org.lorislab.jel.jpa.model.Persistent;
 
 /**
- * The dashboard application system.
  *
- * @author Andrej Petras
+ * @author Andrej_Petras
  */
-public class DashboardApplicationSystem extends AbstractDashboardWrapper<TargetSystem, Object> {
+public class Dashboard extends AbstractDashboardWrapper<Persistent, DashboardProject> {
+    
+    private static final long serialVersionUID = -3770372562560387951L;
+    
+    private final Map<String, DashboardTargetSystem> systems = new HashMap<>();
 
-    private static final long serialVersionUID = 2932042159555247986L;
-
-    public DashboardApplicationSystem(TargetSystem system) {
-        setModel(system);
+    public Map<String, DashboardTargetSystem> getSystems() {
+        return systems;
     }
-
+    
+    
 }

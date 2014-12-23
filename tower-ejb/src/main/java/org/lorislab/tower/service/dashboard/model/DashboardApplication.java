@@ -25,7 +25,7 @@ import org.lorislab.tower.store.model.Application;
  *
  * @author Andrej Petras
  */
-public class DashboardApplication extends AbstractDashboardWrapper<Application, DashboardApplicationSystem> {
+public class DashboardApplication extends AbstractDashboardWrapper<Application, DashboardTargetSystem> {
 
     private static final long serialVersionUID = 1375715613493802021L;
 

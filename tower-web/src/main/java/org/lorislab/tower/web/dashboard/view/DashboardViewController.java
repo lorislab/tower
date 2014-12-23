@@ -22,7 +22,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
 import org.lorislab.tower.service.dashboard.ejb.DashboardService;
+import org.lorislab.tower.service.dashboard.model.Dashboard;
 import org.lorislab.tower.service.dashboard.model.DashboardProject;
+import org.lorislab.tower.service.dashboard.model.DashboardTargetSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 
@@ -43,14 +45,24 @@ public class DashboardViewController extends AbstractDefaultSearchViewController
     @EJB
     private DashboardService service;
 
+    private Dashboard dashboard;
+    
     public DashboardViewController() {
         super(Context.DB_OVERVIEW);
     }
     
     @Override
     protected List<DashboardProject> doSearch() throws Exception {
-        return service.getDashboardProjects();
+        dashboard = service.getDashboardProjects();
+        return dashboard.getItems();
     }
     
+    public void test(String guid) {
+        System.out.println("GUID " + guid);
+        DashboardTargetSystem system = dashboard.getSystems().get(guid);
+        if (system != null) {
+            system.setLoaded(true);
+        }
+    }
     
 }

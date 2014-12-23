@@ -15,19 +15,30 @@
  */
 package org.lorislab.tower.service.dashboard.model;
 
-import org.lorislab.tower.store.model.Project;
+import org.lorislab.tower.store.model.TargetSystem;
 
 /**
- * The dashboard project.
+ * The dashboard application system.
  *
  * @author Andrej Petras
  */
-public class DashboardProject extends AbstractDashboardWrapper<Project, DashboardApplication> {
+public class DashboardTargetSystem extends AbstractDashboardWrapper<TargetSystem, Object> {
 
-    private static final long serialVersionUID = -7702438629479435490L;
+    private static final long serialVersionUID = 2932042159555247986L;
 
-    public DashboardProject(Project project) {
-        setModel(project);
+    private boolean loaded = false;
+    
+    public DashboardTargetSystem(TargetSystem system) {
+        setModel(system);
     }
 
+    public void setLoaded(boolean loaded) {
+        this.loaded = loaded;
+    }
+
+    public boolean isLoaded() {
+        return loaded;
+    }
+
+    
 }

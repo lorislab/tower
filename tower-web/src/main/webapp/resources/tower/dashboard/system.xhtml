@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <composite:interface>
+        <composite:attribute name="system" required="true"/>
+    </composite:interface>
+
+    <composite:implementation>	        
+
+        <div jsf:id="system" class="box box-solid bg-green">
+
+            <div class="box-header"><h4>#{cc.attrs.system.model.name}</h4></div>
+            <div class="box-body">#{cc.attrs.system.model.classification}</div>
+            <a jsf:action="#{dashboardVC.test(cc.attrs.system.model.guid)}">TEST</a>
+
+
+            
+            <span jsf:id="loaded" jsf:rendered="#{not cc.attrs.system.loaded}" style="display: none" > 
+                <f:ajax execute="@this" render="#{cc.clientId}:system" listener="#{dashboardVC.test(cc.attrs.system.model.guid)}"/>
+                <script >$(function(){document.getElementById('#{cc.clientId}:loaded').click();});</script>
+            </span>
+        </div>            
+    </composite:implementation>
+</html>

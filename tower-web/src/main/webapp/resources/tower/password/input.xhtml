@@ -18,19 +18,11 @@
     </composite:interface>
 
     <composite:implementation>		
-        <div class="form-group">
+        <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
+        <div class="form-group #{error ? 'has-error' : ''}">
 
             <label class="control-label" jsf:for="input">Password</label>
             <div class="input-group">
-<!--                <span class="input-group-addon"
-                      jsf:rendered="#{jel:isNotMessage(cc.clientId,':input')}">
-                    <i class="fa fa-file-text-o"></i>
-                </span>
-
-                <span class="input-group-addon alert-danger"
-                      jsf:rendered="#{jel:isMessage(cc.clientId,':input')}">
-                    <i class="fa fa-exclamation-triangle alert-danger"></i>
-                </span>	-->
 
                 <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="#{cc.attrs.required}" readonly="true">
                     <f:passThroughAttribute name="type" value="password" />

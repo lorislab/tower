@@ -57,12 +57,14 @@ public class DashboardViewController extends AbstractDefaultSearchViewController
         return dashboard.getItems();
     }
     
-    public void test(String guid) {
+    public void test(String guid) throws Exception {
         System.out.println("GUID " + guid);
         DashboardTargetSystem system = dashboard.getSystems().get(guid);
         if (system != null) {
             system.setLoaded(true);
         }
+        Thread.sleep(5000);
+        
     }
     
 }

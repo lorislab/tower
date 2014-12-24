@@ -16,8 +16,17 @@
         <div jsf:id="system" class="box box-solid bg-green">
 
             <div class="box-header"><h4>#{cc.attrs.system.model.name}</h4></div>
-            <div class="box-body">#{cc.attrs.system.model.classification}</div>
-            <a jsf:action="#{dashboardVC.test(cc.attrs.system.model.guid)}">TEST</a>
+            <div class="box-body">
+                <span jsf:rendered="#{cc.attrs.system.loaded}">
+                    #{cc.attrs.system.model.classification}
+            
+                    <a jsf:action="#{dashboardVC.test(cc.attrs.system.model.guid)}">TEST</a>
+                </span>
+                <div style="text-align: center; font-size: 30px;" jsf:rendered="#{not cc.attrs.system.loaded}">
+                    <i class="fa fa-spinner fa-spin" style=""></i>
+                </div>
+            </div>
+            
 
 
             
@@ -25,6 +34,9 @@
                 <f:ajax execute="@this" render="#{cc.clientId}:system" listener="#{dashboardVC.test(cc.attrs.system.model.guid)}"/>
                 <script >$(function(){document.getElementById('#{cc.clientId}:loaded').click();});</script>
             </span>
+
+            <!--<div class="overlay" jsf:rendered="#{not cc.attrs.system.loaded}"></div>-->
+            
         </div>            
     </composite:implementation>
 </html>

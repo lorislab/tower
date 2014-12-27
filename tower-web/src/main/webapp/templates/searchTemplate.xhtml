@@ -18,7 +18,8 @@
                         <f:facet name="toolbar">
                             <ui:insert name="toolbar" >
                                 <b:button ctr="#{svc.searchAction}" icon="refresh">
-                                    <f:ajax event="click" render="table:content:table table:input-filter table:header-count" execute="@this"/>
+                                    <f:ajax event="click" render="table:content:table table:input-filter table:header-count" 
+                                            execute="@this" onevent="Bf.spin"/>
                                 </b:button>
                                 <b:buttonLink ctr="#{vc.createAction}" icon="file-o" />    
                             </ui:insert>

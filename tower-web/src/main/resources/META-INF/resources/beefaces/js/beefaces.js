@@ -2,6 +2,16 @@ function Bf() {}
 Bf.id = function (a) { return"#" + a.replace(/:/g, "\\:"); };
 Bf.e = function(a) { return $(Bf.id(a)); };
 Bf.filter = function(a) {var i = a + ":input-filter";Bf.e(i).filterTable(a + ":content:table");Bf.e(a + ":clear-filter").clearTable(i);};
+
+Bf.spin = function(data) {
+    var status = data.status;
+    if (status === "begin") {
+        Bf.e(data.source.id).find('i').addClass('fa-spin');
+    } else if (status === "success") {
+        Bf.e(data.source.id).find('i').removeClass('fa-spin');
+    }
+};
+
 (function () {
     'use strict';
     var $ = jQuery;

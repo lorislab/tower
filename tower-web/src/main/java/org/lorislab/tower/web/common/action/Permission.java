@@ -22,6 +22,7 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Permission {
     
+    CHANGE_VIEW,
     /**
      * The import permission.
      */

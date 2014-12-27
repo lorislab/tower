@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://lorislab.org/beefaces/cp"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+    <composite:interface>
+        <composite:attribute name="ctr" required="true"/>
+        <composite:attribute name="type" required="false" default="primary"/>        
+        <composite:attribute name="icon" required="false" default="erase"/>
+        <composite:facet name="header" />
+        <composite:facet name="toolbar" />
+    </composite:interface>
+
+    <composite:implementation>		
+        <div class="box box-#{cc.attrs.type}">
+            <div class="box-header"> 
+                <div class="box-tools">
+                    <div class="input-group">
+                        <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.ctr.result.size()}</span>
+                        <input jsf:id="input-filter" type="search" placeholder="Search" class="form-control"></input>                         
+                        <span class="input-group-btn">
+                            <button jsf:id="clear-filter" class="btn btn-default" type="button"><i class="fa fa-eraser"></i></button>
+                            <composite:renderFacet name="toolbar" />
+                        </span>				
+                    </div>			
+                </div>
+            </div>
+            <b:table id="content" ctr="#{cc.attrs.ctr}">
+                <composite:insertFacet name="header" />
+                <ui:repeat var="item" value="#{cc.attrs.ctr.result}" >
+                    <tr>
+                        <composite:insertChildren />
+                    </tr>
+                </ui:repeat>  
+            </b:table>
+        </div>   	
+        <script type="text/javascript">Bf.filter('#{cc.clientId}');</script>
+    </composite:implementation>
+</html>

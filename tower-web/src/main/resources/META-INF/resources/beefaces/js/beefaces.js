@@ -1,21 +1,27 @@
+function Bf() {}
+Bf.id = function (a) { return"#" + a.replace(/:/g, "\\:"); };
+Bf.e = function(a) { return $(Bf.id(a)); };
+Bf.filter = function(a) {var i = a + ":input-filter";Bf.e(i).filterTable(a + ":content:table");Bf.e(a + ":clear-filter").clearTable(i);};
 (function () {
     'use strict';
     var $ = jQuery;
     $.fn.extend({
-        clearTable: function () {
+        clearTable: function (x) {
             return this.each(function () {
                 $(this).on('click', function (e) {
-                    var filter = $('[data-action="tableFilter"]'), $filter = $(filter);
+                    var filter = Bf.e(x), $filter = $(filter);
                     $filter.val('');
                     $filter.keyup();
                 });
             });
         },
-        filterTable: function () {
+        filterTable: function (x) {
             return this.each(function () {
                 $(this).on('keyup', function (e) {
-                    $('.filterTable_no_results').remove();
-                    var $this = $(this), search = $this.val().toLowerCase(), target = $this.attr('data-filters'), $target = $(target), $rows = $target.find('tbody tr');
+                    var $this = $(this), search = $this.val().toLowerCase();
+                    var target = Bf.id(x);
+                    var $target = $(target), $rows = $target.find('tbody:first tr');
+                    $target.find('tbody:last').hide();                    
                     $target.find('thead').show();
                     if (search === '') {
                         $rows.show();
@@ -24,10 +30,8 @@
                             var $this = $(this);
                             $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
                         });
-                        if ($target.find('tbody tr:visible').size() === 0) {
-                            var col_count = $target.find('tr').first().find('td').size();
-                            var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>');
-                            $target.find('tbody').append(no_results);
+                        if ($target.find('tbody:first tr:visible').size() === 0) {
+                            $target.find('tbody:last').show();
                             $target.find('thead').hide();
                         }
                     }
@@ -35,6 +39,4 @@
             });
         }
     });
-    $('[data-action="tableFilter"]').filterTable();
-    $('[data-action="tableFiltetClear"]').clearTable();
 })(jQuery);

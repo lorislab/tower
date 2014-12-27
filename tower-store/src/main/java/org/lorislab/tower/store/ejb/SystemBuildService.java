@@ -43,14 +43,14 @@ import org.lorislab.tower.store.model.TargetSystem_;
 
 /**
  * The system build service.
- * 
+ *
  * @author Andrej Petras
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
 
-     /**
+    /**
      * The entity manager.
      */
     @PersistenceContext
@@ -63,7 +63,7 @@ public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public SystemBuild saveSystemBuild(SystemBuild data) {
         return this.save(data);
@@ -89,15 +89,13 @@ public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
     }
 
     public List<SystemBuild> getSystemBuilds(SystemBuildCriteria criteria) {
-        List<SystemBuild> result = new ArrayList<>();
-
         CriteriaBuilder cb = getBaseEAO().getCriteriaBuilder();
         CriteriaQuery<SystemBuild> cq = getBaseEAO().createCriteriaQuery();
         Root<SystemBuild> root = cq.from(SystemBuild.class);
 
         if (criteria.isFetchBuild()) {
             Fetch<SystemBuild, Build> bf = root.fetch(SystemBuild_.build, JoinType.LEFT);
-            
+
             if (criteria.isFetchBuildParam()) {
                 bf.fetch(Build_.parameters, JoinType.LEFT);
             }
@@ -105,14 +103,14 @@ public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
 
         if (criteria.isFetchSystem()) {
             Fetch<SystemBuild, TargetSystem> bf =  root.fetch(SystemBuild_.system, JoinType.LEFT);
-            
+
             if (criteria.isFetchSystemApplication()) {
                 bf.fetch(TargetSystem_.application, JoinType.LEFT);
             }
         }
 
         List<Predicate> predicates = new ArrayList<>();
-        if (criteria.getGuid() != null) {            
+        if (criteria.getGuid() != null) {
             predicates.add(cb.equal(root.get(SystemBuild_.guid), criteria.getGuid()));
         }
 
@@ -128,11 +126,11 @@ public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
                     );
             predicates.add(cb.equal(root.get(SystemBuild_.date), sq));
         }
-        
+
         if (criteria.getSystems() != null && !criteria.getSystems().isEmpty()) {
             predicates.add(root.get(SystemBuild_.system).get(TargetSystem_.guid).in(criteria.getSystems()));
         }
-        
+
         if (criteria.getSystem() != null) {
             predicates.add(cb.equal(root.get(SystemBuild_.system).get(TargetSystem_.guid), criteria.getSystem()));
         }
@@ -145,12 +143,8 @@ public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
             cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
-        try {
-            TypedQuery<SystemBuild> typeQuery = getBaseEAO().createTypedQuery(cq);
-            result = typeQuery.getResultList();
-        } catch (NoResultException ex) {
-            // do nothing
-        }
+        TypedQuery<SystemBuild> typeQuery = getBaseEAO().createTypedQuery(cq);
+        List<SystemBuild> result = typeQuery.getResultList();
         return result;
     }
 }

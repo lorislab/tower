@@ -4,6 +4,7 @@
                 template="/templates/template.xhtml"
                 xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/dashboard"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://lorislab.org/beefaces/cp"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:param name="menu_parent" value="DASHBOARD" />
@@ -13,14 +14,54 @@
 
     <ui:define name="header">
         <h1 jsf:id="header">#{page_title}<small>#{page_subtitle}</small></h1>
+        <h:form id="changeView">
+            <div class="btn-group" style="position: absolute; float: right;top: 15px; right: 10px;">
+                <b:button type="success btn-xs #{dashboardVC.table ? '' : 'active'}" ctr="#{dashboardVC.dashboardViewAction}" title="Dashboard">
+                    <f:ajax event="click" render="dashboard changeView" execute="@this" />
+                </b:button>	
+                <b:button type="success btn-xs #{dashboardVC.table ? 'active' : ''}" ctr="#{dashboardVC.tableViewAction}" title="Table">
+                    <f:ajax event="click" render="dashboard changeView" execute="@this" />
+                </b:button>            
+            </div>      
+        </h:form>
     </ui:define>
 
     <ui:define name="body">
-
         <h:form id="dashboard">
-            <div class="row">
+            <div class="row" jsf:rendered="#{dashboardVC.table}">
+                <div class="col-lg-12">	
+                    <b:exTable id="table" ctr="#{dashboardVC}" >
+                        <f:facet name="toolbar">
+                            <b:button ctr="#{dashboardVC.searchAction}" icon="refresh">
+                                    <f:ajax event="click" render="dashboard:table:content:table dashboard:table:input-filter dashboard:table:header-count" execute="@this"/>
+                            </b:button>
+                        </f:facet>
+                        <f:facet name="header">
+                            <th>Project</th>
+                            <th>Application</th>
+                            <th>System</th>   
+                            <th>Domain</th>
+                            <th>Classification</th>
+                            <th>Version</th>
+                            <th>Build</th>
+                            <th>Revision</th>
+                            <th>Deployed</th>
+                        </f:facet>
+                        <td>#{item.project.name}</td>
+                        <td>#{item.application.name}</td>
+                        <td>#{item.system.model.name}</td>
+                        <td>#{item.system.model.domain}</td>
+                        <td>#{item.system.model.classification}</td>
+                        <td>#{item.system.build.build.projectVersion}</td>
+                        <td>#{item.system.build.build.build}</td>
+                        <td>#{item.system.build.build.scm}</td>
+                        <td>#{item.system.build.date}</td>
+                    </b:exTable>
+                </div>
+            </div>
+            <div class="row" jsf:rendered="#{not dashboardVC.table}">
                 <div class="col-lg-12">		
-                    <ui:repeat var="project" value="#{dashboardVC.result}">
+                    <ui:repeat var="project" value="#{dashboardVC.dashboard.items}">
                         <h2 class="page-header">#{project.model.name}</h2> 
                         <ui:repeat var="app" value="#{project.items}">
                             <h4>#{app.model.name}</h4>

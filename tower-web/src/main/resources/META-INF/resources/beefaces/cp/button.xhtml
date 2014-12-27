@@ -8,15 +8,16 @@
         <composite:attribute name="ctr" required="true"/>
         <composite:attribute name="title" required="false" default=""/>
         <composite:attribute name="name" required="false" default=""/>
-        <composite:attribute name="icon" required="false" default="floppy-o"/>
+        <composite:attribute name="icon" required="false"/>
         <composite:attribute name="type" required="false" default="default" />
         <composite:clientBehavior name="click" event="click" targets="#{cc.attrs.id}:b"/>
         <composite:actionSource name="button" targets="#{cc.attrs.id}:b" />
     </composite:interface>
 
     <composite:implementation>
-        <button name="#{cc.attrs.name}" jsf:id="b" type="button" class="btn btn-#{cc.attrs.type}" jsf:rendered="#{cc.attrs.ctr.available}" jsf:action="#{cc.attrs.ctr.execute}">
-            <i class="fa fa-#{cc.attrs.icon}"></i> #{cc.attrs.title}
+        <button name="#{cc.attrs.name}" jsf:id="b" type="button" class="btn btn-#{cc.attrs.type}" 
+                jsf:rendered="#{cc.attrs.ctr.available}" jsf:action="#{cc.attrs.ctr.execute}">
+            <i class="fa fa-#{cc.attrs.icon}" jsf:rendered="#{not empty cc.attrs.icon}"></i> #{cc.attrs.title}
             <composite:insertChildren />
         </button>			
     </composite:implementation>

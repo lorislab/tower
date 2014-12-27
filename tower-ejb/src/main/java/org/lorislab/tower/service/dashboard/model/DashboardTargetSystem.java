@@ -15,6 +15,7 @@
  */
 package org.lorislab.tower.service.dashboard.model;
 
+import org.lorislab.tower.store.model.SystemBuild;
 import org.lorislab.tower.store.model.TargetSystem;
 
 /**
@@ -28,8 +29,18 @@ public class DashboardTargetSystem extends AbstractDashboardWrapper<TargetSystem
 
     private boolean loaded = false;
     
+    private SystemBuild build;
+    
     public DashboardTargetSystem(TargetSystem system) {
         setModel(system);
+    }
+
+    public void setBuild(SystemBuild build) {
+        this.build = build;
+    }
+
+    public SystemBuild getBuild() {
+        return build;
     }
 
     public void setLoaded(boolean loaded) {

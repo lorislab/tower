@@ -14,11 +14,11 @@
         <h:form id="searchForm" prependId="false">
             <div class="row">
                 <div class="col-lg-12">	
-                    <b:table id="table" ctr="#{svc}" >
+                    <b:exTable id="table" ctr="#{svc}" >
                         <f:facet name="toolbar">
                             <ui:insert name="toolbar" >
                                 <b:button ctr="#{svc.searchAction}" icon="refresh">
-                                    <f:ajax event="click" render="table:table table:input-filter table:header-count" execute="@this"/>
+                                    <f:ajax event="click" render="table:content:table table:input-filter table:header-count" execute="@this"/>
                                 </b:button>
                                 <b:buttonLink ctr="#{vc.createAction}" icon="file-o" />    
                             </ui:insert>
@@ -27,7 +27,7 @@
                             <ui:insert name="tableHead" />
                         </f:facet>
                         <ui:insert name="tableRow" />                       
-                    </b:table>                  
+                    </b:exTable>                  
                 </div>
             </div>
         </h:form>

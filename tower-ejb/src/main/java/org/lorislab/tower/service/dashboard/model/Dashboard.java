@@ -15,7 +15,9 @@
  */
 package org.lorislab.tower.service.dashboard.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.lorislab.jel.jpa.model.Persistent;
 
@@ -29,6 +31,12 @@ public class Dashboard extends AbstractDashboardWrapper<Persistent, DashboardPro
     
     private final Map<String, DashboardTargetSystem> systems = new HashMap<>();
 
+    private final List<DashboardTableItem> tableItems = new ArrayList<>();
+
+    public List<DashboardTableItem> getTableItems() {
+        return tableItems;
+    }
+    
     public Map<String, DashboardTargetSystem> getSystems() {
         return systems;
     }

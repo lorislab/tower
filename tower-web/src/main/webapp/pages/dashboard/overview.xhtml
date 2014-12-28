@@ -38,6 +38,7 @@
                             </b:button>
                         </f:facet>
                         <f:facet name="header">
+                            <th>Action</th>
                             <th>Project</th>
                             <th>Application</th>
                             <th>System</th>   
@@ -48,6 +49,15 @@
                             <th>Revision</th>
                             <th>Deployed</th>
                         </f:facet>
+                        
+                        <td>
+                            <b:link ctr="#{dashboardVC.reloadSystemAction}" icon="refresh">
+                                <f:ajax event="click" render="dashboard:table:content:table dashboard:table:input-filter dashboard:table:header-count" execute="@this" onevent="Bf.spin"/>     
+                                <f:param name="guid" value="#{item.system.guid}" />
+                            </b:link>
+                            <a href="#{item.system.build.system.link}"><i class="fa fa-external-link"/></a>
+                            <a href="#"><i class="fa fa-cloud-download"/></a>
+                        </td>
                         <td>#{item.project.name}</td>
                         <td>#{item.application.name}</td>
                         <td>#{item.system.model.name}</td>
@@ -63,7 +73,7 @@
             <span jsf:rendered="#{not dashboardVC.table}">
                 <div class="row" >
                     <div class="col-lg-12" style="text-align: right;">
-                        <b:button ctr="#{dashboardVC.searchAction}" icon="refresh">
+                        <b:button ctr="#{dashboardVC.searchAction}" icon="refresh" title="Refresh" >
                             <f:ajax event="click" render="dashboard" execute="@this" onevent="Bf.spin" />
                         </b:button>
                     </div>

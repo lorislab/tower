@@ -827,6 +827,22 @@ body > .header .logo .icon {
   border-width: 7px;
   margin-left: -7px;
 }
+.navbar-nav > .notifications-menu > .dropdown-menu > li:first-child:after,
+.navbar-nav > .messages-menu > .dropdown-menu > li:first-child:after,
+.navbar-nav > .tasks-menu > .dropdown-menu > li:first-child:after {
+  bottom: 100%;
+  left: 92%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #ffffff;
+  border-width: 7px;
+  margin-left: -7px;
+}
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.footer > a {
@@ -2564,7 +2580,7 @@ Component: timeline
   color: #f6f6f6;
 }
 .skin-blue .navbar .navbar-right > .nav {
-  margin-right: 10px;
+  margin-right: 25px;
 }
 .skin-blue .navbar .sidebar-toggle .icon-bar {
   background: rgba(255, 255, 255, 0.8);

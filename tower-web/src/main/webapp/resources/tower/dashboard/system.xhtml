@@ -16,16 +16,18 @@
         <div jsf:id="system" class="box box-solid #{not empty cc.attrs.system.build ? 'bg-light-blue' : 'bg-maroon'}">
 
             <div class="box-header">
-                <div class="col-lg-10">
-                    <h4>#{cc.attrs.system.model.name}
+                <h4>
+                    <div class="col-lg-10">
+                        #{cc.attrs.system.model.name}
                         <small jsf:rendered="#{not empty cc.attrs.system.build.system.link}">
                             <a href="#{cc.attrs.system.build.system.link}" style="color: #fff"><i class="fa fa-external-link"></i></a>
                         </small>
-                    </h4>
-                </div>
-                <div class="col-lg-2" style="text-align: right;">
-                    <a href="#" style="color: #fff"><h4><i class="fa fa-refresh" /></h4></a>
-                </div>              
+
+                    </div>
+                    <div class="col-lg-2" style="text-align: right;">
+                        <a href="#" style="color: #fff"><i class="fa fa-refresh" /></a>
+                    </div>  
+                </h4>
             </div>
             <div class="box-body">
                 <div class="row">

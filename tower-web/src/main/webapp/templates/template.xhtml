@@ -7,8 +7,23 @@
 
     <ui:define name="main_body">
 
+        <div id="progress" class="modal fade"  tabindex="-1" style="padding-top:15%;" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">Processing...</div>
+                    <div class="modal-body">
+                        <div class="progress sm">
+                            <div class="progress-bar progress-bar-striped active" 
+                                 role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" 
+                                 style="width: 100%"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <header class="header">
-            
+
             <a href="#{request.contextPath}" class="logo">Tower</a>
             <nav class="navbar navbar-static-top" role="navigation">
 
@@ -63,9 +78,22 @@
             </aside>
         </div>
 
-        
+
         <h:outputScript library="beefaces" name="js/bootstrap.min.js" />					
         <h:outputScript library="beefaces" name="js/app.js" />					
-	        
+
+        <script type="text/javascript">
+            Bf.status('progress',1000);
+//            var loading;
+//            if (!window["bs"]) {
+//                var bs = {};
+//            }
+//            bs.onStatusChange = function onStatusChange(data) {
+//                var status = data.status;
+//                if (status === "begin") { loading = setTimeout(function() { document.body.style.cursor = 'wait'; $('#progress').modal('show'); }, 1000); } 
+//                else if (status === "success") { clearTimeout(loading); $('#progress').modal('hide'); document.body.style.cursor = 'auto';}
+//            };
+//            jsf.ajax.addOnEvent(bs.onStatusChange);
+        </script>
     </ui:define>
 </ui:composition>

@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <ui:insert name="metadata" />
     <h:head>		
         <title>Tower</title>
@@ -14,12 +14,13 @@
         <h:outputStylesheet library="beefaces" name="css/AdminLTE.css"  />  
         <h:outputStylesheet library="beefaces" name="css/awesome-bootstrap-checkbox.css"  />          
         <h:outputStylesheet library="css" name="tower.css"  />       
-        
+
+        <h:outputScript library="javax.faces" name="jsf.js" />
         <h:outputScript library="beefaces" name="js/jquery.min.js" />
         <h:outputScript library="beefaces" name="js/beefaces.js" />	
     </h:head>
 
-    <body class="skin-blue fixed">		
+    <body class="skin-blue fixed">
         <ui:insert name="main_body"></ui:insert>					
     </body>
 </html>

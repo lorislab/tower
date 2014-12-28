@@ -22,6 +22,13 @@ package org.lorislab.tower.web.common.action;
  */
 public enum Permission {
     
+    /**
+     * The reload permission.
+     */
+    RELOAD,
+    /**
+     * The change view permission.
+     */
     CHANGE_VIEW,
     /**
      * The import permission.

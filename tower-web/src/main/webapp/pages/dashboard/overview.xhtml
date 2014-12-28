@@ -77,7 +77,7 @@
                                 <div class="row">
                                     <ui:repeat var="system" value="#{app.items}">
                                         <div class="col-lg-4">
-                                            <d:system system="#{system}" />                                  
+                                            <d:system ctr="#{dashboardVC.reloadSystemAction}" system="#{system}" />                                  
                                         </div>		
                                     </ui:repeat>
                                 </div>

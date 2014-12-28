@@ -24,9 +24,11 @@ import org.lorislab.jel.base.criteria.AbstractSearchCriteria;
 import org.lorislab.tower.service.dashboard.ejb.DashboardService;
 import org.lorislab.tower.service.dashboard.model.Dashboard;
 import org.lorislab.tower.service.dashboard.model.DashboardTableItem;
+import org.lorislab.tower.service.dashboard.model.DashboardTargetSystem;
 import org.lorislab.tower.web.common.action.Context;
 import org.lorislab.tower.web.common.view.AbstractDefaultSearchViewController;
 import org.lorislab.tower.web.dashboard.action.DashboardViewAction;
+import org.lorislab.tower.web.dashboard.action.ReloadSystemAction;
 import org.lorislab.tower.web.dashboard.action.TableViewAction;
 
 /**
@@ -54,13 +56,21 @@ public class DashboardViewController extends AbstractDefaultSearchViewController
     
     private final DashboardViewAction dashboardViewAction;
     
+    private final ReloadSystemAction reloadSystemAction;
+    
     public DashboardViewController() {
         super(Context.DB_OVERVIEW);
         table = false;
         tableViewAction = new TableViewAction(this, Context.DB_OVERVIEW);
         dashboardViewAction = new DashboardViewAction(this, Context.DB_OVERVIEW);
+        reloadSystemAction = new ReloadSystemAction(this, Context.DB_OVERVIEW);
     }
 
+    public ReloadSystemAction getReloadSystemAction() {
+        return reloadSystemAction;
+    }
+
+    
     public DashboardViewAction getDashboardViewAction() {
         return dashboardViewAction;
     }
@@ -88,4 +98,9 @@ public class DashboardViewController extends AbstractDefaultSearchViewController
         this.table = table;
     }
   
+    public Object reloadSystem(String guid) {
+        DashboardTargetSystem system  = dashboard.getSystems().get(guid);
+        service.reloadSystem(system);
+        return null;
+    }
 }

@@ -138,4 +138,15 @@ public class DashboardService {
         }
         return result;
     }
+    
+    public DashboardTargetSystem reloadSystem(DashboardTargetSystem system) {
+            SystemBuildCriteria criteria = new SystemBuildCriteria();
+            criteria.setSystem(system.getGuid());
+            criteria.setFetchBuild(true);
+            criteria.setFetchSystem(true);
+            criteria.setMaxDate(Boolean.TRUE);
+            SystemBuild ssb = systemBuildService.getSystemBuild(criteria);  
+            system.setBuild(ssb);
+            return system;
+    }
 }

@@ -24,6 +24,10 @@ package org.lorislab.tower.web.common.action;
 public enum Context {
    
     /**
+     * The build view context.
+     */
+    BUILD,
+    /**
      * The dashboard overview.
      */
     DB_OVERVIEW,

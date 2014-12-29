@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"	
+                xmlns:b="http://lorislab.org/beefaces/cp"
+                template="/templates/searchTemplate.xhtml">
+
+    <ui:param name="menu_parent" value="BUILDS" />
+    <ui:param name="menu_item" value="BUILDS_SEARCH" />
+    <ui:param name="page_title" value="Application builds" />
+
+    <ui:param name="svc" value="#{buildSVC}" />
+    
+    <ui:define name="tableHead">
+        <th>Action</th>
+        <th>Project</th> 
+        <th>Build</th> 
+        <th>Date</th>        
+        <th>Group Id</th>
+        <th>Artifact Id</th>
+        <th>Version</th>
+        <th>Scm</th>
+    </ui:define>
+
+    <ui:define name="tableRow">
+        <td><b:link ctr="#{buildVC.viewAction}" icon="eye"><f:param name="guid" value="#{item.guid}" /></b:link></td>        
+        <td>#{item.projectVersion}</td>	
+         <td>#{item.build}</td>	
+        <td>#{item.date}</td>
+        <td>#{item.groupId}</td>
+        <td>#{item.artifactId}</td>
+        <td>#{item.mavenVersion}</td>
+        <td>#{item.scm}</td>
+    </ui:define>
+
+</ui:composition>
+

@@ -132,7 +132,7 @@ public final class Navigation {
      * The navigation to active directory search configuration.
      */
     public static String TO_AD_SEARCH = "toAdSearch";
-    
+
     /**
      * The navigation to notification group search.
      */
@@ -140,5 +140,14 @@ public final class Navigation {
     /**
      * The navigation to notification group edit.
      */
-    public static String TO_NOTIFY_GROUP_EDIT = "toNotifyGroupEdit";    
+    public static String TO_NOTIFY_GROUP_EDIT = "toNotifyGroupEdit";
+
+    /**
+     * The navigation to build search.
+     */
+    public static String TO_BUILD = "toBuild";
+    /**
+     * The navigation to build view.
+     */
+    public static String TO_BUILD_VIEW = "toBuildView";    
 }

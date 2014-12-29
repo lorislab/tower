@@ -22,8 +22,8 @@
     </url-mapping>
         
     <!-- SETTINGS -->
-    <url-mapping id="settings">
-        <pattern value="/settings" />
+    <url-mapping id="projects">
+        <pattern value="/settings/projects" />
         <view-id value="/pages/settings/project/search.xhtml" />
     </url-mapping>
     

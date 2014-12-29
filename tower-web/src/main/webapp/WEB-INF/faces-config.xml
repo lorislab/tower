@@ -19,6 +19,17 @@
          
     <navigation-rule>
         <from-view-id>/*</from-view-id>
+        <!-- BUILDS: BUILD -->
+        <navigation-case>
+            <from-outcome>toBuild</from-outcome>
+            <to-view-id>/pages/build/search.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toBuildView</from-outcome>
+            <to-view-id>/pages/build/view.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>        
         <!-- USER MANAGEMENT: ACTIVE DIRECTORY SEARCH -->
         <navigation-case>
             <from-outcome>toAdSearch</from-outcome>

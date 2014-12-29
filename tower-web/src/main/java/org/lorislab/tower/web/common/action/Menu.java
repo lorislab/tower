@@ -21,7 +21,14 @@ package org.lorislab.tower.web.common.action;
  * @author Andrej Petras
  */
 public enum Menu {
-
+    /**
+     * The builds menu.
+     */
+    BUILDS,
+    /**
+     * The build search menu.
+     */
+    BUILDS_SEARCH,
     /**
      * The notification group menu.
      */

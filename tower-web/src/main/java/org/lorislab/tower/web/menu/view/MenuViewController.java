@@ -125,6 +125,12 @@ public class MenuViewController extends AbstractViewController {
     private final MenuAction notify;
 
     /**
+     * The build search menu action.
+     */
+    private final MenuAction buildSearch;
+    
+    private final MenuAction builds;
+    /**
      * The left menu collapsed flag.
      */
     private boolean collapsed;
@@ -154,8 +160,19 @@ public class MenuViewController extends AbstractViewController {
         adSearch = new MenuAction(this, Menu.AD_SEARCH, Navigation.TO_AD_SEARCH);
         password = new MenuAction(this, Menu.PASSWORD, Navigation.TO_PASSWORD);
         notify = new MenuAction(this, Menu.NOTIFY_GROUP, Navigation.TO_NOTIFY_GROUP);
+        buildSearch = new MenuAction(this, Menu.BUILDS_SEARCH, Navigation.TO_BUILD);
+        builds = new MenuAction(this, Menu.BUILDS);
     }
 
+    public MenuAction getBuildSearch() {
+        return buildSearch;
+    }
+
+    public MenuAction getBuilds() {
+        return builds;
+    }
+
+    
     /**
      * Gets the collapsed menu flag.
      *

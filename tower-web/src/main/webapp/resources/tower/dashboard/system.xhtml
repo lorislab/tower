@@ -13,64 +13,54 @@
 
     <composite:implementation>	        
 
-        <div jsf:id="system" class="box box-solid #{not empty cc.attrs.system.build ? 'bg-light-blue' : 'bg-maroon'}">
+        <div jsf:id="system" class="box #{not empty cc.attrs.system.build ? 'box-success' : 'box-danger'}">
 
             <div class="box-header">
-                <h4>
-                    <div class="col-lg-10">
-                        #{cc.attrs.system.model.name}
-                        <small jsf:rendered="#{not empty cc.attrs.system.build.system.link}">
-                            <a href="#{cc.attrs.system.build.system.link}" style="color: #fff"><i class="fa fa-external-link"></i></a>
-                        </small>
-
-                    </div>
-                    <div class="col-lg-2" style="text-align: right;">
-                        <b:link ctr="#{cc.attrs.ctr}" icon="refresh">
-                            <f:ajax event="click" render="#{cc.id}" execute="@this" onevent="Bf.spin"/>     
-                            <f:param name="guid" value="#{cc.attrs.system.guid}" />
-                        </b:link>
-                    </div>  
-                </h4>
-            </div>
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <span jsf:rendered="#{not empty cc.attrs.system.model.domain}">#{cc.attrs.system.model.domain} / </span>#{cc.attrs.system.model.classification}
-                    </div>
-                </div> 
-                <div class="row">
-                    <div class="col-lg-4" style="font-size: 5em;">
-                        <i class="fa #{empty cc.attrs.system.build ? 'fa-exclamation-triangle' : 'fa-check'}" />
-                    </div>
-                    <div class="col-lg-8" style="text-align: right;" jsf:rendered="#{not empty cc.attrs.system.build}">
-                        <p style="font-size: 20px;">
-                            <a href="#" style="color: #fff"><i class="fa fa-cloud-download"/></a>
-                            <a href="#" style="color: #fff">#{cc.attrs.system.build.build.projectVersion}</a>
-                            <a href="#" style="color: #fff">#{cc.attrs.system.build.build.build}</a>
-                        </p>
-
-                        <p><i class="fa fa-code-fork"/> #{cc.attrs.system.build.build.scm}</p>
-                        <p><i class="fa fa-clock-o"/> #{cc.attrs.system.build.date}</p>
-                    </div>
+                <h3 class="box-title"><a href="#{cc.attrs.system.build.system.link}">#{cc.attrs.system.model.name}</a>
+                    <small jsf:rendered="#{not empty cc.attrs.system.build.system.link}"> #{cc.attrs.system.model.domain}</small>
+                </h3>
+                <div class="box-tools pull-right">
+                    <b:button ctr="#{cc.attrs.ctr}" icon="refresh" type="#{not empty cc.attrs.system.build ? 'success' : 'danger'} btn-xs">
+                        <f:ajax event="click" render="#{cc.id}" execute="@this" onevent="Bf.spin"/>     
+                        <f:param name="guid" value="#{cc.attrs.system.guid}" />
+                    </b:button> 
                 </div>
-
-
-<!--                <div style="text-align: center; font-size: 30px;" jsf:rendered="#{empty cc.attrs.system.build}">
-                    <i class="fa fa-spinner fa-spin" style=""></i>
-                </div>-->
             </div>
-
-<!--            <span jsf:id="loaded" jsf:rendered="#{not cc.attrs.system.loaded}" style="display: none" > 
-                <f:ajax execute="@this" render="#{cc.clientId}:system" listener="#{dashboardVC.test(cc.attrs.system.model.guid)}"/>
-                <script >$(function(){document.getElementById('#{cc.clientId}:loaded').click();return false;});</script>
-            </span>
-            -->
-                        <!--<div class="overlay" jsf:rendered="#{not cc.attrs.system.loaded}"></div>-->
-            <!--                            <script type="text/javascript"> 
-                            $(function(){
-                                    jsf.ajax.request('#{cc.clientId}:loaded',null,
-                                            {'javax.faces.behavior.event':'action','execute':'#{cc.clientId}:loaded','render':'#{cc.clientId}:system'});});
-                            </script>-->
+            <div class="box-body" >
+                <div class="row" jsf:rendered="#{empty cc.attrs.system.build}">
+                    <div class="col-lg-2">
+                        <h2><i class="fa fa-warning"/></h2>
+                    </div>
+                    <div class="col-lg-10"></div>
+                </div>
+                <div class="row" jsf:rendered="#{not empty cc.attrs.system.build}">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pull-right">
+                                    <a href="#" style="font-size: 24px;"><i class="fa fa-cloud-download"/></a>
+                                    <a href="#" style="font-size: 24px;">#{cc.attrs.system.build.build.projectVersion}</a>
+                                    <small>
+                                        <a href="#" style="vertical-align: super">
+                                            <span class="badge bg-green" style="vertical-align: super">#{cc.attrs.system.build.build.build}</span>
+                                        </a>   
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pull-right">
+                                    <i class="fa fa-code-fork"/> #{cc.attrs.system.build.build.scm}
+                                </div>
+                            </div>
+                        </div>                          
+                    </div>                    
+                </div>              
+            </div>
+            <div class="box-footer" jsf:rendered="#{not empty cc.attrs.system.build}">
+                <i class="fa fa-clock-o"/> #{cc.attrs.system.build.date}<span class="label label-default pull-right">#{cc.attrs.system.model.classification}</span>              
+            </div>
         </div>            
     </composite:implementation>
 </html>

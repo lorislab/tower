@@ -36,7 +36,7 @@
         <h:form id="pdForm" prependId="false" >
             <b:question id="pd" ctr="#{vc.deleteAction}" title="Delete bug tracking system" question="Do you want to delete bug tracking system #{model.name}?" />
         </h:form>          
-        <h:form id="modalForm" prependId="false" >
+        <h:form id="modalForm" prependId="false" class="form-horizontal" >
             <p:dialog id="btsp" controller="#{vc.passwordVC}" />	
         </h:form>
     </ui:define>

@@ -21,29 +21,31 @@
         <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
         <div class="form-group #{error ? 'has-error' : ''}">
 
-            <label class="control-label" jsf:for="input">Password</label>
-            <div class="input-group">
+            <label class="control-label col-xs-3" jsf:for="input">Password</label>
+            <div class="form-conrol col-xs-9">
+                <div class="input-group">
 
-                <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="#{cc.attrs.required}" readonly="true">
-                    <f:passThroughAttribute name="type" value="password" />
-                </h:inputText>
+                    <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="#{cc.attrs.required}" readonly="true">
+                        <f:passThroughAttribute name="type" value="password" />
+                    </h:inputText>
 
-                <span class="input-group-btn">
-                    <button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}" 
-                            jsf:action="#{cc.attrs.controller.changePasswordAction.open}">		
-                        <f:ajax render="@this #{cc.attrs.dialog}:p:modal" execute="@this" onevent="function(d){if(d.status==='success')$('##{cc.attrs.dialog}\\\\:p\\\\:modal').modal('show');}"/>
-                        <i class="fa fa-lock"></i>
-                        <f:actionListener type="org.lorislab.jel.jsf.api.listener.ResetInputAjaxActionListener"  />
-                    </button>                    
-                    <b:button ctr="#{cc.attrs.controller.clearPasswordAction}" icon="trash">
-                        <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
-                    </b:button>
-                </span>
+                    <span class="input-group-btn">
+                        <button name="" type="button" class="btn btn-primary"  jsf:rendered="#{cc.attrs.controller.changePasswordAction.available}" 
+                                jsf:action="#{cc.attrs.controller.changePasswordAction.open}">		
+                            <f:ajax render="@this #{cc.attrs.dialog}:p:modal" execute="@this" onevent="function(d){if(d.status==='success')$('##{cc.attrs.dialog}\\\\:p\\\\:modal').modal('show');}"/>
+                            <i class="fa fa-lock"></i>
+                            <f:actionListener type="org.lorislab.jel.jsf.api.listener.ResetInputAjaxActionListener"  />
+                        </button>                    
+                        <b:button ctr="#{cc.attrs.controller.clearPasswordAction}" icon="trash">
+                            <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
+                        </b:button>
+                    </span>
+                </div>
+
+                <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" >
+                    <span class="label label-danger">#{item.detail}</span>
+                </ui:repeat>
             </div>
-
-            <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" >
-                <span class="label label-danger">#{item.detail}</span>
-            </ui:repeat>
         </div>			
     </composite:implementation>
 </html>

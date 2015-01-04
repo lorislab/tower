@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:d="http://xmlns.jcp.org/jsf/composite/tower/delete"
+                xmlns:b="http://lorislab.org/beefaces/cp"
+                template="/templates/template.xhtml">
+
+    <ui:define name="header">
+        <h1 jsf:id="header">#{page_title}<small><i class="fa fa-eye"></i></small></h1>
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="viewForm" role="form" class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12">
+                    <b:buttonLink ctr="#{vc.closeAction}" icon="times" />   
+                </div>
+            </div>
+            <b:box id="box">
+                <div class="row">
+                    <ui:insert name="form" />
+                </div>
+                <f:facet name="footer">
+                    <b:buttonLink ctr="#{vc.closeAction}" title="Close" icon="times" />                                           
+                    <ui:insert name="button-left" />
+                    <span class="pull-right">                      
+                        <ui:insert name="button-right" />
+                    </span>
+                </f:facet>
+            </b:box>
+        </h:form>
+
+        <ui:insert name="modal"></ui:insert>
+
+    </ui:define>
+</ui:composition>

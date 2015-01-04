@@ -125,14 +125,7 @@
                 <groupId>org.lorislab.jira</groupId>
                 <artifactId>jira-jaxrs</artifactId>							
                 <version>0.0.4</version>
-            </dependency>														          							
-            <!-- CDI -->
-            <dependency>
-                <groupId>javax.enterprise</groupId>
-                <artifactId>cdi-api</artifactId>			
-                <version>1.1</version>
-                <scope>provided</scope>
-            </dependency>	
+            </dependency>														          								
             <!-- RESTEASY -->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -150,7 +143,7 @@
             <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-7.0</artifactId>
-                <version>1.0.1.Final</version>
+                <version>1.0.2.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>             

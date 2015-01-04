@@ -16,17 +16,19 @@
 
     <composite:implementation>		
         <div class="form-group">
-            <label class="control-label" jsf:for="input">#{cc.attrs.title}</label>
-            <div class="input-group">	
-                <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="false" readonly="true"></h:inputText>				
-                <span class="input-group-btn">
-                    <b:button name="" ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="key">
-                        <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
-                    </b:button>
-                    <b:button name="" ctr="#{cc.attrs.controller.clearKeyAction}" type="primary" icon="trash">
-                        <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
-                    </b:button>
-                </span>
+            <label class="control-label col-xs-3" jsf:for="input">#{cc.attrs.title}</label>
+            <div class="form-conrol col-xs-9">
+                <div class="input-group">	
+                    <h:inputText id="input" class="form-control" value="#{cc.attrs.value}" required="false" readonly="true"></h:inputText>				
+                    <span class="input-group-btn">
+                        <b:button name="" ctr="#{cc.attrs.controller.createKeyAction}" type="primary" icon="key">
+                            <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
+                        </b:button>
+                        <b:button name="" ctr="#{cc.attrs.controller.clearKeyAction}" type="primary" icon="trash">
+                            <f:ajax event="click" render="@this #{cc.attrs.render}" execute="@this" />
+                        </b:button>
+                    </span>
+                </div>
             </div>
         </div>			
     </composite:implementation>

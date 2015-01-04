@@ -13,11 +13,16 @@
 
     <composite:implementation>		
         <div class="form-group">			
-            <label jsf:for="input">#{cc.attrs.title}</label>
+            <label class="control-label col-xs-3">#{cc.attrs.title}</label>
+            <div class="col-xs-9">
+                <p class="form-control-static">#{cc.attrs.value}</p>
+            </div>            
+<!--            <div class="col-xs-10">
             <input name="" jsf:id="input" type="#{cc.attrs.type}" class="form-control" 
                    jsf:value="#{cc.attrs.value}" 
                    readonly="true"
-                   placeholder="#{cc.attrs.placeholder}" ></input>					
+                   placeholder="#{cc.attrs.placeholder}" ></input>		
+            </div>-->
         </div>			
     </composite:implementation>
 </html>

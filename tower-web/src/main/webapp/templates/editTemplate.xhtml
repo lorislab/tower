@@ -11,18 +11,18 @@
         <h1 jsf:id="header">#{page_title}<small><i class="fa fa-pencil-square-o"></i></small></h1>
     </ui:define>
     <ui:define name="body">
-        <h:form id="editForm" role="form">
+        <h:form id="editForm" role="form" class="form-horizontal">
             <b:box id="box">                
                 <div class="row">
                     <ui:insert name="form" />
                 </div>
                 <f:facet name="footer">
-                        <b:buttonLink ctr="#{vc.closeAction}" title="Close" icon="times" />
+                        <b:buttonLink ctr="#{vc.closeAction}" title="Close" icon="times" />	                                           
                         <b:button type="success" ctr="#{vc.saveAction}" title="Save" icon="floppy-o">
                             <f:ajax event="click" render="@form header" execute="@form" />
                         </b:button>	                                           
                         <ui:insert name="button-left" />
-                    <span class="pull-right">
+                    <span class="pull-right">                     
                         <button type="button" class="btn btn-danger"  jsf:rendered="#{vc.deleteAction.available}" 
                                 onclick="$('#pd\\:modal').modal('show');
                                         return false;">		

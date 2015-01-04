@@ -20,14 +20,16 @@
     <composite:implementation>		
         <ui:param name="error" value="#{jel:isMessage(cc.clientId,':input')}" />
         <div class="form-group #{error ? 'has-error' : ''}">
-            <label jsf:for="input"><i class="fa fa-times-circle-o" jsf:rendered="#{error}" />
+            <label jsf:for="input" class="control-label col-xs-3"><i class="fa fa-times-circle-o" jsf:rendered="#{error}" />
                 #{cc.attrs.title}</label>
-            <input type="#{cc.attrs.type}" class="form-control" jsf:id="input"
-                   required="#{cc.attrs.required}"
-                   jsf:value="#{cc.attrs.value}" placeholder="#{cc.attrs.placeholder}" />         
-            <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" rendered="#{error}" >
-                <div class="text-red">#{item.detail}</div>
-            </ui:repeat>                
+            <div class="col-xs-9">
+                <input type="#{cc.attrs.type}" class="form-control" jsf:id="input"
+                       required="#{cc.attrs.required}"
+                       jsf:value="#{cc.attrs.value}" placeholder="#{cc.attrs.placeholder}" />         
+                <ui:repeat var="item" value="#{jel:message(cc.clientId,':input')}" rendered="#{error}" >
+                    <div class="text-red">#{item.detail}</div>
+                </ui:repeat>               
+            </div>
         </div>
     </composite:implementation>
 </html>

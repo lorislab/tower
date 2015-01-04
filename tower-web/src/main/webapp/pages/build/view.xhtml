@@ -3,50 +3,105 @@
                 xmlns:b="http://lorislab.org/beefaces/cp"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                template="/templates/editTemplate.xhtml">
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/templates/template.xhtml">
 
-    <ui:param name="model" value="#{notifyGroupVC.model}" />
-    <ui:param name="vc" value="#{notifyGroupVC}" />
+    <ui:param name="model" value="#{buildVC.model}" />
+    <ui:param name="vc" value="#{buildVC}" />
 
-    <ui:param name="menu_parent" value="SETTINGS" />
-    <ui:param name="menu_item" value="NOTIFY_GROUP" />
-    <ui:param name="page_title" value="#{model.name}" />
+    <ui:param name="menu_parent" value="BUILDS" />
+    <ui:param name="menu_item" value="BUILDS_SEARCH" />
 
-    <ui:define name="form">
-        <div class="col-md-6">                
-            <h6 class="page-header">Details</h6>         
-            <b:checkbox id="enabled" value="#{model.enabled}" title="Enable the group" />	
-            <b:input id="name" value="#{model.name}" required="true" title="Name" placeholder="Notification group name" >
-                <f:ajax event="keyup" render="header" execute="@this"/> 
-            </b:input>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-4">
-                <h6 class="page-header">Users</h6> 
-                <ui:repeat value="#{notifyGroupVC.user.data}" var="item">
-                    <b:checkbox value="#{item.selected}" title="#{item.data.profile.firstName} #{item.data.profile.lastName}" />
-                </ui:repeat>            
-            </div>
-            <div class="col-md-4">
-                <h6 class="page-header">Systems</h6> 
-                <ui:repeat value="#{notifyGroupVC.system.data}" var="item">
-                    <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
-                </ui:repeat>                
-            </div>
-            <div class="col-md-4">
-                <h6 class="page-header">Applications</h6> 
-                <ui:repeat value="#{notifyGroupVC.application.data}" var="item">
-                    <b:checkbox value="#{item.selected}" title="#{item.data.name}" />
-                </ui:repeat> 
-            </div>
-        </div>
+    <ui:define name="header">
+        <h1 jsf:id="header">#{model.groupId}:#{model.artifactId}:#{model.mavenVersion} (#{model.build})<small><i class="fa fa-eye"></i></small></h1>
     </ui:define>
 
-    <ui:define name="modal">
-        <h:form id="pdForm" class="form-horizontal" prependId="false" >
-            <b:question id="pd" ctr="#{viewController.deleteAction}" title="Delete project" question="Do you want to delete the notification group #{model.name}?" />
-        </h:form>  
-    </ui:define>
+    <ui:define name="body">
+        <h:form id="viewForm" role="form" class="form-horizontal">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_details" data-toggle="tab">Description</a></li>
+                    <li><a href="#tab_activity" data-toggle="tab">Activity log</a></li>
+                    <li class="pull-right">
+                        <!--<a href="#" class="text-muted"><i class="fa fa-gear"></i></a>-->
+                        <b:link ctr="#{vc.closeAction}" icon="times" cls="text-muted" />
+                    </li>                    
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_details">
+                        <div class="row">        
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">                
+                                        <h6 class="page-header">Details</h6>            
+                                        <b:output title="Application" value="#{model.application.name}" />
+                                        <b:output title="Project version" value="#{model.projectVersion}" />
+                                        <b:output title="UID" value="#{model.uid}" />
+                                        <b:output title="Created" value="#{model.date}" />
+                                        <b:output title="Installed" value="#{model.install}" />
+                                        <b:output title="Revision" value="#{model.scm}" />
 
+                                        <b:output title="Build" value="#{model.build}" />
+
+                                    </div>  
+                                    <div class="col-md-6">                
+                                        <h6 class="page-header">Maven</h6>            
+                                        <b:output title="GroupId" value="#{model.groupId}" />
+                                        <b:output title="ArtifactId" value="#{model.artifactId}" />
+                                        <b:output title="Version" value="#{model.mavenVersion}" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">                
+                                        <h6 class="page-header">Manifest</h6>      
+
+                                        <b:exTable result="#{buildVC.manifest}">
+                                            <f:facet name="header">
+                                                <th>Name</th>
+                                                <th>Value</th>
+                                            </f:facet>
+
+                                            <td>#{item.name}</td>
+                                            <td>#{item.value}</td>
+                                        </b:exTable>
+                                    </div>          
+                                    <div class="col-md-6">                
+                                        <h6 class="page-header">Custom parameters</h6>         
+                                        <b:exTable result="#{buildVC.custom}">
+                                            <f:facet name="header">
+                                                <th>Name</th>
+                                                <th>Value</th>
+                                            </f:facet>
+
+                                            <td>#{item.name}</td>
+                                            <td>#{item.value}</td>
+                                        </b:exTable>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>                        
+
+                    </div>
+                    <div class="tab-pane" id="tab_activity">
+                        <b:exTable result="#{buildVC.activity.changes}">
+                            <f:facet name="header">
+                                <th>Type</th>
+                                <th>Key</th>
+                                <th>Status</th>
+                                <th>User</th>
+                                <th>Description</th>
+                            </f:facet>
+
+                            <td>#{item.type}</td>
+                            <td>#{item.key}</td>
+                            <td>#{item.status}</td>
+                            <td>#{item.user}</td>
+                            <td>#{item.description}</td>
+                        </b:exTable>
+                    </div>                    
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
 </ui:composition>
 

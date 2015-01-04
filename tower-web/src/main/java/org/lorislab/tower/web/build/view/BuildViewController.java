@@ -15,10 +15,22 @@
  */
 package org.lorislab.tower.web.build.view;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
+import org.lorislab.tower.store.criteria.ActivityCriteria;
+import org.lorislab.tower.store.criteria.BuildCriteria;
+import org.lorislab.tower.store.ejb.ActivityService;
+import org.lorislab.tower.store.ejb.BuildService;
+import org.lorislab.tower.store.model.Activity;
 import org.lorislab.tower.store.model.Build;
+import org.lorislab.tower.store.model.BuildParameter;
+import org.lorislab.tower.store.model.enums.BuildParameterType;
 import org.lorislab.tower.web.common.action.Context;
 
 /**
@@ -35,12 +47,79 @@ public class BuildViewController extends AbstractEntityViewController<Build> {
      */
     private static final long serialVersionUID = -4041231162850619024L;
 
+    @EJB
+    private BuildService service;
+    
+    @EJB
+    private ActivityService activityService;
+    
+    private Set<BuildParameter> manifest;
+    
+    private List<BuildParameter> custom;
+    
+    private Activity activity;
+    
     /**
      * The default constructor.
      */
     public BuildViewController() {
         super(Context.BUILD);
     }
+
+    @Override
+    public Object close() throws Exception {
+        setModel(null);
+        return "toBuild";
+    }
+
+    @Override
+    public Object view(String guid) throws Exception {
+        activity = null;
+        custom = null;
+        manifest = null;
+        
+        BuildCriteria criteria = new BuildCriteria();
+        criteria.setGuid(guid);
+        criteria.setFetchParameters(true);
+        criteria.setFetchApplication(true);
+        Build build = service.getBuild(criteria);
+        setModel(build);
+        if (build != null && build.getParameters() != null) { 
+            custom = new ArrayList<>();
+            manifest = new HashSet<>();
+            for (BuildParameter parameter : build.getParameters()) {
+                if (parameter.getType() == BuildParameterType.MANIFEST) {
+                    manifest.add(parameter);
+                } else {
+                    custom.add(parameter);
+                }
+            }
+        }
+        
+        ActivityCriteria ac = new ActivityCriteria();
+        ac.setBuild(guid);
+        ac.setFetchChange(true);
+        ac.setFetchChangeLog(true);
+        ac.setFetchChangeLogBuild(true);
+        activity = activityService.getActivity(ac);
+        
+        return "toBuildView";
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    
+    public List<BuildParameter> getCustom() {
+        return custom;
+    }
+
+    
+    public Set<BuildParameter> getManifest() {
+        return manifest;
+    }
+    
     
     
 }

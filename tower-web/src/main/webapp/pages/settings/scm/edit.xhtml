@@ -37,7 +37,7 @@
         <h:form id="pdForm" prependId="false" >
             <b:question id="pd" ctr="#{vc.deleteAction}" title="Delete source control system" question="Do you want to delete source control system #{model.name}?" />
         </h:form>          
-        <h:form id="modalForm" prependId="false" >
+        <h:form id="modalForm" prependId="false" class="form-horizontal">
             <p:dialog id="scmp" controller="#{vc.passwordVC}" />	
         </h:form>
     </ui:define>

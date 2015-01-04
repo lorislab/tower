@@ -21,6 +21,21 @@
         <view-id value="/pages/deploy/deploy.xhtml" />
     </url-mapping>
         
+    <!-- BUILD -->
+    <url-mapping id="builds">
+        <pattern value="/builds" />
+        <view-id value="/pages/build/search.xhtml" />
+    </url-mapping>
+    <url-mapping id="build">
+        <pattern value="/build/view" />
+        <view-id value="/pages/build/view.xhtml" />
+    </url-mapping>
+    <url-mapping id="build">
+        <pattern value="/build/#{guid}" />
+        <view-id value="/pages/build/view.xhtml" />
+        <action>#{buildVC.viewAction.execute}</action>
+    </url-mapping>
+
     <!-- SETTINGS -->
     <url-mapping id="projects">
         <pattern value="/settings/projects" />

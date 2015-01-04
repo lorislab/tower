@@ -14,7 +14,7 @@
         <h:form id="searchForm" prependId="false">
             <div class="row">
                 <div class="col-lg-12">	
-                    <b:exTable id="table" ctr="#{svc}" >
+                    <b:exTable id="table" result="#{svc.result}" >
                         <f:facet name="toolbar">
                             <ui:insert name="toolbar" >
                                 <b:button ctr="#{svc.searchAction}" icon="refresh">

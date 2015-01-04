@@ -33,13 +33,13 @@
         <!-- SERVLER -->
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
             <scope>provided</scope>
         </dependency>	
         <!-- RS -->
         <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>jaxrs-api</artifactId>
             <scope>provided</scope>
         </dependency>          
         <!-- CDI -->			
@@ -51,7 +51,7 @@
         <!-- EJB -->
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
-            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
             <scope>provided</scope>
         </dependency>  				
     </dependencies>

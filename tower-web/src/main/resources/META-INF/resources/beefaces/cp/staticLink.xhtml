@@ -8,14 +8,11 @@
         <composite:attribute name="ctr" required="true"/>
         <composite:attribute name="title" required="false"/>
         <composite:attribute name="icon" required="false" default="cancel"/>
-        <composite:attribute name="immediate" required="false" default="true"/>
-        <composite:attribute name="cls" required="false"/>
-        <composite:clientBehavior name="click" targets="link" event="action" />
-        <composite:actionSource name="propertyAction" targets="link" />
+        <composite:attribute name="href" required="false" />
     </composite:interface>
 
     <composite:implementation>
-        <a jsf:id="link" class="#{cc.attrs.cls}" jsf:immediate="#{cc.attrs.immediate}" jsf:rendered="#{cc.attrs.ctr.available}" jsf:action="#{cc.attrs.ctr.execute}">
+        <a jsf:id="link" href="#{cc.attrs.href}" jsf:rendered="#{cc.attrs.ctr.available}">
             <i class="fa fa-#{cc.attrs.icon}"></i> #{cc.attrs.title}
             <composite:insertChildren />
         </a>	        

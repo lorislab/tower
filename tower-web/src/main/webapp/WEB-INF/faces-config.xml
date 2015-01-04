@@ -17,6 +17,11 @@
         </resource-bundle>
     </application>
          
+    <component>
+        <component-type>facelets.ui.Repeat</component-type>
+        <component-class>org.lorislab.jel.jsf.api.facelets.component.UIRepeatExtended</component-class>
+    </component>
+         
     <navigation-rule>
         <from-view-id>/*</from-view-id>
         <!-- BUILDS: BUILD -->

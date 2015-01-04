@@ -7,7 +7,7 @@
       xmlns:composite="http://xmlns.jcp.org/jsf/composite">
 
     <composite:interface>
-        <composite:attribute name="ctr" required="true"/>
+        <composite:attribute name="result" required="true"/>
         <composite:attribute name="type" required="false" default="primary"/>        
         <composite:attribute name="icon" required="false" default="erase"/>
         <composite:facet name="header" />
@@ -19,7 +19,7 @@
             <div class="box-header"> 
                 <div class="box-tools">
                     <div class="input-group">
-                        <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.ctr.result.size()}</span>
+                        <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.result.size()}</span>
                         <input jsf:id="input-filter" type="search" placeholder="Search" class="form-control"></input>                         
                         <span class="input-group-btn">
                             <button jsf:id="clear-filter" class="btn btn-default" type="button"><i class="fa fa-eraser"></i></button>
@@ -28,9 +28,9 @@
                     </div>			
                 </div>
             </div>
-            <b:table id="content" ctr="#{cc.attrs.ctr}">
+            <b:table id="content" result="#{cc.attrs.result}">
                 <composite:insertFacet name="header" />
-                <ui:repeat var="item" value="#{cc.attrs.ctr.result}" >
+                <ui:repeat var="item" value="#{cc.attrs.result}"  varStatus="loop" >
                     <tr>
                         <composite:insertChildren />
                     </tr>

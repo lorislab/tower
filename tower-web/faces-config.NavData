@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="pages/settings/notify/edit.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="resources/tower/key/key.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="pages/settings/system/edit.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="resources/tower/dashboard/system.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="index.jsp" x="900" y="150" zoom="true"/>
+        <Node id="pages/settings/bts/search.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="pages/deploy/deploy.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="pages/settings/timer/edit.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="pages/build/search.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="pages/settings/bts/edit.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="templates/searchTemplate.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="pages/user/user/search.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="pages/dashboard/overview.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="resources/tower/password/input.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="pages/settings/system/search.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="pages/settings/mail/edit.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="pages/settings/notify/search.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="pages/settings/scm/search.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="pages/user/user/edit.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="templates/editTemplate.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="pages/settings/scm/edit.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="templates/includes/menu.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="pages/settings/ad/edit.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="pages/profile/password.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="templates/template.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="templates/view.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="pages/settings/project/search.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="pages/user/ad/search.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="resources/tower/menu/parent.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="login.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="pages/settings/agent/search.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="pages/build/view.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="*" x="2150" y="150" zoom="true"/>
+        <Node id="templates/main.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="pages/settings/project/edit.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="pages/settings/agent/edit.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="pages/profile/profile.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="pages/settings/application/search.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="resources/tower/password/dialog.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="resources/tower/menu/item.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="pages/settings/application/edit.xhtml" x="400" y="300" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

@@ -34,7 +34,6 @@ public class TableViewAction extends AbstractAction<DashboardViewController> {
 
     @Override
     protected Object doExecute() throws Exception {
-        Thread.sleep(5000);
         getParent().setTable(true);
         return null;
     }

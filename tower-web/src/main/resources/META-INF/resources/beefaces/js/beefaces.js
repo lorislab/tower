@@ -20,6 +20,27 @@ Bf.spin = function (data) {
         Bf.e(data.source.id).find('i').removeClass('fa-spin');
     }
 };
+Bf.tab2 = function (b1, b2) {
+
+    var $this = Bf.e(b1);
+
+    if ($this.hasClass('active'))
+        return;
+
+    var s1 = $this.data('target');
+    var $this2 = Bf.e(b2);
+    var s2 = $this2.data('target');
+
+
+    $this.removeClass('btn-default');
+    $this.addClass('btn-success active');
+
+    $this2.addClass('btn-default');
+    $this2.removeClass('btn-success active');
+
+    $(s1).addClass('active');
+    $(s2).removeClass('active');
+};
 
 Bf.status = function (i, t) {
     var loading;
@@ -67,9 +88,19 @@ Bf.status = function (i, t) {
                     if (search === '') {
                         $rows.show();
                     } else {
+                        var items = search.trim().split(" ");
                         $rows.each(function () {
                             var $this = $(this);
-                            $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+                            var i;
+                            for (i = 0; i < items.length; i++) {
+                                if ($this.text().toLowerCase().indexOf(items[i]) === -1) {
+                                    $this.hide();
+                                    i = Number.MAX_VALUE;
+                                } else {
+                                    $this.show();
+                                }
+                            }
+                            ;
                         });
                         if ($target.find('tbody:first tr:visible').size() === 0) {
                             $target.find('tbody:last').show();

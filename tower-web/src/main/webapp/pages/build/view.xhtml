@@ -18,89 +18,130 @@
 
     <ui:define name="body">
         <h:form id="viewForm" role="form" class="form-horizontal">
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_details" data-toggle="tab">Description</a></li>
-                    <li><a href="#tab_activity" data-toggle="tab">Activity log</a></li>
-                    <li class="pull-right">
-                        <!--<a href="#" class="text-muted"><i class="fa fa-gear"></i></a>-->
-                        <b:link ctr="#{vc.closeAction}" icon="times" cls="text-muted" />
-                    </li>                    
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab_details">
-                        <div class="row">        
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">                
-                                        <h6 class="page-header">Details</h6>            
-                                        <b:output title="Application" value="#{model.application.name}" />
-                                        <b:output title="Project version" value="#{model.projectVersion}" />
-                                        <b:output title="UID" value="#{model.uid}" />
-                                        <b:output title="Created" value="#{model.date}" />
-                                        <b:output title="Installed" value="#{model.install}" />
-                                        <b:output title="Revision" value="#{model.scm}" />
 
-                                        <b:output title="Build" value="#{model.build}" />
 
-                                    </div>  
-                                    <div class="col-md-6">                
-                                        <h6 class="page-header">Maven</h6>            
-                                        <b:output title="GroupId" value="#{model.groupId}" />
-                                        <b:output title="ArtifactId" value="#{model.artifactId}" />
-                                        <b:output title="Version" value="#{model.mavenVersion}" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">                
-                                        <h6 class="page-header">Manifest</h6>      
-
-                                        <b:exTable result="#{buildVC.manifest}">
-                                            <f:facet name="header">
-                                                <th>Name</th>
-                                                <th>Value</th>
-                                            </f:facet>
-
-                                            <td>#{item.name}</td>
-                                            <td>#{item.value}</td>
-                                        </b:exTable>
-                                    </div>          
-                                    <div class="col-md-6">                
-                                        <h6 class="page-header">Custom parameters</h6>         
-                                        <b:exTable result="#{buildVC.custom}">
-                                            <f:facet name="header">
-                                                <th>Name</th>
-                                                <th>Value</th>
-                                            </f:facet>
-
-                                            <td>#{item.name}</td>
-                                            <td>#{item.value}</td>
-                                        </b:exTable>
-                                    </div>   
-                                </div>
-                            </div>
-                        </div>                        
-
+            <div style="margin-bottom: 20px;">
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group pull-left" role="group">
+                        <b:buttonLink ctr="#{vc.closeAction}" icon="times" title="Close" />	                           
+                    </div>                        
+                    <div class="btn-group pull-right" role="group">  
+                        <a data-target="#tab1" jsf:id="b1" class="btn #{buildVC.tab == 'details' ? 'btn-success active' : 'btn-default'}" jsf:action="#{buildVC.switchTab('details')}">
+                            <i class="fa fa-info"/> Description
+                            <f:ajax execute="@this" onevent="function(e){if(e.status==='success'){Bf.tab2('viewForm:b1','viewForm:b2')}}"/>
+                        </a>                        
+                        <a data-target="#tab2" jsf:id="b2" class="btn #{buildVC.tab == 'log' ? 'btn-success active' : 'btn-default'}" jsf:action="#{buildVC.switchTab('log')}">
+                            <i class="fa fa-history"/> Activity log
+                            <f:ajax execute="@this" onevent="function(e){if(e.status==='success'){Bf.tab2('viewForm:b2','viewForm:b1')}}"/>
+                        </a>                        
                     </div>
-                    <div class="tab-pane" id="tab_activity">
-                        <b:exTable result="#{buildVC.activity.changes}">
-                            <f:facet name="header">
-                                <th>Type</th>
-                                <th>Key</th>
-                                <th>Status</th>
-                                <th>User</th>
-                                <th>Description</th>
-                            </f:facet>
-
-                            <td>#{item.type}</td>
-                            <td>#{item.key}</td>
-                            <td>#{item.status}</td>
-                            <td>#{item.user}</td>
-                            <td>#{item.description}</td>
-                        </b:exTable>
-                    </div>                    
-                </div>
+                </div>                   
             </div>
+
+            <div class="tab-content">
+                <div class="tab-pane #{buildVC.tab == 'details' ? 'active' : ''}" id="tab1">
+                    <b:box>
+                        <div class="row">
+                            <div class="col-md-6">                
+                                <h6 class="page-header">Details</h6>            
+                                <b:output title="Application" value="#{model.application.name}" />
+                                <b:output title="Project version" value="#{model.projectVersion}" />
+                                <b:output title="UID" value="#{model.uid}" />
+                                <b:output title="Created" value="#{model.date}" />
+                                <b:output title="Installed" value="#{model.install}" />
+                                <b:output title="Revision" value="#{model.scm}" />
+
+                                <b:output title="Build" value="#{model.build}" />
+
+                            </div>  
+                            <div class="col-md-6">                
+                                <h6 class="page-header">Maven</h6>            
+                                <b:output title="GroupId" value="#{model.groupId}" />
+                                <b:output title="ArtifactId" value="#{model.artifactId}" />
+                                <b:output title="Version" value="#{model.mavenVersion}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">                
+                                <h6 class="page-header">Manifest</h6>      
+
+                                <b:exTable result="#{buildVC.manifest}">
+                                    <f:facet name="header">
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                    </f:facet>
+
+                                    <td>#{item.name}</td>
+                                    <td>#{item.value}</td>
+                                </b:exTable>
+                            </div>          
+                            <div class="col-md-6">                
+                                <h6 class="page-header">Custom parameters</h6>         
+                                <b:exTable result="#{buildVC.custom}">
+                                    <f:facet name="header">
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                    </f:facet>
+
+                                    <td>#{item.name}</td>
+                                    <td>#{item.value}</td>
+                                </b:exTable>
+                            </div>   
+                        </div>
+                    </b:box>
+                </div>
+                <div class="tab-pane #{buildVC.tab == 'log' ? 'active' : ''}" id="tab2">                    
+                    <b:box type="primary">
+                        
+                    </b:box>
+                    <b:exTable result="#{buildVC.activity.changes}">
+                        <f:facet name="box-header">
+                            <div id="collapseExample" class="box-tools collapse">
+                                <div  class="row">
+                                    <div class="col-md-12">
+                                        <div class="btn-toolbar" role="toolbar">
+                                            <div class="btn-group">
+                                                <ui:repeat value="#{buildVC.typesVC.buttons}" var="button">
+                                                    <button jsf:action="#{buildVC.typesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm #{button.id == 'ERROR' ? 'btn-danger' : 'btn-success'} #{button.active ? 'active':''}">#{button.id}
+                                                        <f:ajax event="click" render="@this" execute="@this" />
+                                                    </button>       
+                                                </ui:repeat>
+                                            </div>
+                                            <div class="btn-group">
+                                                <ui:repeat value="#{buildVC.statusesVC.buttons}" var="button">
+                                                    <button jsf:action="#{buildVC.statusesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm btn-primary #{button.active ? 'active':''}">#{button.id}
+                                                        <f:ajax event="click" render="@this" execute="@this" />
+                                                    </button>       
+                                                </ui:repeat>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </f:facet>
+
+                        <f:facet name="toolbar">
+                            <a type="button" class="btn btn-default" data-toggle="collapse" href="#collapseExample"><i class="fa fa-filter"></i></a>
+                        </f:facet>
+
+                        <f:facet name="header">
+                            <th>Type</th>
+                            <th>Key</th>
+                            <th>Status</th>
+                            <th>User</th>
+                            <th>Description</th>
+                        </f:facet>
+
+                        <td>#{item.type}</td>
+                        <td>#{item.key}</td>
+                        <td>#{item.status}</td>
+                        <td>#{item.user}</td>
+                        <td>#{item.description}</td>
+                    </b:exTable>
+
+                </div>                    
+            </div>
+
         </h:form>
     </ui:define>
 </ui:composition>

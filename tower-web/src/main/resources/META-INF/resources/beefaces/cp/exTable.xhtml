@@ -11,12 +11,14 @@
         <composite:attribute name="type" required="false" default="primary"/>        
         <composite:attribute name="icon" required="false" default="erase"/>
         <composite:facet name="header" />
+        <composite:facet name="box-header" />
         <composite:facet name="toolbar" />
     </composite:interface>
 
     <composite:implementation>		
         <div class="box box-#{cc.attrs.type}">
             <div class="box-header"> 
+                <composite:renderFacet name="box-header" />
                 <div class="box-tools">
                     <div class="input-group">
                         <span jsf:id="header-count" class="input-group-addon"># #{cc.attrs.result.size()}</span>
@@ -30,7 +32,7 @@
             </div>
             <b:table id="content" result="#{cc.attrs.result}">
                 <composite:insertFacet name="header" />
-                <ui:repeat var="item" value="#{cc.attrs.result}"  varStatus="loop" >
+                <ui:repeat var="item" value="#{cc.attrs.result}" varStatus="loop" >
                     <tr>
                         <composite:insertChildren />
                     </tr>

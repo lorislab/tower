@@ -93,61 +93,73 @@
                 <div class="tab-pane #{buildVC.tab == 'log' ? 'active' : ''}" id="tab2">                    
                     <b:box type="primary">
                         <div  class="row">
-                            <div class="col-md-12">
-                                <div class="btn-toolbar" role="toolbar">
-                                    <div class="btn-group">
-                                        <ui:repeat value="#{buildVC.typesVC.buttons}" var="button">
-                                            <button jsf:action="#{buildVC.typesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm #{button.id == 'ERROR' ? 'btn-danger' : 'btn-success'} #{button.active ? 'active':''}">#{button.id}
-                                                <f:ajax event="click" render="@this" execute="@this" />
-                                            </button>       
-                                        </ui:repeat>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label jsf:for="input" class="control-label col-xs-3">Types</label>
+                                    <div class="col-xs-9">
+                                        <div class="btn-group">
+                                            <ui:repeat value="#{buildVC.typesVC.buttons}" var="button">
+                                                <button jsf:action="#{buildVC.typesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm #{button.active ? 'btn-success active':'btn-default'}">#{button.id}
+                                                    <f:ajax event="click" render="@this viewForm:table" execute="@this" />
+                                                </button>       
+                                            </ui:repeat>
+                                        </div> 
                                     </div>
-                                    <div class="btn-group">
-                                        <ui:repeat value="#{buildVC.statusesVC.buttons}" var="button">
-                                            <button jsf:action="#{buildVC.statusesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm btn-primary #{button.active ? 'active':''}">#{button.id}
-                                                <f:ajax event="click" render="@this" execute="@this" />
-                                            </button>       
-                                        </ui:repeat>
-                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">                                
+                                <div class="form-group">
+                                    <label jsf:for="input" class="control-label col-xs-3">Statuses</label>
+                                    <div class="col-xs-9">
+                                        <div class="btn-group">
+                                            <ui:repeat value="#{buildVC.statusesVC.buttons}" var="button">
+                                                <button jsf:action="#{buildVC.statusesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm #{button.active ? 'btn-success active':'btn-default'}">#{button.id}
+                                                    <f:ajax event="click" render="@this viewForm:table" execute="@this" />
+                                                </button>       
+                                            </ui:repeat>
+                                        </div>      
+                                    </div>
                                 </div>
                             </div>
                         </div>                         
                     </b:box>
-                    <b:filterTable result="#{buildVC.activity.changes}" >
 
-                        <f:facet name="header">
-                            <th>Type</th>
-                            <th>Key</th>
-                            <th>Status</th>
-                            <th>User</th>
-                            <th>Description</th>
-                        </f:facet>
+                    <span jsf:id="table">
+                        <b:filterTable id="activity" result="#{buildVC.changes}" >
 
-                        <ui:repeat var="item" value="#{buildVC.activity.changes}" varStatus="loop" >
-                            <tr >
-                                <td>#{item.type}</td>
-                                <td><a>#{item.key}</a></td>
-                                <td>#{item.status}</td>
-                                <td>#{item.user}</td>
-                                <td>#{item.description}</td>
-                            </tr>
+                            <f:facet name="header">
+                                <th>Type</th>
+                                <th>Key</th>
+                                <th>Status</th>
+                                <th>User</th>
+                                <th>Description</th>
+                            </f:facet>
 
-                            <ui:repeat value="#{item.logs}" var="log" varStatus="loop2">
-                                <tr style="font-size: 12px;">
-                                    <td></td>                                  
-                                    <td colspan="2">#{log.date}</td>
-                                    <td>#{log.user}</td>
-                                    <td><a>#{log.revision}</a>: #{log.message}</td>
+                            <ui:repeat var="item" value="#{buildVC.changes}" varStatus="loop" >
+                                <tr >
+                                    <td>#{item.type}</td>
+                                    <td><a>#{item.key}</a></td>
+                                    <td>#{item.status}</td>
+                                    <td>#{item.user}</td>
+                                    <td>#{item.description}</td>
                                 </tr>
-                            </ui:repeat> 
-                            <tr jsf:rendered="#{empty item.logs}" style="font-size: 12px;">
-                                <td colspan="4"></td>
-                                <td>No changes</td>
-                            </tr>
-                        </ui:repeat>
 
-                    </b:filterTable>
+                                <ui:repeat value="#{item.logs}" var="log" varStatus="loop2">
+                                    <tr style="font-size: 12px;">
+                                        <td></td>                                  
+                                        <td colspan="2">#{log.date}</td>
+                                        <td>#{log.user}</td>
+                                        <td><a>#{log.revision}</a>: #{log.message}</td>
+                                    </tr>
+                                </ui:repeat> 
+                                <tr jsf:rendered="#{empty item.logs}" style="font-size: 12px;">
+                                    <td colspan="4"></td>
+                                    <td>No changes</td>
+                                </tr>
+                            </ui:repeat>
 
+                        </b:filterTable>
+                    </span>
                 </div>                    
             </div>
 

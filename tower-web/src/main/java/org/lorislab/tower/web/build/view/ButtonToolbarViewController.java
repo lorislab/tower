@@ -18,6 +18,7 @@ package org.lorislab.tower.web.build.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +36,13 @@ public class ButtonToolbarViewController implements Serializable {
 
     private List<ToggleButton> buttons;
 
+    private final BuildViewController parent;
+    
+    public ButtonToolbarViewController(BuildViewController parent) {
+        this.parent = parent;
+    }
+
+    
     public void clear() {
         tmp = null;
         buttons = null;
@@ -48,6 +56,7 @@ public class ButtonToolbarViewController implements Serializable {
                 ToggleButton button = new ToggleButton(id);
                 tmp.put(id, button);
                 buttons.add(button);
+                data.add(id);
             }
         }
     }
@@ -61,7 +70,18 @@ public class ButtonToolbarViewController implements Serializable {
             ToggleButton button = tmp.get(id);
             if (button != null) {
                 button.setActive(!button.isActive());
+                parent.filterChanges();
             }
         }
+    }
+    
+    public Set<String> getSelected() {
+        Set<String> result = new HashSet<>();
+        for (ToggleButton button: buttons) {
+            if (button.isActive()) {
+                result.add(button.getId());
+            }
+        }
+        return result;
     }
 }

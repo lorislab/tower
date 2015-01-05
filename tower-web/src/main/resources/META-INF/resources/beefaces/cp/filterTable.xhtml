@@ -33,11 +33,7 @@
             <div class="box-body table-responsive no-padding">
                 <b:table id="content" result="#{cc.attrs.result}">
                     <composite:insertFacet name="header" />
-                    <ui:repeat var="item" value="#{cc.attrs.result}" varStatus="loop" >
-                        <tr>
-                            <composite:insertChildren />
-                        </tr>
-                    </ui:repeat> 
+                    <composite:insertChildren />
                 </b:table>         
             </div>
         </div>   	

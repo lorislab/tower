@@ -92,37 +92,28 @@
                 </div>
                 <div class="tab-pane #{buildVC.tab == 'log' ? 'active' : ''}" id="tab2">                    
                     <b:box type="primary">
-                        
-                    </b:box>
-                    <b:exTable result="#{buildVC.activity.changes}">
-                        <f:facet name="box-header">
-                            <div id="collapseExample" class="box-tools collapse">
-                                <div  class="row">
-                                    <div class="col-md-12">
-                                        <div class="btn-toolbar" role="toolbar">
-                                            <div class="btn-group">
-                                                <ui:repeat value="#{buildVC.typesVC.buttons}" var="button">
-                                                    <button jsf:action="#{buildVC.typesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm #{button.id == 'ERROR' ? 'btn-danger' : 'btn-success'} #{button.active ? 'active':''}">#{button.id}
-                                                        <f:ajax event="click" render="@this" execute="@this" />
-                                                    </button>       
-                                                </ui:repeat>
-                                            </div>
-                                            <div class="btn-group">
-                                                <ui:repeat value="#{buildVC.statusesVC.buttons}" var="button">
-                                                    <button jsf:action="#{buildVC.statusesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm btn-primary #{button.active ? 'active':''}">#{button.id}
-                                                        <f:ajax event="click" render="@this" execute="@this" />
-                                                    </button>       
-                                                </ui:repeat>
-                                            </div> 
-                                        </div>
+                        <div  class="row">
+                            <div class="col-md-12">
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="btn-group">
+                                        <ui:repeat value="#{buildVC.typesVC.buttons}" var="button">
+                                            <button jsf:action="#{buildVC.typesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm #{button.id == 'ERROR' ? 'btn-danger' : 'btn-success'} #{button.active ? 'active':''}">#{button.id}
+                                                <f:ajax event="click" render="@this" execute="@this" />
+                                            </button>       
+                                        </ui:repeat>
                                     </div>
-                                </div> 
+                                    <div class="btn-group">
+                                        <ui:repeat value="#{buildVC.statusesVC.buttons}" var="button">
+                                            <button jsf:action="#{buildVC.statusesVC.clickButton(button.id)}" type="button" role="group" class="btn btn-sm btn-primary #{button.active ? 'active':''}">#{button.id}
+                                                <f:ajax event="click" render="@this" execute="@this" />
+                                            </button>       
+                                        </ui:repeat>
+                                    </div> 
+                                </div>
                             </div>
-                        </f:facet>
-
-                        <f:facet name="toolbar">
-                            <a type="button" class="btn btn-default" data-toggle="collapse" href="#collapseExample"><i class="fa fa-filter"></i></a>
-                        </f:facet>
+                        </div>                         
+                    </b:box>
+                    <b:filterTable result="#{buildVC.activity.changes}" >
 
                         <f:facet name="header">
                             <th>Type</th>
@@ -132,12 +123,30 @@
                             <th>Description</th>
                         </f:facet>
 
-                        <td>#{item.type}</td>
-                        <td>#{item.key}</td>
-                        <td>#{item.status}</td>
-                        <td>#{item.user}</td>
-                        <td>#{item.description}</td>
-                    </b:exTable>
+                        <ui:repeat var="item" value="#{buildVC.activity.changes}" varStatus="loop" >
+                            <tr >
+                                <td>#{item.type}</td>
+                                <td><a>#{item.key}</a></td>
+                                <td>#{item.status}</td>
+                                <td>#{item.user}</td>
+                                <td>#{item.description}</td>
+                            </tr>
+
+                            <ui:repeat value="#{item.logs}" var="log" varStatus="loop2">
+                                <tr style="font-size: 12px;">
+                                    <td></td>                                  
+                                    <td colspan="2">#{log.date}</td>
+                                    <td>#{log.user}</td>
+                                    <td><a>#{log.revision}</a>: #{log.message}</td>
+                                </tr>
+                            </ui:repeat> 
+                            <tr jsf:rendered="#{empty item.logs}" style="font-size: 12px;">
+                                <td colspan="4"></td>
+                                <td>No changes</td>
+                            </tr>
+                        </ui:repeat>
+
+                    </b:filterTable>
 
                 </div>                    
             </div>

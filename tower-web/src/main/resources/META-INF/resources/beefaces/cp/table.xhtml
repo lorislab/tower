@@ -11,22 +11,20 @@
     </composite:interface>
 
     <composite:implementation>			
-        <div class="box-body table-responsive no-padding">
-            <table jsf:id="table" class="table table-hover sortable">							
-                <thead jsf:rendered="#{not empty cc.attrs.result}">
-                    <tr>
-                        <composite:renderFacet name="header" />
-                    </tr>
-                </thead>
-                <tbody jsf:rendered="#{not empty cc.attrs.result}">
-                    <composite:insertChildren />
-                </tbody>
-                <tbody class="sortable_no_results" style="#{empty cc.attrs.result ? '': 'display: none'}">
-                    <tr id="noResult" colspan="0" style="text-align: center;">
-                        <td>No results found</td>
-                    </tr>  
-                </tbody>
-            </table>	
-        </div> 		
+        <table jsf:id="table" class="table table-hover sortable">							
+            <thead jsf:rendered="#{not empty cc.attrs.result}">
+                <tr>
+                    <composite:renderFacet name="header" />
+                </tr>
+            </thead>
+            <tbody jsf:rendered="#{not empty cc.attrs.result}">
+                <composite:insertChildren />
+            </tbody>
+            <tbody class="sortable_no_results" style="#{empty cc.attrs.result ? '': 'display: none'}">
+                <tr id="noResult" colspan="0" style="text-align: center;">
+                    <td>No results found</td>
+                </tr>  
+            </tbody>
+        </table>	
     </composite:implementation>
 </html>

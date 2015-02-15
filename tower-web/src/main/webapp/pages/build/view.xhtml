@@ -137,19 +137,19 @@
 
                             <ui:repeat var="item" value="#{buildVC.changes}" varStatus="loop" >
                                 <tr >
-                                    <td>#{item.type}</td>
-                                    <td><a>#{item.key}</a></td>
-                                    <td>#{item.status}</td>
-                                    <td>#{item.user}</td>
-                                    <td>#{item.description}</td>
+                                    <td>#{item.model.type}</td>
+                                    <td><a>#{item.model.key}</a></td>
+                                    <td>#{item.model.status}</td>
+                                    <td>#{item.model.user}</td>
+                                    <td>#{item.model.description}</td>
                                 </tr>
 
                                 <ui:repeat value="#{item.logs}" var="log" varStatus="loop2">
                                     <tr style="font-size: 12px;">
                                         <td></td>                                  
-                                        <td colspan="2">#{log.date}</td>
-                                        <td>#{log.user}</td>
-                                        <td><a>#{log.revision}</a>: #{log.message}</td>
+                                        <td colspan="2">#{log.model.date}</td>
+                                        <td>#{log.model.user}</td>
+                                        <td><a>#{log.model.revision}</a>: #{log.model.message}</td>
                                     </tr>
                                 </ui:repeat> 
                                 <tr jsf:rendered="#{empty item.logs}" style="font-size: 12px;">

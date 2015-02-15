@@ -41,21 +41,7 @@ import org.lorislab.tower.store.model.NotificationGroup_;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class NotificationGroupService extends AbstractEntityServiceBean<NotificationGroup> {
-
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+public class NotificationGroupService extends AbstractStoreEntityServiceBean<NotificationGroup> {
 
     /**
      * Saves the notification group.

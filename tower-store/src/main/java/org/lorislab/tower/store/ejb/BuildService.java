@@ -45,21 +45,7 @@ import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class BuildService extends AbstractEntityServiceBean<Build> {
-
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+public class BuildService extends AbstractStoreEntityServiceBean<Build> {
     
     /**
      * Saves the store build.

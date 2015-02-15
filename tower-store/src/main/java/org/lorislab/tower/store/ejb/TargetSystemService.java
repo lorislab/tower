@@ -44,21 +44,7 @@ import org.lorislab.tower.store.model.TargetSystem_;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class TargetSystemService extends AbstractEntityServiceBean<TargetSystem> {
-
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+public class TargetSystemService extends AbstractStoreEntityServiceBean<TargetSystem> {
     
     /**
      * Deletes the system.

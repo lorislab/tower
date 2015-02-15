@@ -20,9 +20,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,7 +32,6 @@ import org.lorislab.tower.store.model.Application_;
 import org.lorislab.tower.store.model.Project_;
 import org.lorislab.tower.store.model.SCMSystem;
 import org.lorislab.tower.store.model.SCMSystem_;
-import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
 
 /**
  * The SCM system service.
@@ -43,21 +40,7 @@ import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class SCMSystemService extends AbstractEntityServiceBean<SCMSystem> {
-
-     /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+public class SCMSystemService extends AbstractStoreEntityServiceBean<SCMSystem> {
     
     /**
      * Saves the SCM system.

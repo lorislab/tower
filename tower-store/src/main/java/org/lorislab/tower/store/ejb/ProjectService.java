@@ -46,26 +46,7 @@ import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class ProjectService extends AbstractEntityServiceBean<Project> {
-
-    /**
-     * The UID for this class.
-     */
-    private static final long serialVersionUID = -4937927663216469945L;
-
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+public class ProjectService extends AbstractStoreEntityServiceBean<Project> {
 
     /**
      * Saves the project.

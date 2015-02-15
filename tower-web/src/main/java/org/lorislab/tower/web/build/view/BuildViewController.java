@@ -25,6 +25,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.lorislab.jel.jsf.entity.controller.AbstractEntityViewController;
+import org.lorislab.tower.service.activity.ejb.ActivityWrapperService;
+import org.lorislab.tower.service.activity.wrapper.ActivityChangeWrapper;
+import org.lorislab.tower.service.activity.wrapper.ActivityWrapper;
 import org.lorislab.tower.store.criteria.ActivityCriteria;
 import org.lorislab.tower.store.criteria.BuildCriteria;
 import org.lorislab.tower.store.ejb.ActivityService;
@@ -54,7 +57,7 @@ public class BuildViewController extends AbstractEntityViewController<Build> {
     private BuildService service;
 
     @EJB
-    private ActivityService activityService;
+    private ActivityWrapperService activityWrapperService;
 
     private List<BuildParameter> manifest;
 
@@ -64,9 +67,9 @@ public class BuildViewController extends AbstractEntityViewController<Build> {
 
     private final ButtonToolbarViewController statusesVC;
 
-    private Activity activity;
+    private ActivityWrapper activity;
 
-    private List<ActivityChange> changes;
+    private List<ActivityChangeWrapper> changes;
 
     private String tab;
 
@@ -111,40 +114,18 @@ public class BuildViewController extends AbstractEntityViewController<Build> {
                 }
             }
 
-            ActivityCriteria ac = new ActivityCriteria();
-            ac.setBuild(guid);
-            ac.setFetchChange(true);
-            ac.setFetchChangeLog(true);
-            ac.setFetchChangeLogBuild(true);
-            activity = activityService.getActivity(ac);
+            activity = activityWrapperService.getActivityWrapper(guid);
 
             if (activity != null) {
-
                 changes = new ArrayList<>(activity.getChanges());
-
-                Set<String> tmpStatus = new HashSet<>();
-                Set<String> tmpType = new HashSet<>();
-                for (ActivityChange change : changes) {
-
-                    String type = change.getType();
-                    if (type != null && !type.isEmpty()) {
-                        tmpType.add(change.getType());
-                    }
-
-                    String status = change.getStatus();
-                    if (status != null && !status.isEmpty()) {
-                        tmpStatus.add(status);
-                    }
-                }
-
-                statusesVC.open(tmpStatus);
-                typesVC.open(tmpType);
+                statusesVC.open(activity.getStatuses());
+                typesVC.open(activity.getTypes());
             }
         }
         return "toBuildView";
     }
 
-    public List<ActivityChange> getChanges() {
+    public List<ActivityChangeWrapper> getChanges() {
         return changes;
     }
 
@@ -153,8 +134,8 @@ public class BuildViewController extends AbstractEntityViewController<Build> {
         Set<String> t = typesVC.getSelected();
         changes = new ArrayList<>();
         if (!s.isEmpty() || !t.isEmpty()) {
-            for (ActivityChange change : activity.getChanges()) {
-                if (t.contains(change.getType()) && (change.getStatus() == null || s.contains(change.getStatus()))) {
+            for (ActivityChangeWrapper change : activity.getChanges()) {
+                if (t.contains(change.getModel().getType()) && (change.getModel().getStatus() == null || s.contains(change.getModel().getStatus()))) {
                     changes.add(change);
                 }
             }
@@ -169,7 +150,7 @@ public class BuildViewController extends AbstractEntityViewController<Build> {
         return typesVC;
     }
 
-    public Activity getActivity() {
+    public ActivityWrapper getActivity() {
         return activity;
     }
 

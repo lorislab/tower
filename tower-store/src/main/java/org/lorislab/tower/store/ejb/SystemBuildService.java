@@ -48,21 +48,7 @@ import org.lorislab.tower.store.model.TargetSystem_;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class SystemBuildService extends AbstractEntityServiceBean<SystemBuild> {
-
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+public class SystemBuildService extends AbstractStoreEntityServiceBean<SystemBuild> {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public SystemBuild saveSystemBuild(SystemBuild data) {

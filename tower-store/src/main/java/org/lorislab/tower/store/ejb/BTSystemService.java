@@ -21,9 +21,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,7 +32,6 @@ import org.lorislab.tower.store.criteria.BTSystemCriteria;
 import org.lorislab.tower.store.model.BTSystem;
 import org.lorislab.tower.store.model.BTSystem_;
 import org.lorislab.tower.store.model.Project_;
-import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
 
 /**
  * The bug tracking system service.
@@ -43,22 +40,8 @@ import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class BTSystemService extends AbstractEntityServiceBean<BTSystem> {
-
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
+public class BTSystemService extends AbstractStoreEntityServiceBean<BTSystem> {
+   
     /**
      * Saves the BTS system.
      * @param system the BTS system to be saved.

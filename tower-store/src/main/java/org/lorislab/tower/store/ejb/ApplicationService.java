@@ -49,22 +49,8 @@ import org.lorislab.jel.ejb.services.AbstractEntityServiceBean;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class ApplicationService extends AbstractEntityServiceBean<Application> {
+public class ApplicationService extends AbstractStoreEntityServiceBean<Application> {
 
-    /**
-     * The entity manager.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
     /**
      * Deletes the application.
      *
